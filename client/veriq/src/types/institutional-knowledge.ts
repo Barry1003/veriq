@@ -1,7 +1,7 @@
-/** Types for the frontend knowledge catalog; NOT a finalized backend API contract. */
 export type KnowledgeEntityKind = "service" | "system" | "channel" | "team";
 export type KnowledgeReviewStatus = "verified" | "partial" | "unverified";
-export type RelationshipKind = "depends_on" | "operated_by" | "exposed_via" | "routes_through";
+export type RelationshipKind =
+  "depends_on" | "operated_by" | "exposed_via" | "routes_through";
 export type RelationshipAssessment = "verified" | "reported" | "hypothesis";
 export type SourceKind = "catalog" | "diagram" | "runbook" | "change-record";
 
@@ -40,7 +40,6 @@ export type KnowledgeSource = {
   owner?: string;
 };
 
-/** Operational observations stay separate from the knowledge graph: correlation is not a documented route. */
 export type KnowledgeOperationalReference = {
   id: string;
   name: string;

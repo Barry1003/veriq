@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
-import { WorkspaceShell } from "@/components/workspace-shell";
+import { AppFrame } from "@/components/app-frame";
 import "./globals.css";
 import "./workspace.css";
 
@@ -14,6 +14,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return <html lang="en" data-product="veriq"><body><Suspense><WorkspaceShell>{children}</WorkspaceShell></Suspense></body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="en" data-product="veriq">
+      <body>
+        <Suspense>
+          <AppFrame>{children}</AppFrame>
+        </Suspense>
+      </body>
+    </html>
+  );
 }

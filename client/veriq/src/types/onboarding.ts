@@ -1,5 +1,6 @@
 export type SetupStage = 1 | 2 | 3 | 4 | 5;
-export type SourceId = "knowledge" | "operations" | "customer" | "reconciliation";
+export type SourceId =
+  "knowledge" | "operations" | "customer" | "reconciliation";
 
 export interface OnboardingDraft {
   institutionName: string;
@@ -33,14 +34,40 @@ export const INITIAL_ONBOARDING_DRAFT: OnboardingDraft = {
   inferenceEndpoint: "",
   modelProfile: "Institution-selected local model · pending",
   modelVersion: "",
-  selectedSources: { knowledge: true, operations: true, customer: true, reconciliation: false },
-  sourceScopes: { knowledge: "", operations: "", customer: "", reconciliation: "" },
+  selectedSources: {
+    knowledge: true,
+    operations: true,
+    customer: true,
+    reconciliation: false,
+  },
+  sourceScopes: {
+    knowledge: "",
+    operations: "",
+    customer: "",
+    reconciliation: "",
+  },
 };
 
 export const ONBOARDING_STEPS = [
-  { id: 1, label: "Institution profile", description: "Institution and environment" },
+  {
+    id: 1,
+    label: "Institution profile",
+    description: "Institution and environment",
+  },
   { id: 2, label: "Administrator access", description: "Administrator Access" },
-  { id: 3, label: "Local model policy", description: "Local AI & Model Policy" },
-  { id: 4, label: "Approved bank sources", description: "Approved Bank Sources" },
-  { id: 5, label: "Readiness verification", description: "Readiness & Activation" },
+  {
+    id: 3,
+    label: "Local model policy",
+    description: "Local AI & Model Policy",
+  },
+  {
+    id: 4,
+    label: "Approved bank sources",
+    description: "Approved Bank Sources",
+  },
+  {
+    id: 5,
+    label: "Readiness verification",
+    description: "Readiness & Activation",
+  },
 ] as const;

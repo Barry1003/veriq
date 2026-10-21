@@ -1,4 +1,3 @@
-
 export type VerifiedGate = "verified" | "failed" | "not-verified";
 export interface BackendReadiness {
   applicationService: VerifiedGate;
