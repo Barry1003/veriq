@@ -1,24 +1,17 @@
 /**
- * Provisional design tokens. Replace values with approved Figma variables.
- * Product identity belongs in themes/, not in application components.
+ * Verified provisional Veriq specimen tokens from the Codex handoff.
+ * These are not final brand approvals and must not be treated as Cedar colors.
  */
 export const colors = {
-  foundation: {
-    white: "#ffffff",
-    black: "#000000",
-    slate50: "#f8fafc",
-    slate100: "#f1f5f9",
-    slate200: "#e2e8f0",
-    slate500: "#64748b",
-    slate700: "#334155",
-    slate900: "#0f172a",
-  },
-  semantic: {
-    success: "#15803d",
-    warning: "#a16207",
-    danger: "#b91c1c",
-    info: "#0369a1",
-    unknown: "#64748b",
+  background: { app: "#F7FAFA", surface: "#FFFFFF", subtle: "#F0F5F5" },
+  action: { primary: "#0A716E", primaryHover: "#085B5B", secondary: "#E1F5F1" },
+  text: { primary: "#102B35", secondary: "#536A73", tertiary: "#8CA1A9", onPrimary: "#FFFFFF" },
+  border: { default: "#DBE5E7" },
+  status: {
+    success: "#177F55", successBackground: "#E2F6EA",
+    info: "#2F66C6", infoBackground: "#EAF0FF",
+    warning: "#996119", warningBackground: "#FFF2D8",
+    danger: "#B83D50", dangerBackground: "#FCE8EC",
   },
 } as const;
 

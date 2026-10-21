@@ -1,17 +1,15 @@
-/** Provisional typography scale; final families and sizes come from Figma. */
+/** Verified provisional Veriq typography specimens. Cedar typography is pending. */
 export const typography = {
-  fontFamily: {
-    sans: "Arial, Helvetica, sans-serif",
-    mono: "ui-monospace, SFMono-Regular, Menlo, monospace",
+  family: { veriq: "Inter", cedar: "PENDING_DESIGN_APPROVAL", mono: "ui-monospace, SFMono-Regular, Menlo, monospace" },
+  styles: {
+    displayXl: { family: "Inter", weight: 700, fontSizePx: 40, lineHeightPx: 48 },
+    pageHeading: { family: "Inter", weight: 700, fontSizePx: 28, lineHeightPx: 36 },
+    sectionHeading: { family: "Inter", weight: 600, fontSizePx: 22, lineHeightPx: 30 },
+    cardHeading: { family: "Inter", weight: 600, fontSizePx: 18, lineHeightPx: 26 },
+    bodyLarge: { family: "Inter", weight: 400, fontSizePx: 16, lineHeightPx: 24 },
+    bodyBase: { family: "Inter", weight: 400, fontSizePx: 14, lineHeightPx: 22 },
+    bodyStrong: { family: "Inter", weight: 600, fontSizePx: 14, lineHeightPx: 22 },
+    controlLabel: { family: "Inter", weight: 500, fontSizePx: 14, lineHeightPx: 20 },
+    metadata: { family: "Inter", weight: 500, fontSizePx: 12, lineHeightPx: 16 },
   },
-  size: {
-    xs: "0.75rem",
-    sm: "0.875rem",
-    md: "1rem",
-    lg: "1.125rem",
-    xl: "1.25rem",
-    display: "2rem",
-  },
-  lineHeight: { tight: 1.2, normal: 1.5, relaxed: 1.625 },
-  weight: { regular: 400, medium: 500, semibold: 600, bold: 700 },
 } as const;

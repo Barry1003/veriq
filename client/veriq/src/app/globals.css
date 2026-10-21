@@ -1,4 +1,30 @@
 @import "tailwindcss";
-:root { --background: #ffffff; --foreground: #171717; }
-@theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --font-sans: var(--font-geist-sans); --font-mono: var(--font-geist-mono); }
-body { background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+
+:root {
+  /* Provisional Veriq specimen tokens from the Codex handoff. */
+  --background-app: #f7fafa;
+  --background-surface: #ffffff;
+  --background-subtle: #f0f5f5;
+  --action-primary: #0a716e;
+  --action-primary-hover: #085b5b;
+  --action-secondary: #e1f5f1;
+  --text-primary: #102b35;
+  --text-secondary: #536a73;
+  --text-tertiary: #8ca1a9;
+  --text-on-primary: #ffffff;
+  --border-default: #dbe5e7;
+  --status-success: #177f55;
+  --status-success-bg: #e2f6ea;
+  --status-info: #2f66c6;
+  --status-info-bg: #eaf0ff;
+  --status-warning: #996119;
+  --status-warning-bg: #fff2d8;
+  --status-danger: #b83d50;
+  --status-danger-bg: #fce8ec;
+}
+
+body {
+  background: var(--background-app);
+  color: var(--text-primary);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+}

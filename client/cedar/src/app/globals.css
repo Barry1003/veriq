@@ -1,26 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Cedar palette and typography remain pending design approval. */
+  --background-app: #ffffff;
+  --background-surface: #ffffff;
+  --text-primary: #1f2933;
+  --border-default: #d9e0e3;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background-app);
+  color: var(--text-primary);
+  /* Do not treat this placeholder as Cedar's final font decision. */
+  font-family: system-ui, sans-serif;
 }
