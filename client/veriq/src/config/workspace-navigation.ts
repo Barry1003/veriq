@@ -1,0 +1,68 @@
+export const workspaceNavigation = [
+  {
+    slug: "overview",
+    href: "/",
+    title: "Intelligence Overview",
+    shortLabel: "Overview",
+    description: "A starting point for navigating the institution's connected intelligence.",
+    icon: "overview",
+    group: "intelligence",
+  },
+  {
+    slug: "knowledge",
+    href: "/knowledge",
+    title: "Institutional Knowledge",
+    shortLabel: "Institutional Knowledge",
+    description: "Explore institutional services, systems, relationships, and evidence sources.",
+    icon: "knowledge",
+    group: "intelligence",
+  },
+  {
+    slug: "operations",
+    href: "/operations",
+    title: "Operational Intelligence",
+    shortLabel: "Operations",
+    description: "Investigate operational observations and affected service dependencies.",
+    icon: "operations",
+    group: "intelligence",
+  },
+  {
+    slug: "customer-experience",
+    href: "/customer-experience",
+    title: "Customer Experience Intelligence",
+    shortLabel: "Customer Experience",
+    description: "Understand customer-reported signals and their potential operational relationships.",
+    icon: "customers",
+    group: "intelligence",
+  },
+  {
+    slug: "investigations",
+    href: "/investigations",
+    title: "Investigations",
+    shortLabel: "Investigations",
+    description: "Bring together evidence, hypotheses, and verified findings across the three pillars.",
+    icon: "investigations",
+    group: "intelligence",
+  },
+  {
+    slug: "data-sources",
+    href: "/data-sources",
+    title: "Data Sources & Integrations",
+    shortLabel: "Data Sources",
+    description: "Understand which institutional sources are available and how they are connected.",
+    icon: "sources",
+    group: "management",
+  },
+  {
+    slug: "administration",
+    href: "/administration",
+    title: "Administration",
+    shortLabel: "Administration",
+    description: "Configure the workspace and review administrative settings.",
+    icon: "administration",
+    group: "management",
+  },
+] as const;
+
+export type WorkspaceNavigationItem = (typeof workspaceNavigation)[number];
+export type WorkspaceIconName = WorkspaceNavigationItem["icon"];
