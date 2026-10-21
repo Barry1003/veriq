@@ -1,8 +1,11 @@
 import type { InstitutionalKnowledgeDataset } from "@/types/institutional-knowledge";
 
+/** Synthetic example institution. No live systems or customer records are represented. */
 export const institutionalKnowledgeFixture: InstitutionalKnowledgeDataset = {
-  asOf: "2026-10-20",
+  asOf: "2026-10-21",
   sources: [
+    { id: "src-route-v7", title: "Instant Transfer routing specification", version: "v7", owner: "Cedar Payments Engineering", kind: "change-record", reference: "SRC-ROUTE-01/v7", recordedAt: "2026-09-02", description: "Synthetic source-original route specification: Gateway G2 was documented before version 8." },
+    { id: "src-route-v8", title: "Instant Transfer routing specification", version: "v8", owner: "Cedar Payments Engineering", kind: "change-record", reference: "SRC-ROUTE-01/v8", recordedAt: "2026-10-20", description: "Synthetic source-original configuration: Gateway G3 is documented as the current default; scope and individual routing remain to be corroborated." },
     { id: "src-catalog", title: "Service ownership catalog", kind: "catalog", reference: "SYN-CAT-001", recordedAt: "2026-10-18", description: "Synthetic inventory of banking services and accountable units." },
     { id: "src-topology", title: "Payments dependency diagram", kind: "diagram", reference: "SYN-DGM-014", recordedAt: "2026-10-16", description: "Synthetic documented links between transfer services and processing systems." },
     { id: "src-runbook", title: "Transfer operations runbook", kind: "runbook", reference: "SYN-RBK-003", recordedAt: "2026-10-17", description: "Synthetic operational reference for transfer orchestration." },
@@ -10,6 +13,8 @@ export const institutionalKnowledgeFixture: InstitutionalKnowledgeDataset = {
     { id: "src-change", title: "Routing change note", kind: "change-record", reference: "SYN-CHG-022", recordedAt: "2026-09-02", description: "Synthetic change record describing retirement of an earlier gateway route." },
   ],
   entities: [
+    { id: "gateway-g2", kind: "system", name: "Gateway G2", summary: "Prior documented route for the instant transfer service; may still be referenced by independent operational observations.", owner: "Cedar Payments Engineering", reviewStatus: "partial", reviewedAt: "2026-10-20", validFrom: "2026-09-02", sourceIds: ["src-route-v7"] },
+    { id: "gateway-g3", kind: "system", name: "Gateway G3", summary: "Documented default route in the current synthetic v8 configuration. Actual event-time routing is not independently verified.", owner: "Cedar Payments Engineering", reviewStatus: "partial", reviewedAt: "2026-10-20", validFrom: "2026-10-20", sourceIds: ["src-route-v8"] },
     { id: "service-transfers", kind: "service", name: "Instant Transfers", summary: "Customer-facing instant funds transfer capability.", owner: "Payments Operations", reviewStatus: "verified", reviewedAt: "2026-10-18", validFrom: "2025-02-01", sourceIds: ["src-catalog", "src-runbook"] },
     { id: "service-atm", kind: "service", name: "ATM Withdrawals", summary: "Cash withdrawal service accessed through the ATM network.", owner: "Channels Operations", reviewStatus: "partial", reviewedAt: "2026-10-15", validFrom: "2025-04-15", sourceIds: ["src-catalog"] },
     { id: "system-orchestrator", kind: "system", name: "Payment Orchestrator", summary: "Coordinates transfer processing and routing within the simulated bank.", owner: "Payments Engineering", reviewStatus: "verified", reviewedAt: "2026-10-16", validFrom: "2025-02-01", sourceIds: ["src-topology", "src-runbook"] },
@@ -22,6 +27,8 @@ export const institutionalKnowledgeFixture: InstitutionalKnowledgeDataset = {
     { id: "team-channels", kind: "team", name: "Channels Operations", summary: "Institutional unit coordinating banking channel operations.", owner: "Operations Division", reviewStatus: "partial", reviewedAt: "2026-10-15", validFrom: "2025-01-01", sourceIds: ["src-catalog"] },
   ],
   relationships: [
+    { id: "REL-008", fromId: "service-transfers", toId: "gateway-g3", kind: "routes_through", assessment: "reported", description: "Routing v8 documents G3 as the current configuration. This is a documented source claim, not verification of actual transaction routing.", validFrom: "2026-10-20", validTo: null, sourceIds: ["src-route-v8"] },
+    { id: "REL-007", fromId: "service-transfers", toId: "gateway-g2", kind: "routes_through", assessment: "reported", description: "Routing v7 documents G2 in the historical configuration. Preserve its original valid-time relationship.", validFrom: "2026-09-02", validTo: "2026-10-19", sourceIds: ["src-route-v7"] },
     { id: "rel-transfer-orchestrator", fromId: "service-transfers", toId: "system-orchestrator", kind: "depends_on", assessment: "verified", description: "Transfer instructions pass through the payment orchestration service.", validFrom: "2025-02-01", validTo: null, sourceIds: ["src-topology", "src-runbook"] },
     { id: "rel-transfer-mobile", fromId: "service-transfers", toId: "channel-mobile", kind: "exposed_via", assessment: "verified", description: "Transfers are available from the mobile banking channel.", validFrom: "2025-02-01", validTo: null, sourceIds: ["src-channels"] },
     { id: "rel-transfer-web", fromId: "service-transfers", toId: "channel-web", kind: "exposed_via", assessment: "reported", description: "Internet banking transfer entry point requires confirmation against the current channel catalog.", validFrom: "2025-02-01", validTo: null, sourceIds: ["src-channels"] },
@@ -32,5 +39,8 @@ export const institutionalKnowledgeFixture: InstitutionalKnowledgeDataset = {
     { id: "rel-atm-team", fromId: "service-atm", toId: "team-channels", kind: "operated_by", assessment: "verified", description: "Channels Operations is the recorded accountable team.", validFrom: "2025-04-15", validTo: null, sourceIds: ["src-catalog"] },
     { id: "rel-atm-ledger-candidate", fromId: "system-atm", toId: "system-ledger", kind: "depends_on", assessment: "hypothesis", description: "Potential posting dependency requiring documentation and verification; not established as fact.", validFrom: "2026-10-15", validTo: null, sourceIds: [] },
     { id: "rel-old-route", fromId: "system-orchestrator", toId: "system-atm", kind: "routes_through", assessment: "reported", description: "Legacy synthetic routing association; no longer effective.", validFrom: "2025-03-01", validTo: "2026-08-31", sourceIds: ["src-change"] },
+  ],
+  operationalReferences: [
+    { id: "OPS-00128", name: "Operational record mentions Gateway G2", referencedEntityId: "gateway-g2", observedAt: "2026-10-21T14:06:15+01:00", description: "Synthetic telemetry mentions G2 after routing v8 became effective; route scope, alternate paths, source time and corroboration require investigation." },
   ],
 };

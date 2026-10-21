@@ -1,30 +1,48 @@
 @import "tailwindcss";
 
+/* Source: Figma veriq_desig (74FhGuOnZk3GwOfxLKihuL), V09 node 147:1420.
+   These replace the OLD provisional values from the different veriq_design file. */
 :root {
-  /* Provisional Veriq specimen tokens from the Codex handoff. */
-  --background-app: #f7fafa;
-  --background-surface: #ffffff;
-  --background-subtle: #f0f5f5;
-  --action-primary: #0a716e;
-  --action-primary-hover: #085b5b;
-  --action-secondary: #e1f5f1;
-  --text-primary: #102b35;
-  --text-secondary: #536a73;
-  --text-tertiary: #8ca1a9;
+  color-scheme: light;
+  --color-background: #f8fafb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f5f7;
+  --color-border: #d9e3e8;
+  --color-text-primary: #183047;
+  --color-text-secondary: #597083;
+  --color-accent-action: #006d66;
+  --veriq-nav-active-bg: #e6f4f1;
+  --veriq-nav-active-text: #075c58;
+  --veriq-button-primary-bg: #061d3b;
+  --veriq-button-primary-text: #ffffff;
+  --veriq-button-secondary-bg: #ffffff;
+  --veriq-button-secondary-border: #d9e3e8;
+  --veriq-button-secondary-text: #183047;
+  --veriq-input-background: #ffffff;
+  --veriq-input-border: #d9e3e8;
+  --veriq-input-placeholder: #597083;
+  --status-active-background: #e6f4f1;
+  --status-active-text: #075c58;
+  --status-active-border: #b6ddd5;
+  --radius-control: 8px;
+  --spacing-2: 8px;
+  /* Compatibility aliases for the existing shared Button and earlier components. */
+  --background-app: var(--color-background);
+  --background-surface: var(--color-surface);
+  --background-subtle: var(--color-surface-muted);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --border-default: var(--color-border);
+  --action-primary: var(--veriq-button-primary-bg);
+  --action-primary-hover: #102f50;
+  --action-secondary: var(--veriq-button-secondary-bg);
   --text-on-primary: #ffffff;
-  --border-default: #dbe5e7;
-  --status-success: #177f55;
-  --status-success-bg: #e2f6ea;
-  --status-info: #2f66c6;
-  --status-info-bg: #eaf0ff;
-  --status-warning: #996119;
-  --status-warning-bg: #fff2d8;
-  --status-danger: #b83d50;
-  --status-danger-bg: #fce8ec;
 }
 
-body {
-  background: var(--background-app);
-  color: var(--text-primary);
-  font-family: Inter, Arial, Helvetica, sans-serif;
-}
+html { min-height: 100%; }
+body { margin: 0; min-height: 100vh; background: var(--color-background); color: var(--color-text-primary); font-family: Inter, Arial, sans-serif; font-size: 14px; line-height: 1.57; }
+a { color: inherit; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--color-accent-action); outline-offset: 2px; }
