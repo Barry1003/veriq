@@ -1,0 +1,8 @@
+.nested-repo-metadata/
+**/node_modules/
+**/.next/
+**/out/
+**/build/
+**/.env.local
+**/*.tsbuildinfo
+.DS_Store
