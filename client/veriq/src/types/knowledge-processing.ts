@@ -27,7 +27,7 @@ export type ReviewTimelineEvent = {
 };
 
 export type KnowledgeProcessingSnapshot = {
-  kind: "synthetic-preview";
+  kind: "synthetic-preview" | "live";
   candidates: readonly ReviewCandidate[];
   timelineByCandidate: Readonly<
     Record<string, readonly ReviewTimelineEvent[]>

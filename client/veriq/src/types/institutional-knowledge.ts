@@ -1,9 +1,9 @@
-export type KnowledgeEntityKind = "service" | "system" | "channel" | "team";
+export type KnowledgeEntityKind = "service" | "system" | "channel" | "team" | "route" | "gateway" | "process" | "procedure";
 export type KnowledgeReviewStatus = "verified" | "partial" | "unverified";
 export type RelationshipKind =
-  "depends_on" | "operated_by" | "exposed_via" | "routes_through";
-export type RelationshipAssessment = "verified" | "reported" | "hypothesis";
-export type SourceKind = "catalog" | "diagram" | "runbook" | "change-record";
+  "depends_on" | "operated_by" | "exposed_via" | "routes_through" | "uses_gateway" | "belongs_to" | "governed_by";
+export type RelationshipAssessment = "verified" | "reported" | "hypothesis" | "contested" | "identity-review";
+export type SourceKind = "catalog" | "diagram" | "runbook" | "change-record" | "source-record";
 
 export type KnowledgeEntity = {
   id: string;
@@ -13,7 +13,7 @@ export type KnowledgeEntity = {
   owner: string;
   reviewStatus: KnowledgeReviewStatus;
   reviewedAt: string | null;
-  validFrom: string;
+  validFrom: string | null;
   sourceIds: readonly string[];
 };
 
@@ -50,6 +50,9 @@ export type KnowledgeOperationalReference = {
 
 export type InstitutionalKnowledgeDataset = {
   asOf: string;
+  knownAt?: string;
+  contextAt?: string;
+  kind?: "live" | "synthetic-preview";
   entities: readonly KnowledgeEntity[];
   relationships: readonly KnowledgeRelationship[];
   sources: readonly KnowledgeSource[];

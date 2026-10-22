@@ -19,7 +19,7 @@ const kpiIcons = {
 
 export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData }) {
   const { operationalSignal: signal, customerSignal: customer, agentReview } = data;
-  const peak = Math.max(signal.baselinePercent, ...signal.rateObservations);
+  const peak = signal ? Math.max(signal.baselinePercent ?? 0, ...signal.rateObservations) : 0;
   const interactions = customer.channels.reduce((total, channel) => total + channel.count, 0);
 
   return (
@@ -51,7 +51,7 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
         <h2>AI agent · active investigation</h2>
         <p>Review the investigation context and supporting evidence.</p>
       </div>
-      <div className="io-agent-card io-card">
+      {agentReview ? <div className="io-agent-card io-card">
         <div className="io-agent-content">
           <span className="io-overline">{agentReview.state.toUpperCase()} · {agentReview.caseId}</span>
           <h3>{agentReview.headline}</h3>
@@ -65,20 +65,20 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
             Open agent investigation
           </Link>
         </div>
-      </div>
+      </div> : <div className="io-agent-card io-card"><div className="io-agent-content"><h3>Automatic processing</h3><p>{data.processingSummary ?? "No reviewable AI result is available."}</p></div></div>}
 
       <div className="io-section-heading">
         <h2>Latest signals across Veriq</h2>
         <p>Operational measurements and customer reports remain separate evidence sources.</p>
       </div>
       <div className="io-signals">
-        <article className="io-card io-signal">
+        {signal ? <article className="io-card io-signal">
           <span className="io-overline">SOURCE MONITORING / {signal.reference}</span>
           <h3>{signal.title}</h3>
           <div className="io-mini-stats">
             <div><strong>{peak.toFixed(1)}%</strong><small>Observed peak</small></div>
-            <div><strong>{signal.baselinePercent.toFixed(1)}%</strong><small>Prior baseline</small></div>
-            <div><strong>{signal.lastObservedAt}</strong><small>Last source event</small></div>
+            <div><strong>{signal.baselinePercent === null ? "Not established" : `${signal.baselinePercent.toFixed(1)}%`}</strong><small>Prior baseline</small></div>
+            <div><strong>{signal?.lastObservedAt ?? "Unavailable"}</strong><small>Last source event</small></div>
           </div>
           <div className="io-chart">
             <span className="io-chart-label">SOURCE SERIES · EARLIER → LATER</span>
@@ -86,18 +86,18 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
               {signal.rateObservations.map((rate, index) => (
                 <div key={index} className="io-bar-col">
                   <span>{rate.toFixed(1)}%</span>
-                  <div className={`io-bar${rate > signal.baselinePercent * 3 ? " is-elevated" : ""}`} style={{ height: `${Math.max(8, (rate / peak) * 80)}px` }} />
+                  <div className={`io-bar${signal.baselinePercent !== null && rate > signal.baselinePercent * 3 ? " is-elevated" : ""}`} style={{ height: `${Math.max(8, (rate / peak) * 80)}px` }} />
                 </div>
               ))}
             </div>
             <div className="io-chart-details">
-              <small>Baseline: {signal.baselinePercent.toFixed(1)}% (reference)</small>
+              <small>Baseline: {signal.baselinePercent === null ? "Not established" : `${signal.baselinePercent.toFixed(1)}%`} (reference)</small>
               <small>{signal.windowLabel}</small>
             </div>
           </div>
           <p>Operational signal only. Settlement outcomes remain unknown.</p>
           <p className="io-signal-note">Trigger source: operational telemetry · no customer complaint required</p>
-        </article>
+        </article> : <article className="io-card io-signal"><h3>No operational incident returned</h3><p>Missing telemetry does not establish a healthy service.</p></article>}
 
         <article className="io-card io-signal">
           <span className="io-overline">CUSTOMER SIGNALS / {customer.reference}</span>
@@ -151,21 +151,21 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
         <article className="io-card io-readiness">
           <Network size={20} aria-hidden="true" />
           <span>Knowledge sources</span>
-          <strong>{data.knowledgeProcessedCount} processed records</strong>
+          <strong>{data.knowledgeProcessedCount} {data.knowledgeCountLabel ?? "processed records"}</strong>
           <p>{data.knowledgeReviewCount} records awaiting human review</p>
           <small>Source history and provenance retained</small>
         </article>
         <article className="io-card io-readiness">
           <Activity size={20} aria-hidden="true" />
           <span>Operational monitoring</span>
-          <strong>Latest event: {signal.lastObservedAt}</strong>
-          <p>Measured signal received</p>
+          <strong>Latest event: {signal?.lastObservedAt ?? "Unavailable"}</strong>
+          <p>{signal ? "Measured signal received" : "No incident evidence returned"}</p>
           <small>Freshness evaluated per source</small>
         </article>
         <article className="io-card io-readiness">
           <Database size={20} aria-hidden="true" />
           <span>Reconciliation evidence</span>
-          <strong>{data.reconciliationAvailable ? "Available" : "Not yet available"}</strong>
+          <strong>{data.reconciliationAvailable === null ? "Not assessed" : data.reconciliationAvailable ? "Available" : "Not yet available"}</strong>
           <p>Financial outcome remains unknown</p>
           <small>Settlement status unverified</small>
         </article>

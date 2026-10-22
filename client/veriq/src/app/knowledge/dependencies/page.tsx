@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default async function DependencyGraphPage() {
+    let snapshot: Awaited<ReturnType<typeof getDependencyGraph>>;
     try {
-        const snapshot = await getDependencyGraph();
-        return <ExpandedDependencyGraph snapshot={snapshot} />;
+        snapshot = await getDependencyGraph();
     } catch {
         return (
             <section className="dg-page" role="status">
@@ -20,4 +20,5 @@ export default async function DependencyGraphPage() {
             </section>
         );
     }
+    return <ExpandedDependencyGraph snapshot={snapshot} />;
 }

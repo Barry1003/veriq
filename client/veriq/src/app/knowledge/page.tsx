@@ -31,6 +31,7 @@ export default async function KnowledgePage() {
     <KnowledgeExplorer
       dataset={pageData.knowledge}
       processedRecordCount={pageData.sourceCatalog.previewTotals.processedRecords}
+      sourceRecordLabel={pageData.sourceCatalog.recordCountLabel}
       pendingReviewCount={pageData.processing.candidates.filter((candidate) => candidate.status === "needs-review").length}
     />
   );

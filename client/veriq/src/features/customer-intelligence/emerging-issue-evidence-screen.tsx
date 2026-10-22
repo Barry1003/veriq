@@ -10,7 +10,7 @@ function Item({ label, children }: { label: string; children: ReactNode }) {
 }
 
 function ContactRow({ contact, prominent }: { contact: CustomerContact; prominent?: boolean }) {
-  const labels: Record<CustomerContact["channel"], string> = { "in-app": "In-app", "call-centre": "Call centre", branch: "Branch" };
+  const labels: Record<CustomerContact["channel"], string> = { "in-app": "In-app", "call-centre": "Call centre", branch: "Branch", email: "Email" };
   return <tr className={prominent ? "ep-prominent" : ""}>
     <td><span className="ep-nowrap">{contact.id}</span><small>{labels[contact.channel]}</small></td>
     <td>{contact.summary}</td>

@@ -118,7 +118,7 @@ export function KnowledgeProcessingScreen({
   }
 
   const pipeline = [
-    { name: "Source ingested", info: `${sources.previewTotals.processedRecords} processed records` },
+    { name: "Source ingested", info: `${sources.previewTotals.processedRecords} ${sources.recordCountLabel ?? "processed records"}` },
     { name: "Candidate extraction", info: "Claims + relationships" },
     { name: "Evidence matching", info: "Version / scope checks" },
     { name: "Human review", info: `${pendingCount} awaiting decisions` },

@@ -142,7 +142,7 @@ function CustomerScreen({ snapshot }: { snapshot: CustomerConnectorVariant }) {
           {label:"issue_category",content:record.suggestedCategory},
           {label:"claimed_outcome",content:record.claimedOutcome ?? "Unknown"},
           {label:"transaction_link",content:record.transactionLink ? `${record.transactionLink} · association unverified` : "Not linked"},
-          {label:"case_reference",content:record.caseId},
+          {label:"case_reference",content:record.caseId ?? "Not provided"},
         ]}/> : <p className="cv-context">No normalized classification detail is supplied for this source record.</p>}
         {record.id === "CX-0081" && <ActionLink href="/customer-experience/CX-0081/classification">Inspect classification</ActionLink>}
       </Panel>
