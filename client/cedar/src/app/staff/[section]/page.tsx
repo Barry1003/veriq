@@ -1,3 +1,4 @@
+import { ReconcileControl } from "@/components/reconcile-control";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { bankGet, bankGetRecentOperationalFeed, dataMode, dateLabel, naira, type BankRow, type Transaction, type Interaction, type Knowledge, type Channel, } from "@/lib/cedar-api";
@@ -34,8 +35,8 @@ async function PaymentRoutes() {
     const result = await bankGetRecentOperationalFeed();
     const live = dataMode === "api";
     const observations = observationsFromFeed(result.data);
+    const latestG1 = result.data?.coverage_complete ? latestObservationForGateway(observations, "G1") : null;
     const latestG2 = result.data?.coverage_complete ? latestObservationForGateway(observations, "G2") : null;
-    const latestG3 = result.data?.coverage_complete ? latestObservationForGateway(observations, "G3") : null;
     const rows = live ? observations.slice(0, 40).map(item => ({
         id: item.id,
         gateway: item.gateway,
@@ -45,26 +46,26 @@ async function PaymentRoutes() {
         rate: `${item.rate.toFixed(1)}%`,
         detail: `${item.id} · ${item.windowSeconds}s window · ${dateLabel(item.eventTime)}`,
     })) : [
-        { id: "OPS-00128", gateway: "G2", route: "R2", count: "41", attempts: "1,000", rate: "4.1%", detail: "OPS-00128 · 300s window · 21 Oct 2026 · 14:06 WAT" },
-        { id: "OPS-00129", gateway: "G3", route: "R3", count: "8", attempts: "1,000", rate: "0.8%", detail: "OPS-00129 · 300s window · 21 Oct 2026 · 14:06 WAT" },
+        { id: "OPS-00128", gateway: "G1", route: "R2", count: "41", attempts: "1,000", rate: "4.1%", detail: "OPS-00128 · 300s window · 21 Oct 2026 · 14:06 WAT" },
+        { id: "OPS-00129", gateway: "G2", route: "R3", count: "8", attempts: "1,000", rate: "0.8%", detail: "OPS-00129 · 300s window · 21 Oct 2026 · 14:06 WAT" },
     ];
     return <><Header heading="Payment route monitoring" description={descriptions["payment-routes"]} live={live}/>
     <div className="cedar-card cedar-block"><span className="cedar-label">SERVICE / SOURCE WINDOW</span><h3>{live ? "Gateway source telemetry" : "Instant Transfers · 21 Oct 2026 · 14:00–14:05 WAT"}</h3><p>Every row is an original bank observation. Separate sample windows and routes are not combined into an invented five-minute aggregate.</p></div>
     <div className="cedar-grid-four">
       {[
-            ["G2 · LATEST OBSERVED RATE", live ? latestG2 ? `${latestG2.rate.toFixed(1)}%` : "Unavailable" : "4.1%", live ? latestG2 ? `${latestG2.timeouts} of ${latestG2.attempts} in ${latestG2.windowSeconds}s` : "No sample returned" : "41 timeout observations / 1,000 requests"],
-            ["G3 · LATEST OBSERVED RATE", live ? latestG3 ? `${latestG3.rate.toFixed(1)}%` : "Unavailable" : "0.8%", live ? latestG3 ? `${latestG3.timeouts} of ${latestG3.attempts} in ${latestG3.windowSeconds}s` : "No G3 source returned" : "8 timeout observations / 1,000 requests"],
+            ["G1 · LATEST OBSERVED RATE", live ? latestG1 ? `${latestG1.rate.toFixed(1)}%` : "Unavailable" : "4.1%", live ? latestG1 ? `${latestG1.timeouts} of ${latestG1.attempts} in ${latestG1.windowSeconds}s` : "No sample returned" : "41 timeout observations / 1,000 requests"],
+            ["G2 · LATEST OBSERVED RATE", live ? latestG2 ? `${latestG2.rate.toFixed(1)}%` : "Unavailable" : "0.8%", live ? latestG2 ? `${latestG2.timeouts} of ${latestG2.attempts} in ${latestG2.windowSeconds}s` : "No G2 source returned" : "8 timeout observations / 1,000 requests"],
             ["HISTORICAL REFERENCE", live ? "Unverified" : "0.9%", "Baseline scope needs confirmation"],
-            ["LATEST G2 EVENT", live ? dateLabel(latestG2?.eventTime) : "14:07", "Veriq ingestion not verified"],
+            ["LATEST G1 EVENT", live ? dateLabel(latestG1?.eventTime) : "14:07", "Veriq ingestion not verified"],
         ].map(([label, value, hint]) => <div className="cedar-card cedar-stat" key={label}><span className="cedar-label">{label}</span><strong>{value}</strong><small>{hint}</small></div>)}
     </div>
     <div className="cedar-content-grid"><section className="cedar-card cedar-block"><span className="cedar-label">ROUTE MEASUREMENT EVIDENCE</span><h3>Gateway observations by route</h3><p>Rate = recorded timeouts ÷ observed attempts within that individual source window.</p>
       {rows.length ? <div className="cedar-table-container"><table className="cedar-table"><thead><tr><th>GATEWAY / ROUTE</th><th>TIMEOUTS</th><th>REQUESTS</th><th>OBSERVED RATE</th></tr></thead><tbody>{rows.map(x => <tr key={`${x.id}-${x.route}`}><td><strong>{x.gateway} · {x.route}</strong><p>{x.detail}</p></td><td>{x.count}</td><td>{x.attempts}</td><td><strong>{x.rate}</strong></td></tr>)}</tbody></table></div> : <Missing message={result.error}/>}
       <div className="cedar-note">{live ? `${observations.length} recent retrieved observations. ${result.error ?? "Feed pages scanned to the end."} ` : ""}A timeout does not establish that a transfer failed, settled or was reversed.</div>
     </section><Context rows={[
-            { title: "Source identifier", text: live ? latestG2?.id ?? "No permitted observation" : "OPS-00128 · Cedar gateway telemetry" },
-            { title: "Bank event time", text: live ? dateLabel(latestG2?.eventTime) : "21 Oct · 14:06:15 WAT" },
-            { title: "Observed sample window", text: live ? latestG2 ? `${latestG2.windowSeconds}s` : "Unavailable" : "300s" },
+            { title: "Source identifier", text: live ? latestG1?.id ?? "No permitted observation" : "OPS-00128 · Cedar gateway telemetry" },
+            { title: "Bank event time", text: live ? dateLabel(latestG1?.eventTime) : "21 Oct · 14:06:15 WAT" },
+            { title: "Observed sample window", text: live ? latestG1 ? `${latestG1.windowSeconds}s` : "Unavailable" : "300s" },
             { title: "Veriq ingestion", text: "Not established by Cedar source reads" },
             { title: "Missing evidence", text: "Transaction-level reconciliation" },
         ]}/></div>
@@ -89,7 +90,7 @@ async function Transactions({ selected }: {
             { title: "Reconciliation", text: detail?.evidence ?? "No source record" },
             { title: "Authorized export", text: "Cedar may expose scoped evidence through authorized feeds" },
         ]}/></div>
-    <div className="cedar-actions"><Link href="/operator" className="cedar-button secondary">Open restricted reconciliation controls →</Link></div>
+    <ReconcileControl active={live} transactions={records.filter(tx => tx.status === "pending").map(tx => tx.id)}/>
   </>;
 }
 async function SupportChannels() {

@@ -20,7 +20,7 @@ export function KnowledgeSourcesScreen({ snapshot }: { snapshot: KnowledgeSource
       </header>
       <div className="ks-summary" aria-label="Source summary">
         <article><Database size={20} aria-hidden="true" /><span>Source collections</span><strong>{snapshot.collections.length}</strong></article>
-        <article><span>Processed records</span><strong>{snapshot.previewTotals.processedRecords}</strong></article>
+        <article><span>{snapshot.recordCountLabel ?? "Processed records"}</span><strong>{snapshot.previewTotals.processedRecords}</strong></article>
         <article><span>Connected sources</span><strong>{snapshot.collections.filter((item) => item.connected).length}</strong></article>
       </div>
       <h2>Registered collections</h2>
@@ -34,7 +34,7 @@ export function KnowledgeSourcesScreen({ snapshot }: { snapshot: KnowledgeSource
                 <td>{source.owner}</td>
                 <td>{source.scope}</td>
                 <td>{source.recordCount}</td>
-                <td><span className={`ks-status${source.connected ? " is-connected" : ""}`}>{source.connected ? "Connected" : "Not connected"}</span></td>
+                <td><span className={`ks-status${source.connected ? " is-connected" : ""}`}>{source.deliveryLabel ?? (source.connected ? "Connected" : "Not connected")}</span>{source.lastError && <small role="status">{source.lastError}</small>}</td>
                 <td>{source.lastReceivedAt ?? "No records received"}</td>
               </tr>
             ))}

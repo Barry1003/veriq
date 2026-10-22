@@ -1,3 +1,6 @@
+import "server-only";
+import { requireSession } from "./session";
+
 export type BankRow<T = Record<string, unknown>> = {
     id: string;
     kind: string;
@@ -89,12 +92,15 @@ const credentialNames: Record<Credential, string> = {
 export async function bankGet<T>(path: string, role: Credential = "staff"): Promise<Load<T>> {
     if (dataMode === "preview")
         return { data: null, error: null, mode: "preview" };
+    await requireSession(role === "customer" ? ["customer"] : ["staff", "operator"]);
+    const allowed = role === "customer" ? /^\/v1\/(accounts|transactions|interactions)$/ : role === "feed" ? /^\/v1\/feed\?source_id=cedar-operations&limit=500&after=\d+$/ : /^\/v1\/(transactions|interactions|channels|institutional\/(configurations|documents))$/;
+    if (!allowed.test(path)) return { data: null, error: "This bank read is not permitted.", mode: "api" };
     const token = process.env[credentialNames[role]];
     if (!token)
         return { data: null, error: "Bank credential unavailable for this source.", mode: "api" };
     try {
-        const response = await fetch(new URL(path, process.env.CEDAR_API_URL ?? "http://127.0.0.1:8101"), {
-            cache: "no-store",
+        const response = await fetch(new URL(path, process.env.CEDAR_API_URL ?? "http://127.0.0.1:8611"), {
+            cache: "no-store", redirect: "error",
             headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
             signal: AbortSignal.timeout(9000),
         });

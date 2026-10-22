@@ -40,8 +40,8 @@ export function recoverTransfer(value: string): TransferRequest {
 
 export const transferCookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
+  secure: process.env.CEDAR_UI_ORIGIN?.startsWith("https://") === true,
   sameSite: "strict" as const,
   path: "/",
-  maxAge: 60 * 60 * 24 * 400,
+  maxAge: 60 * 60 * 4,
 };

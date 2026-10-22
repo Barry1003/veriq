@@ -10,7 +10,7 @@ export type OperationalSignal = {
   reference: string;
   title: string;
   sourceName: string;
-  baselinePercent: number;
+  baselinePercent: number | null;
   rateObservations: readonly number[];
   windowLabel: string;
   lastObservedAt: string;
@@ -28,7 +28,7 @@ export type InvestigationPreview = {
   id: string;
   observation: string;
   trigger: "operational" | "customer";
-  status: "Investigating";
+  status: string;
   updatedAt: string;
   evidenceRefs: readonly string[];
 };
@@ -44,7 +44,7 @@ export type AgentReviewSummary = {
 
 export type IntelligenceOverviewData = {
   kpis: readonly OverviewKpi[];
-  operationalSignal: OperationalSignal;
+  operationalSignal: OperationalSignal | null;
   customerSignal: CustomerSignal;
   investigations: readonly InvestigationPreview[];
 
@@ -52,6 +52,8 @@ export type IntelligenceOverviewData = {
   operationallyInitiatedTotal: number;
   knowledgeProcessedCount: number;
   knowledgeReviewCount: number;
-  reconciliationAvailable: boolean;
-  agentReview: AgentReviewSummary;
+  reconciliationAvailable: boolean | null;
+  knowledgeCountLabel?: string;
+  agentReview: AgentReviewSummary | null;
+  processingSummary?: string;
 };

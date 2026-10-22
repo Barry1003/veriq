@@ -41,7 +41,7 @@ export type CustomerSourceContact = Readonly<{
   receivedAt: string;
   status: string;
   summary: string;
-  caseId: string;
+  caseId: string | null;
   originalStatement: string | null;
   suggestedCategory: string | null;
   claimedOutcome: string | null;
@@ -54,7 +54,7 @@ export type CustomerConnectorVariant = ConnectorVariantBase & Readonly<{
   channelTotal: number;
   uniqueCustomers: number | null;
   sourceOwner: string;
-  emergingIssueId: string;
+  emergingIssueId: string | null;
 }>;
 export type ConnectorVariantSnapshot = KnowledgeConnectorVariant | CustomerConnectorVariant;
 

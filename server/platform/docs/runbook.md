@@ -94,3 +94,27 @@ Choose settings at init, keep the existing task interface and explicit version c
 ```
 
 Those paths are placeholders for provisioned approved local files. Alternatively, pass `--external-model http://127.0.0.1:8181/v1` and its real `--model-alias`; the runner will not start/stop an external model. A remote bank-local hostname needs explicit `--allowed-model-hosts`; credentials embedded in URLs are rejected. The backend reports context as deployment-declared, not independently proven by `/models`. The runtime must support the existing OpenAI-compatible JSON-schema contract. Model switching never rewrites accepted knowledge, tools or prompts. Use the unchanged `scripts.evaluate_adaptive` / `scripts.grade_adaptive` commands in [server setup](../../README.md), separate result files and the same frozen dataset. Do not claim 9B timing/qualification until actually measured.
+
+## Separate browser sessions (local demonstration)
+
+For a fresh local SQLite demonstration, no model download or container image is required. Run from `server/platform/`:
+
+```bash
+uv sync --frozen
+.venv/bin/python -m scripts.rehearsal init --run stage --storage sqlite
+.venv/bin/python -m scripts.rehearsal up --run stage --without-model
+.venv/bin/python -m scripts.rehearsal prepare --run stage
+.venv/bin/python -m scripts.configure_frontends --run stage
+```
+
+For an existing named run, omit `init`; preparation is idempotent. Preserve existing frontend environments rather than rerunning configuration over them.
+
+The configuration tool writes owner-only, ignored `.env.local` files in the existing two frontend directories. It refuses to overwrite an existing environment. Preserve these files and the private request store across restarts. Separate login passwords are in ignored `var/rehearsals/stage/browser-logins.json`; backend bearer tokens are never browser login inputs.
+
+In separate terminals, from each frontend directory, install locked dependencies with `pnpm install --frozen-lockfile`, then `pnpm build`. Start Cedar with `pnpm start --hostname localhost --port 3000`; start Veriq with `pnpm start --hostname localhost --port 3001`. Visit `http://localhost:3000/login` and `http://localhost:3001/login`. Keep these exact origins: different hostnames are different browser security contexts. Each app has its own HttpOnly, SameSite=Strict cookie with a four-hour lifetime; HTTP localhost uses a non-Secure cookie, while a configured HTTPS origin requires Secure. This explicit localhost-only demo authentication is not production SSO. All roles and credentials are selected server-side, and protected mutations require both the configured Origin and the signed session's CSRF token.
+
+Cedar customer is fixed to C1 and can only use banking/support actions; staff can read bank operations and reconcile; the separate operator can seed and set simulator conditions. Veriq investigator uses its own backend credential and can read knowledge without source administration; source registry and administration remain admin-only. Use Sign out to change browser roles. Separate browser profiles can show these roles simultaneously.
+
+For the anomaly demonstration, sign in as Cedar operator and use **Generate ten G1 timeout transfers**. It sets G1 timeout mode and calls Cedar's transfer API ten times with distinct durable keys (₦10 each, R1/A1). Repeating the action confirms those same records, even after reload. Customer banking then defaults to ₦50,000 (5,000,000 minor units), which remains affordable from the fresh seeded balance. Check the actual available balance first. Staff reconcile the selected pending customer transfer from Transactions; a customer complaint never changes financial status.
+
+Transfer staging and exact support-message identities/timestamps are retained in the private request store, serialized across tabs and reused after ambiguous responses. The browser must acknowledge a validated bank response before its pending instruction is cleared. If a server process is forcibly killed during an action, a `.lock` file may remain: stop that frontend, inspect the original bank records, then remove only that principal's stale lock before restarting and replaying the original request. Do not delete recovery JSON or change recovery secrets to bypass an uncertain outcome. This single-machine file store must not be shared by multiple replicas or placed on an untrusted/network filesystem.

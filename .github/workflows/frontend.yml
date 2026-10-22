@@ -1,0 +1,38 @@
+name: Frontend checks
+
+on:
+  pull_request:
+    paths: ["client/**", ".github/workflows/frontend.yml", "server/platform/contracts/api/**"]
+  push:
+    branches: [main]
+    paths: ["client/**", ".github/workflows/frontend.yml", "server/platform/contracts/api/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: ${{ matrix.app }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [cedar, veriq]
+    defaults:
+      run:
+        working-directory: client/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: client/${{ matrix.app }}/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm type-check
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build

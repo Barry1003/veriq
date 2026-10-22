@@ -1,11 +1,11 @@
 import { getMockIntelligenceOverview } from "./adapters/intelligence-overview";
 import type { IntelligenceOverviewData } from "@/types/intelligence-overview";
-export async function getIntelligenceOverview(): Promise<IntelligenceOverviewData> {
-  const mode = process.env.NEXT_PUBLIC_DATA_SOURCE ?? "mock";
+import { requireVeriqApi, type VeriqApi } from "./api/veriq";
+import { getLiveIntelligenceOverview } from "./adapters/live-intelligence-overview";
+export async function getIntelligenceOverview(api?: VeriqApi): Promise<IntelligenceOverviewData> {
+  const mode = process.env.VERIQ_DATA_SOURCE ?? process.env.NEXT_PUBLIC_DATA_SOURCE ?? "mock";
   if (mode === "mock") return getMockIntelligenceOverview();
   if (mode === "api")
-    throw new Error(
-      "Intelligence Overview API contract has not been agreed with the backend team.",
-    );
+    return getLiveIntelligenceOverview(requireVeriqApi(api));
   throw new Error(`Unsupported data source: ${mode}`);
 }

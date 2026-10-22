@@ -3,7 +3,7 @@ export type DashboardSummary = {
     id: string;
     label: string;
     value: number;
-    changePercent: number;
+    changePercent: number | null;
   }[];
   updatedAt: string;
 };

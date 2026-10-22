@@ -1,0 +1,266 @@
+{
+  "date": "2026-10-22",
+  "initial_main_sha": "f05eba84f055516c69f1e1f54bc2e57cfe40d7df",
+  "latest_verified_main_sha": "c0427ce9787e5522c7e823c1ce9d84b12b7bf213",
+  "storage": "isolated SQLite",
+  "browser_verified": false,
+  "model_started": false,
+  "checks": {
+    "repeat_prepare_no_duplicate_sources_or_documents": true,
+    "cedar_unauthenticated_rejected": true,
+    "veriq_unauthenticated_rejected": true,
+    "revoked_empty_source_rejected": true,
+    "anomaly_replay_only_ten_transfers": true,
+    "customer_replay_only_one_transfer_and_report": true,
+    "incident_preceded_complaint": true,
+    "original_transaction_and_channel_reference": true,
+    "model_finished_within_deadline": false,
+    "automatically_scheduled": true,
+    "actual_http_model_called": false,
+    "ai_cannot_change_cedar_financial_state": true,
+    "historical_revisions_preserved": true
+  },
+  "backend_verifier_exit_code": 2,
+  "native_ids": {
+    "customer_transaction": "15c767a1-266a-4623-bc04-4d37ff1c5438",
+    "investigation": "6b3e3a8d-3c6a-4778-b877-98b0b5186d41",
+    "task": "107e3f27-0d00-4bce-a6d6-c225662767ac"
+  },
+  "task_state": "retryable",
+  "task_outcome": "unavailable",
+  "frontend_http": {
+    "transport": "real_http",
+    "browser_verified": false,
+    "checks": {
+      "cedar_ui_no_login": true,
+      "shared_basic_gate_exposes_staff_to_customer_login": true,
+      "customer_cannot_reconcile": true,
+      "http_only_sealed_cookie": true,
+      "replay_returns_same_transaction": true,
+      "replay_does_not_change_balance_or_reservation": true,
+      "account_switch_blocked": true,
+      "reload_renders_original_recovery": true,
+      "acknowledgement_after_response": true
+    },
+    "routes": {
+      "cedar/": 307,
+      "cedar/banking": 200,
+      "cedar/staff": 200,
+      "cedar/staff/payment-routes": 200,
+      "cedar/staff/transactions": 200,
+      "cedar/staff/support-channels": 200,
+      "cedar/staff/institutional-sources": 200,
+      "cedar/staff/authorizations": 200,
+      "cedar/operator": 200,
+      "cedar/operator/gateway-observation": 200,
+      "veriq/": 200,
+      "veriq/knowledge": 200,
+      "veriq/knowledge/dependencies": 200,
+      "veriq/knowledge/processing": 200,
+      "veriq/data-sources": 200,
+      "veriq/data-sources/new": 200,
+      "veriq/customer-experience": 200,
+      "veriq/customer-experience/emerging-issues": 200,
+      "veriq/operations": 200,
+      "veriq/investigations": 200,
+      "veriq/onboarding": 200,
+      "veriq/administration/access": 200,
+      "veriq/administration/local-ai": 200,
+      "veriq/administration/system-health": 200,
+      "veriq/administration/connectors": 200,
+      "veriq/administration/connectors/new": 200
+    },
+    "stage_status": 200,
+    "cookie_attributes": [
+      "Path=/",
+      "Expires=Fri, 26 Nov 2027 19:30:53 GMT",
+      "Max-Age=34560000",
+      "Secure",
+      "HttpOnly",
+      "SameSite=strict"
+    ],
+    "transaction": {
+      "transaction_id": "fba87499-cc29-4dfe-a081-ab7ec24ffb9e",
+      "status": "pending",
+      "route_id": "R1",
+      "amount_minor": 100
+    }
+  },
+  "limitations": [
+    "No approved browser session-to-principal resolver",
+    "No live browser automation available",
+    "No PostgreSQL runtime or approved local model provisioned",
+    "Veriq route entry points do not inject the authenticated API reader"
+  ],
+  "actual_response_excerpts": {
+    "GET /v1/interactions": [
+      {
+        "id": "598780c2-8b88-4761-b26d-e1137c09a5d8",
+        "kind": "interaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T19:15:35.420644+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T19:15:34.733009+00:00",
+          "channel": "in_app",
+          "text": "My transfer is pending and the beneficiary has not received it.",
+          "customer_id": "C1",
+          "transaction_id": "e6316640-0e70-47c5-845c-c2405369a150",
+          "evidence_id": "c768dd80-bdf7-4052-b154-d75e66d67f3f",
+          "source_id": "cedar-channel-in-app",
+          "source_native_record_id": "54f5556e18a545ca97d9ac28f2dca5a3-complaint",
+          "origin": {
+            "adapter_id": "in-app-message-v1",
+            "native_record_id": "54f5556e18a545ca97d9ac28f2dca5a3-complaint",
+            "normalized_at": "2026-10-22T19:15:34.738323+00:00"
+          },
+          "category": "transfer_delay",
+          "method": "deterministic-keywords-v1",
+          "processing_state": "classified"
+        }
+      }
+    ],
+    "GET /v1/knowledge/context": {
+      "at": "2026-10-22T19:16:57.484978+00:00",
+      "known_at": "2026-10-22T19:16:57.485010+00:00",
+      "entities": [
+        {
+          "canonical_id": "06991818-8060-56ca-83dc-82fd311ccd85",
+          "native_id": "R1",
+          "kind": "route",
+          "namespace": "cedar-rehearsal-master",
+          "source_identities": [
+            {
+              "namespace": "cedar-rehearsal-master",
+              "native_id": "R1",
+              "source_id": "cedar-institutional",
+              "evidence_id": "8b69e459-1bef-4284-ab72-ba8384849835"
+            }
+          ],
+          "names": [
+            "Domestic transfers"
+          ],
+          "evidence_ids": [
+            "8b69e459-1bef-4284-ab72-ba8384849835"
+          ],
+          "identity_state": "source_bound_or_authorized_mapping"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "R1",
+          "predicate": "uses_gateway",
+          "object": "G1",
+          "subject_id": "06991818-8060-56ca-83dc-82fd311ccd85",
+          "identity_namespace": "cedar-rehearsal-master",
+          "source_identities": [
+            {
+              "namespace": "cedar-rehearsal-master",
+              "source_id": "cedar-institutional",
+              "subject": "R1",
+              "object": "G1"
+            }
+          ],
+          "object_id": "72aaf4fc-20d8-53a8-b576-b056fbf84f57",
+          "evidence_ids": [
+            "8b69e459-1bef-4284-ab72-ba8384849835"
+          ],
+          "assertion_ids": [
+            "a4c7410a-44f5-428c-81fc-aa5cc65a3278"
+          ],
+          "state": "accepted",
+          "semantics": "structural"
+        }
+      ]
+    }
+  },
+  "lifecycle_checks": {
+    "worker_restart_preserves_financial_state": true,
+    "banking_renders_explicit_backend_outage": true,
+    "api_restart_preserves_accounts_and_reservations": true
+  },
+  "repair_commits": [
+    {
+      "sha": "822cf8c27158b3bf9b56fac2cba27d93fb170c64",
+      "subject": "Document integration evidence and outstanding owner decisions"
+    },
+    {
+      "sha": "22c11bba06957066648190b205886ad8867da937",
+      "subject": "Check both frontend applications on pull requests"
+    },
+    {
+      "sha": "b9bd7e6af0e7bac01670a83b864aac6140962217",
+      "subject": "Add contract-verified Veriq intelligence read adapters"
+    },
+    {
+      "sha": "3985ba67b5fb7eae65155a3f3dd5e316acd80869",
+      "subject": "Complete Cedar transfer recovery and validate browser origin"
+    }
+  ],
+  "changed_files": [
+    ".github/workflows/frontend.yml",
+    "client/cedar/.env.example",
+    "client/cedar/.gitignore",
+    "client/cedar/package.json",
+    "client/cedar/src/app/api/cedar/route.ts",
+    "client/cedar/src/app/banking/banking-client.tsx",
+    "client/cedar/src/app/operator/operator-controls.tsx",
+    "client/cedar/src/data/banking.ts",
+    "client/cedar/src/lib/cedar-actions.ts",
+    "client/cedar/src/lib/cedar-api.ts",
+    "client/cedar/src/services/adapters/banking-preview.ts",
+    "client/cedar/tests/cedar-contract-smoke.cjs",
+    "client/cedar/tests/load-module.cjs",
+    "client/cedar/tests/transfer-recovery.test.cjs",
+    "client/veriq/.env.example",
+    "client/veriq/eslint.config.mjs",
+    "client/veriq/package.json",
+    "client/veriq/src/app/knowledge/dependencies/page.tsx",
+    "client/veriq/src/app/knowledge/page.tsx",
+    "client/veriq/src/features/administration/connector-variant-screen.tsx",
+    "client/veriq/src/features/customer-intelligence/customer-interactions-screen.tsx",
+    "client/veriq/src/features/customer-intelligence/emerging-issue-evidence-screen.tsx",
+    "client/veriq/src/features/institutional-knowledge/knowledge-explorer.tsx",
+    "client/veriq/src/features/institutional-knowledge/knowledge-processing-screen.tsx",
+    "client/veriq/src/features/institutional-knowledge/knowledge-sources-screen.tsx",
+    "client/veriq/src/features/intelligence-overview/intelligence-overview.tsx",
+    "client/veriq/src/services/adapters/live-customer-interactions.ts",
+    "client/veriq/src/services/adapters/live-institutional-knowledge.ts",
+    "client/veriq/src/services/adapters/live-intelligence-overview.ts",
+    "client/veriq/src/services/adapters/live-knowledge-processing.ts",
+    "client/veriq/src/services/adapters/live-knowledge-sources.ts",
+    "client/veriq/src/services/api/dashboard.ts",
+    "client/veriq/src/services/api/veriq.ts",
+    "client/veriq/src/services/customer-interactions.ts",
+    "client/veriq/src/services/index.ts",
+    "client/veriq/src/services/institutional-knowledge.ts",
+    "client/veriq/src/services/intelligence-overview.ts",
+    "client/veriq/src/services/knowledge-processing.ts",
+    "client/veriq/src/services/knowledge-sources.ts",
+    "client/veriq/src/types/connector-variants.ts",
+    "client/veriq/src/types/customer-interactions.ts",
+    "client/veriq/src/types/domains.ts",
+    "client/veriq/src/types/institutional-knowledge.ts",
+    "client/veriq/src/types/intelligence-overview.ts",
+    "client/veriq/src/types/knowledge-processing.ts",
+    "client/veriq/src/types/knowledge-sources.ts",
+    "client/veriq/tests/live-adapters.test.cjs",
+    "client/veriq/tests/load-module.cjs",
+    "docs/api-integration.md",
+    "docs/frontend-architecture.md",
+    "docs/integration-repair-2026-10-22.json",
+    "docs/integration-repair-2026-10-22.md"
+  ],
+  "owned_services_stopped": true,
+  "pull_request": {
+    "created": false,
+    "reason": "GitHub connector HTTP 403: Resource not accessible by integration",
+    "compare_url": "https://github.com/Barry1003/veriq/compare/main...codex/integration-repair?expand=1",
+    "github_cli_available": false
+  },
+  "github_checks": {
+    "head": "822cf8c27158b3bf9b56fac2cba27d93fb170c64",
+    "pr_workflow_runs": 0,
+    "vercel_veriq": "pending",
+    "vercel_veriq_tzo1": "success"
+  }
+}

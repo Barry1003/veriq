@@ -16,17 +16,20 @@ type Props = {
   dataset: InstitutionalKnowledgeDataset;
   processedRecordCount: number;
   pendingReviewCount: number;
+  sourceRecordLabel?: string;
 };
 
 const relationshipLabels: Record<RelationshipAssessment, string> = {
   verified: "Reviewed claim",
   reported: "Source documented",
   hypothesis: "Unverified candidate",
+  contested: "Conflicting source claims",
+  "identity-review": "Identity review required",
 };
 
 function relationshipTimeState(relationship: KnowledgeRelationship, asOf: string) {
   if (asOf < relationship.validFrom) return "Not yet effective";
-  if (relationship.validTo !== null && asOf > relationship.validTo) return "Historical";
+  if (relationship.validTo !== null && asOf >= relationship.validTo) return "Historical";
   return "Effective at selected date";
 }
 
@@ -35,7 +38,7 @@ function isEffective(relationship: KnowledgeRelationship, asOf: string) {
 }
 
 function formatDate(date: string) {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString("en-GB", {
+  return new Date(date.includes("T") ? date : `${date}T12:00:00Z`).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -43,22 +46,22 @@ function formatDate(date: string) {
   });
 }
 
-export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReviewCount }: Props) {
+export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReviewCount, sourceRecordLabel }: Props) {
   const [query, setQuery] = useState("");
   const [mode, setMode] = useState<Mode>("graph");
   const [asOf, setAsOf] = useState(dataset.asOf);
   const [assessment, setAssessment] = useState<EvidenceFilter>("all");
   const [showAll, setShowAll] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>("REL-008");
+  const [selectedId, setSelectedId] = useState<string | null>(dataset.relationships[0]?.id ?? null);
   const sourceDialogRef = useRef<HTMLDialogElement>(null);
 
   const entities = useMemo(() => new Map(dataset.entities.map((item) => [item.id, item])), [dataset.entities]);
   const sources = useMemo(() => new Map(dataset.sources.map((item) => [item.id, item])), [dataset.sources]);
   const observedRecords = (dataset.operationalReferences ?? []).filter((obs) => obs.observedAt.slice(0, 10) <= asOf);
 
-  const routing = useMemo(() => dataset.relationships.filter((r) => r.id === "REL-008" || r.id === "REL-007"), [dataset.relationships]);
+  const routing = useMemo(() => dataset.relationships.filter((r) => r.kind === "uses_gateway" || r.kind === "routes_through"), [dataset.relationships]);
   const displayedRelationships = useMemo(() => {
-    const base = showAll || query.trim() || assessment !== "all" ? dataset.relationships : routing;
+    const base = dataset.kind === "live" || showAll || query.trim() || assessment !== "all" ? dataset.relationships : routing;
     const normalizedQuery = query.trim().toLowerCase();
     return base.filter((relationship) => {
       if (assessment !== "all" && relationship.assessment !== assessment) return false;
@@ -71,21 +74,21 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
         sourceNames].join(" ").toLowerCase();
       return !normalizedQuery || searchable.includes(normalizedQuery);
     });
-  }, [assessment, dataset.relationships, entities, query, routing, showAll, sources]);
+  }, [assessment, dataset.kind, dataset.relationships, entities, query, routing, showAll, sources]);
 
   const selected = displayedRelationships.find((r) => r.id === selectedId)
-    ?? displayedRelationships.find((r) => isEffective(r, asOf))
+    ?? displayedRelationships.find((r) => isEffective(r, dataset.contextAt ?? asOf))
     ?? displayedRelationships[0];
   const source = selected?.sourceIds.map((id) => sources.get(id)).find((s) => s !== undefined);
   const selectedFrom = selected ? entities.get(selected.fromId) : undefined;
   const selectedTo = selected ? entities.get(selected.toId) : undefined;
 
-  const activeRoute = routing.find((r) => isEffective(r, asOf));
-  const focusRelationship = selected && isEffective(selected, asOf) ? selected : displayedRelationships.find((r) => isEffective(r, asOf));
+  const activeRoute = routing.find((r) => isEffective(r, dataset.contextAt ?? asOf));
+  const focusRelationship = selected && isEffective(selected, dataset.contextAt ?? asOf) ? selected : displayedRelationships.find((r) => isEffective(r, dataset.contextAt ?? asOf));
   const focusFrom = focusRelationship ? entities.get(focusRelationship.fromId) : undefined;
   const focusTo = focusRelationship ? entities.get(focusRelationship.toId) : undefined;
 
-  const historicalRoute = routing.find((r) => relationshipTimeState(r, asOf) === "Historical");
+  const historicalRoute = routing.find((r) => relationshipTimeState(r, dataset.contextAt ?? asOf) === "Historical");
   const versionLabels = dataset.sources.filter((s) => s.reference.startsWith("SRC-ROUTE-01/")).map((s) => s.version).filter(Boolean);
   const activeSource = activeRoute?.sourceIds.map((id) => sources.get(id)).find(Boolean);
   const routeObservation = observedRecords.find((obs) => obs.id === "OPS-00128") ?? observedRecords[0];
@@ -108,7 +111,7 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
           <Network size={19} aria-hidden="true" />
           <span>SOURCE RECORDS</span>
           <strong>{processedRecordCount}</strong>
-          <small>Processed records · source lineage</small>
+          <small>{sourceRecordLabel ?? "Processed records · source lineage"}</small>
         </article>
         <article className="kn-box kn-kpi">
           <Database size={19} aria-hidden="true" />
@@ -148,7 +151,7 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
         </label>
         <label>
           <span>As-of date</span>
-          <input type="date" value={asOf} onChange={(event) => updateContext(event.target.value)} />
+          <input type="date" value={asOf} disabled={dataset.kind === "live"} onChange={(event) => updateContext(event.target.value)} />
         </label>
         <label>
           <span>Evidence state</span>
@@ -157,6 +160,8 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
             <option value="reported">Source documented</option>
             <option value="verified">Reviewed claim</option>
             <option value="hypothesis">Unverified candidate</option>
+            <option value="contested">Conflicting source claims</option>
+            <option value="identity-review">Identity review required</option>
           </select>
         </label>
         <div className="kn-time-note">As-of source time, not ingestion time</div>
@@ -239,7 +244,7 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
             <tbody>
               {displayedRelationships.map((relationship) => {
                 const original = sources.get(relationship.sourceIds[0]);
-                const state = relationshipTimeState(relationship, asOf);
+                const state = relationshipTimeState(relationship, dataset.contextAt ?? asOf);
                 return (
                   <tr key={relationship.id} className={selected?.id === relationship.id ? "is-selected" : ""}>
                     <td><button type="button" onClick={() => setSelectedId(relationship.id)}>{entities.get(relationship.fromId)?.name} → {entities.get(relationship.toId)?.name}</button></td>

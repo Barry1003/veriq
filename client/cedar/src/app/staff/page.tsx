@@ -11,16 +11,16 @@ export default async function OperationsOverview() {
     const live = dataMode === "api";
     const pending = transactions.data?.filter(item => item.data.status === "pending") ?? [];
     const observations = observationsFromFeed(telemetry.data);
-    const g2 = observations.filter(item => item.gateway === "G2");
-    const latestG2 = telemetry.data?.coverage_complete ? latestObservationForGateway(observations, "G2") : null;
+    const g2 = observations.filter(item => item.gateway === "G1");
+    const latestG2 = telemetry.data?.coverage_complete ? latestObservationForGateway(observations, "G1") : null;
     const stats = !live ? overviewCards : [
-        { label: "G2 TIMEOUT OBSERVATION", value: latestG2 ? `${latestG2.rate.toFixed(1)}%` : "Unavailable", detail: telemetry.error ?? (latestG2 ? `${latestG2.timeouts} / ${latestG2.attempts} · ${latestG2.windowSeconds}s window · ${dateLabel(latestG2.eventTime)}` : "No gateway G2 sample returned"), href: "/staff/payment-routes" },
+        { label: "G1 TIMEOUT OBSERVATION", value: latestG2 ? `${latestG2.rate.toFixed(1)}%` : "Unavailable", detail: telemetry.error ?? (latestG2 ? `${latestG2.timeouts} / ${latestG2.attempts} · ${latestG2.windowSeconds}s window · ${dateLabel(latestG2.eventTime)}` : "No gateway G1 sample returned"), href: "/staff/payment-routes" },
         { label: "UNRESOLVED SOURCE STATES", value: transactions.data ? `${pending.length} records` : "Unavailable", detail: transactions.error ?? "Pending does not establish transfer failure", href: "/staff/transactions" },
         { label: "SUPPORT INTERACTIONS", value: interactions.data ? `${interactions.data.length} contacts` : "Unavailable", detail: interactions.error ?? "Logged source reports · customers may repeat", href: "/staff/support-channels" },
         { label: "AUTHORIZED FEED SCOPES", value: "Unverified", detail: "Cedar has no staff grant-list API", href: "/staff/authorizations" },
     ];
     const followUps = !live ? attentionRecords : [
-        ...(g2.length ? [{ eyebrow: "01 · GATEWAY OBSERVATION", title: "Gateway G2 observations", subtitle: `${g2.length} returned observations · ${latestG2 ? `latest ${dateLabel(latestG2.eventTime)}` : "feed coverage incomplete"}`, caveat: "Timeout evidence does not establish transfer failure.", href: "/staff/payment-routes" }] : []),
+        ...(g2.length ? [{ eyebrow: "01 · GATEWAY OBSERVATION", title: "Gateway G1 observations", subtitle: `${g2.length} returned observations · ${latestG2 ? `latest ${dateLabel(latestG2.eventTime)}` : "feed coverage incomplete"}`, caveat: "Timeout evidence does not establish transfer failure.", href: "/staff/payment-routes" }] : []),
         ...pending.slice(0, 1).map(item => ({ eyebrow: "02 · FINANCIAL STATUS CHECK", title: `${item.data.transaction_id} remains pending`, subtitle: `Gateway ${item.data.gateway_id} · ${item.data.response}`, caveat: "A pending status does not establish final credit or failure.", href: `/staff/transactions?tx=${encodeURIComponent(item.data.transaction_id)}` })),
         ...(interactions.data?.length ? [{ eyebrow: "03 · SUPPORT SOURCE REVIEW", title: `${interactions.data.length} customer interaction records`, subtitle: "Original messages available through Cedar", caveat: "Customer statements remain unverified reports.", href: "/staff/support-channels" }] : []),
     ];

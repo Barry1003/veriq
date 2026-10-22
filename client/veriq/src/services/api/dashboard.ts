@@ -1,17 +1,16 @@
 import type { DashboardSummary } from "@/types/domains";
+import { array, object, string, type VeriqApi } from "./veriq";
 
-export const DEFAULT_DASHBOARD_API_PATH = "/api/dashboard/summary";
-
-export async function getApiDashboardSummary(
-  baseUrl: string,
-  path = DEFAULT_DASHBOARD_API_PATH,
-): Promise<DashboardSummary> {
-  const url = new URL(path.startsWith("/") ? path : `/${path}`, baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`).toString();
-
-  const response = await fetch(url, {
-    headers: { Accept: "application/json" },
-  });
-  if (!response.ok)
-    throw new Error(`Could not load dashboard summary (${response.status})`);
-  return (await response.json()) as DashboardSummary;
+export async function getApiDashboardSummary(api: VeriqApi): Promise<DashboardSummary> {
+  const [context, investigations, evidence] = await Promise.all([
+    api.snapshot("context"), api.rows("investigations"), api.rows("evidence"),
+  ]);
+  return {
+    metrics: [
+      { id: "knowledge", label: "Accepted institutional entities", value: array(context.entities, object).length, changePercent: null },
+      { id: "investigations", label: "Open investigations", value: investigations.filter(row => row.data.state !== "resolved").length, changePercent: null },
+      { id: "evidence", label: "Visible evidence records", value: evidence.length, changePercent: null },
+    ],
+    updatedAt: string(context.known_at),
+  };
 }

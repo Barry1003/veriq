@@ -1,8 +1,8 @@
 import { bankGet, dataMode, type Account, type Transaction, type Interaction, type BankRow } from "@/lib/cedar-api";
 import { BankingClient } from "./banking-client";
 import "./banking.css";
-import { cookies } from "next/headers";
-import { recoverTransfer, transferCookieName } from "@/lib/transfer-recovery";
+import { requireSession } from "@/lib/session";
+import { pendingRequests, type ReportRequest } from "@/lib/request-store";
 import type { TransferRequest } from "@/lib/transfer-request";
 export default async function BankingPage() {
     const [accounts, transactions, interactions] = await Promise.all([
@@ -12,13 +12,15 @@ export default async function BankingPage() {
     ]);
     let pendingTransfer: TransferRequest | null = null;
     let recoveryError: string | null = null;
+    let pendingReport: ReportRequest | null = null;
     if (dataMode === "api") {
-        const sealed = (await cookies()).get(transferCookieName)?.value;
-        if (sealed) {
-            try { pendingTransfer = recoverTransfer(sealed); }
-            catch { recoveryError = "An earlier transfer instruction cannot be recovered. Ask staff to check bank records before attempting another transfer."; }
-        }
+        try {
+            const saved = await pendingRequests(await requireSession(["customer"]));
+            pendingTransfer = saved.transfer;
+            pendingReport = saved.report;
+        } catch { recoveryError = "Saved instructions cannot be recovered. Staff must inspect bank records before another transfer."; }
     }
-    return <BankingClient active={dataMode === "api"} accounts={accounts.data ?? []} transactions={transactions.data ?? []} interactions={interactions.data ?? []} pendingTransfer={pendingTransfer} recoveryError={recoveryError} errors={[accounts.error, transactions.error, interactions.error].filter((x): x is string => Boolean(x))}/>;
+
+    return <BankingClient active={dataMode === "api"} accounts={accounts.data ?? []} transactions={transactions.data ?? []} interactions={interactions.data ?? []} pendingTransfer={pendingTransfer} pendingReport={pendingReport} recoveryError={recoveryError} errors={[accounts.error, transactions.error, interactions.error].filter((x): x is string => Boolean(x))}/>;
 }
 

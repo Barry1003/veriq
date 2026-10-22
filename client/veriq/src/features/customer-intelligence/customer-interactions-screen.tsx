@@ -19,6 +19,7 @@ const channelLabel: Record<CustomerChannel, string> = {
   "in-app": "In-app",
   "call-centre": "Call centre",
   branch: "Branch",
+  email: "Email",
 };
 
 function formatSourceTime(iso: string) {
@@ -58,8 +59,8 @@ function EvidenceInspector({
       <dl className="cx-inspector-list">
         <InspectorDatum title="SOURCE CHANNEL">{selected.channel === "in-app" ? "Cedar in-app support" : selected.channel === "call-centre" ? "Contact centre" : "Branch service desk"}</InspectorDatum>
         <InspectorDatum title="RECEIVED AT SOURCE">{formatSourceDate(selected.receivedAt)} · {formatSourceTime(selected.receivedAt)}</InspectorDatum>
-        <InspectorDatum title="VERIQ INGESTION">{selected.ingestedAt ? formatSourceTime(selected.ingestedAt) : "Not recorded in sample"}</InspectorDatum>
-        <InspectorDatum title="LINKED CASE">{selected.caseId} · {selected.caseStatus === "Review" ? "under review" : selected.caseStatus.toLowerCase()}</InspectorDatum>
+        <InspectorDatum title="VERIQ INGESTION">{selected.ingestedAt ? formatSourceTime(selected.ingestedAt) : "Not recorded"}</InspectorDatum>
+        <InspectorDatum title="LINKED CASE">{selected.caseId ? `${selected.caseId} · ${selected.caseStatus.toLowerCase()}` : "No case status provided"}</InspectorDatum>
         <InspectorDatum title="OPTIONAL TRANSFER">{selected.transferReference ? `${selected.transferReference} · outcome unknown` : "Not linked"}</InspectorDatum>
       </dl>
       <div className="cx-inspector-quote">
@@ -111,7 +112,7 @@ export function CustomerInteractionsScreen({ snapshot }: { snapshot: CustomerInt
       <h2 id="cx-overview-title">Interaction overview</h2>
       <div className="cx-kpis">
         <article className="cx-panel cx-kpi"><MessagesSquare size={20} aria-hidden="true"/><span>LOGGED INTERACTIONS</span><strong>{snapshot.receivedCount}</strong><small>Across source channels</small></article>
-        <article className="cx-panel cx-kpi"><Database size={20} aria-hidden="true"/><span>SOURCE CHANNELS</span><strong>{channelsCount}</strong><small>In-app · call centre · branch</small></article>
+        <article className="cx-panel cx-kpi"><Database size={20} aria-hidden="true"/><span>SOURCE CHANNELS</span><strong>{channelsCount}</strong><small>Authorized source channels</small></article>
         <article className="cx-panel cx-kpi"><CircleHelp size={20} aria-hidden="true"/><span>UNIQUE CUSTOMERS</span><strong>{snapshot.uniqueCustomers ?? "Unknown"}</strong><small>No verified deduplicated total</small></article>
         <article className="cx-panel cx-kpi"><Search size={20} aria-hidden="true"/><span>EMERGING PATTERNS</span><strong>{snapshot.issueCount}</strong><small>Reviewable signal · {snapshot.emergingIssueId}</small></article>
       </div>
@@ -122,9 +123,9 @@ export function CustomerInteractionsScreen({ snapshot }: { snapshot: CustomerInt
       <p className="cx-supporting">Filter by origin, issue type and review status.</p>
       <div className="cx-panel cx-filters">
         <label><span>Search interactions</span><input type="search" placeholder="Source, case, phrase or reference" value={query} onChange={e => setQuery(e.target.value)} /></label>
-        <label><span>Channel</span><select value={channel} onChange={e => setChannel(e.target.value as ChannelFilter)}><option value="all">All channels</option><option value="in-app">In-app</option><option value="call-centre">Call centre</option><option value="branch">Branch</option></select></label>
-        <label><span>Issue category</span><select value={category} onChange={e => setCategory(e.target.value as CategoryFilter)}><option value="all">All categories</option><option value="delay">Delay</option><option value="confirmation">Confirmation</option><option value="status-inquiry">Status inquiry</option></select></label>
-        <label><span>Review status</span><select value={review} onChange={e => setReview(e.target.value as ReviewFilter)}><option value="all">All records</option><option value="Review">Review</option><option value="Open">Open</option><option value="New">New</option></select></label>
+        <label><span>Channel</span><select value={channel} onChange={e => setChannel(e.target.value as ChannelFilter)}><option value="all">All channels</option><option value="in-app">In-app</option><option value="call-centre">Call centre</option><option value="branch">Branch</option><option value="email">Email</option></select></label>
+        <label><span>Issue category</span><select value={category} onChange={e => setCategory(e.target.value as CategoryFilter)}><option value="all">All categories</option><option value="delay">Delay</option><option value="confirmation">Confirmation</option><option value="status-inquiry">Status inquiry</option><option value="unclassified">Other / unclassified</option></select></label>
+        <label><span>Review status</span><select value={review} onChange={e => setReview(e.target.value as ReviewFilter)}><option value="all">All records</option><option value="Review">Review</option><option value="Open">Open</option><option value="New">New</option><option value="Not tracked">No case status</option></select></label>
         <span className="cx-results">{snapshot.receivedCount} source contacts</span>
       </div>
 
@@ -136,7 +137,7 @@ export function CustomerInteractionsScreen({ snapshot }: { snapshot: CustomerInt
               {filtered.map(contact => <button className={`cx-record${selected?.id === contact.id ? " is-selected" : ""}`} type="button" key={contact.id} onClick={() => setSelectedId(contact.id)} aria-pressed={selected?.id === contact.id}>
                 <div><strong>{contact.id}</strong><small>{channelLabel[contact.channel]} · {formatSourceTime(contact.receivedAt)}</small></div>
                 <div><strong>{contact.claim}</strong><small>{contact.summary}</small><small>{contact.sourceNote}</small></div>
-                <div className="cx-case-cell"><span>{contact.caseId} · {contact.caseStatus}</span><ChevronRight size={17} aria-hidden="true"/></div>
+                <div className="cx-case-cell"><span>{contact.caseId ? `${contact.caseId} · ${contact.caseStatus}` : "Interaction recorded"}</span><ChevronRight size={17} aria-hidden="true"/></div>
               </button>)}
               {filtered.length === 0 && <p className="cx-empty" role="status">No interactions match these filters.</p>}
             </div>
@@ -169,13 +170,13 @@ export function CustomerInteractionsScreen({ snapshot }: { snapshot: CustomerInt
           <p className="cx-overline">SOURCE-AWARE REVIEW</p>
           <h3>Possible emerging issue</h3>
           <dl className="cx-handoff-list">
-            <div><dt>ISSUE CANDIDATE</dt><dd>Delayed or uncertain transfers</dd></div>
+            <div><dt>ISSUE CANDIDATE</dt><dd>{snapshot.kind === "live" ? snapshot.emergingIssueTitle : "Delayed or uncertain transfers"}</dd></div>
             <div><dt>LINKED SIGNAL</dt><dd>{snapshot.emergingIssueId} · {snapshot.receivedCount} source contacts</dd></div>
             <div><dt>UNIQUE CUSTOMERS</dt><dd>Not verified</dd></div>
             <div><dt>TRANSACTION FAILURES</dt><dd>Not established</dd></div>
-            <div><dt>OPERATIONAL INCIDENT</dt><dd>{snapshot.linkedOperationalIncident} · independently initiated</dd></div>
+            <div><dt>OPERATIONAL INCIDENT</dt><dd>{snapshot.linkedOperationalIncident ? `${snapshot.linkedOperationalIncident} · independently initiated` : "No incident association provided"}</dd></div>
           </dl>
-          <p className="cx-inline-state">Relationship to {snapshot.linkedOperationalIncident}: <strong>Unverified</strong></p>
+          <p className="cx-inline-state">Operational relationship: <strong>Unverified</strong></p>
           <a className="cx-button" href="#cx-record-title">Inspect source contacts</a>
         </article>
       </div>
