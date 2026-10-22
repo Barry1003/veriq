@@ -1,17 +1,8 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const vm = require("node:vm");
-const ts = require("typescript");
+const { loadModule } = require("./load-module.cjs");
 const root = path.resolve(__dirname, "../src");
-function loadModule(relative, modules = {}) {
-  const filename = path.join(root, relative);
-  const compiled = ts.transpileModule(fs.readFileSync(filename, "utf8"), { fileName: filename, compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } });
-  const module = { exports: {} };
-  const loader = name => name in modules ? modules[name] : name.startsWith(".") ? loadModule(path.join(path.dirname(relative), name + ".ts"), modules) : require(name);
-  vm.runInNewContext(compiled.outputText, { module, exports: module.exports, require: loader, process, Buffer, URL, AbortSignal, fetch: modules.fetch, console }, { filename });
-  return module.exports;
-}
 async function main() {
   const { parseNgnMinor } = loadModule("lib/amount.ts");
   assert.equal(parseNgnMinor("50000.25"), 5000025);
@@ -25,16 +16,18 @@ async function main() {
   assert.equal(telemetry.latestObservationForGateway(rows, "G2").windowSeconds, 1);
   assert.equal(telemetry.latestObservationForGateway(rows, "G3"), null);
   assert.equal(telemetry.observationsFromFeed({ items: [sample(3, 3, 2, 1)] }).length, 0);
-  Object.assign(process.env, { CEDAR_DATA_SOURCE: "api", CEDAR_CUSTOMER_ACTION_KEY: "customer-key", CEDAR_OPERATOR_KEY: "operator-key", CEDAR_CUSTOMER_TOKEN: "customer-bearer", CEDAR_STAFF_TOKEN: "staff-bearer", CEDAR_SIMULATOR_TOKEN: "simulator-bearer", CEDAR_API_URL: "http://127.0.0.1:8101" });
+  Object.assign(process.env, { CEDAR_DATA_SOURCE: "api", CEDAR_UI_ORIGIN: "http://localhost:3000", CEDAR_REQUEST_COOKIE_SECRET: "synthetic-test-key-must-be-at-least-32-characters", CEDAR_CUSTOMER_ACTION_KEY: "customer-key", CEDAR_OPERATOR_KEY: "operator-key", CEDAR_CUSTOMER_TOKEN: "customer-bearer", CEDAR_STAFF_TOKEN: "staff-bearer", CEDAR_SIMULATOR_TOKEN: "simulator-bearer", CEDAR_API_URL: "http://127.0.0.1:8101" });
   const calls = [];
   const mockFetch = async (uri, opts) => { calls.push({ uri: String(uri), body: opts.body && JSON.parse(opts.body), bearer: opts.headers.Authorization }); return { ok: true, status: 201, text: async () => JSON.stringify({ id: `record-${calls.length}`, data: { transaction_id: "TX-TEST", status: "pending" } }) }; };
-  const api = loadModule("app/api/cedar/route.ts", { "next/server": { NextResponse: { json: (body, opts = {}) => ({ body, status: opts.status ?? 200 }) } }, fetch: mockFetch });
-  const send = async (payload, credential) => api.POST({ headers: new Map([["origin", "http://localhost:3000"], ["content-type", "application/json"], ["x-cedar-action-key", credential]]), nextUrl: { origin: "http://localhost:3000" }, text: async () => JSON.stringify(payload) });
+  const cookieJar = new Map();
+  const api = loadModule("app/api/cedar/route.ts", { "next/server": { NextResponse: { json: (body, opts = {}) => ({ body, status: opts.status ?? 200, cookies: { set: (name, value, options) => options.maxAge === 0 ? cookieJar.delete(name) : cookieJar.set(name, value) } }) } }, fetch: mockFetch });
+  const send = async (payload, credential) => api.POST({ cookies: { get: name => cookieJar.has(name) ? { value: cookieJar.get(name) } : undefined }, headers: new Map([["origin", "http://localhost:3000"], ["content-type", "application/json"], ["x-cedar-action-key", credential]]), nextUrl: { origin: "http://localhost:3000" }, text: async () => JSON.stringify(payload) });
   assert.equal((await send({ action: "seed" }, "customer-key")).status, 403);
   assert.equal((await send({ action: "reconcile", transaction_id: "TX-1", outcome: "completed", rationale: "Confirmed by bank" }, "customer-key")).status, 403);
   assert.equal((await send({ action: "condition", gateway_id: "G2", timeout: true }, "operator-key")).status, 201);
   assert.equal(calls.at(-1).uri, "http://127.0.0.1:8101/v1/simulator/conditions");
   assert.equal(calls.at(-1).bearer, "Bearer simulator-bearer");
+  assert.equal((await send({ action: "prepare_transfer", account_id: "A1", route_id: "R2", amount_minor: 5000000, idempotency_key: "same-key" }, "customer-key")).status, 200);
   assert.equal((await send({ action: "transfer", account_id: "A1", route_id: "R2", amount_minor: 5000000, idempotency_key: "same-key" }, "customer-key")).status, 201);
   assert.equal(calls.at(-1).body.idempotency_key, "same-key");
   assert.equal((await send({ action: "interaction", message_id: "msg-1", sent_at: "2026-10-22T12:00:00Z", customer_id: "C1", text: "Delayed transfer reported" }, "customer-key")).status, 201);

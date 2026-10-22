@@ -1,3 +1,5 @@
+import "server-only";
+
 export type BankRow<T = Record<string, unknown>> = {
     id: string;
     kind: string;

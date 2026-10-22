@@ -41,7 +41,16 @@ const operatorOnly = new Set(["seed", "condition", "reconcile", "document", "con
 export async function POST(request: NextRequest) {
   if (process.env.CEDAR_DATA_SOURCE !== "api")
     return NextResponse.json({ error: "Preview mode does not create bank records." }, { status: 409 });
-  if (request.headers.get("origin") !== request.nextUrl.origin || request.headers.get("content-type")?.split(";")[0]?.trim() !== "application/json")
+  let trustedOrigin: string;
+  try {
+    const configured = new URL(process.env.CEDAR_UI_ORIGIN ?? "");
+    if (!["https:", "http:"].includes(configured.protocol) || configured.username || configured.password)
+      throw new Error();
+    trustedOrigin = configured.origin;
+  } catch {
+    return NextResponse.json({ error: "The Cedar browser origin is not configured." }, { status: 503 });
+  }
+  if (request.headers.get("origin") !== trustedOrigin || request.headers.get("content-type")?.split(";")[0]?.trim() !== "application/json")
     return NextResponse.json({ error: "Request origin or content type is not permitted." }, { status: 403 });
 
   let payload: Record<string, unknown>;
@@ -68,18 +77,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "A valid key for this action is required." }, { status: 403 });
 
   if (["prepare_transfer", "transfer", "acknowledge_transfer"].includes(action)) {
-    if (!isTransferRequest(payload))
+    const instruction: unknown = payload;
+    if (!isTransferRequest(instruction))
       return NextResponse.json({ error: "Invalid transfer instruction." }, { status: 422 });
     try {
       const sealed = request.cookies.get(transferCookieName)?.value;
       const pending = sealed ? recoverTransfer(sealed) : null;
-      if (pending && !sameTransfer(pending, payload))
+      if (pending && !sameTransfer(pending, instruction))
         return NextResponse.json({ error: "An earlier transfer needs confirmation. Recover its original instruction before starting another transfer." }, { status: 409 });
       if (action === "prepare_transfer") {
-        const instruction = { account_id: payload.account_id, route_id: payload.route_id, amount_minor: payload.amount_minor, idempotency_key: payload.idempotency_key };
+        const original = { account_id: instruction.account_id, route_id: instruction.route_id, amount_minor: instruction.amount_minor, idempotency_key: instruction.idempotency_key };
         const response = NextResponse.json({ prepared: true }, { headers: { "Cache-Control": "no-store" } });
         // Stage recovery in the browser before any request can reach the bank.
-        response.cookies.set(transferCookieName, sealTransfer(instruction), transferCookieOptions);
+        response.cookies.set(transferCookieName, sealTransfer(original), transferCookieOptions);
         return response;
       }
       if (!pending)

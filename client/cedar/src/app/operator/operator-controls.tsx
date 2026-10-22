@@ -4,6 +4,8 @@ import { useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { parseNgnMinor } from "@/lib/amount";
 import type { BankRow, Knowledge } from "@/lib/cedar-api";
+import { acknowledgeTransfer, isTransferResponse, postCedarAction } from "@/lib/cedar-actions";
+import { isTransferRequest } from "@/lib/transfer-request";
 
 type Props = {
   pending: { id: string; route: string }[];
@@ -48,6 +50,7 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
     setBusy(true);
     setFeedback("");
     try {
+      if (body.action === "transfer") await postCedarAction({ ...body, action: "prepare_transfer" }, operatorKey);
       const response = await fetch("/api/cedar", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-cedar-action-key": operatorKey },
@@ -55,6 +58,11 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
       });
       const result = await response.json() as CedarResult;
       if (!response.ok) throw new Error(result.error ?? (typeof result.detail === "string" ? result.detail : `Cedar rejected the action (${response.status}).`) + (typeof result.recorded === "number" ? ` ${result.recorded} contacts were recorded before the interruption.` : ""));
+      if (body.action === "transfer") {
+        const transferResult: unknown = result;
+        if (!isTransferRequest(body) || !isTransferResponse(transferResult, body)) throw new Error("Transfer response is uncertain. Recover the original instruction in customer banking.");
+        if (!await acknowledgeTransfer(body, operatorKey)) throw new Error("Bank transfer recorded; recovery acknowledgement failed. Open customer banking before creating another transfer.");
+      }
       onSuccess?.(result);
       const detail = result.data?.transaction_id ? `Transaction: ${result.data.transaction_id} · ${result.data.status ?? "recorded"}` : result.count ? `${result.count} original channel records created or confirmed.` : result.id ? `Record: ${result.id}` : "Source state updated.";
       setFeedback(`Cedar confirmed the operation. ${detail}`);
