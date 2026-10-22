@@ -15,13 +15,10 @@ export default async function UnimplementedSection({ params }: Props) {
   if (!target) notFound();
   return (
     <section className="vw-preview-section">
-      <p className="vw-overline">VERIQ / DESIGN PREVIEW</p>
+      <p className="vw-overline">VERIQ</p>
       <h1>{target.title}</h1>
       <p>{target.description}</p>
-      <div className="vw-preview-notice">
-        This route is not connected to an approved implementation or backend
-        data source. Its screen will follow the corresponding Figma frame.
-      </div>
+      <p>This section is not available yet.</p>
       <Link href="/" className="vw-preview-link">
         Return to Intelligence Overview
       </Link>

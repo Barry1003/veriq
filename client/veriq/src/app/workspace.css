@@ -63,23 +63,6 @@
 .vw-nav-item svg {
   flex: 0 0 auto;
 }
-.vw-sidebar-footer {
-  margin: auto 17px 34px;
-  padding: 13px;
-  border-radius: 9px;
-  background: var(--color-surface-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.vw-sidebar-footer strong {
-  font-size: 14px;
-  font-weight: 500;
-}
-.vw-sidebar-footer span {
-  font-size: 12px;
-  color: var(--color-text-secondary);
-}
 .vw-right {
   min-width: 0;
 }
@@ -255,13 +238,6 @@
 .vw-overline {
   color: var(--color-accent-action) !important;
   font-size: 12px;
-}
-.vw-preview-notice {
-  border: 1px solid var(--color-border);
-  background: white;
-  padding: 24px;
-  border-radius: 9px;
-  margin-top: 24px;
 }
 .vw-preview-link {
   display: inline-block;

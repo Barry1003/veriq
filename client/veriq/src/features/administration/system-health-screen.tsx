@@ -3,7 +3,6 @@ import {
   CircleHelp,
   Clock3,
   Database,
-  Info,
   Network,
   SlidersHorizontal,
   ReceiptText,
@@ -105,20 +104,6 @@ export function SystemHealthScreen({
           readiness and system limitations.
         </p>
       </header>
-
-      <div className="sh-notice" role="note">
-        <Info size={20} strokeWidth={1.75} aria-hidden="true" />
-        <div>
-          <p>
-            This is a synthetic deployment preview—not a live system-health
-            check or production-readiness certificate.
-          </p>
-          <p>
-            A configured service, approved bank source, successful connection
-            and verified processing are distinct states.
-          </p>
-        </div>
-      </div>
 
       <SectionIntro title="Deployment summary" />
       <div className="sh-stat-grid">
@@ -290,11 +275,6 @@ export function SystemHealthScreen({
             <ReceiptText size={17} aria-hidden="true" /> View audit activity
           </Link>
         </nav>
-        <p className="sh-inline-notice sh-footer-note">
-          DESIGN PREVIEW ONLY · Health tests, permission checks, and monitoring
-          results require authenticated backend responses. These links open the
-          next administration screen; they do not execute tests.
-        </p>
       </Panel>
     </section>
   );

@@ -104,10 +104,6 @@ export function AdminShell({ children }: { children: ReactNode }) {
             );
           })}
         </nav>
-        <div className="admin-footer">
-          <strong>Administrator view · preview</strong>
-          <span>Cedar Bank · Demo environment</span>
-        </div>
       </aside>
       <div className="admin-column">
         <header className="admin-header">

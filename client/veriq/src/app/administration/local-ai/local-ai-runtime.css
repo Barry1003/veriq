@@ -26,29 +26,6 @@
   color: var(--color-text-secondary, #597083);
   line-height: 22px;
 }
-.lai-notice {
-  min-height: 80px;
-  margin-top: 20px;
-  padding: 14px 16px;
-  background: var(--color-surface, #fff);
-  border: 1px solid var(--color-border, #d9e3e8);
-  border-radius: 8px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-.lai-notice > svg {
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-.lai-notice p {
-  margin: 0;
-  line-height: 22px;
-}
-.lai-notice p + p {
-  margin-top: 8px;
-  color: var(--color-text-secondary, #597083);
-}
 .lai-section-heading {
   margin: 34px 0 16px;
 }
@@ -287,12 +264,6 @@
 .lai-fail-safe-panel > p:not(.lai-overline, .lai-callout) {
   margin: 0 0 28px;
   line-height: 24px;
-}
-.lai-final-note {
-  font-size: 12px;
-  line-height: 18px;
-  color: var(--color-text-secondary, #597083);
-  margin-top: 58px;
 }
 .lai-error {
   background: #fff;

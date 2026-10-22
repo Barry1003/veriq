@@ -25,29 +25,6 @@
   color: var(--color-text-secondary, #597083);
   line-height: 22px;
 }
-.sh-notice {
-  border: 1px solid var(--color-border, #d9e3e8);
-  border-radius: 8px;
-  background: #fff;
-  margin-top: 20px;
-  padding: 16px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  min-height: 80px;
-}
-.sh-notice svg {
-  flex: 0 0 auto;
-  margin-top: 2px;
-}
-.sh-notice p {
-  margin: 0;
-  line-height: 22px;
-}
-.sh-notice p + p {
-  margin-top: 7px;
-  color: var(--color-text-secondary, #597083);
-}
 .sh-section-heading {
   margin: 30px 0 15px;
 }
@@ -307,22 +284,6 @@
 }
 .sh-primary-link:hover {
   background: #123154;
-}
-.sh-footer-note {
-  margin: 20px 0 0;
-  font-size: 12px;
-  line-height: 18px;
-  color: var(--color-text-secondary, #597083);
-}
-.sh-preview > p:not(.sh-overline) {
-  margin: 12px 0 24px;
-  color: var(--color-text-secondary, #597083);
-}
-.sh-preview .sh-panel h2 {
-  font-size: 18px;
-}
-.sh-preview .sh-panel p {
-  margin: 10px 0 16px;
 }
 .sh-error-explanation {
   color: var(--color-text-secondary, #597083);

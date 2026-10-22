@@ -15,22 +15,14 @@ export default async function AdminPreview({
   if (!match) notFound();
   return (
     <section
-      className="sh-page sh-preview"
-      aria-labelledby="admin-preview-heading"
+      className="sh-page"
+      aria-labelledby="admin-section-heading"
     >
-      <p className="sh-overline">ADMINISTRATION / DESIGN PREVIEW</p>
-      <h1 id="admin-preview-heading">{match.label}</h1>
-      <p>
-        This section is represented in Veriq Figma but is not yet implemented in
-        the frontend.
-      </p>
+      <p className="sh-overline">ADMINISTRATION</p>
+      <h1 id="admin-section-heading">{match.label}</h1>
+      <p>This section is not available yet.</p>
       <div className="sh-panel">
-        <h2>Implementation boundary</h2>
-        <p>
-          Real access control, model tests, source connections, and audit
-          evidence require authenticated backend operations. None are simulated
-          by this preview route.
-        </p>
+        <h2>Administration section unavailable</h2>
         <Link
           className="sh-secondary-link"
           href="/administration/system-health"

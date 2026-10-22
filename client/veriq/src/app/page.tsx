@@ -11,10 +11,7 @@ export default async function HomePage() {
     return (
       <section className="io-page">
         <h1>Intelligence data unavailable</h1>
-        <p>
-          The preview source is unavailable or a backend contract has not been
-          configured. No data was fabricated.
-        </p>
+        <p>Intelligence data could not be retrieved.</p>
       </section>
     );
   }

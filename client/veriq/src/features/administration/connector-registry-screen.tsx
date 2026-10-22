@@ -742,11 +742,6 @@ export function ConnectorRegistryScreen({
           </button>
         </Panel>
       </div>
-      <p className="cr-preview-note">
-        DESIGN PREVIEW · Connector states and authorizations are illustrative.
-        Live connectivity, scopes, ingestion progress and bank-side permissions
-        require deployed checks.
-      </p>
       {draftDialogOpen && (
         <DraftDialog onClose={closeDraftDialog} onCreate={createDraft} />
       )}

@@ -390,11 +390,6 @@
   align-self: flex-start;
   margin-top: auto;
 }
-.cr-preview-note {
-  margin: 65px 0 20px;
-  font-size: 12px;
-  color: var(--color-text-secondary, #597083);
-}
 .cr-modal-backdrop {
   position: fixed;
   z-index: 100;

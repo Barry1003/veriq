@@ -1,4 +1,4 @@
-import { CircleHelp, Clock3, Database, Info, Network } from "lucide-react";
+import { CircleHelp, Clock3, Database, Network } from "lucide-react";
 import type { ReactNode } from "react";
 import type {
   LocalAiRuntimeSnapshot,
@@ -96,19 +96,6 @@ export function LocalAiRuntimeScreen({
           evidence to an external vendor.
         </p>
       </header>
-      <div className="lai-notice" role="note">
-        <Info size={20} strokeWidth={1.75} aria-hidden="true" />
-        <div>
-          <p>
-            Model configuration does not prove inference readiness.
-            Bank-approved runtime checks and policy controls are required.
-          </p>
-          <p>
-            Synthetic design status only · no live model has been contacted. No
-            automatic cloud fallback or unapproved evidence transfer.
-          </p>
-        </div>
-      </div>
       <SectionHeading title="Inference posture" />
       <div className="lai-metric-grid">
         {snapshot.metrics.map((metric) => (
@@ -127,10 +114,6 @@ export function LocalAiRuntimeScreen({
             items={snapshot.configuration}
             className="lai-detail-list"
           />
-          <p className="lai-footnote">
-            Endpoint paths, model versions and credentials require actual
-            bank-side configuration.
-          </p>
         </Panel>
         <Panel className="lai-policy-panel">
           <p className="lai-overline">DATA CONTROL &amp; MODEL INDEPENDENCE</p>
@@ -218,11 +201,6 @@ export function LocalAiRuntimeScreen({
           <p className="lai-callout">{snapshot.failSafeNotes[1]}</p>
         </Panel>
       </div>
-      <p className="lai-final-note">
-        DESIGN PREVIEW · Real bank-local model calls, policy tests, logs and
-        runtime health must be implemented and verified by the backend and AI
-        owners.
-      </p>
     </section>
   );
 }

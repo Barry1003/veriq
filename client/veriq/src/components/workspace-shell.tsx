@@ -40,11 +40,29 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
   const menuButton = useRef<HTMLButtonElement>(null);
   const knowledge =
     pathname === "/knowledge" || pathname.startsWith("/knowledge/");
-  const actionHref = knowledge ? "/data-sources" : "/investigations";
-  const actionLabel = knowledge ? "View sources" : "Investigations";
-  const breadcrumb = knowledge
-    ? "Institutional Knowledge / Explorer"
-    : "Veriq Intelligence";
+  const sourcesPage = pathname === "/data-sources";
+  const processingPage = pathname === "/knowledge/processing";
+  const actionHref = sourcesPage
+    ? "/knowledge/processing"
+    : processingPage
+      ? "/knowledge"
+      : knowledge
+        ? "/data-sources"
+        : "/investigations";
+  const actionLabel = sourcesPage
+    ? "View processing"
+    : processingPage
+      ? "Explore knowledge"
+      : knowledge
+        ? "View sources"
+        : "Investigations";
+  const breadcrumb = sourcesPage
+    ? "Institutional Knowledge / Sources"
+    : processingPage
+      ? "Institutional Knowledge / Processing"
+      : knowledge
+        ? "Institutional Knowledge / Explorer"
+        : "Veriq Intelligence";
 
   return (
     <div className="vw-layout">
@@ -90,10 +108,6 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
             );
           })}
         </nav>
-        <div className="vw-sidebar-footer">
-          <strong>Authorized analyst</strong>
-          <span>Cedar Bank · Demo environment</span>
-        </div>
       </aside>
 
       {mobileMenuOpen && (

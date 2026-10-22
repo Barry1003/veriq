@@ -470,10 +470,6 @@ export function KnowledgeExplorer({
           </div>
         </article>
       </div>
-      <p className="kn-footer">
-        DESIGN PREVIEW · Knowledge relationships and graph are synthetic; actual
-        temporal queries and investigations require bank-authorized sources.
-      </p>
       <dialog
         ref={sourceDialogRef}
         className="kn-source-dialog"
@@ -483,7 +479,7 @@ export function KnowledgeExplorer({
           <button className="kn-dialog-close" aria-label="Close source details">
             <X size={18} />
           </button>
-          <h2 id="kn-dialog-title">Source metadata · synthetic</h2>
+          <h2 id="kn-dialog-title">Source metadata</h2>
           <p>
             <strong>{source?.title ?? "Not available"}</strong>
           </p>
@@ -491,10 +487,6 @@ export function KnowledgeExplorer({
           <p>Recorded: {source ? formatDate(source.recordedAt) : "—"}</p>
           <p>Owner: {source?.owner ?? "Not recorded"}</p>
           <p>{source?.description ?? "No source record is available."}</p>
-          <p>
-            The original bank document is not included in this synthetic
-            preview.
-          </p>
           <button type="submit" className="kn-secondary-button">
             Close
           </button>

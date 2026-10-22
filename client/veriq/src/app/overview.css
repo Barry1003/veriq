@@ -13,20 +13,6 @@
   color: var(--color-text-secondary);
   margin: 0;
 }
-.io-disclaimer {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background: #fff;
-  padding: 16px;
-  margin-top: 26px;
-  min-height: 58px;
-}
-.io-disclaimer svg {
-  flex: 0 0 auto;
-}
 .io-card {
   border: 1px solid var(--color-border);
   border-radius: 9px;

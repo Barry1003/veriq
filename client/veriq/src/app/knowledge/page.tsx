@@ -11,10 +11,7 @@ export default async function KnowledgePage() {
     return (
       <section className="kn-page">
         <h1>Knowledge source unavailable</h1>
-        <p>
-          No authorized Knowledge API contract is configured. Enable mock
-          preview mode to inspect synthetic source relationships.
-        </p>
+        <p>No authorized knowledge source is currently available.</p>
       </section>
     );
   }

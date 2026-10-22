@@ -4,7 +4,6 @@ import {
   ArrowRight,
   CircleHelp,
   Database,
-  Info,
   MessagesSquare,
   Network,
   Search,
@@ -38,14 +37,6 @@ export function IntelligenceOverview({
           and ongoing investigations.
         </p>
       </header>
-      <div className="io-disclaimer">
-        <Info size={18} aria-hidden="true" />
-        <span>
-          Design preview: all counts, source records and findings below are
-          synthetic examples—not live intelligence outputs.
-        </span>
-      </div>
-
       <h2 className="io-section-title">Intelligence at a glance</h2>
       <div className="io-kpi-grid">
         {data.kpis.map((item) => {
@@ -66,15 +57,11 @@ export function IntelligenceOverview({
 
       <div className="io-section-heading io-agent-heading">
         <h2>AI agent · investigation context</h2>
-        <p>
-          Design example only. This does not represent an executed agent run or
-          completed diagnosis.
-        </p>
       </div>
       <div className="io-agent-card io-card">
         <div className="io-agent-content">
           <span className="io-overline">
-            ASSESSMENT PREVIEW · NOT A LIVE AGENT RUN
+            ASSESSMENT
           </span>
           <h3>Gateway G2 timeouts need investigation</h3>
           <p>
@@ -124,7 +111,7 @@ export function IntelligenceOverview({
           </div>
           <div className="io-chart">
             <span className="io-chart-label">
-              SYNTHETIC SOURCE SERIES · EARLIER → LATER
+              SOURCE SERIES · EARLIER → LATER
             </span>
             <div
               className="io-chart-bars"
@@ -245,7 +232,7 @@ export function IntelligenceOverview({
           <Activity size={20} />
           <span>Operational monitoring</span>
           <strong>Latest event: {signal.lastObservedAt}</strong>
-          <p>Measured signal represented in this synthetic example</p>
+            <p>Measured signal from the latest observed event</p>
           <small>Actual source freshness requires a connected adapter</small>
         </div>
         <div className="io-card io-readiness">

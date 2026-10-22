@@ -426,11 +426,6 @@ button.kn-graph-note:focus-visible {
 .kn-actions > button {
   flex: 1;
 }
-.kn-footer {
-  font-size: 11px;
-  color: var(--color-text-secondary);
-  margin: 62px 0 10px;
-}
 .kn-empty {
   color: var(--color-text-secondary);
 }
