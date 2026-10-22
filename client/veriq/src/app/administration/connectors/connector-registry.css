@@ -2,6 +2,27 @@
   color: var(--color-text-primary, #183047);
   max-width: 1120px;
 }
+
+.cr-creation-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cr-creation-actions .cr-btn {
+  min-width: 125px;
+}
+
+@media (max-width: 640px) {
+  .cr-creation-actions {
+    width: 100%;
+  }
+
+  .cr-creation-actions .cr-btn {
+    flex: 1;
+  }
+}
 .cr-overline {
   font-size: 12px;
   line-height: 18px;

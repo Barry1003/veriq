@@ -31,8 +31,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuTrigger = useRef<HTMLButtonElement>(null);
   const firstNavLink = useRef<HTMLAnchorElement>(null);
+  const connectorSubpage = pathname.startsWith("/administration/connectors/");
   const current =
-    adminNavigation.find((item) => pathname === item.href)?.label ??
+    adminNavigation.find(
+      (item) => pathname === item.href || pathname.startsWith(`${item.href}/`),
+    )?.label ??
     "Administration";
 
   useEffect(() => {
@@ -88,7 +91,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
         <nav className="admin-nav" aria-label="Administrative sections">
           {adminNavigation.map((item, index) => {
             const Icon = icons[item.icon];
-            const active = pathname === item.href;
+            const active =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
               <Link
                 key={item.href}
@@ -135,9 +139,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
             <span className="admin-synthetic">SYNTHETIC DEMO</span>
             <Link
               className="admin-header-button"
-              href="/administration/local-ai"
+              href={
+                connectorSubpage
+                  ? "/administration/connectors"
+                  : "/administration/local-ai"
+              }
             >
-              Local AI runtime
+              {connectorSubpage ? "Back to registry" : "Local AI runtime"}
             </Link>
           </div>
         </header>

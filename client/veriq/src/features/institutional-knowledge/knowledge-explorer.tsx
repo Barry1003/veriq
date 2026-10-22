@@ -58,7 +58,6 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
 
   const routing = useMemo(() => dataset.relationships.filter((r) => r.id === "REL-008" || r.id === "REL-007"), [dataset.relationships]);
   const displayedRelationships = useMemo(() => {
-    // Match the Figma's G2/G3 focus while allowing access to the whole institutional graph.
     const base = showAll || query.trim() || assessment !== "all" ? dataset.relationships : routing;
     const normalizedQuery = query.trim().toLowerCase();
     return base.filter((relationship) => {

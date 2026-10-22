@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   useMemo,
   useRef,
@@ -520,14 +521,19 @@ export function ConnectorRegistryScreen({
             customer experience and investigation evidence.
           </p>
         </div>
-        <button
-          ref={addButtonRef}
-          className="cr-btn cr-btn-primary"
-          type="button"
-          onClick={() => setDraftDialogOpen(true)}
-        >
-          Add connector
-        </button>
+        <div className="cr-creation-actions">
+          <Link className="cr-btn cr-btn-primary" href="/administration/connectors/new">
+            Add connector
+          </Link>
+          <button
+            ref={addButtonRef}
+            className="cr-btn cr-btn-secondary"
+            type="button"
+            onClick={() => setDraftDialogOpen(true)}
+          >
+            Quick draft
+          </button>
+        </div>
       </header>
       <div className="cr-disclosure" role="note">
         <Info size={20} strokeWidth={1.75} aria-hidden="true" />
@@ -661,6 +667,16 @@ export function ConnectorRegistryScreen({
             : "Select a connector to inspect its evidence scope. Full V05 mapping is the next screen."}
         </p>
         {selected && detailsOpen && <SelectionDetails selected={selected} />}
+        {selected?.kind === "fixture" &&
+          selected.record.id === "KNW-ROUTE-01" &&
+          detailsOpen && (
+            <Link
+              className="cr-btn cr-btn-secondary"
+              href="/administration/connectors/KNW-ROUTE-01/validation?mode=example"
+            >
+              Inspect validation example
+            </Link>
+          )}
         {draftNotice && (
           <p className="cr-draft-notice" role="status">
             {draftNotice}
