@@ -11,9 +11,12 @@ export function KnowledgeSourcesScreen({ snapshot }: { snapshot: KnowledgeSource
           <h1 id="ks-title">Knowledge Sources</h1>
           <p>Review source ownership, scope, and received records.</p>
         </div>
-        <Link className="ks-action" href="/knowledge/processing">
-          View processing <ArrowRight size={16} aria-hidden="true" />
-        </Link>
+        <div className="ks-heading-actions">
+          <Link className="ks-action" href="/data-sources/new">Add source</Link>
+          <Link className="ks-action" href="/knowledge/processing">
+            View processing <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
       </header>
       <div className="ks-summary" aria-label="Source summary">
         <article><Database size={20} aria-hidden="true" /><span>Source collections</span><strong>{snapshot.collections.length}</strong></article>

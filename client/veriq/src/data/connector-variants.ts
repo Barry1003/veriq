@@ -25,8 +25,8 @@ const routeRecords: readonly KnowledgeOriginalRecord[] = [
 export const knowledgeConnectorVariantFixture: KnowledgeConnectorVariant = {
   kind: "synthetic-preview", variant: "knowledge", connector: connectorById("KNW-ROUTE-01"),
   sourceCollectionId: routingCollection.id,
-  routingRevisions: routingCollection.revisions.map((r) => r.version),
-  owner: routingCollection.inspectorOwner,
+  routingRevisions: ["v7", "v8"],
+  owner: routingCollection.owner,
   metrics: [
     { label: "SOURCE AUTHORIZATION", value: "Approved · example", detail: "Read-only routing scope" },
     { label: "CONNECTIVITY", value: "Connected · example", detail: "Current health unverified" },

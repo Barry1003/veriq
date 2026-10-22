@@ -67,7 +67,7 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
         return `${source?.title ?? ""} ${source?.reference ?? ""}`;
       }).join(" ");
       const searchable = [relationship.id, relationship.description,
-        entities.get(relationship.fromId)?.name, entities.get(relationship.toId)?.name,
+      entities.get(relationship.fromId)?.name, entities.get(relationship.toId)?.name,
         sourceNames].join(" ").toLowerCase();
       return !normalizedQuery || searchable.includes(normalizedQuery);
     });
@@ -100,6 +100,7 @@ export function KnowledgeExplorer({ dataset, processedRecordCount, pendingReview
       <p className="kn-eyebrow">INSTITUTIONAL KNOWLEDGE / EXPLORER</p>
       <h1 id="kn-title">Knowledge Explorer</h1>
       <p className="kn-lead">Navigate bank services, dependencies, procedures, source versions and reviewer-qualified relationships.</p>
+      <div style={{ marginTop: 16 }}><Link className="kn-secondary-button" href="/knowledge/dependencies">Expanded dependency graph</Link></div>
 
       <h2 className="kn-heading">Institutional knowledge overview</h2>
       <div className="kn-kpis">

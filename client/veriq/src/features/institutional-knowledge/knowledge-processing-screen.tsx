@@ -208,6 +208,14 @@ export function KnowledgeProcessingScreen({
                 <span className="kp-mini-label">WHY THIS IS NOT VERIFIED</span>
                 <p>{candidate.verificationGap}</p>
               </div>
+              {candidate.id === "KNW-CAND-022" && (
+                <Link
+                  className="kp-button kp-button-secondary"
+                  href="/knowledge/processing/extraction/TASK-KNW-0027"
+                >
+                  Inspect extraction evidence
+                </Link>
+              )}
               <p className="kp-inspector-foot">Original records retained · reviewer decision pending</p>
             </>
           ) : <p>No pending claim selected.</p>}

@@ -40,36 +40,39 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
   const menuButton = useRef<HTMLButtonElement>(null);
   const knowledge =
     pathname === "/knowledge" || pathname.startsWith("/knowledge/");
+  const dependencyPage = pathname === "/knowledge/dependencies";
   const sourcesPage = pathname === "/data-sources";
   const processingPage = pathname === "/knowledge/processing";
   const customerPage = pathname === "/customer-experience";
   const actionHref = customerPage
     ? "/customer-experience#emerging-issue"
     : sourcesPage
-    ? "/knowledge/processing"
-    : processingPage
-      ? "/knowledge"
-      : knowledge
-        ? "/data-sources"
-        : "/investigations";
+      ? "/knowledge/processing"
+      : processingPage
+        ? "/knowledge"
+        : knowledge
+          ? "/data-sources"
+          : "/investigations";
   const actionLabel = customerPage
     ? "View emerging issues"
     : sourcesPage
-    ? "View processing"
-    : processingPage
-      ? "Explore knowledge"
-      : knowledge
-        ? "View sources"
-        : "Investigations";
-  const breadcrumb = customerPage
-    ? "Customer Intelligence / Interactions"
-    : sourcesPage
-    ? "Institutional Knowledge / Sources"
-    : processingPage
-      ? "Institutional Knowledge / Processing"
-      : knowledge
-        ? "Institutional Knowledge / Explorer"
-        : "Veriq Intelligence";
+      ? "View processing"
+      : processingPage
+        ? "Explore knowledge"
+        : knowledge
+          ? "View sources"
+          : "Investigations";
+  const breadcrumb = dependencyPage
+    ? "Institutional Knowledge / Dependency graph"
+    : customerPage
+      ? "Customer Intelligence / Interactions"
+      : sourcesPage
+        ? "Institutional Knowledge / Sources"
+        : processingPage
+          ? "Institutional Knowledge / Processing"
+          : knowledge
+            ? "Institutional Knowledge / Explorer"
+            : "Veriq Intelligence";
 
   return (
     <div className="vw-layout">
