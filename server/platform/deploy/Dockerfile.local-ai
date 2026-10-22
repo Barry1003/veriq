@@ -1,0 +1,7 @@
+FROM docker.io/library/python:3.12-slim
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 && rm -rf /var/lib/apt/lists/*
+COPY llama-b11799/ /runtime/
+RUN useradd --uid 10002 --create-home inference
+USER inference
+EXPOSE 8181
+ENTRYPOINT ["/runtime/llama-server"]

@@ -1,0 +1,68 @@
+{
+  "id": "badf8fb4-7982-4b77-957a-36c4fcb8d771",
+  "kind": "ai_task",
+  "classification": "internal",
+  "created_at": "2026-10-22T00:05:13.768735+00:00",
+  "data": {
+    "state": "retryable",
+    "task": "analyze_investigation",
+    "evidence_ids": [
+      "034ccc93-a9dc-42f6-80e9-c341f9dadb2a",
+      "0e51cd0c-ae29-414e-af46-6a05fce5daeb",
+      "25be9fcf-2a95-4ecc-aa9f-ab4f1a0e3179",
+      "29527c4f-7545-4291-9837-424064a15d78",
+      "2fbea2ea-7d67-4d6a-9771-2caa729e51af",
+      "3aeab28d-c9ab-4885-85f1-f34ac258aa2f",
+      "4e842ca6-e202-40a1-998c-c1c9c15b34b2",
+      "721b0744-7f28-421d-bb6c-c9e02684f3ad",
+      "8dded2af-2b8a-452f-9a4e-ee51f2cadc29",
+      "8e5a72ec-d0ec-4f8a-b928-1ec19ba875b3",
+      "991bb8f2-8df3-4fc6-8f47-3094d2d3fdbf",
+      "ad731657-673d-4a2a-bab6-fcaa603084e9",
+      "b067c9ce-7f9e-4933-b69f-9ae712f88241",
+      "b87c01bb-feb1-483f-9bac-8775b090bb88",
+      "c45e1a81-d72c-40a1-86e1-c1c091d1f9cf",
+      "c5325670-c22f-4efd-953e-00435453ce07",
+      "d60d48b8-4b2e-43eb-a8c5-f0c0c7718353",
+      "d700bbea-7783-4047-8793-1b553db4b5d1",
+      "e2f9c894-f90c-4333-97b1-3c98ddccd762",
+      "ea045375-02ea-437a-b31a-537fa13a28f0",
+      "ef2aad0a-04bc-43fa-a614-7b2cd83ef55a",
+      "f688ba37-5359-4d72-823f-2f77aaf7f369",
+      "f9008a72-0841-4e58-a83d-46a59a4908ab",
+      "fb5014f2-ee96-43fb-b2d6-290e0eae9c0c",
+      "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+    ],
+    "revision_id": "a000d481-4ead-4016-b275-9b6afc058eb8",
+    "investigation_id": "467927ce-523f-4ced-8c58-450ec116e820",
+    "attempts": 1,
+    "initiation": "automatic",
+    "scheduling_identity": "ba8122702390988956497b5493a0b8ac42828887153b70451f18c5930dd026da",
+    "intent_id": "1a20de7e-5980-4b18-8d5b-a490017d0530",
+    "reprocessing_of": null,
+    "policy_version": "automatic-v1:1",
+    "model_config_version": "qwen0.5-ticket004-v1",
+    "history": [
+      {
+        "state": "queued",
+        "at": "2026-10-22T00:05:13.768356+00:00"
+      },
+      {
+        "state": "running",
+        "at": "2026-10-22T00:05:13.788448+00:00"
+      },
+      {
+        "state": "retryable",
+        "at": "2026-10-22T00:05:13.910238+00:00",
+        "run_id": "6f2fef34-6382-41f7-9523-89f087589b26",
+        "outcome": "unavailable",
+        "error": "Local runtime request failed"
+      }
+    ],
+    "next_attempt_at": 1792627523.910202,
+    "lease_until": 0,
+    "run_id": "6f2fef34-6382-41f7-9523-89f087589b26",
+    "outcome": "unavailable",
+    "error": "Local runtime request failed"
+  }
+}

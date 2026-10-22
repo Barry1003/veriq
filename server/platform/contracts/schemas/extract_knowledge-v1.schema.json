@@ -1,0 +1,123 @@
+{
+  "$defs": {
+    "EntityClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "native_id": {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "title": "Native Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "route",
+            "gateway",
+            "service",
+            "system",
+            "process",
+            "procedure"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "aliases": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Aliases",
+          "type": "array"
+        }
+      },
+      "required": [
+        "native_id",
+        "kind",
+        "name"
+      ],
+      "title": "EntityClaim",
+      "type": "object"
+    },
+    "RelationshipClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "title": "Subject",
+          "type": "string"
+        },
+        "predicate": {
+          "enum": [
+            "uses_gateway",
+            "depends_on",
+            "belongs_to",
+            "governed_by"
+          ],
+          "title": "Predicate",
+          "type": "string"
+        },
+        "object": {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "title": "Object",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subject",
+        "predicate",
+        "object"
+      ],
+      "title": "RelationshipClaim",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/EntityClaim"
+      },
+      "maxItems": 500,
+      "title": "Entities",
+      "type": "array"
+    },
+    "relationships": {
+      "items": {
+        "$ref": "#/$defs/RelationshipClaim"
+      },
+      "maxItems": 1000,
+      "title": "Relationships",
+      "type": "array"
+    },
+    "valid_from": {
+      "format": "date-time",
+      "title": "Valid From",
+      "type": "string"
+    },
+    "valid_to": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "format": "date-time",
+      "title": "Valid To"
+    }
+  },
+  "required": [
+    "entities",
+    "relationships",
+    "valid_from"
+  ],
+  "title": "Knowledge",
+  "type": "object"
+}

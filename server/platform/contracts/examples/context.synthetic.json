@@ -1,0 +1,123 @@
+{
+  "at": "2026-10-21T18:52:15.206769+00:00",
+  "known_at": "2026-10-21T18:52:15.206789+00:00",
+  "entities": [
+    {
+      "canonical_id": "ace16bd5-6ebb-57eb-8ed4-db3db6d9bc5a",
+      "native_id": "R1",
+      "kind": "route",
+      "names": [
+        "Domestic transfers"
+      ],
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ]
+    },
+    {
+      "canonical_id": "b7cc10f9-f942-586f-8e54-d6f999b4673f",
+      "native_id": "R2",
+      "kind": "route",
+      "names": [
+        "Alternative transfers"
+      ],
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ]
+    },
+    {
+      "canonical_id": "4ec4f0ef-8f27-5bb0-b275-77f56b3bd767",
+      "native_id": "G1",
+      "kind": "gateway",
+      "names": [
+        "Primary gateway"
+      ],
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ]
+    },
+    {
+      "canonical_id": "4612850f-371b-5aa6-94a1-23e2977533b6",
+      "native_id": "G2",
+      "kind": "gateway",
+      "names": [
+        "Secondary gateway"
+      ],
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ]
+    },
+    {
+      "canonical_id": "8345c588-005f-50ff-a5d8-2df263f536f5",
+      "native_id": "S1",
+      "kind": "service",
+      "names": [
+        "Payment processor"
+      ],
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "subject": "R1",
+      "predicate": "uses_gateway",
+      "object": "G1",
+      "subject_id": "ace16bd5-6ebb-57eb-8ed4-db3db6d9bc5a",
+      "object_id": "4ec4f0ef-8f27-5bb0-b275-77f56b3bd767",
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ],
+      "assertion_ids": [
+        "cf99dbdf-7ba8-4666-8c27-2003f9c51db1"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    },
+    {
+      "subject": "R2",
+      "predicate": "uses_gateway",
+      "object": "G2",
+      "subject_id": "b7cc10f9-f942-586f-8e54-d6f999b4673f",
+      "object_id": "4612850f-371b-5aa6-94a1-23e2977533b6",
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ],
+      "assertion_ids": [
+        "cf99dbdf-7ba8-4666-8c27-2003f9c51db1"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    },
+    {
+      "subject": "G1",
+      "predicate": "depends_on",
+      "object": "S1",
+      "subject_id": "4ec4f0ef-8f27-5bb0-b275-77f56b3bd767",
+      "object_id": "8345c588-005f-50ff-a5d8-2df263f536f5",
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ],
+      "assertion_ids": [
+        "cf99dbdf-7ba8-4666-8c27-2003f9c51db1"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    },
+    {
+      "subject": "G2",
+      "predicate": "depends_on",
+      "object": "S1",
+      "subject_id": "4612850f-371b-5aa6-94a1-23e2977533b6",
+      "object_id": "8345c588-005f-50ff-a5d8-2df263f536f5",
+      "evidence_ids": [
+        "4fa9732a-4bff-4503-af33-21838a8b84e7"
+      ],
+      "assertion_ids": [
+        "cf99dbdf-7ba8-4666-8c27-2003f9c51db1"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    }
+  ]
+}

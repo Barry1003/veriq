@@ -1,0 +1,326 @@
+{
+  "task": {
+    "id": "23c24e91-8359-4466-a9c4-7aa00fc82c94",
+    "kind": "ai_task",
+    "classification": "internal",
+    "created_at": "2026-10-22T10:37:36.232937+00:00",
+    "data": {
+      "state": "completed",
+      "task": "adaptive_investigation",
+      "evidence_ids": [
+        "110a4932-75c3-48a0-a4fc-84ffa170d0bf",
+        "2e25b9f9-37c3-4cb9-bb06-b0c02750c38d",
+        "ad34b339-5c81-4835-b356-7538d66ed545"
+      ],
+      "revision_id": "97f3e326-6716-4c1d-9ca0-b9a019faba43",
+      "investigation_id": "190bbfa5-c981-449a-8dd3-3d25e28e51c4",
+      "attempts": 1,
+      "initiation": "manual",
+      "scheduling_identity": "fd2967efc88030dc226b17a37005dbb83aab988c6b93950e89479dded7d62ae0",
+      "intent_id": null,
+      "reprocessing_of": null,
+      "policy_version": "automatic-v1:1",
+      "model_config_version": "1",
+      "history": [
+        {
+          "state": "queued",
+          "at": "2026-10-22T10:37:36.232590+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:37:36.244590+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "investigating",
+          "at": "2026-10-22T10:37:51.836006+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:37:51.844632+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "investigating",
+          "at": "2026-10-22T10:38:03.338440+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:38:03.347673+00:00"
+        },
+        {
+          "state": "completed",
+          "outcome": "inconclusive",
+          "at": "2026-10-22T10:38:10.789905+00:00"
+        }
+      ],
+      "next_attempt_at": 0,
+      "lease_until": 0,
+      "outcome": "inconclusive",
+      "adaptive_progress": {
+        "generations": 3,
+        "tool_calls": 2,
+        "outcome": "inconclusive",
+        "phase": "choice"
+      },
+      "run_id": "9f216953-58cf-4086-96b1-ffa1fec7f1d7"
+    }
+  },
+  "steps": [
+    {
+      "id": "295a6158-2ad0-4930-a0e7-8b89f1982ebd",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:37:51.835271+00:00",
+      "data": {
+        "task_id": "23c24e91-8359-4466-a9c4-7aa00fc82c94",
+        "investigation_id": "190bbfa5-c981-449a-8dd3-3d25e28e51c4",
+        "revision_id": "97f3e326-6716-4c1d-9ca0-b9a019faba43",
+        "number": 1,
+        "state": "investigating",
+        "decision": {
+          "action": "tool",
+          "question": "What is the system override and its impact on the transaction execution?",
+          "tool_call": {
+            "name": "get_operational_observations",
+            "arguments": {
+              "namespace": null,
+              "native_id": "TX1",
+              "query": null,
+              "at": null
+            }
+          }
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:37:36.256662+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 15.561,
+          "completed_at": "2026-10-22T10:37:51.817679+00:00",
+          "usage": {
+            "completion_tokens": 67,
+            "prompt_tokens": 848,
+            "total_tokens": 915,
+            "prompt_tokens_details": {
+              "cached_tokens": 279
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 279,
+            "prompt_n": 569,
+            "prompt_ms": 10124.151,
+            "prompt_per_token_ms": 17.792884007029876,
+            "prompt_per_second": 56.20224352639545,
+            "predicted_n": 67,
+            "predicted_ms": 5391.296,
+            "predicted_per_token_ms": 81.68630303030304,
+            "predicted_per_second": 12.24195443915526
+          }
+        },
+        "started_from_durable_generation": 0,
+        "at": "2026-10-22T10:37:51.826497+00:00",
+        "untrusted_invalid_output": null,
+        "tool_result": {
+          "state": "missing",
+          "evidence": [],
+          "known_at": "2026-10-22T10:37:51.826554+00:00",
+          "as_of": "2026-10-22T10:37:51.826554+00:00",
+          "truncated": false,
+          "limits": {
+            "scan": 500,
+            "records": 3,
+            "bytes": 9000
+          },
+          "missing_information": "No visible matching evidence established"
+        }
+      }
+    },
+    {
+      "id": "68529ecb-6c3c-42b9-87e1-217fba92b008",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:38:03.337618+00:00",
+      "data": {
+        "task_id": "23c24e91-8359-4466-a9c4-7aa00fc82c94",
+        "investigation_id": "190bbfa5-c981-449a-8dd3-3d25e28e51c4",
+        "revision_id": "97f3e326-6716-4c1d-9ca0-b9a019faba43",
+        "number": 2,
+        "state": "investigating",
+        "decision": {
+          "action": "tool",
+          "question": "What is the system override and its impact on the transaction execution?",
+          "tool_call": {
+            "name": "get_operational_observations",
+            "arguments": {
+              "namespace": null,
+              "native_id": "TX1",
+              "query": null,
+              "at": null
+            }
+          }
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:37:51.865689+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 11.456,
+          "completed_at": "2026-10-22T10:38:03.321664+00:00",
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 1039,
+            "total_tokens": 1124,
+            "prompt_tokens_details": {
+              "cached_tokens": 825
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 825,
+            "prompt_n": 214,
+            "prompt_ms": 4506.766,
+            "prompt_per_token_ms": 21.059654205607476,
+            "prompt_per_second": 47.484160482261565,
+            "predicted_n": 85,
+            "predicted_ms": 6923.326,
+            "predicted_per_token_ms": 82.42054761904762,
+            "predicted_per_second": 12.132896818667792
+          }
+        },
+        "started_from_durable_generation": 1,
+        "at": "2026-10-22T10:38:03.331803+00:00",
+        "untrusted_invalid_output": null,
+        "tool_result": {
+          "state": "missing",
+          "evidence": [],
+          "known_at": "2026-10-22T10:38:03.331844+00:00",
+          "as_of": "2026-10-22T10:38:03.331844+00:00",
+          "truncated": false,
+          "limits": {
+            "scan": 500,
+            "records": 3,
+            "bytes": 9000
+          },
+          "missing_information": "No visible matching evidence established"
+        }
+      }
+    },
+    {
+      "id": "bc55ba3f-6686-425b-a40a-c1146efe68c9",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:38:10.788344+00:00",
+      "data": {
+        "task_id": "23c24e91-8359-4466-a9c4-7aa00fc82c94",
+        "investigation_id": "190bbfa5-c981-449a-8dd3-3d25e28e51c4",
+        "revision_id": "97f3e326-6716-4c1d-9ca0-b9a019faba43",
+        "number": 3,
+        "state": "inconclusive",
+        "decision": {
+          "action": "inconclusive",
+          "question": "What is the system override and its impact on the transaction execution?",
+          "tool_call": null
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:38:03.367473+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 7.411,
+          "completed_at": "2026-10-22T10:38:10.778419+00:00",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 1231,
+            "total_tokens": 1263,
+            "prompt_tokens_details": {
+              "cached_tokens": 1015
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 1015,
+            "prompt_n": 216,
+            "prompt_ms": 4746.166,
+            "prompt_per_token_ms": 21.97299074074074,
+            "prompt_per_second": 45.51041830395313,
+            "predicted_n": 32,
+            "predicted_ms": 2638.528,
+            "predicted_per_token_ms": 85.1138064516129,
+            "predicted_per_second": 11.748975186164406
+          }
+        },
+        "started_from_durable_generation": 2,
+        "at": "2026-10-22T10:38:10.787675+00:00",
+        "untrusted_invalid_output": null
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "9f216953-58cf-4086-96b1-ffa1fec7f1d7",
+      "kind": "inference_run",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:38:10.789483+00:00",
+      "data": {
+        "task": "adaptive_investigation",
+        "task_id": "23c24e91-8359-4466-a9c4-7aa00fc82c94",
+        "investigation_id": "190bbfa5-c981-449a-8dd3-3d25e28e51c4",
+        "revision_id": "97f3e326-6716-4c1d-9ca0-b9a019faba43",
+        "state": "inconclusive",
+        "result": null,
+        "initiation": "manual",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:38:03.367473+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 7.411,
+          "completed_at": "2026-10-22T10:38:10.778419+00:00",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 1231,
+            "total_tokens": 1263,
+            "prompt_tokens_details": {
+              "cached_tokens": 1015
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 1015,
+            "prompt_n": 216,
+            "prompt_ms": 4746.166,
+            "prompt_per_token_ms": 21.97299074074074,
+            "prompt_per_second": 45.51041830395313,
+            "predicted_n": 32,
+            "predicted_ms": 2638.528,
+            "predicted_per_token_ms": 85.1138064516129,
+            "predicted_per_second": 11.748975186164406
+          }
+        },
+        "evidence_ids": [
+          "110a4932-75c3-48a0-a4fc-84ffa170d0bf",
+          "2e25b9f9-37c3-4cb9-bb06-b0c02750c38d",
+          "ad34b339-5c81-4835-b356-7538d66ed545"
+        ],
+        "qualification": "unqualified",
+        "acceptance": "not_accepted"
+      }
+    }
+  ]
+}

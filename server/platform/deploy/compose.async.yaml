@@ -1,0 +1,21 @@
+# Optional dedicated worker; API and ingestion never depend on model readiness.
+services:
+  ai-worker:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../var/veriq.env
+    command: [python, -m, scripts.ai_worker]
+    environment:
+      LOCAL_AI_URL: http://local-ai:8181/v1
+      LOCAL_AI_MODEL: ${LOCAL_MODEL_ALIAS:-veriq-qwen2.5-0.5b}
+      LOCAL_AI_ALLOWED_HOSTS: local-ai
+      LOCAL_AI_TIMEOUT_SECONDS: "90"
+      LOCAL_AI_MAX_OUTPUT_TOKENS: "512"
+      AI_TASK_CONCURRENCY: "1"
+      AUTO_CONNECTOR_POLL_ENABLED: "true"
+      AUTO_CONNECTOR_POLL_SECONDS: "3"
+      AUTO_AI_ENABLED: ${AUTO_AI_ENABLED:-true}
+      AI_MODEL_CONFIG_VERSION: ${AI_MODEL_CONFIG_VERSION:-qwen0.5-ticket004-v1}
+    restart: unless-stopped
+    stop_grace_period: 120s
+    depends_on: {veriq-db: {condition: service_healthy}, veriq: {condition: service_healthy}}
+    networks: [bank]

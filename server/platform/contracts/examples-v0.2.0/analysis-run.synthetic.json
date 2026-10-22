@@ -1,0 +1,92 @@
+{
+  "id": "b9d27f67-a74f-4145-a3a9-41a541a575c7",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-21T20:26:48.315450+00:00",
+  "data": {
+    "task": "analyze_investigation",
+    "investigation_id": "5d370806-96ed-42fb-a34f-8e6ad7c9b456",
+    "revision_id": "3be9cd37-4e13-4f50-a19e-236b57931a2d",
+    "evidence_ids": [
+      "056a8cab-48e8-48fc-bf40-8538ce2808f4",
+      "100bc8ee-8680-4e03-9539-e8e1d3d8123b",
+      "22c64810-4085-4435-9522-39e5282e81b1",
+      "2af93a2b-0fb3-441f-abc6-caf9aa23bb40",
+      "372c6fc6-c436-4aba-b399-7d611f662af7",
+      "3a8d6c94-d4a7-4090-be1e-c428e5f58f80",
+      "4716016a-20f3-49ee-b42f-82875d22f28f",
+      "73092c31-3663-4b55-b216-70ce6bb0e72c",
+      "c9b2342d-996f-4922-8e84-d5791c6e0301",
+      "d00d30aa-afd5-4715-9cff-ac0cbc64f812",
+      "d70d6396-21b7-49bb-8c29-6b8afc682c4c",
+      "def9bf83-e9a3-4925-8441-31ab6e370501",
+      "f0d8628a-47ab-4d88-b012-dab13d51d387"
+    ],
+    "state": "validated_candidate",
+    "result": {
+      "hypotheses": [
+        {
+          "text": "A processing delay is possible; the final outcome is unknown",
+          "evidence_ids": [
+            "3a8d6c94-d4a7-4090-be1e-c428e5f58f80",
+            "4716016a-20f3-49ee-b42f-82875d22f28f"
+          ],
+          "epistemic_status": "hypothesis"
+        },
+        {
+          "text": "A processing delay is possible; the final outcome is unknown",
+          "evidence_ids": [
+            "3a8d6c94-d4a7-4090-be1e-c428e5f58f80",
+            "4716016a-20f3-49ee-b42f-82875d22f28f"
+          ],
+          "epistemic_status": "hypothesis"
+        }
+      ],
+      "missing_information": [
+        "Beneficiary receipt has not been independently verified",
+        "Financial outcome remains pending; timeout does not establish failure"
+      ],
+      "recommendations": [
+        {
+          "text": "Request authorized status verification before any financial action",
+          "evidence_ids": [
+            "3a8d6c94-d4a7-4090-be1e-c428e5f58f80",
+            "4716016a-20f3-49ee-b42f-82875d22f28f"
+          ],
+          "epistemic_status": "recommendation"
+        }
+      ]
+    },
+    "model": "veriq-qwen2.5-0.5b",
+    "inference_metadata": {
+      "model": "veriq-qwen2.5-0.5b",
+      "task": "analyze_investigation",
+      "transport": "http",
+      "started_at": "2026-10-21T20:26:03.223999+00:00",
+      "prompt_version": "ticket002-v2",
+      "prompt_sha256": "b8fef1da79b09f5f9f4af55fae12fa9133b096e0c50ae7b83492d935cd36f149",
+      "output_schema_sha256": "b48229a789e157fe004c73a856db21abaed389d6ef302038e4b45d9f68a64539",
+      "elapsed_seconds": 45.087,
+      "completed_at": "2026-10-21T20:26:48.311400+00:00",
+      "usage": {
+        "completion_tokens": 340,
+        "prompt_tokens": 2959,
+        "total_tokens": 3299,
+        "prompt_tokens_details": {
+          "cached_tokens": 59
+        }
+      },
+      "runtime_timings": {
+        "cache_n": 59,
+        "prompt_n": 2900,
+        "prompt_ms": 25630.453,
+        "prompt_per_token_ms": 8.838087241379311,
+        "prompt_per_second": 113.14665409932472,
+        "predicted_n": 340,
+        "predicted_ms": 19426.799,
+        "predicted_per_token_ms": 57.30619174041298,
+        "predicted_per_second": 17.450121350408786
+      }
+    }
+  }
+}

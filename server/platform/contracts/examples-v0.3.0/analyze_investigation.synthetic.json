@@ -1,0 +1,85 @@
+{
+  "id": "45aeba85-8475-4a53-b374-36e4abc9ffe0",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-21T22:45:51.789297+00:00",
+  "data": {
+    "task": "analyze_investigation",
+    "investigation_id": "fe1d5f44-b600-4809-92b8-35e54423daf0",
+    "revision_id": "7154a56c-df07-48cf-a424-b8df4df9f677",
+    "evidence_ids": [
+      "df0df390-55c1-47ae-8a70-120aea9c62d5"
+    ],
+    "state": "validated_candidate",
+    "result": {
+      "hypotheses": [
+        {
+          "text": "A customer reports a problem; its cause and financial outcome are unknown.",
+          "evidence_ids": [
+            "df0df390-55c1-47ae-8a70-120aea9c62d5"
+          ],
+          "epistemic_status": "hypothesis"
+        }
+      ],
+      "missing_information": [
+        "Authoritative bank outcome and beneficiary receipt are unknown.",
+        "Authoritative bank outcome and beneficiary receipt are unknown."
+      ],
+      "recommendations": [
+        {
+          "text": "Request an authorized transaction reference and bank status verification.",
+          "evidence_ids": [
+            "df0df390-55c1-47ae-8a70-120aea9c62d5"
+          ],
+          "epistemic_status": "recommendation"
+        }
+      ]
+    },
+    "support_verification": {
+      "version": "support-v1",
+      "state": "supported_candidate",
+      "receipts": [
+        {
+          "claim": {
+            "text": "A customer reports a problem; its cause and financial outcome are unknown.",
+            "evidence_ids": [
+              "df0df390-55c1-47ae-8a70-120aea9c62d5"
+            ],
+            "epistemic_status": "hypothesis"
+          },
+          "support": "deterministic_catalog"
+        },
+        {
+          "claim": {
+            "text": "Request an authorized transaction reference and bank status verification.",
+            "evidence_ids": [
+              "df0df390-55c1-47ae-8a70-120aea9c62d5"
+            ],
+            "epistemic_status": "recommendation"
+          },
+          "support": "deterministic_catalog"
+        }
+      ],
+      "input_sha256": "8e079218940fc7a08cbaf4fcaec991fd2ad169786aea6e5892ba66dc1b2e3fa0",
+      "limits": "Narrow deterministic grammar/catalog; not general semantic entailment or source truth certification"
+    },
+    "model": "veriq-ticket003:latest",
+    "inference_metadata": {
+      "model": "veriq-ticket003:latest",
+      "task": "analyze_investigation",
+      "transport": "http",
+      "started_at": "2026-10-21T22:45:39.014428+00:00",
+      "prompt_version": "ticket002-v2",
+      "prompt_sha256": "b8fef1da79b09f5f9f4af55fae12fa9133b096e0c50ae7b83492d935cd36f149",
+      "output_schema_sha256": "eb6c84ed9759419562c16c465b0fce06240570679478fed30976e68ae80728f7",
+      "elapsed_seconds": 12.769,
+      "completed_at": "2026-10-21T22:45:51.783658+00:00",
+      "usage": {
+        "prompt_tokens": 573,
+        "completion_tokens": 173,
+        "total_tokens": 746
+      },
+      "runtime_timings": {}
+    }
+  }
+}

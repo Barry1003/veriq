@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "namespace": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,180}$",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "authority_ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Authority Ref",
+      "type": "string"
+    },
+    "source_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+        "type": "string"
+      },
+      "maxItems": 200,
+      "minItems": 1,
+      "title": "Source Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "namespace",
+    "authority_ref",
+    "source_ids"
+  ],
+  "title": "IdentityNamespace",
+  "type": "object"
+}

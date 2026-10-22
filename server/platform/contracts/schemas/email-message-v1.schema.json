@@ -1,0 +1,52 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "message_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Message Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "subject": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Subject",
+      "type": "string"
+    },
+    "body": {
+      "maxLength": 9000,
+      "minLength": 1,
+      "title": "Body",
+      "type": "string"
+    },
+    "transaction_reference": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Reference"
+    },
+    "sent_at": {
+      "title": "Sent At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "message_id",
+    "customer_id",
+    "subject",
+    "body"
+  ],
+  "title": "EmailMessage",
+  "type": "object"
+}

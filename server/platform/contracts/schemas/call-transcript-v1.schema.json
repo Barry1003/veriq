@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "call_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Call Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "transcript": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Transcript",
+      "type": "string"
+    },
+    "transaction_reference": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Reference"
+    },
+    "started_at": {
+      "title": "Started At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "call_id",
+    "customer_id",
+    "transcript"
+  ],
+  "title": "CallTranscript",
+  "type": "object"
+}

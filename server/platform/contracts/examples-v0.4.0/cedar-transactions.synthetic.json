@@ -1,0 +1,242 @@
+[
+  {
+    "id": "afdef2a0-274b-412e-86dd-80656f3388ab",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.671096+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.666974+00:00",
+      "transaction_id": "67550d21-59ab-479f-b319-a7813959d8ad",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "completed",
+      "response": "reconciled",
+      "version": 2,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "5a25a506-8c78-46cc-b8cb-202f99e0ca2f",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.699686+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.698224+00:00",
+      "transaction_id": "c7d8acb0-0046-4406-8ef1-a35222d0d271",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "facea58d-ba33-4f72-bee8-ca046c191077",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.728151+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.727041+00:00",
+      "transaction_id": "489f6d53-a393-495e-9e38-e0b164f435f3",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "542a50a4-9c00-468e-aea9-25b5765b2c24",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.752244+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.751104+00:00",
+      "transaction_id": "9fa4e1db-c667-44bb-a6b5-a9b9afbf71b9",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "2459e83e-c7bc-4491-8f18-5b7815881b71",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.774875+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.773831+00:00",
+      "transaction_id": "d7ede2f6-2931-451c-b1f8-40ed885e1e20",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "f9157e83-1e88-4fe0-ba6a-8673cc2b79cb",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.808476+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.806952+00:00",
+      "transaction_id": "5556804d-4cce-412a-84e1-4e8b62e81a36",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "acd82462-119a-4c75-837f-3b199207fa3b",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.835334+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.833766+00:00",
+      "transaction_id": "03a869ba-6b32-46b4-8bc1-f997024a2667",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "f691eb93-98be-4aaf-90d3-f6debebbdbb5",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.872283+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.869757+00:00",
+      "transaction_id": "ac8ad26b-4c34-47e4-96d8-92558985277f",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "1af17807-021a-48be-a2b7-ea893e35365d",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.923642+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.922239+00:00",
+      "transaction_id": "1def930e-7f65-48d3-a65b-a868d4085fe3",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "432441ca-cb93-410f-8225-eef7aaba05ba",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:37.975915+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:37.973052+00:00",
+      "transaction_id": "3348f315-403f-48a4-9980-6ba304fb77c3",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 1000,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "929a59dc-9a16-49e6-8c84-a01f91962e41",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:38.016765+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:02:38.015166+00:00",
+      "transaction_id": "0e6405e2-c339-45f8-bce1-2d661017f719",
+      "customer_id": "C2",
+      "account_id": "A2",
+      "amount_minor": 500,
+      "currency": "NGN",
+      "route_id": "R2",
+      "gateway_id": "G2",
+      "status": "completed",
+      "response": "accepted",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  },
+  {
+    "id": "33e7ed98-1d89-4e13-8170-54ab3ceee92e",
+    "kind": "transaction",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:05:09.584807+00:00",
+    "data": {
+      "occurred_at": "2026-10-22T00:05:09.583817+00:00",
+      "transaction_id": "8fb0d06d-090e-4ece-b7e9-ff289ac26563",
+      "customer_id": "C1",
+      "account_id": "A1",
+      "amount_minor": 500,
+      "currency": "NGN",
+      "route_id": "R1",
+      "gateway_id": "G1",
+      "status": "pending",
+      "response": "timeout",
+      "version": 1,
+      "beneficiary_verified": false
+    }
+  }
+]

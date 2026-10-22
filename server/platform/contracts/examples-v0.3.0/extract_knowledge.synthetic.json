@@ -1,0 +1,58 @@
+{
+  "id": "6fc7afab-33e5-48a3-93d2-56b57fc4ea19",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-21T22:45:31.061193+00:00",
+  "data": {
+    "task": "extract_knowledge",
+    "evidence_ids": [
+      "0149f2c7-8a02-4727-8ac2-636887a6edac"
+    ],
+    "state": "quarantined",
+    "error": "Relationship lacks a positive typed source span",
+    "untrusted_model_output": {
+      "entities": [
+        {
+          "native_id": "QX12",
+          "kind": "route",
+          "name": "Payments",
+          "aliases": []
+        },
+        {
+          "native_id": "HG81",
+          "kind": "gateway",
+          "name": "Router",
+          "aliases": []
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "HG81",
+          "predicate": "uses_gateway",
+          "object": "QX12"
+        }
+      ],
+      "valid_from": "2026-10-20T00:00:00+00:00",
+      "valid_to": null
+    },
+    "validation_error": null,
+    "verification_stage": "evidence_support",
+    "inference_metadata": {
+      "model": "veriq-ticket003:latest",
+      "task": "extract_knowledge",
+      "transport": "http",
+      "started_at": "2026-10-21T22:45:17.470865+00:00",
+      "prompt_version": "ticket002-v2",
+      "prompt_sha256": "3b71dffd69c55e192dc5f7f9ac0b920fd3735ad4c596e7967a41cdf14ae9f021",
+      "output_schema_sha256": "8f011ccb9173da2966b09670b3b488820886d31d328bb7179335f532ca8e4ac9",
+      "elapsed_seconds": 13.584,
+      "completed_at": "2026-10-21T22:45:31.054520+00:00",
+      "usage": {
+        "prompt_tokens": 690,
+        "completion_tokens": 108,
+        "total_tokens": 798
+      },
+      "runtime_timings": {}
+    }
+  }
+}

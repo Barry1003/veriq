@@ -1,0 +1,1033 @@
+{
+  "started_at": "2026-10-22T10:14:17.820259+00:00",
+  "transport": "actual_http",
+  "persistence": "Separate isolated SQLite databases",
+  "inference": "Actual local HTTP, no model double",
+  "requests": [
+    {
+      "application": "cedar",
+      "method": "GET",
+      "path": "/ready",
+      "status": 200,
+      "response": {
+        "application": "cedar",
+        "status": "ready",
+        "version": "0.4.0"
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/ready",
+      "status": 200,
+      "response": {
+        "application": "veriq",
+        "status": "ready",
+        "version": "0.5.0"
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/identity/namespaces",
+      "status": 200,
+      "response": {
+        "id": "2255f204-fc26-4ac3-a4cf-82a8894e6b7b",
+        "kind": "identity_namespace",
+        "classification": "restricted",
+        "created_at": "2026-10-22T10:14:22.007417+00:00",
+        "data": {
+          "namespace": "cedar-demo-master",
+          "authority_ref": "synthetic-cedar-master-v1",
+          "source_ids": [
+            "cedar-institutional",
+            "cedar-operations",
+            "cedar-service",
+            "cedar-status",
+            "cedar-channel-in-app",
+            "cedar-channel-email",
+            "cedar-channel-contact-centre",
+            "cedar-channel-branch",
+            "cedar-documents"
+          ]
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "144edf5e-465d-4351-808f-69df374d2446",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.032727+00:00",
+        "data": {
+          "source_id": "cedar-institutional",
+          "name": "cedar-institutional",
+          "record_types": [
+            "knowledge"
+          ],
+          "authority": [
+            "structure"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-config-v1",
+          "channel": null,
+          "adapter_id": null,
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "ae1c357f-2361-486f-87cc-d85e3d2c189a",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.054145+00:00",
+        "data": {
+          "source_id": "cedar-operations",
+          "name": "cedar-operations",
+          "record_types": [
+            "observation"
+          ],
+          "authority": [
+            "measurement"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-monitoring-v1",
+          "channel": null,
+          "adapter_id": null,
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "7fabf3bc-6b73-4dd7-9673-ec7da362418d",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.080588+00:00",
+        "data": {
+          "source_id": "cedar-service",
+          "name": "cedar-service",
+          "record_types": [
+            "interaction"
+          ],
+          "authority": [
+            "report"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-support-v1",
+          "channel": null,
+          "adapter_id": null,
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "294ae568-04c8-46c4-82ac-7bfa9f5eab0d",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.108162+00:00",
+        "data": {
+          "source_id": "cedar-status",
+          "name": "cedar-status",
+          "record_types": [
+            "transaction"
+          ],
+          "authority": [
+            "status"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-status-v1",
+          "channel": null,
+          "adapter_id": null,
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "4b4c8522-31e4-4d72-9538-1b47ef325077",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.134874+00:00",
+        "data": {
+          "source_id": "cedar-channel-in-app",
+          "name": "cedar-channel-in-app",
+          "record_types": [
+            "interaction"
+          ],
+          "authority": [
+            "report"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-in-app-v1",
+          "channel": "in_app",
+          "adapter_id": "in-app-message-v1",
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "6e3e42b1-15b1-4440-bf20-94b806d486ac",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.159280+00:00",
+        "data": {
+          "source_id": "cedar-channel-email",
+          "name": "cedar-channel-email",
+          "record_types": [
+            "interaction"
+          ],
+          "authority": [
+            "report"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-email-v1",
+          "channel": "email",
+          "adapter_id": "email-message-v1",
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "62d90f8c-10c1-4300-9abd-4675d0c5db19",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.182294+00:00",
+        "data": {
+          "source_id": "cedar-channel-contact-centre",
+          "name": "cedar-channel-contact-centre",
+          "record_types": [
+            "interaction"
+          ],
+          "authority": [
+            "report"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-contact-centre-v1",
+          "channel": "contact_centre",
+          "adapter_id": "call-transcript-v1",
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "f782f6de-d327-4252-aa56-35eed59bf246",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.204807+00:00",
+        "data": {
+          "source_id": "cedar-channel-branch",
+          "name": "cedar-channel-branch",
+          "record_types": [
+            "interaction"
+          ],
+          "authority": [
+            "report"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-branch-v1",
+          "channel": "branch",
+          "adapter_id": "branch-visit-v1",
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "POST",
+      "path": "/v1/sources",
+      "status": 201,
+      "response": {
+        "id": "3f8d5ab9-49a1-401a-8f9d-fb9b064cce08",
+        "kind": "source",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:22.228229+00:00",
+        "data": {
+          "source_id": "cedar-documents",
+          "name": "Cedar authorized documents",
+          "record_types": [
+            "document"
+          ],
+          "authority": [
+            "document"
+          ],
+          "max_classification": "internal",
+          "authorization_ref": "cedar-documents-v1",
+          "channel": null,
+          "adapter_id": null,
+          "identity_namespace": "cedar-demo-master",
+          "identity_authority_ref": "synthetic-cedar-master-v1",
+          "ai_enabled": true,
+          "authorization_state": "active",
+          "grant_version": 1,
+          "state": "registered",
+          "ingested": 0,
+          "last_received_at": null,
+          "last_error": null,
+          "cursor": 0
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/simulator/seed",
+      "status": 200,
+      "response": {
+        "seeded": true,
+        "synthetic": true
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/knowledge/context",
+      "status": 200,
+      "response": {
+        "at": "2026-10-22T10:14:22.295544+00:00",
+        "known_at": "2026-10-22T10:14:22.295647+00:00",
+        "entities": [],
+        "relationships": []
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/knowledge/context",
+      "status": 200,
+      "response": {
+        "at": "2026-10-22T10:14:23.305067+00:00",
+        "known_at": "2026-10-22T10:14:23.305085+00:00",
+        "entities": [
+          {
+            "canonical_id": "fb811fea-fa88-58fc-a651-60d1294307b2",
+            "native_id": "R1",
+            "kind": "route",
+            "namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "native_id": "R1",
+                "source_id": "cedar-institutional",
+                "evidence_id": "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+              }
+            ],
+            "names": [
+              "Domestic transfers"
+            ],
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "identity_state": "source_bound_or_authorized_mapping"
+          },
+          {
+            "canonical_id": "ea503c8b-f089-5109-a8b0-a2f07109f14b",
+            "native_id": "R2",
+            "kind": "route",
+            "namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "native_id": "R2",
+                "source_id": "cedar-institutional",
+                "evidence_id": "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+              }
+            ],
+            "names": [
+              "Alternative transfers"
+            ],
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "identity_state": "source_bound_or_authorized_mapping"
+          },
+          {
+            "canonical_id": "075c49c5-d304-5b88-a0b5-7a8f706cd841",
+            "native_id": "G1",
+            "kind": "gateway",
+            "namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "native_id": "G1",
+                "source_id": "cedar-institutional",
+                "evidence_id": "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+              }
+            ],
+            "names": [
+              "Primary gateway"
+            ],
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "identity_state": "source_bound_or_authorized_mapping"
+          },
+          {
+            "canonical_id": "5664af29-fbdb-5f16-b2a6-0bae620c9440",
+            "native_id": "G2",
+            "kind": "gateway",
+            "namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "native_id": "G2",
+                "source_id": "cedar-institutional",
+                "evidence_id": "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+              }
+            ],
+            "names": [
+              "Secondary gateway"
+            ],
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "identity_state": "source_bound_or_authorized_mapping"
+          },
+          {
+            "canonical_id": "059bed23-fac1-5afe-8057-113a34707180",
+            "native_id": "S1",
+            "kind": "service",
+            "namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "native_id": "S1",
+                "source_id": "cedar-institutional",
+                "evidence_id": "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+              }
+            ],
+            "names": [
+              "Payment processor"
+            ],
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "identity_state": "source_bound_or_authorized_mapping"
+          }
+        ],
+        "relationships": [
+          {
+            "subject": "R1",
+            "predicate": "uses_gateway",
+            "object": "G1",
+            "subject_id": "fb811fea-fa88-58fc-a651-60d1294307b2",
+            "identity_namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "source_id": "cedar-institutional",
+                "subject": "R1",
+                "object": "G1"
+              }
+            ],
+            "object_id": "075c49c5-d304-5b88-a0b5-7a8f706cd841",
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "assertion_ids": [
+              "e27df1b8-ec4d-404b-bca5-5205fbb5b934"
+            ],
+            "state": "accepted",
+            "semantics": "structural"
+          },
+          {
+            "subject": "R2",
+            "predicate": "uses_gateway",
+            "object": "G2",
+            "subject_id": "ea503c8b-f089-5109-a8b0-a2f07109f14b",
+            "identity_namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "source_id": "cedar-institutional",
+                "subject": "R2",
+                "object": "G2"
+              }
+            ],
+            "object_id": "5664af29-fbdb-5f16-b2a6-0bae620c9440",
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "assertion_ids": [
+              "e27df1b8-ec4d-404b-bca5-5205fbb5b934"
+            ],
+            "state": "accepted",
+            "semantics": "structural"
+          },
+          {
+            "subject": "G1",
+            "predicate": "depends_on",
+            "object": "S1",
+            "subject_id": "075c49c5-d304-5b88-a0b5-7a8f706cd841",
+            "identity_namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "source_id": "cedar-institutional",
+                "subject": "G1",
+                "object": "S1"
+              }
+            ],
+            "object_id": "059bed23-fac1-5afe-8057-113a34707180",
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "assertion_ids": [
+              "e27df1b8-ec4d-404b-bca5-5205fbb5b934"
+            ],
+            "state": "accepted",
+            "semantics": "structural"
+          },
+          {
+            "subject": "G2",
+            "predicate": "depends_on",
+            "object": "S1",
+            "subject_id": "5664af29-fbdb-5f16-b2a6-0bae620c9440",
+            "identity_namespace": "cedar-demo-master",
+            "source_identities": [
+              {
+                "namespace": "cedar-demo-master",
+                "source_id": "cedar-institutional",
+                "subject": "G2",
+                "object": "S1"
+              }
+            ],
+            "object_id": "059bed23-fac1-5afe-8057-113a34707180",
+            "evidence_ids": [
+              "20e21551-b003-40e2-b6ab-5d2641b7de5a"
+            ],
+            "assertion_ids": [
+              "e27df1b8-ec4d-404b-bca5-5205fbb5b934"
+            ],
+            "state": "accepted",
+            "semantics": "structural"
+          }
+        ]
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/institutional/documents",
+      "status": 201,
+      "response": {
+        "id": "fa0ad469-cb7d-44c7-9244-6181683ef188",
+        "kind": "document",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.344543+00:00",
+        "data": {
+          "text": "R1 handoff journal: queue Heron recorded delayed handoff notifications. Independent timestamps are unavailable; this is not proof of gateway failure."
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/simulator/conditions",
+      "status": 200,
+      "response": {
+        "id": "b9df7ebc-d6bc-4e18-8ce2-84e83fc3d3d1",
+        "kind": "condition",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.378315+00:00",
+        "data": {
+          "gateway_id": "G1",
+          "timeout": true
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "d3b65bb9-68c5-432e-9252-3ed859afa934",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.407993+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.404220+00:00",
+          "transaction_id": "dbdcde9e-7510-4199-86f8-51dc7eb751f5",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "a1d913d8-0364-46eb-983c-133a028a02c0",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.436135+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.434863+00:00",
+          "transaction_id": "28ab6c0c-ff54-4a84-ba58-dd25263c08a1",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "a7744100-c784-48bb-ba69-cda24b3549a5",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.467323+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.466409+00:00",
+          "transaction_id": "6c8308a5-55d1-4120-aaf8-8c66da128286",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "e5ce61f5-c531-4a85-a4ee-94493a97422a",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.492148+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.491214+00:00",
+          "transaction_id": "b08d3ffa-a66b-4394-be95-dc786ccf678a",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "b0c904d1-1d6f-42de-b458-a14f473a60e2",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.521227+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.520152+00:00",
+          "transaction_id": "3d633ea8-cc4f-4373-a8b5-bcc9f4781ed3",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "2b2948b6-5bd4-4c8e-8421-cb5823936e86",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.547474+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.546629+00:00",
+          "transaction_id": "42bddfc7-2272-4729-8831-c04685a3c56a",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "ac6ec1bc-d7b0-44be-bb21-e89a1d9ac76e",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.572629+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.570974+00:00",
+          "transaction_id": "dfdf1adb-d5b9-4b0c-a4ad-c3548069fe25",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "d84431b8-bea2-4d02-af49-8159463ea50a",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.598066+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.596769+00:00",
+          "transaction_id": "537955c2-d585-445f-b4b7-1237d638f9e0",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "1053d768-231a-4a7f-98cf-e8fa01177d2b",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.621829+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.620998+00:00",
+          "transaction_id": "678d73a6-10b0-4b22-b362-198816f6371f",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/transfers",
+      "status": 201,
+      "response": {
+        "id": "b458d41a-db92-45b6-b59e-30f613a35181",
+        "kind": "transaction",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:14:23.646143+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:14:23.645288+00:00",
+          "transaction_id": "2d27d509-d37c-42a4-8c4d-53772e50fe89",
+          "customer_id": "C1",
+          "account_id": "A1",
+          "amount_minor": 1000,
+          "currency": "NGN",
+          "route_id": "R1",
+          "gateway_id": "G1",
+          "status": "pending",
+          "response": "timeout",
+          "version": 1,
+          "beneficiary_verified": false
+        }
+      }
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/incidents",
+      "status": 200,
+      "response": []
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/incidents",
+      "status": 200,
+      "response": []
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/incidents",
+      "status": 200,
+      "response": []
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/incidents",
+      "status": 200,
+      "response": [
+        {
+          "id": "648f9181-c7a4-467e-af13-8df9fd256b34",
+          "kind": "incident",
+          "classification": "internal",
+          "created_at": "2026-10-22T10:14:26.121756+00:00",
+          "data": {
+            "source_id": "cedar-operations",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "state": "open",
+            "detector": "deterministic-window-v1",
+            "rule": "timeout_rate >= 0.30 and attempts >= 10",
+            "attempts": 10,
+            "timeouts": 10,
+            "rate": 1.0,
+            "baseline_rate": null,
+            "baseline_attempts": 0,
+            "evidence_ids": [
+              "21dd10bc-9ef3-4b47-9d3c-13804d18ba9d",
+              "4e270f66-9926-4e03-a95b-dc88cd842e07",
+              "3099517c-32c2-42f8-a7d1-bd67c288e16d",
+              "e54d563f-b632-47fd-be96-0b69f39fb9d2",
+              "f436594a-3170-4728-831f-0091ae9abfaf",
+              "0df6c210-bc47-42c1-bb48-b571c5b5bafb",
+              "ab7a67b4-308b-4e45-8753-fae5a1826845",
+              "9ba2ad98-4478-407a-87cc-d2c0d02862fb",
+              "f4210d4a-8939-4cd7-a9f5-4b785754d5e4",
+              "f11b464f-bd21-443d-93c1-681544673fc0"
+            ],
+            "window_start": "2026-10-22T10:14:23.410555+00:00",
+            "window_end": "2026-10-22T10:14:23.648238+00:00",
+            "financial_outcome": "not_established"
+          }
+        }
+      ]
+    },
+    {
+      "application": "veriq",
+      "method": "GET",
+      "path": "/v1/interactions",
+      "status": 200,
+      "response": []
+    },
+    {
+      "application": "cedar",
+      "method": "POST",
+      "path": "/v1/channels/in-app/messages",
+      "status": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "customer_id"
+            ],
+            "msg": "Field required",
+            "input": {
+              "message_id": "T005-0d76bfa3-c1cb-4112-87b9-8eb46a4defaf",
+              "text": "My transfer is delayed. Please inspect the processing evidence.",
+              "transaction_id": "dbdcde9e-7510-4199-86f8-51dc7eb751f5"
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "message"
+            ],
+            "msg": "Field required",
+            "input": {
+              "message_id": "T005-0d76bfa3-c1cb-4112-87b9-8eb46a4defaf",
+              "text": "My transfer is delayed. Please inspect the processing evidence.",
+              "transaction_id": "dbdcde9e-7510-4199-86f8-51dc7eb751f5"
+            }
+          },
+          {
+            "type": "extra_forbidden",
+            "loc": [
+              "body",
+              "text"
+            ],
+            "msg": "Extra inputs are not permitted",
+            "input": "My transfer is delayed. Please inspect the processing evidence."
+          }
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "proactive_before_complaint": true
+  },
+  "model_qualified": false,
+  "cleanup": {
+    "own_processes_stopped": true,
+    "isolated_databases_preserved": "<platform>/var/ticket005-demo-4dd8e7ca-9124-41ce-b1cb-54bd8ea20674",
+    "at": "2026-10-22T10:14:31.996064+00:00"
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "$defs": {
+    "PremiseTime": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "valid_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Valid At"
+        },
+        "known_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Known At"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "valid_at",
+        "known_at"
+      ],
+      "title": "PremiseTime",
+      "type": "object"
+    },
+    "SupportedFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "rule": {
+          "enum": [
+            "processing_receipt_unverified",
+            "configured_execution_mismatch",
+            "customer_completion_dispute"
+          ],
+          "title": "Rule",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "status": {
+          "const": "supported_derived_finding",
+          "title": "Status",
+          "type": "string"
+        },
+        "conclusion": {
+          "title": "Conclusion",
+          "type": "string"
+        },
+        "method": {
+          "const": "inspectable-rule-v1",
+          "title": "Method",
+          "type": "string"
+        },
+        "as_of": {
+          "title": "As Of",
+          "type": "string"
+        },
+        "premise_times": {
+          "items": {
+            "$ref": "#/$defs/PremiseTime"
+          },
+          "title": "Premise Times",
+          "type": "array"
+        }
+      },
+      "required": [
+        "rule",
+        "evidence_ids",
+        "status",
+        "conclusion",
+        "method",
+        "as_of",
+        "premise_times"
+      ],
+      "title": "SupportedFinding",
+      "type": "object"
+    },
+    "UnverifiedHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "explanation": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "supports": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Supports",
+          "type": "array"
+        },
+        "weakens": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Weakens",
+          "type": "array"
+        },
+        "next_check": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Next Check",
+          "type": "string"
+        },
+        "status": {
+          "const": "unverified_hypothesis",
+          "title": "Status",
+          "type": "string"
+        },
+        "support_semantics": {
+          "title": "Support Semantics",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "explanation",
+        "supports",
+        "weakens",
+        "next_check",
+        "status",
+        "support_semantics"
+      ],
+      "title": "UnverifiedHypothesis",
+      "type": "object"
+    },
+    "VerifiedSourceFact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "maxLength": 36,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "field": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "status": {
+          "const": "verified_source_fact",
+          "title": "Status",
+          "type": "string"
+        },
+        "scope": {
+          "title": "Scope",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "authority": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Authority",
+          "type": "array"
+        },
+        "valid_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Valid At"
+        },
+        "known_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Known At"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "field",
+        "value",
+        "status",
+        "scope",
+        "source_id",
+        "authority",
+        "valid_at",
+        "known_at"
+      ],
+      "title": "VerifiedSourceFact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "source_facts": {
+      "items": {
+        "$ref": "#/$defs/VerifiedSourceFact"
+      },
+      "title": "Source Facts",
+      "type": "array"
+    },
+    "derived_findings": {
+      "items": {
+        "$ref": "#/$defs/SupportedFinding"
+      },
+      "title": "Derived Findings",
+      "type": "array"
+    },
+    "contradictions": {
+      "items": {
+        "$ref": "#/$defs/SupportedFinding"
+      },
+      "title": "Contradictions",
+      "type": "array"
+    },
+    "hypotheses": {
+      "items": {
+        "$ref": "#/$defs/UnverifiedHypothesis"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+    },
+    "unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unknowns",
+      "type": "array"
+    },
+    "recommended_next_actions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Recommended Next Actions",
+      "type": "array"
+    },
+    "prose_status": {
+      "const": "unverified_model_proposals",
+      "title": "Prose Status",
+      "type": "string"
+    },
+    "financial_actions_authorized": {
+      "const": false,
+      "title": "Financial Actions Authorized",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "source_facts",
+    "derived_findings",
+    "contradictions",
+    "hypotheses",
+    "unknowns",
+    "recommended_next_actions",
+    "prose_status",
+    "financial_actions_authorized"
+  ],
+  "title": "PublishedAssessment",
+  "type": "object"
+}

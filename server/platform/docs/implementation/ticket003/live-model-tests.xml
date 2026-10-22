@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="23.356" timestamp="2026-10-21T23:46:56.846504+01:00" hostname="fedora"><testcase classname="tests.test_live_ai" name="test_live_extraction_candidate_and_authorized_acceptance" time="9.032"><failure message="AssertionError: {'id': 'fd7dbdac-fb5e-4238-994e-ba3f441e1fb7', 'kind': 'inference_run', 'classification': 'internal', 'created_at': '2026-10-21T22:47:05.962571+00:00', ...}&#10;assert 'quarantined' == 'validated_candidate'&#10;  &#10;  - validated_candidate&#10;  + quarantined">tests/test_live_ai.py:31: in test_live_extraction_candidate_and_authorized_acceptance
+    assert run["data"]["state"] == "validated_candidate", run
+E   AssertionError: {'id': 'fd7dbdac-fb5e-4238-994e-ba3f441e1fb7', 'kind': 'inference_run', 'classification': 'internal', 'created_at': '2026-10-21T22:47:05.962571+00:00', ...}
+E   assert 'quarantined' == 'validated_candidate'
+E     
+E     - validated_candidate
+E     + quarantined</failure></testcase><testcase classname="tests.test_live_ai" name="test_live_interpretation_is_traceable_to_original_record" time="3.871" /><testcase classname="tests.test_live_ai" name="test_live_analysis_uses_authorized_evidence_and_pins_revision" time="10.276" /></testsuite></testsuites>

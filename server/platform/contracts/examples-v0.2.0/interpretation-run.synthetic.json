@@ -1,0 +1,52 @@
+{
+  "id": "c75fe63a-1400-49a5-aff9-d29c859b28b1",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-21T20:26:03.099099+00:00",
+  "data": {
+    "task": "interpret_interaction",
+    "evidence_ids": [
+      "d00d30aa-afd5-4715-9cff-ac0cbc64f812"
+    ],
+    "state": "validated_candidate",
+    "result": {
+      "category": "transfer_delay",
+      "transaction_reference": null,
+      "unknowns": [
+        "Bank-recorded transaction status is unknown",
+        "Beneficiary receipt is unverified"
+      ]
+    },
+    "model": "veriq-qwen2.5-0.5b",
+    "inference_metadata": {
+      "model": "veriq-qwen2.5-0.5b",
+      "task": "interpret_interaction",
+      "transport": "http",
+      "started_at": "2026-10-21T20:25:59.664372+00:00",
+      "prompt_version": "ticket002-v2",
+      "prompt_sha256": "5ef2905a904e3f69e1e5a5c3348f0ad92c3028d0d8d1176308d96a073a71a805",
+      "output_schema_sha256": "7a6d9cf44b18bbe99904fa09e3050321396dceb518fd05021b386709453f218f",
+      "elapsed_seconds": 3.43,
+      "completed_at": "2026-10-21T20:26:03.094351+00:00",
+      "usage": {
+        "completion_tokens": 29,
+        "prompt_tokens": 433,
+        "total_tokens": 462,
+        "prompt_tokens_details": {
+          "cached_tokens": 59
+        }
+      },
+      "runtime_timings": {
+        "cache_n": 59,
+        "prompt_n": 374,
+        "prompt_ms": 2366.313,
+        "prompt_per_token_ms": 6.327040106951872,
+        "prompt_per_second": 158.05178773898464,
+        "predicted_n": 29,
+        "predicted_ms": 1034.535,
+        "predicted_per_token_ms": 36.947678571428575,
+        "predicted_per_second": 27.065299869023278
+      }
+    }
+  }
+}

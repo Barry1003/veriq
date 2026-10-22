@@ -1,0 +1,18 @@
+# Add to the existing base + model + worker Compose files. Cedar remains unchanged.
+services:
+  veriq:
+    environment:
+      AI_INVESTIGATION_MODE: adaptive
+      AI_MODEL_CONFIG_VERSION: ${AI_MODEL_CONFIG_VERSION:-qwen1.5-ticket005-adaptive-v3}
+      LOCAL_AI_MAX_OUTPUT_TOKENS: "768"
+      LOCAL_AI_TIMEOUT_SECONDS: "180"
+      ADAPTIVE_MAX_GENERATIONS: "5"
+      ADAPTIVE_MAX_TOOL_CALLS: "3"
+  ai-worker:
+    environment:
+      AI_INVESTIGATION_MODE: adaptive
+      AI_MODEL_CONFIG_VERSION: ${AI_MODEL_CONFIG_VERSION:-qwen1.5-ticket005-adaptive-v3}
+      LOCAL_AI_MAX_OUTPUT_TOKENS: "768"
+      LOCAL_AI_TIMEOUT_SECONDS: "180"
+      ADAPTIVE_MAX_GENERATIONS: "5"
+      ADAPTIVE_MAX_TOOL_CALLS: "3"

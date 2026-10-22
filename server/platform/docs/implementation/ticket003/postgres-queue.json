@@ -1,0 +1,13 @@
+{
+  "postgres_version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+  "migration": "0001",
+  "metadata_differences": [],
+  "actual_postgres_transport": true,
+  "inference_transport": "explicit_test_double_no_model_claim",
+  "two_simultaneous_claims_only_one_succeeded": true,
+  "expired_lease_recovered": true,
+  "database_reopen_preserved_tasks": true,
+  "completed_tasks": 2,
+  "verification_passed": true,
+  "completed_at": "2026-10-21T22:45:57.961481+00:00"
+}

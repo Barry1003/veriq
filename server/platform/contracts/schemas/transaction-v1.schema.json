@@ -1,0 +1,87 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "occurred_at": {
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "transaction_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Transaction Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "account_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Account Id",
+      "type": "string"
+    },
+    "amount_minor": {
+      "exclusiveMinimum": 0,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "const": "NGN",
+      "default": "NGN",
+      "title": "Currency",
+      "type": "string"
+    },
+    "route_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Route Id",
+      "type": "string"
+    },
+    "gateway_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Gateway Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "completed",
+        "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "response": {
+      "enum": [
+        "accepted",
+        "timeout",
+        "declined",
+        "reconciled"
+      ],
+      "title": "Response",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "beneficiary_verified": {
+      "default": false,
+      "title": "Beneficiary Verified",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "transaction_id",
+    "customer_id",
+    "account_id",
+    "amount_minor",
+    "route_id",
+    "gateway_id",
+    "status",
+    "response",
+    "version"
+  ],
+  "title": "Transaction",
+  "type": "object"
+}

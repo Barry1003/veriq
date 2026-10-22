@@ -1,0 +1,10 @@
+{
+  "state": "reachable",
+  "model": "veriq-qwen2.5-0.5b",
+  "live_inference_verified": true,
+  "verified_tasks": {
+    "extract_knowledge": "2026-10-21T20:25:59.291519+00:00",
+    "interpret_interaction": "2026-10-21T20:26:03.094436+00:00",
+    "analyze_investigation": "2026-10-21T20:26:48.311771+00:00"
+  }
+}

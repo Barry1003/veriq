@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "enum": [
+        "transfer_delay",
+        "reported_failure",
+        "access_problem",
+        "other"
+      ],
+      "title": "Category",
+      "type": "string"
+    },
+    "transaction_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Reference"
+    },
+    "unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Unknowns",
+      "type": "array"
+    }
+  },
+  "required": [
+    "category",
+    "unknowns"
+  ],
+  "title": "Interpretation",
+  "type": "object"
+}

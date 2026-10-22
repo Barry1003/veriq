@@ -1,0 +1,46 @@
+name: veriq-platform
+services:
+  cedar-db:
+    image: docker.io/library/postgres:16
+    env_file: ../var/cedar-db.env
+    volumes: [cedar-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U cedar -d cedar"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [bank]
+  veriq-db:
+    image: docker.io/library/postgres:16
+    env_file: ../var/veriq-db.env
+    volumes: [veriq-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U veriq -d veriq"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [bank]
+  cedar:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../var/cedar.env
+    command: [python, -m, scripts.run, cedar, --container, --host, 0.0.0.0]
+    ports: ["127.0.0.1:${CEDAR_HOST_PORT:-8101}:8101"]
+    depends_on: {cedar-db: {condition: service_healthy}}
+    networks: [bank]
+  veriq:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../var/veriq.env
+    command: [python, -m, scripts.run, veriq, --container, --host, 0.0.0.0]
+    ports: ["127.0.0.1:${VERIQ_HOST_PORT:-8100}:8100"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8100/ready', timeout=3)"]
+      interval: 3s
+      timeout: 4s
+      retries: 30
+    depends_on: {veriq-db: {condition: service_healthy}, cedar: {condition: service_started}}
+    networks: [bank]
+networks:
+  bank: {internal: true}
+volumes:
+  cedar-data:
+  veriq-data:
