@@ -1,5 +1,7 @@
 # Veriq v0.5.0 candidate / frozen Cedar frontend contracts
 
+For the live-demo readiness branch, start with [LIVE-DEMO.md](LIVE-DEMO.md), [the actual additive OpenAPI](api/veriq-live-demo.openapi.json) and [the per-action integration map](live-demo-actions.json). The original v0.5.0 specification remains a frozen compatibility baseline.
+
 Read `SCREENS-v0.5.0.md`, `CHANGELOG-v0.5.0.md` and `AI-QUALITY-NOTICE.md` first. Veriq OpenAPI is `api/veriq-v0.5.0.openapi.json`; Cedar remains `api/cedar-v0.4.0.openapi.json`. Earlier contracts, events, examples and screen mappings remain versioned and available.
 
 This adds durable adaptive steps, read-only evidence tools and open hypotheses with strict publication boundaries. Available-model adaptive reasoning acceptance failed; do not equate schema/transport success or controlled examples with model qualification. Example provenance is explicit in `examples-v0.5.0/README.md`.

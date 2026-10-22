@@ -6,6 +6,8 @@ Veriq (`apps/veriq/backend`) and Cedar (`apps/cedar/backend`) are independent Fa
 
 **Qwen2.5-1.5B is unqualified: 0/4 required adaptive reasoning scenarios passed.** The six functional demo checks and 153 original non-live regression passes do not establish reasoning acceptance. Recorded failures, measurements and frozen inputs are preserved in `platform/docs/implementation/ticket005/` and `platform/evaluations/adaptive-v1.json`.
 
+For the repeatable live demo, use the [tested named-run workflow](platform/docs/live-demo/RUNBOOK.md), [readiness matrix](platform/docs/live-demo/READINESS.md) and [frontend action map](platform/contracts/LIVE-DEMO.md). The setup API is development-only; no frontend integration or qualified AI result is implied.
+
 ## Install and migrate
 
 Requirements: Python 3.12+, `uv`, Linux x86-64 for the pinned native CPU inference binary. SQLite supports the low-resource setup; PostgreSQL 16 plus Podman/Compose supports the existing optional container deployment. No model is required for installation, migrations or non-live tests.

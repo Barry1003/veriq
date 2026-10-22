@@ -1,0 +1,20 @@
+{
+  "owned_processes_alive": {
+    "model": false,
+    "guard": false,
+    "cedar": false,
+    "veriq": false,
+    "worker": false
+  },
+  "ports_accepting_connections": {
+    "8181": false,
+    "8610": false,
+    "8611": false,
+    "8630": false,
+    "8631": false
+  },
+  "owned_databases": {
+    "cedar": "exited",
+    "veriq": "exited"
+  }
+}

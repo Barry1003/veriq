@@ -1,0 +1,19 @@
+{
+  "transport": "real_http",
+  "storage": "postgres",
+  "model_qualified": false,
+  "checks": {
+    "repeat_prepare_no_duplicate_sources_or_documents": true,
+    "cedar_unauthenticated_rejected": true,
+    "veriq_unauthenticated_rejected": true,
+    "revoked_empty_source_rejected": true,
+    "anomaly_replay_only_ten_transfers": true
+  },
+  "durations_seconds": {
+    "prepare_twice": 1.616,
+    "anomaly_twice": 6.609,
+    "total_verification": 12.807
+  },
+  "failure": "cedar POST /v1/channels/in-app/messages: HTTP 409",
+  "stage": "Initial operator-script rehearsal; stable channel timestamp defect found"
+}

@@ -46,6 +46,8 @@ def pull(db, scope, source_id, source_secret, feed: SourceFeed, actor):
             source = get(s, scope, "source", source_id)
             if not source:
                 raise HTTPException(404, "Source not found")
+            if source.data.get("authorization_state") == "revoked":
+                raise HTTPException(403, "Source authorization revoked")
             cursor = source.data["cursor"]
         starting_cursor = cursor
         page = feed.page(source_id, cursor)
@@ -54,6 +56,8 @@ def pull(db, scope, source_id, source_secret, feed: SourceFeed, actor):
         with db.session() as s:
             lock_scope(s, scope)
             source = get(s, scope, "source", source_id)
+            if source.data.get("authorization_state") == "revoked":
+                raise HTTPException(403, "Source authorization revoked")
             if source.data["cursor"] != starting_cursor:
                 raise HTTPException(409, "Another pull advanced this source; retry")
             for item in page["items"]:

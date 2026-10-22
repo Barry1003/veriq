@@ -1,0 +1,86 @@
+{
+  "baseline_main": "e1b7a27a8fef11d799433b588b4842178806636f",
+  "regression": {
+    "passed": 169,
+    "deselected": 4,
+    "warnings": 1,
+    "seconds": 83.87
+  },
+  "postgres": {
+    "cedar": {
+      "dialect": "postgresql",
+      "migration": "0002",
+      "metadata_differences": 0
+    },
+    "veriq": {
+      "dialect": "postgresql",
+      "migration": "0002",
+      "metadata_differences": 0
+    }
+  },
+  "workflow_core_checks_passed": true,
+  "complete_workflow_gate": false,
+  "failed_gate": "Model completion exceeded 480-second wait; retained as failure",
+  "actual_adaptive_outcome": "quarantined",
+  "reasoning_qualified": false,
+  "frozen_reasoning_baseline": "0/4, unchanged, not rerun as part of readiness ticket",
+  "correct_historical_route": {
+    "before": true,
+    "after": true
+  },
+  "model": {
+    "alias": "veriq-qwen2.5-1.5b",
+    "weight_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+    "context": 4096,
+    "parallel": 1,
+    "threads": 4,
+    "max_output_tokens": 768,
+    "timeout_seconds": 180,
+    "queued_to_completed_seconds": 564.643,
+    "queue_before_first_generation_seconds": 290.893,
+    "first_generation_to_completed_seconds": 273.75,
+    "generations": 4
+  },
+  "resources": {
+    "samples": 546,
+    "sampling_window": "Named run across workflow and controlled restarts; at most last one hour; includes idle periods",
+    "peak_model_rss_mib": 1840.961,
+    "peak_model_swap_mib": 681.148,
+    "minimum_host_available_mib": 686.887,
+    "max_full_memory_psi_avg10": 19.36,
+    "emergency_stop": false
+  },
+  "recovery_checks": {
+    "model_outage_reported": true,
+    "banking_and_ingestion_operate_without_model": true,
+    "revocation_redacts_actual_model_trace": true,
+    "api_restart_preserves_historical_evidence": true,
+    "persistent_setup_after_restart": true,
+    "model_outage_is_visibly_limited": true,
+    "worker_restarted_with_same_configuration": true,
+    "cross_database_credentials_rejected": true,
+    "model_restart_alias_reachable": true
+  },
+  "recovery_durations_seconds": {
+    "cedar_read_without_model": 0.0502,
+    "veriq_read_without_model": 0.1144,
+    "transfer_and_delivery_without_model": 0.2557,
+    "api_worker_restart_without_model": 9.431,
+    "model_restart_and_service_check": 14.663
+  },
+  "cleanup": {
+    "owned_processes_alive": {
+      "model": false,
+      "guard": false,
+      "cedar": false,
+      "veriq": false,
+      "worker": false
+    },
+    "databases_preserved": true
+  },
+  "transcript": {
+    "raw_request_count": 691,
+    "recorded_transitions_and_mutations": 195
+  },
+  "no_frontend_changes": true
+}

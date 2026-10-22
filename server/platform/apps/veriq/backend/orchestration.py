@@ -181,6 +181,11 @@ def heartbeat(db, scope, worker_id, inference):
             "worker_id": worker_id,
             "state": "active",
             "configured_model": getattr(inference, "model", None),
+            "investigation_mode": os.getenv("AI_INVESTIGATION_MODE", "legacy"),
+            "model_config_version": os.getenv("AI_MODEL_CONFIG_VERSION", "1"),
+            "max_output_tokens": getattr(inference, "max_tokens", None),
+            "timeout_seconds": getattr(inference, "timeout", None),
+            "declared_context_window": os.getenv("LOCAL_AI_CONTEXT_WINDOW"),
             "concurrency": settings()["concurrency"],
         }
         row = get(s, scope, "worker_heartbeat", worker_id)

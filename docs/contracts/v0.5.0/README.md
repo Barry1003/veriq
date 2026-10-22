@@ -1,5 +1,7 @@
 # v0.5.0 frontend integration contracts
 
+For the live-demo setup extensions, use [LIVE-DEMO.md](../../../server/platform/contracts/LIVE-DEMO.md) and its current additive OpenAPI; the original v0.5.0 specification below remains a compatibility baseline.
+
 The single authoritative contract set is versioned with the backend in [`server/platform/contracts/`](../../../server/platform/contracts/README.md). This directory is a discoverability index, not a duplicate copy.
 
 - [Veriq v0.5.0 OpenAPI](../../../server/platform/contracts/api/veriq-v0.5.0.openapi.json)

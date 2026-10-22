@@ -27,8 +27,8 @@ def write_private(path, data):
         stream.write(data)
 
 
-def bootstrap():
-    var = ROOT / "var"
+def bootstrap(var=None):
+    var = var or ROOT / "var"
     var.mkdir(mode=0o700, exist_ok=True)
     if (var / "runtime.json").exists():
         if "--upgrade-channels" in __import__("sys").argv:

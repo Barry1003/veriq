@@ -1,0 +1,329 @@
+{
+  "storage": "sqlite",
+  "checks": {
+    "fresh_bank_has_no_inherited_transactions": true,
+    "fresh_veriq_has_no_inherited_investigations": true,
+    "prepare_replay_does_not_duplicate_documents": true,
+    "core_ready_when_model_unavailable": true,
+    "sources_really_received_config_and_document": true,
+    "reset_preserved_selected_archive": true,
+    "reset_gives_new_run_identity_and_empty_databases": true,
+    "reset_did_not_touch_other_run": true,
+    "reset_did_not_touch_global_credentials": true
+  },
+  "durations_seconds": {
+    "repeat_prepare_without_model": 0.596
+  },
+  "readiness": {
+    "checked_at": "2026-10-22T14:07:28.842389+00:00",
+    "scope": "cedar:development",
+    "synthetic_development": true,
+    "state": "ready_limited",
+    "activation_allowed": true,
+    "activation_valid": true,
+    "activation": {
+      "id": "23b8488f-2125-4d78-a693-0391752e9906",
+      "kind": "demo_activation",
+      "classification": "internal",
+      "created_at": "2026-10-22T14:05:04.057223+00:00",
+      "data": {
+        "profile_version": 1,
+        "actor": "Daniel-development",
+        "state_at_activation": "ready_limited",
+        "checks": {
+          "database": true,
+          "profile_saved": true,
+          "administrator_authenticated": true,
+          "required_sources_authorized": true,
+          "accepted_institutional_context": true,
+          "document_received": true
+        },
+        "production_approved": false,
+        "activation_id": "325783f5-e2de-4382-a04e-1def0d414812"
+      }
+    },
+    "checks": {
+      "database": true,
+      "profile_saved": true,
+      "administrator_authenticated": true,
+      "required_sources_authorized": true,
+      "accepted_institutional_context": true,
+      "document_received": true
+    },
+    "sources": [
+      {
+        "source_id": "cedar-institutional",
+        "authorization_state": "active",
+        "record_types": [
+          "knowledge"
+        ],
+        "ingested": 1,
+        "ai_enabled": true,
+        "last_received_at": "2026-10-22T14:05:03.449678+00:00",
+        "last_pull_at": "2026-10-22T14:07:28.251012+00:00",
+        "last_error": null,
+        "delivery": "receiving"
+      },
+      {
+        "source_id": "cedar-operations",
+        "authorization_state": "active",
+        "record_types": [
+          "observation"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.300460+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      },
+      {
+        "source_id": "cedar-service",
+        "authorization_state": "active",
+        "record_types": [
+          "interaction"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.342000+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      },
+      {
+        "source_id": "cedar-status",
+        "authorization_state": "active",
+        "record_types": [
+          "transaction"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.384569+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      },
+      {
+        "source_id": "cedar-documents",
+        "authorization_state": "active",
+        "record_types": [
+          "document"
+        ],
+        "ingested": 1,
+        "ai_enabled": true,
+        "last_received_at": "2026-10-22T14:05:03.704702+00:00",
+        "last_pull_at": "2026-10-22T14:07:28.425555+00:00",
+        "last_error": null,
+        "delivery": "receiving"
+      },
+      {
+        "source_id": "cedar-channel-in-app",
+        "authorization_state": "active",
+        "record_types": [
+          "interaction"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.461809+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      },
+      {
+        "source_id": "cedar-channel-email",
+        "authorization_state": "active",
+        "record_types": [
+          "interaction"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.503426+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      },
+      {
+        "source_id": "cedar-channel-contact-centre",
+        "authorization_state": "active",
+        "record_types": [
+          "interaction"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.549680+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      },
+      {
+        "source_id": "cedar-channel-branch",
+        "authorization_state": "active",
+        "record_types": [
+          "interaction"
+        ],
+        "ingested": 0,
+        "ai_enabled": true,
+        "last_received_at": null,
+        "last_pull_at": "2026-10-22T14:07:28.588308+00:00",
+        "last_error": null,
+        "delivery": "polled_empty"
+      }
+    ],
+    "ai": {
+      "state": "unavailable",
+      "model": "veriq-qwen2.5-1.5b",
+      "live_inference_verified": false,
+      "verified_tasks": {},
+      "configured_model": "veriq-qwen2.5-1.5b",
+      "adaptive_mode_enabled": true,
+      "model_config_version": "qwen1.5-live-rehearsal-v1",
+      "max_output_tokens": 768,
+      "timeout_seconds": 180.0,
+      "declared_context_window": "4096",
+      "endpoint_reachable": false,
+      "model_qualification": {
+        "state": "unqualified",
+        "production_reasoning_approved": false,
+        "basis": "Recorded Ticket 003 quality failures remain unresolved"
+      },
+      "latest_successful_inference": null,
+      "latest_failed_processing": {
+        "id": "28ba09b7-e682-4f4b-8af1-6a3e9aa57af7",
+        "kind": "ai_task",
+        "classification": "internal",
+        "created_at": "2026-10-22T14:05:04.713757+00:00",
+        "data": {
+          "state": "failed",
+          "task": "extract_knowledge",
+          "evidence_ids": [
+            "b30248ee-01cc-47d7-89a2-838e49ead5be"
+          ],
+          "revision_id": null,
+          "investigation_id": null,
+          "attempts": 3,
+          "initiation": "automatic",
+          "scheduling_identity": "1035e9e2bee6db6c192f38bc7259fb4f7dd8c8455494f8a0f663b4e16cace08a",
+          "intent_id": "684edd68-a168-4da5-955c-d174da52f2fd",
+          "reprocessing_of": null,
+          "policy_version": "automatic-v1:1",
+          "model_config_version": "qwen1.5-live-rehearsal-v1",
+          "history": [
+            {
+              "state": "queued",
+              "at": "2026-10-22T14:05:04.713219+00:00"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T14:05:04.753790+00:00"
+            },
+            {
+              "state": "retryable",
+              "at": "2026-10-22T14:05:04.867798+00:00",
+              "run_id": "5ffac537-cc53-4d30-a38d-aa39cbf5cdfe",
+              "outcome": "unavailable",
+              "error": "Local runtime request failed"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T14:05:15.282551+00:00"
+            },
+            {
+              "state": "retryable",
+              "at": "2026-10-22T14:05:15.353756+00:00",
+              "run_id": "b80bf979-1373-4580-8ae0-9d9d6440b003",
+              "outcome": "unavailable",
+              "error": "Local runtime request failed"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T14:05:36.031584+00:00"
+            },
+            {
+              "state": "failed",
+              "at": "2026-10-22T14:05:36.070935+00:00",
+              "run_id": "118c7a3e-9c04-4868-bd25-7f0433021e29",
+              "outcome": "unavailable",
+              "error": "Local runtime request failed"
+            }
+          ],
+          "next_attempt_at": 1792677976.0709124,
+          "lease_until": 0,
+          "run_id": "118c7a3e-9c04-4868-bd25-7f0433021e29",
+          "outcome": "unavailable",
+          "error": "Local runtime request failed"
+        }
+      },
+      "latest_failed_inference": {
+        "id": "118c7a3e-9c04-4868-bd25-7f0433021e29",
+        "kind": "inference_run",
+        "classification": "internal",
+        "created_at": "2026-10-22T14:05:36.069589+00:00",
+        "data": {
+          "task": "extract_knowledge",
+          "evidence_ids": [
+            "b30248ee-01cc-47d7-89a2-838e49ead5be"
+          ],
+          "source_grants": {
+            "cedar-documents": 1
+          },
+          "evidence_digests": {
+            "b30248ee-01cc-47d7-89a2-838e49ead5be": "7b7b83559a32c84de28ee21893edc44e35b6d58bd7f511c5261a48a8040b8e69"
+          },
+          "state": "unavailable",
+          "error": "Local runtime request failed",
+          "untrusted_model_output": null,
+          "validation_error": null,
+          "verification_stage": "runtime_or_schema",
+          "inference_metadata": {
+            "model": "veriq-qwen2.5-1.5b",
+            "task": "extract_knowledge",
+            "transport": "http",
+            "started_at": "2026-10-22T14:05:36.051430+00:00",
+            "prompt_version": "ticket002-v2",
+            "prompt_sha256": "3b71dffd69c55e192dc5f7f9ac0b920fd3735ad4c596e7967a41cdf14ae9f021",
+            "output_schema_sha256": "8f011ccb9173da2966b09670b3b488820886d31d328bb7179335f532ca8e4ac9"
+          },
+          "initiation": "automatic",
+          "task_id": "28ba09b7-e682-4f4b-8af1-6a3e9aa57af7"
+        }
+      },
+      "task_counts": {
+        "failed": 1
+      },
+      "backlog": 0,
+      "currently_running": 0,
+      "completed_quarantined": 0,
+      "adaptive_outcome_counts": {},
+      "intent_counts": {
+        "scheduled": 1
+      },
+      "active_workers": [
+        {
+          "last_seen_at": "2026-10-22T14:07:28.781692+00:00",
+          "last_seen_epoch": 1792678048.7817206,
+          "worker_id": "worker:92aa08fd-f772-4ec1-9d4e-75229121503f",
+          "state": "active",
+          "configured_model": "veriq-qwen2.5-1.5b",
+          "investigation_mode": "adaptive",
+          "model_config_version": "qwen1.5-live-rehearsal-v1",
+          "max_output_tokens": 768,
+          "timeout_seconds": 180.0,
+          "declared_context_window": "4096",
+          "concurrency": 1
+        }
+      ],
+      "processing_readiness": "inference_unavailable",
+      "display": "Inference unavailable \u2014 deterministic processing remains operational.",
+      "worker_configuration_consistent": true,
+      "source_processing_policy_enabled": true,
+      "available_for_experiment": false
+    },
+    "production_approved": false,
+    "limitations": [
+      "Synthetic setup only; no SSO or identity-provider binding",
+      "Model is unqualified; availability is not reasoning acceptance",
+      "Runtime/connector configuration is deployment-managed, not browser-editable"
+    ]
+  },
+  "passed": true
+}
