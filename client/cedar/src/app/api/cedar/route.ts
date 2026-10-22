@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "node:crypto";
+import { isTransferRequest, sameTransfer } from "../../../lib/transfer-request";
+import { recoverTransfer, sealTransfer, transferCookieName, transferCookieOptions } from "../../../lib/transfer-recovery";
 
 
 const validKey = (value: unknown): value is string => typeof value === "string" && /^[a-zA-Z0-9_.:-]{1,100}$/.test(value);
@@ -33,7 +35,7 @@ async function callCedar(path: string, body: Record<string, unknown> | null, tok
   return { ok: response.ok, status: response.status, value };
 }
 
-const allowedActions = ["seed", "condition", "transfer", "reconcile", "interaction", "document", "configuration", "contact_burst"];
+const allowedActions = ["seed", "condition", "prepare_transfer", "acknowledge_transfer", "transfer", "reconcile", "interaction", "document", "configuration", "contact_burst"];
 const operatorOnly = new Set(["seed", "condition", "reconcile", "document", "configuration", "contact_burst"]);
 
 export async function POST(request: NextRequest) {
@@ -64,6 +66,33 @@ export async function POST(request: NextRequest) {
   const customerAuthorized = Boolean(customerKey && matches(supplied, customerKey));
   if (operatorOnly.has(action) ? !operatorAuthorized : !operatorAuthorized && !customerAuthorized)
     return NextResponse.json({ error: "A valid key for this action is required." }, { status: 403 });
+
+  if (["prepare_transfer", "transfer", "acknowledge_transfer"].includes(action)) {
+    if (!isTransferRequest(payload))
+      return NextResponse.json({ error: "Invalid transfer instruction." }, { status: 422 });
+    try {
+      const sealed = request.cookies.get(transferCookieName)?.value;
+      const pending = sealed ? recoverTransfer(sealed) : null;
+      if (pending && !sameTransfer(pending, payload))
+        return NextResponse.json({ error: "An earlier transfer needs confirmation. Recover its original instruction before starting another transfer." }, { status: 409 });
+      if (action === "prepare_transfer") {
+        const instruction = { account_id: payload.account_id, route_id: payload.route_id, amount_minor: payload.amount_minor, idempotency_key: payload.idempotency_key };
+        const response = NextResponse.json({ prepared: true }, { headers: { "Cache-Control": "no-store" } });
+        // Stage recovery in the browser before any request can reach the bank.
+        response.cookies.set(transferCookieName, sealTransfer(instruction), transferCookieOptions);
+        return response;
+      }
+      if (!pending)
+        return NextResponse.json({ error: "Prepare the transfer before submitting it." }, { status: 409 });
+      if (action === "acknowledge_transfer") {
+        const response = NextResponse.json({ acknowledged: true }, { headers: { "Cache-Control": "no-store" } });
+        response.cookies.set(transferCookieName, "", { ...transferCookieOptions, maxAge: 0 });
+        return response;
+      }
+    } catch {
+      return NextResponse.json({ error: "The original transfer instruction cannot be recovered. Staff must check bank records before another transfer is attempted." }, { status: 503 });
+    }
+  }
 
   let path = "";
   let body: Record<string, unknown> | null = null;
