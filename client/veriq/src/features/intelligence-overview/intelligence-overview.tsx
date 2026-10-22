@@ -61,7 +61,7 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
         <div className="io-agent-action">
           <span className="io-overline">NEXT STEP</span>
           <p>{agentReview.nextAction}</p>
-          <Link className="io-primary-action" href={`/investigations?case=${encodeURIComponent(agentReview.caseId)}`}>
+          <Link className="io-primary-action" href={`/investigations/${encodeURIComponent(agentReview.caseId)}`}>
             Open agent investigation
           </Link>
         </div>
@@ -130,7 +130,7 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
           <tbody>
             {data.investigations.map((row) => (
               <tr key={row.id}>
-                <td><Link className="io-case-link" href={`/investigations?case=${encodeURIComponent(row.id)}`}>{row.id}</Link></td>
+                <td><Link className="io-case-link" href={`/investigations/${encodeURIComponent(row.id)}`}>{row.id}</Link></td>
                 <td>{row.observation}</td>
                 <td><span className="io-state">{row.status}</span></td>
                 <td>{row.updatedAt}</td>
@@ -152,7 +152,7 @@ export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData 
           <Network size={20} aria-hidden="true" />
           <span>Knowledge sources</span>
           <strong>{data.knowledgeProcessedCount} {data.knowledgeCountLabel ?? "processed records"}</strong>
-          <p>{data.knowledgeReviewCount} records awaiting human review</p>
+          <p>{data.knowledgeReviewCount === null ? "Review queue temporarily unavailable" : `${data.knowledgeReviewCount} records awaiting human review`}</p>
           <small>Source history and provenance retained</small>
         </article>
         <article className="io-card io-readiness">

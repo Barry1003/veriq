@@ -12,4 +12,4 @@ export function proxy(request: NextRequest) {
     return NextResponse.json({ error: error instanceof SessionError ? error.message : "Authentication unavailable." }, { status, headers: { "Cache-Control": "no-store" } });
   }
 }
-export const config = { matcher: ["/((?!login|api/session|_next/static|_next/image|favicon.ico|icons|fonts).*)"] };
+export const config = { matcher: ["/((?!login|api/session|_next/static|_next/image|favicon.ico|images|icons|fonts).*)"] };

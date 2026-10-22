@@ -66,3 +66,5 @@ button:disabled {
   outline: 2px solid var(--color-accent-action);
   outline-offset: 2px;
 }
+
+.iw-live-refresh{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text-secondary);margin-bottom:18px}.iw-live-refresh button{background:var(--background-surface);border:1px solid var(--border-default);border-radius:6px;padding:6px 10px;color:var(--text-primary)}

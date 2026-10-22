@@ -1,3 +1,4 @@
+import { LivePageRefresh } from "@/components/live-page-refresh";
 import { sessionVeriqApi } from "@/services/api/session-reader";
 import { IntelligenceOverview } from "@/features/intelligence-overview/intelligence-overview";
 import { getIntelligenceOverview } from "@/services/intelligence-overview";
@@ -12,10 +13,10 @@ export default async function HomePage() {
   } catch {
     return (
       <section className="io-page">
-        <h1>Intelligence data unavailable</h1>
+        <LivePageRefresh/><h1>Intelligence data unavailable</h1>
         <p>Intelligence data could not be retrieved.</p>
       </section>
     );
   }
-  return <IntelligenceOverview data={data} />;
+  return <>{api && <LivePageRefresh/>}<IntelligenceOverview data={data} /></>;
 }

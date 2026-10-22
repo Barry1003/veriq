@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { ChevronRight, CircleHelp, Database, MessagesSquare, Search, X } from "lucide-react";
@@ -57,7 +58,12 @@ function EvidenceInspector({
       <p className="cx-overline">SELECTED SOURCE / {selected.id}</p>
       <h3>Original customer interaction</h3>
       <dl className="cx-inspector-list">
-        <InspectorDatum title="SOURCE CHANNEL">{selected.channel === "in-app" ? "Cedar in-app support" : selected.channel === "call-centre" ? "Contact centre" : "Branch service desk"}</InspectorDatum>
+        <InspectorDatum title="SOURCE CHANNEL">{selected.channel === "in-app" ? "Cedar in-app support" : selected.channel === "call-centre" ? "Contact centre" : selected.channel === "email" ? "Email" : "Branch service desk"}</InspectorDatum>
+        <InspectorDatum title="SOURCE PROVENANCE">{selected.sourceNote}</InspectorDatum>
+        <InspectorDatum title="NATIVE CHANNEL">{selected.nativeChannel ?? selected.channel}</InspectorDatum>
+        <InspectorDatum title="CUSTOMER REFERENCE">{selected.customerReference ?? "Not supplied"}</InspectorDatum>
+        <InspectorDatum title="CLASSIFICATION">{selected.classification ?? selected.issueCategory}</InspectorDatum>
+        <InspectorDatum title="EVIDENCE ID">{selected.evidenceId ?? "Not supplied"}</InspectorDatum>
         <InspectorDatum title="RECEIVED AT SOURCE">{formatSourceDate(selected.receivedAt)} · {formatSourceTime(selected.receivedAt)}</InspectorDatum>
         <InspectorDatum title="VERIQ INGESTION">{selected.ingestedAt ? formatSourceTime(selected.ingestedAt) : "Not recorded"}</InspectorDatum>
         <InspectorDatum title="LINKED CASE">{selected.caseId ? `${selected.caseId} · ${selected.caseStatus.toLowerCase()}` : "No case status provided"}</InspectorDatum>
@@ -105,7 +111,7 @@ export function CustomerInteractionsScreen({ snapshot }: { snapshot: CustomerInt
         <h1 id="cx-title">Customer Interactions</h1>
         <p>Explore authorized customer contacts across channels while preserving the original context of every report.</p>
       </div>
-      <a className="cx-button cx-heading-link" href="#customer-signal">Inspect classification</a>
+      <Link className="cx-button cx-heading-link" href="/customer-experience/emerging-issues">View emerging issues</Link>
     </header>
 
     <section className="cx-section" aria-labelledby="cx-overview-title">
@@ -164,7 +170,7 @@ export function CustomerInteractionsScreen({ snapshot }: { snapshot: CustomerInt
             <span className="cx-muted-overline">SOURCE CHANNEL CONTRIBUTIONS</span>
             {snapshot.channelSummaries.map(entry => <div key={entry.channel}><span>{entry.name}</span><strong>{entry.contacts} interactions</strong></div>)}
           </div>
-          <p className="cx-evidence-context">Emerging pattern: <strong>Review needed</strong> · No confirmed common cause.</p>
+          <p className="cx-evidence-context">Emerging pattern: <strong>{snapshot.issueCount ? "Review needed" : "No recurring group recorded"}</strong> · No confirmed common cause.</p>
         </article>
         <article className="cx-panel cx-handoff">
           <p className="cx-overline">SOURCE-AWARE REVIEW</p>

@@ -45,7 +45,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
   const processingPage = pathname === "/knowledge/processing";
   const customerPage = pathname === "/customer-experience";
   const actionHref = customerPage
-    ? "/customer-experience#emerging-issue"
+    ? "/customer-experience/emerging-issues"
     : sourcesPage
       ? "/knowledge/processing"
       : processingPage

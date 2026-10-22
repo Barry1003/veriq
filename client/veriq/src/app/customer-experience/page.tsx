@@ -1,3 +1,4 @@
+import { LivePageRefresh } from "@/components/live-page-refresh";
 import { sessionVeriqApi } from "@/services/api/session-reader";
 import { CustomerInteractionsScreen } from "@/features/customer-intelligence/customer-interactions-screen";
 import { getCustomerInteractions } from "@/services/customer-interactions";
@@ -9,11 +10,11 @@ export default async function CustomerExperiencePage() {
   if (!snapshot) {
     return (
       <section className="cx-page" aria-labelledby="cx-unavailable">
-        <h1 id="cx-unavailable">Customer interactions unavailable</h1>
+        <LivePageRefresh/><h1 id="cx-unavailable">Customer interactions unavailable</h1>
         <p>Interaction records could not be loaded.</p>
       </section>
     );
   }
-  return <CustomerInteractionsScreen snapshot={snapshot} />;
+  return <>{api && <LivePageRefresh/>}<CustomerInteractionsScreen snapshot={snapshot} /></>;
 }
 

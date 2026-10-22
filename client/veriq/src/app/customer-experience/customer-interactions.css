@@ -82,3 +82,5 @@
 @media(max-width:600px){.cx-page h1{font-size:25px}.cx-heading{flex-direction:column}.cx-heading-link{margin-top:0}.cx-filters{grid-template-columns:1fr}.cx-kpis{gap:9px}.cx-summary-mini{grid-template-columns:1fr}.cx-channel-breakdown>div{flex-wrap:wrap}}
 @media(max-width:400px){.cx-kpis{grid-template-columns:1fr}}
 
+
+.cx-inspector-quote blockquote,.cx-source-dialog blockquote{white-space:pre-wrap}.cx-inspector-datum dd{overflow-wrap:anywhere}

@@ -74,12 +74,14 @@ export function createVeriqApi(config: { baseUrl: string; token: string }, reque
   if (!config.token || !["http:", "https:"].includes(base.protocol) || base.username || base.password || base.search || base.hash)
     throw new VeriqApiError("Veriq server connection is not configured.", null);
 
-  async function get(path: string): Promise<unknown> {
+  async function get(path: string, body?: JsonObject): Promise<unknown> {
     let response: Response;
     try {
       response = await request(new URL(path, base), {
         cache: "no-store", redirect: "error",
-        headers: { Accept: "application/json", Authorization: `Bearer ${config.token}` },
+        method: body ? "POST" : "GET",
+        headers: { Accept: "application/json", Authorization: `Bearer ${config.token}`, ...(body ? { "Content-Type": "application/json" } : {}) },
+        ...(body ? { body: JSON.stringify(body) } : {}),
         signal: AbortSignal.timeout(12_000),
       });
     } catch {
@@ -103,6 +105,7 @@ export function createVeriqApi(config: { baseUrl: string; token: string }, reque
   }
 
   return {
+    investigationAction: async (id: string, action: "review" | "state", body: JsonObject) => row(await get(`/v1/investigations/${identifier(id)}/${action}`, body)),
     rows: async (collection: keyof typeof collections) => array(await get(collections[collection]), row),
     snapshot: async (name: keyof typeof singletonPaths) => object(await get(singletonPaths[name])),
     workspace: async (id: string) => {

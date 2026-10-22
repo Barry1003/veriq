@@ -19,6 +19,7 @@ export async function getLiveCustomerInteractions(api: VeriqApi): Promise<Custom
       issueCategory: data.category === "transfer_delay" ? "delay" : "unclassified",
       claim: statement, summary: `Classification: ${string(data.category)}`,
       sourceNote: `${string(data.source_id)} / ${string(data.source_native_record_id)}`,
+      customerReference: typeof data.customer_id === "string" ? data.customer_id : null, evidenceId: typeof data.evidence_id === "string" ? data.evidence_id : null, classification: string(data.category), nativeChannel: string(data.channel),
       originalStatement: statement, caseId: null, caseStatus: "Not tracked",
       transferReference: typeof data.transaction_id === "string" ? data.transaction_id : null,
       transferOutcome: "unknown",
