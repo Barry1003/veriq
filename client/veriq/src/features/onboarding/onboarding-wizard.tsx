@@ -32,14 +32,14 @@ import {
 
 const PAGE_TITLES: Record<SetupStage, string> = {
   1: "Configure your institution's Veriq",
-  2: "Establish authorized administrators",
+  2: "Review deployment administrator",
   3: "Configure bank-local intelligence",
   4: "Authorize institutional data sources",
   5: "Verify readiness before activation",
 };
 const PAGE_DESCRIPTIONS: Record<SetupStage, string> = {
   1: "A guided bank-hosted deployment setup. Authorization, inference policy and evidence delivery are checked independently.",
-  2: "Bind institutional identities and verify privileged access before anyone can administer Veriq.",
+  2: "Review the administrator and permissions reported by this Veriq deployment.",
   3: "Approve an internal inference runtime and test model behavior without sending bank data to unapproved providers.",
   4: "Choose source categories, configure bank-owned connectors and inspect their actual data delivery stages.",
   5: "Differentiate core installation readiness from the availability of each intelligence capability.",
@@ -402,7 +402,7 @@ export function OnboardingWizard() {
   };
   const institutionReady =
     !stepOneErrors.institutionName && !stepOneErrors.deploymentLabel;
-  const administratorSubject = setup?.administrator.subject ?? "Prepared demo administrator session";
+  const administratorSubject = setup?.administrator.subject ?? "Administrator information unavailable";
   const sourceRecordTypes: Record<SourceId, readonly string[]> = {
     knowledge: ["knowledge", "document"],
     operations: ["observation"],
@@ -791,161 +791,42 @@ export function OnboardingWizard() {
         {step === 2 && (
           <>
             <SectionHeading
-              title="Institutional identity configuration"
-              description="Only a verified administrator from an approved identity source can change Veriq settings."
+              title="Deployment administrator"
+              description="These details come from Veriq's current setup record. The demonstration opens directly on onboarding."
             />
             <div className="ob-two-col">
               <Panel>
-                <Meta>ADMINISTRATOR ACCESS · AUTHORIZED DEMO SESSION</Meta>
-                <h3>Authentication provider</h3>
-                <div className="ob-fields">
-                  <Field
-                    label="IDENTITY PROVIDER"
-                    value={draft.identityProvider}
-                    onChange={(value) => changeField("identityProvider", value)}
-                  />
-                  <Field
-                    label="IDENTITY ISSUER"
-                    value={draft.identityIssuer}
-                    placeholder="https://identity.bank.internal · example only"
-                    onChange={(value) => changeField("identityIssuer", value)}
-                  />
-                  <Field
-                    label="ADMINISTRATOR IDENTITY"
-                    value={administratorSubject}
-                    placeholder="admin@cedar.example · unverified"
-                    onChange={(value) =>
-                      changeField("administratorIdentity", value)
-                    }
-                  />
-                  <Field
-                    label="REQUIRED PRIVILEGED ROLE"
-                    value={draft.privilegedRole}
-                    onChange={(value) => changeField("privilegedRole", value)}
-                  />
-                  <Field
-                    label="CLAIM / GROUP MAPPING"
-                    value={draft.groupMapping}
-                    placeholder="veriq-platform-admins → admin role · draft"
-                    onChange={(value) => changeField("groupMapping", value)}
-                  />
-                  <Field
-                    label="CREDENTIALS"
-                    value="Managed by bank-side secret store; never entered in plaintext"
-                    readOnly
-                  />
-                </div>
+                <Meta>BACKEND-REPORTED ADMINISTRATOR</Meta>
+                <h3>{administratorSubject}</h3>
+                <Pair label="ROLE">{setup?.administrator.roles.join(", ") ?? "Unavailable"}</Pair>
+                <Pair label="CLEARANCE">{setup?.administrator.clearance ?? "Unavailable"}</Pair>
+                <Pair label="SETUP SCOPE">{setup?.scope ?? "Unavailable"}</Pair>
                 <Notice subtle>
-                  The administrator shown above comes from the authorized demo
-                  session. Enterprise SSO/OIDC binding is not part of this
-                  hackathon flow.
+                  Administrator details are read from Veriq. This page does not
+                  create or change an administrator.
                 </Notice>
-                <div className="ob-actions">
-                  <Button
-                    kind="primary"
-                    onClick={() =>
-                      backendUnavailable("Administrator identity binding")
-                    }
-                  >
-                    Validate administrator access
-                  </Button>
-                  <Button
-                    onClick={() =>
-                      setFeedback(
-                        "Administrator configuration remains only in this tab. It was not submitted, saved as credentials, or verified.",
-                      )
-                    }
-                  >
-                    Keep draft in this tab
-                  </Button>
-                </div>
               </Panel>
               <Panel className="ob-side-panel">
-                <Meta>ACCESS CONTROL CONTRACT</Meta>
-                <h3>Institution-controlled administration</h3>
-                <Pair label="AUTHENTICATION METHOD">
-                  Bank identity provider or supported local auth
-                </Pair>
-                <Pair label="SUBJECT IDENTITY">
-                  Verified by authenticated principal
-                </Pair>
-                <Pair label="PRIVILEGED ROLE">Explicit bank policy grant</Pair>
-                <Pair label="SESSION AUTHORIZATION">
-                  Enforced for every protected action
-                </Pair>
-                <Pair label="AUDIT REQUIREMENT">
-                  Actor, decision, source and time recorded
-                </Pair>
+                <Meta>DEPLOYMENT BOUNDARY</Meta>
+                <h3>Institution-controlled setup</h3>
+                <Pair label="PROFILE OWNER">Deployment administrator</Pair>
+                <Pair label="PRODUCTION APPROVAL">Not granted by this demonstration</Pair>
                 <Notice subtle>
-                  <Meta>DEMONSTRATION STATE</Meta>No identity binding test has
-                  run. Next-step access remains blocked until verified.
+                  Continue to inspect the existing local AI and source status.
+                  Final activation still depends on backend readiness.
                 </Notice>
               </Panel>
             </div>
-            <SectionHeading
-              title="Validation, failure and retry"
-              description="Authentication and authorization are separate validations."
-            />
-            <Panel>
-              <Meta>
-                AUTHENTICATION AND AUTHORIZATION ARE SEPARATE VALIDATIONS
-              </Meta>
-              <GridTable
-                headers={["REQUIRED CHECK", "STATE", "EVIDENCE REQUIRED"]}
-                rows={[
-                  [
-                    "Identity authentication",
-                    <Status key="a">Not tested</Status>,
-                    "Must receive verifiable identity-provider assertion",
-                  ],
-                  [
-                    "Administrator group / role",
-                    <Status key="b">Not tested</Status>,
-                    "Check bank-approved privileged policy binding",
-                  ],
-                  [
-                    "Protected resource permission",
-                    <Status key="c">Not tested</Status>,
-                    "Backend evaluates actual administration permission",
-                  ],
-                  [
-                    "Audit record creation",
-                    <Status key="d">Not tested</Status>,
-                    "Write required authorization decision audit evidence",
-                  ],
-                ]}
-              />
-              <p className="ob-footnote">
-                If a check fails: show the returned error, retain draft
-                configuration and offer Retry. Never grant authority
-                automatically.
-              </p>
-            </Panel>
             <Panel className="ob-action-panel">
-              <Meta>
-                CURRENT STATUS: NOT VALIDATED · NEXT STAGE REMAINS GATED
-              </Meta>
+              <Meta>ADMINISTRATOR REVIEW</Meta>
               <div className="ob-actions ob-actions-split">
-                <div className="ob-actions">
-                  <Button onClick={() => previewStep(1)}>
-                    <ArrowLeft size={16} /> Back to institution
-                  </Button>
-                  <Button
-                    onClick={() =>
-                      backendUnavailable("Administrator validation")
-                    }
-                  >
-                    Retry validation
-                  </Button>
-                </div>
+                <Button onClick={() => previewStep(1)}>
+                  <ArrowLeft size={16} /> Back to institution
+                </Button>
                 <Button kind="primary" onClick={() => previewStep(3)}>
                   Continue to local AI <ArrowRight size={16} />
                 </Button>
               </div>
-              <p className="ob-footnote">
-                To inspect the Step 3 design without claiming authorization,
-                choose its card above.
-              </p>
             </Panel>
           </>
         )}

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookieName, readSession, authorize, pageRoles, SessionError } from "../../shared/server/demo-session";
+import { authenticate, cookieName, readSession, authorize, pageRoles, sessionConfig, SessionError } from "../../shared/server/demo-session";
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  if (pathname === "/login" && process.env.VERIQ_DEMO_AUTO_SESSION === "true")
+    return NextResponse.redirect(new URL("/onboarding", request.url));
   // The hackathon entry point is onboarding. Activation sets this browser marker
   // before sending the presenter to the intelligence workspace.
   if (
@@ -19,8 +21,25 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   } catch (error) {
     const status = error instanceof SessionError ? error.status : 503;
+    if (
+      status === 401 &&
+      process.env.VERIQ_DEMO_AUTO_SESSION === "true" &&
+      !pathname.startsWith("/api/") &&
+      request.nextUrl.origin === sessionConfig("veriq").origin
+    ) {
+      const config = sessionConfig("veriq");
+      const admin = config.users.find((user) => user.role === "admin");
+      if (!admin) return NextResponse.json({ error: "Demo administrator is unavailable." }, { status: 503 });
+      const { value } = authenticate("veriq", admin.username, admin.password);
+      const response = NextResponse.redirect(request.nextUrl);
+      response.cookies.set(cookieName("veriq"), value, {
+        httpOnly: true, sameSite: "strict", secure: config.secure,
+        path: "/", maxAge: 4 * 60 * 60,
+      });
+      return response;
+    }
     if (status === 401 && !request.nextUrl.pathname.startsWith("/api/")) return NextResponse.redirect(new URL("/login", request.url));
     return NextResponse.json({ error: error instanceof SessionError ? error.message : "Authentication unavailable." }, { status, headers: { "Cache-Control": "no-store" } });
   }
 }
-export const config = { matcher: ["/((?!login|api/session|_next/static|_next/image|favicon.ico|images|icons|fonts).*)"] };
+export const config = { matcher: ["/((?!api/session|_next/static|_next/image|favicon.ico|images|icons|fonts).*)"] };

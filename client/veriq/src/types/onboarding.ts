@@ -54,7 +54,7 @@ export const ONBOARDING_STEPS = [
     label: "Institution profile",
     description: "Institution and environment",
   },
-  { id: 2, label: "Administrator access", description: "Administrator Access" },
+  { id: 2, label: "Deployment administrator", description: "Deployment Administrator" },
   {
     id: 3,
     label: "Local model policy",

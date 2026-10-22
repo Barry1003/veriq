@@ -13,4 +13,4 @@ pnpm build
 pnpm start --hostname localhost --port 3001
 ```
 
-Open `http://localhost:3001/login`. Use the exact configured browser origin. Veriq and Cedar maintain independent session cookies. The demonstration uses local APIs and does not require AI inference or a cloud service.
+For the localhost onboarding demonstration, set `VERIQ_DEMO_AUTO_SESSION=true` in the ignored Veriq `.env.local` after running `scripts.configure_frontends`, then restart Veriq. Open `http://localhost:3001/onboarding`. Veriq creates the configured local administrator session on first visit, with no visible sign-in step. This switch works only with the configured localhost origin and existing server-side demo credentials; leave it disabled outside the local demonstration. Veriq and Cedar maintain independent session cookies. The demonstration uses local APIs and does not require AI inference or a cloud service.
