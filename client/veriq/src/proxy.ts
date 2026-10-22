@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { authenticate, cookieName, readSession, authorize, pageRoles, sessionConfig, SessionError } from "../../shared/server/demo-session";
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  if (pathname === "/login" && process.env.VERIQ_DEMO_AUTO_SESSION === "true")
+  if (pathname === "/login")
     return NextResponse.redirect(new URL("/onboarding", request.url));
   // The hackathon entry point is onboarding. Activation sets this browser marker
   // before sending the presenter to the intelligence workspace.
@@ -23,7 +23,9 @@ export function proxy(request: NextRequest) {
     const status = error instanceof SessionError ? error.status : 503;
     if (
       status === 401 &&
+      process.env.NODE_ENV === "development" &&
       process.env.VERIQ_DEMO_AUTO_SESSION === "true" &&
+      process.env.VERIQ_DEMO_MODE === "development" &&
       !pathname.startsWith("/api/") &&
       request.nextUrl.origin === sessionConfig("veriq").origin
     ) {
@@ -38,8 +40,7 @@ export function proxy(request: NextRequest) {
       });
       return response;
     }
-    if (status === 401 && !request.nextUrl.pathname.startsWith("/api/")) return NextResponse.redirect(new URL("/login", request.url));
-    return NextResponse.json({ error: error instanceof SessionError ? error.message : "Authentication unavailable." }, { status, headers: { "Cache-Control": "no-store" } });
+    return NextResponse.json({ error: status === 401 ? "Local demo session unavailable." : error instanceof SessionError ? error.message : "Authentication unavailable." }, { status, headers: { "Cache-Control": "no-store" } });
   }
 }
 export const config = { matcher: ["/((?!api/session|_next/static|_next/image|favicon.ico|images|icons|fonts).*)"] };

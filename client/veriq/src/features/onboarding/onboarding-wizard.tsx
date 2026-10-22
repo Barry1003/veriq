@@ -51,16 +51,16 @@ const STAGE_CHECKS = [
   ],
   [
     "02 · Administrator access",
-    "Bind authorized admin identity and privileged role",
+    "Review the backend-reported synthetic administrator",
   ],
-  ["03 · Local AI controls", "Approve model, isolation and inference test"],
+  ["03 · Local AI controls", "Inspect runtime and unqualified model status"],
   [
     "04 · Source authorization",
     "Approve source classes, scopes and connector mapping",
   ],
   [
     "05 · Deployment readiness",
-    "Verify service, source, security and audit health",
+    "Review the six backend setup checks and activation gate",
   ],
 ] as const;
 const SOURCE_CATEGORIES: ReadonlyArray<{
@@ -136,44 +136,18 @@ const CONNECTOR_STAGES = [
   ],
 ] as const;
 const CORE_READINESS = [
-  ["Application service", "Authenticated service-health probe required"],
-  ["Local storage / persistence", "Read/write and recovery check required"],
-  [
-    "Administrator authorization",
-    "Role binding and resource permission validated",
-  ],
-  [
-    "Security and policy boundary",
-    "Internal network, secrets and scoped access",
-  ],
-  ["Audit persistence", "Authorized event write/read verification"],
+  ["database", "Database available", "Setup database responded to the readiness query"],
+  ["profile_saved", "Institution profile saved", "Backend has a saved setup profile"],
+  ["administrator_authenticated", "Administrator authenticated", "Backend accepted the current administrator session"],
+  ["required_sources_authorized", "Required sources authorized", "Required record types have active source registrations"],
+  ["accepted_institutional_context", "Institutional context accepted", "Backend found accepted institutional relationships"],
+  ["document_received", "Document received", "An authorized source delivered a document"],
 ] as const;
 const CAPABILITY_READINESS = [
-  [
-    "Institutional knowledge",
-    "Source selection draft · processing not verified",
-    "Unverified",
-  ],
-  [
-    "Operational intelligence",
-    "No authenticated telemetry received",
-    "Unverified",
-  ],
-  [
-    "Customer intelligence",
-    "No authorized interaction feed verified",
-    "Unverified",
-  ],
-  [
-    "Investigation reconciliation",
-    "Optional source · state not verified",
-    "Unavailable / unknown",
-  ],
-  [
-    "Local AI inference",
-    "Runtime draft · permitted test not executed",
-    "Unverified",
-  ],
+  ["Institutional knowledge", "knowledge"],
+  ["Operational intelligence", "operations"],
+  ["Customer intelligence", "customer"],
+  ["Investigation reconciliation", "reconciliation"],
 ] as const;
 
 function SectionHeading({
@@ -1136,13 +1110,13 @@ export function OnboardingWizard() {
             <div className="ob-two-col ob-readiness-grid">
               <Panel>
                 <div className="ob-readiness-list">
-                  {CORE_READINESS.map(([name, description]) => (
-                    <div className="ob-readiness-row" key={name}>
+                  {CORE_READINESS.map(([key, name, description]) => (
+                    <div className="ob-readiness-row" key={key}>
                       <div>
                         <strong>{name}</strong>
                         <p>{description}</p>
                       </div>
-                      <Status>{liveReadiness ? (liveReadiness.checks[name === "Local storage / persistence" ? "database" : name === "Administrator authorization" ? "administrator_authenticated" : name === "Audit persistence" ? "document_received" : "accepted_institutional_context"] ? "Verified" : "Blocked") : "Not verified"}</Status>
+                      <Status>{liveReadiness ? (liveReadiness.checks[key] ? "Verified" : "Blocked") : "Not verified"}</Status>
                     </div>
                   ))}
                 </div>
@@ -1157,12 +1131,12 @@ export function OnboardingWizard() {
                 <Pair label="ACTIVATION PERMISSION">
                   {setup ? administratorSubject : "Not loaded"}
                 </Pair>
-                <Pair label="REQUIRED SERVICES">
-                  Must pass live service and storage checks
+                <Pair label="REQUIRED CHECKS">
+                  All six backend readiness checks must pass
                 </Pair>
                 <Pair label="OPTIONAL SOURCES">Warnings may remain</Pair>
-                <Pair label="INFERENCE UNAVAILABILITY">
-                  Degraded mode only if policy permits
+                <Pair label="LOCAL AI">
+                  {liveReadiness ? (liveReadiness.ai.available_for_experiment === true ? "Available for experiment · unqualified" : "Unavailable · unqualified") : "Not checked"}
                 </Pair>
                 <Pair label="FINAL DECISION">
                   Comes from backend readiness result
@@ -1174,7 +1148,7 @@ export function OnboardingWizard() {
             </div>
             <SectionHeading
               title="Intelligence capability readiness"
-              description="A source may be connected but empty, or receiving but failing processing; reflect those partial states honestly."
+              description="Backend source registration and delivery states; intelligence processing is not verified here."
             />
             <Panel>
               <GridTable
@@ -1183,11 +1157,15 @@ export function OnboardingWizard() {
                   "CURRENT FRONTEND EVIDENCE",
                   "READINESS",
                 ]}
-                rows={CAPABILITY_READINESS.map(([title, desc, state]) => [
+                rows={CAPABILITY_READINESS.map(([title, source]) => [
                   title,
-                  desc,
-                  <Status key={title}>{state}</Status>,
-                ])}
+                  liveReadiness ? sourceStatus(source).map((registered) => `${registered.source_id}: ${registered.authorization_state}, ${registered.delivery}`).join(" · ") || "No registered source reported" : "Readiness not checked",
+                  <Status key={title}>{liveReadiness ? (sourceStatus(source).some((registered) => registered.authorization_state === "active" && registered.delivery === "receiving") ? "Receiving" : sourceStatus(source).some((registered) => registered.authorization_state === "active") ? "Authorized · not receiving" : "Unavailable") : "Not checked"}</Status>,
+                ]).concat([[
+                  "Local AI inference",
+                  liveReadiness ? "Backend model qualification: unqualified" : "Readiness not checked",
+                  <Status key="Local AI inference">{liveReadiness ? (liveReadiness.ai.available_for_experiment === true ? "Available for experiment · unqualified" : "Unavailable · unqualified") : "Not checked"}</Status>,
+                ]])}
               />
             </Panel>
             <Panel className="ob-action-panel">
