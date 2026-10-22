@@ -44,6 +44,13 @@ async function main(){
    await op.getByText('10 original transfer records created or confirmed.',{exact:false}).waitFor();
   }
   assert.equal((await bank('cedar','/v1/transactions','cedar_operator')).length,10);
+  await op.getByRole('heading',{name:'Recent gateway observations',exact:true}).waitFor();
+  await op.locator('[data-observation-id]').first().waitFor();
+  assert.equal(await op.locator('[data-observation-id]').count(),10);
+  const feed=await bank('cedar','/v1/feed?source_id=cedar-operations&limit=500&after=0','cedar_feed');
+  const nativeIds=new Set(feed.items.map(item=>item.envelope.native_record_id));
+  for(const id of await op.locator('[data-observation-id]').evaluateAll(rows=>rows.map(row=>row.dataset.observationId))) assert.ok(nativeIds.has(id));
+
   const account=(await bank('cedar','/v1/accounts','customer1'))[0].data;
   assert.equal(account.balance_minor-account.reserved_minor,99990000);
   console.log('PASS: operator batch uses ten distinct bank transfers; repeat creates no duplicates; ₦50,000 remains affordable');

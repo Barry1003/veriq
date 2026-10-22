@@ -1,3 +1,4 @@
+import { OperatorObservations } from "@/components/operator-observations";
 import { requireSession } from "@/lib/session";
 import { pendingRequests } from "@/lib/request-store";
 import Link from "next/link";
@@ -45,6 +46,7 @@ export default async function ScenarioPage({ params }: {
     <div className="operator-evidence-grid">{page.facts.map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}</div>
     <p className="operator-notice compact">The implemented Cedar backend does not provide a generic scenario replay engine. Only the actions below call real v0.4 banking endpoints.</p>
     <OperatorControls pendingTransfer={saved.transfer} pendingReport={saved.report} active={dataMode === "api"} pending={pending} configurations={config.data ?? []} scenario={page.number}/>
+    {page.number === 1 && <OperatorObservations/>}
     <Link href="/operator" className="operator-return">← Back to scenario catalog</Link>
   </main></div>;
 }

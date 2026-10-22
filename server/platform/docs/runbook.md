@@ -97,12 +97,17 @@ Those paths are placeholders for provisioned approved local files. Alternatively
 
 ## Separate browser sessions (local demonstration)
 
-With a prepared named run, start APIs and worker without AI and provision the two frontends:
+For a fresh local SQLite demonstration, no model download or container image is required. Run from `server/platform/`:
 
 ```bash
+uv sync --frozen
+.venv/bin/python -m scripts.rehearsal init --run stage --storage sqlite
 .venv/bin/python -m scripts.rehearsal up --run stage --without-model
+.venv/bin/python -m scripts.rehearsal prepare --run stage
 .venv/bin/python -m scripts.configure_frontends --run stage
 ```
+
+For an existing named run, omit `init`; preparation is idempotent. Preserve existing frontend environments rather than rerunning configuration over them.
 
 The configuration tool writes owner-only, ignored `.env.local` files in the existing two frontend directories. It refuses to overwrite an existing environment. Preserve these files and the private request store across restarts. Separate login passwords are in ignored `var/rehearsals/stage/browser-logins.json`; backend bearer tokens are never browser login inputs.
 

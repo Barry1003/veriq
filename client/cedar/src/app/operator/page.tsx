@@ -1,3 +1,4 @@
+import { OperatorObservations } from "@/components/operator-observations";
 import { requireSession } from "@/lib/session";
 import { pendingRequests } from "@/lib/request-store";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default async function OperatorPage() {
         ].map(([label, title, detail], index) => <a className="operator-scenario" key={label} href={["/operator/gateway-observation", "/operator/knowledge-source-change", "/operator/customer-contact-burst", "/operator/reconciliation-evidence"][index]}><span>{label}</span><h3>{title}</h3><p>{detail}</p><strong>Inspect scenario details →</strong></a>)}</div>
       <div className="operator-notice compact"><strong>Simulation origin</strong><p>{dataMode === "api" ? "Live Cedar v0.4 API. Only explicit authorized actions create records. No automatic truth reveal endpoint exists." : "Figma preview mode. Actions are disabled and no bank records will be written."}</p></div>
       <OperatorControls pendingTransfer={saved.transfer} pendingReport={saved.report} pending={pending} configurations={config.data ?? []} active={dataMode === "api"}/>
+      <OperatorObservations/>
     </div>
   </div>;
 }
