@@ -1,23 +1,22 @@
+import { sessionVeriqApi } from "@/services/api/session-reader";
 import { KnowledgeExplorer } from "@/features/institutional-knowledge/knowledge-explorer";
 import { getInstitutionalKnowledge } from "@/services/institutional-knowledge";
-import { getKnowledgeSources } from "@/services/knowledge-sources";
 import { getKnowledgeProcessing } from "@/services/knowledge-processing";
 import "./knowledge.css";
 
 export default async function KnowledgePage() {
+  const api = await sessionVeriqApi();
   let pageData: {
     knowledge: Awaited<ReturnType<typeof getInstitutionalKnowledge>>;
-    sourceCatalog: Awaited<ReturnType<typeof getKnowledgeSources>>;
     processing: Awaited<ReturnType<typeof getKnowledgeProcessing>>;
   } | null = null;
 
   try {
-    const [knowledge, sourceCatalog, processing] = await Promise.all([
-      getInstitutionalKnowledge(),
-      getKnowledgeSources(),
-      getKnowledgeProcessing(),
+    const [knowledge, processing] = await Promise.all([
+      getInstitutionalKnowledge(api),
+      getKnowledgeProcessing(api),
     ]);
-    pageData = { knowledge, sourceCatalog, processing };
+    pageData = { knowledge, processing };
   } catch {
     return (
       <section className="kn-page kn-unavailable" role="status">
@@ -30,8 +29,8 @@ export default async function KnowledgePage() {
   return (
     <KnowledgeExplorer
       dataset={pageData.knowledge}
-      processedRecordCount={pageData.sourceCatalog.previewTotals.processedRecords}
-      sourceRecordLabel={pageData.sourceCatalog.recordCountLabel}
+      processedRecordCount={pageData.knowledge.sources.length}
+      sourceRecordLabel={"Retrieved evidence records"}
       pendingReviewCount={pageData.processing.candidates.filter((candidate) => candidate.status === "needs-review").length}
     />
   );

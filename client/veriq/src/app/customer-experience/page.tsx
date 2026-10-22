@@ -1,9 +1,11 @@
+import { sessionVeriqApi } from "@/services/api/session-reader";
 import { CustomerInteractionsScreen } from "@/features/customer-intelligence/customer-interactions-screen";
 import { getCustomerInteractions } from "@/services/customer-interactions";
 import "./customer-interactions.css";
 
 export default async function CustomerExperiencePage() {
-  const snapshot = await getCustomerInteractions().catch(() => null);
+  const api = await sessionVeriqApi();
+  const snapshot = await getCustomerInteractions(api).catch(() => null);
   if (!snapshot) {
     return (
       <section className="cx-page" aria-labelledby="cx-unavailable">

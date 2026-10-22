@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { SessionButton } from "./session-button";
 const navigation = [
     { href: "/staff", label: "Overview" },
     { href: "/staff/payment-routes", label: "Payment routes" },
@@ -37,7 +38,7 @@ export function StaffShell({ children }: {
             return <Link key={item.href} href={item.href} onClick={() => setExpanded(false)} className={`cedar-nav-link${active ? " is-active" : ""}`} aria-current={active ? "page" : undefined}>{item.label}</Link>;
         })}
       </nav>
-      <div className="cedar-sidebar-bottom"><span>CEDAR BANK · SYNTHETIC ENVIRONMENT</span><Link href="/operator">Restricted console ↗</Link><Link href="/banking">Customer banking ↗</Link></div>
+      <div className="cedar-sidebar-bottom"><span>CEDAR BANK · SYNTHETIC ENVIRONMENT</span><SessionButton/><Link href="/operator">Restricted console ↗</Link><Link href="/banking">Customer banking ↗</Link></div>
     </aside>
     {expanded && <button className="cedar-overlay" onClick={() => setExpanded(false)} aria-label="Close navigation"/>}
     <div className="cedar-workspace"><header className="cedar-topbar"><div><span>CEDAR BANK · STAFF WORKSPACE</span><h1>{title}</h1></div><span className="cedar-topbar-environment">SYNTHETIC DEMO</span></header><main id="cedar-content" className="cedar-content">{children}</main></div>

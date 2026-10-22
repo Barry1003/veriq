@@ -5,25 +5,32 @@ import { useRouter } from "next/navigation";
 import { parseNgnMinor } from "@/lib/amount";
 import type { BankRow, Knowledge } from "@/lib/cedar-api";
 import { acknowledgeTransfer, isTransferResponse, postCedarAction } from "@/lib/cedar-actions";
-import { isTransferRequest } from "@/lib/transfer-request";
+import type { TransferRequest } from "@/lib/transfer-request";
+import type { ReportRequest } from "@/lib/request-store";
+import { isTransferRequest, sameTransfer } from "@/lib/transfer-request";
 
+import { SessionButton } from "@/components/session-button";
 type Props = {
   pending: { id: string; route: string }[];
   configurations: BankRow<Knowledge>[];
   active: boolean;
   scenario?: number;
+  pendingTransfer: TransferRequest | null;
+  pendingReport: ReportRequest | null;
 };
 
 type CedarResult = { id?: string; error?: string; detail?: string; data?: { transaction_id?: string; status?: string }; count?: number; recorded?: number; batch_id?: string };
 
-export function OperatorControls({ pending, configurations, active, scenario }: Props) {
+export function OperatorControls({ pending, configurations, active, scenario, pendingTransfer, pendingReport }: Props) {
   const router = useRouter();
-  const [operatorKey, setOperatorKey] = useState("");
-  const [gateway, setGateway] = useState("G2");
+  const [recovery, setRecovery] = useState(pendingTransfer);
+  const [savedReport, setSavedReport] = useState(pendingReport);
+
+  const [gateway, setGateway] = useState("G1");
   const [timeout, setTimeoutValue] = useState(true);
-  const [documentText, setDocumentText] = useState("Gateway service dependency map: G2 is the Cedar secondary gateway. This is an institution-supplied description, not a verified cause of incidents.");
+  const [documentText, setDocumentText] = useState("Gateway service dependency map: G1 is the Cedar primary gateway. This is an institution-supplied description, not a verified cause of incidents.");
   const [account, setAccount] = useState("A1");
-  const [route, setRoute] = useState("R2");
+  const [route, setRoute] = useState("R1");
   const [amount, setAmount] = useState("50000");
   const [customer, setCustomer] = useState("C1");
   const [message, setMessage] = useState("I was debited but the recipient has not confirmed the transfer.");
@@ -31,7 +38,7 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
   const [outcome, setOutcome] = useState<"completed" | "failed">("completed");
   const [verified, setVerified] = useState(false);
   const [rationale, setRationale] = useState("");
-  const [selectedRoute, setSelectedRoute] = useState("R2");
+  const [selectedRoute, setSelectedRoute] = useState("R1");
   const [selectedGateway, setSelectedGateway] = useState("G1");
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState("");
@@ -50,21 +57,25 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
     setBusy(true);
     setFeedback("");
     try {
-      if (body.action === "transfer") await postCedarAction({ ...body, action: "prepare_transfer" }, operatorKey);
-      const response = await fetch("/api/cedar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-cedar-action-key": operatorKey },
-        body: JSON.stringify(body),
-      });
-      const result = await response.json() as CedarResult;
-      if (!response.ok) throw new Error(result.error ?? (typeof result.detail === "string" ? result.detail : `Cedar rejected the action (${response.status}).`) + (typeof result.recorded === "number" ? ` ${result.recorded} contacts were recorded before the interruption.` : ""));
+      if (body.action === "transfer" && isTransferRequest(body)) {
+        if (recovery && !sameTransfer(recovery, body)) throw new Error("Recover the original operator transfer before changing its instruction.");
+        setRecovery(body);
+        await postCedarAction({ ...body, action: "prepare_transfer" });
+      }
+      if (body.action === "interaction") setSavedReport({ message_id: String(body.message_id), sent_at: String(body.sent_at), customer_id: String(body.customer_id), text: String(body.text), ...(typeof body.transaction_id === "string" ? { transaction_id: body.transaction_id } : {}) });
+      const result = await postCedarAction(body) as CedarResult;
+      if (body.action === "interaction") {
+        await postCedarAction({ action: "acknowledge_interaction", message_id: body.message_id });
+        setSavedReport(null);
+      }
       if (body.action === "transfer") {
         const transferResult: unknown = result;
         if (!isTransferRequest(body) || !isTransferResponse(transferResult, body)) throw new Error("Transfer response is uncertain. Recover the original instruction in customer banking.");
-        if (!await acknowledgeTransfer(body, operatorKey)) throw new Error("Bank transfer recorded; recovery acknowledgement failed. Open customer banking before creating another transfer.");
+        if (!await acknowledgeTransfer(body)) throw new Error("Bank transfer recorded; recovery acknowledgement failed. Open customer banking before creating another transfer.");
       }
+      if (body.action === "transfer") setRecovery(null);
       onSuccess?.(result);
-      const detail = result.data?.transaction_id ? `Transaction: ${result.data.transaction_id} · ${result.data.status ?? "recorded"}` : result.count ? `${result.count} original channel records created or confirmed.` : result.id ? `Record: ${result.id}` : "Source state updated.";
+      const detail = result.data?.transaction_id ? `Transaction: ${result.data.transaction_id} · ${result.data.status ?? "recorded"}` : result.count ? `${result.count} original ${body.action === "timeout_batch" ? "transfer" : "channel"} records created or confirmed.` : result.id ? `Record: ${result.id}` : "Source state updated.";
       setFeedback(`Cedar confirmed the operation. ${detail}`);
       router.refresh();
     } catch (error) {
@@ -113,23 +124,27 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
   const pendingOptions = pending.some(item => item.id === transaction) ? pending : transaction ? [...pending, { id: transaction, route }] : pending;
 
   return <>
-    <div className="operator-access"><label htmlFor="operator-key">Operator authorization key</label><input id="operator-key" type="password" autoComplete="off" value={operatorKey} onChange={event => setOperatorKey(event.target.value)} placeholder="Locally provisioned restricted operator key"/>{feedback && <output role="status">{feedback}</output>}</div>
+    <div className="operator-access">{active && <SessionButton/>}{feedback && <output role="status">{feedback}</output>}</div>
+    {recovery && <div className="operator-notice"><p>An earlier transfer needs confirmation: {recovery.account_id} / {recovery.route_id} / ₦{(recovery.amount_minor / 100).toFixed(2)}.</p><button disabled={busy} onClick={() => void run({ ...recovery, action: "transfer" })}>Recover original operator transfer</button></div>}
+    {savedReport && <div className="operator-notice"><p>An earlier customer contact needs confirmation.</p><button disabled={busy} onClick={() => void run({ ...savedReport, action: "interaction" })}>Recover original operator report</button></div>}
     <div className="operator-grid operator-panels">
       <section id="scenario-1" className="operator-form-card" hidden={scenario !== undefined && scenario !== 1}>
         <span>S01 · GATEWAY OBSERVATION</span><h3>Source-side timeout condition</h3><p>Cedar records an operational observation when a transfer is processed. Changing a gateway condition alone produces no telemetry event.</p>
-        <button type="button" className="operator-action secondary" disabled={!active || busy || !operatorKey} onClick={() => void run({ action: "seed" })}>Seed synthetic bank</button>
+        <button type="button" className="operator-action secondary" disabled={!active || busy} onClick={() => void run({ action: "seed" })}>Seed synthetic bank</button>
         <form onSubmit={event => submit(event, { action: "condition", gateway_id: gateway, timeout })}>
           <label>Gateway<select value={gateway} onChange={event => setGateway(event.target.value)}><option value="G1">G1 · Primary</option><option value="G2">G2 · Secondary</option></select></label>
           <label>Simulated response<select value={timeout ? "timeout" : "success"} onChange={event => setTimeoutValue(event.target.value === "timeout")}><option value="timeout">Timeout</option><option value="success">Accepted</option></select></label>
-          <button className="operator-action" disabled={!active || busy || !operatorKey}>Update gateway condition</button>
+          <button className="operator-action" disabled={!active || busy}>Update gateway condition</button>
         </form>
+        <button type="button" className="operator-action" disabled={!active || busy} onClick={() => void run({ action: "timeout_batch", batch_id: "g1-timeout-" + crypto.randomUUID() })}>Generate ten G1 timeout transfers</button>
+        <p>This action uses ten distinct ₦10 R1 transfers. Retrying confirms the same ten bank records.</p>
         <form onSubmit={event => {
           event.preventDefault();
           const body = routeForGateway ? transferBody("A1", routeForGateway, "10.00", observationKey) : null;
           if (body) void run(body, () => { observationKey.current = null; });
         }}>
           <p>After setting the condition, initiate a synthetic ₦10 transfer on {routeForGateway ?? "a configured route"} for {gateway}. Cedar emits a transaction status and an original observation with its actual backend sample window.</p>
-          <button className="operator-action secondary" disabled={!active || busy || !operatorKey || !routeForGateway}>Initiate payment observation</button>
+          <button className="operator-action secondary" disabled={!active || busy || !routeForGateway}>Initiate payment observation</button>
         </form>
       </section>
       <section id="scenario-2" className="operator-form-card" hidden={scenario !== undefined && scenario !== 2}>
@@ -137,11 +152,11 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
         <form onSubmit={createConfiguration}>
           <label>Configured route<select value={routes.includes(selectedRoute) ? selectedRoute : routes[0] ?? ""} onChange={event => setSelectedRoute(event.target.value)}>{routes.map(value => <option key={value} value={value}>{value}</option>)}</select></label>
           <label>Gateway<select value={gateways.includes(selectedGateway) ? selectedGateway : gateways[0] ?? ""} onChange={event => setSelectedGateway(event.target.value)}>{gateways.map(value => <option key={value} value={value}>{value}</option>)}</select></label>
-          <button className="operator-action" disabled={!active || busy || !operatorKey || !latest}>Publish routing configuration</button>
+          <button className="operator-action" disabled={!active || busy || !latest}>Publish routing configuration</button>
         </form>
         <form onSubmit={event => submit(event, { action: "document", text: documentText })}>
           <label>Institutional document<textarea minLength={1} maxLength={50000} value={documentText} onChange={event => setDocumentText(event.target.value)}/></label>
-          <button className="operator-action secondary" disabled={!active || busy || !operatorKey || !documentText.trim()}>Submit source document</button>
+          <button className="operator-action secondary" disabled={!active || busy || !documentText.trim()}>Submit source document</button>
         </form>
       </section>
       <section id="scenario-3" className="operator-form-card" hidden={scenario !== undefined && scenario !== 3}>
@@ -155,7 +170,7 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
           <label>Account<input value={account} onChange={event => { setAccount(event.target.value); transferKey.current = null; }} required/></label>
           <label>Route<input value={route} onChange={event => { setRoute(event.target.value); transferKey.current = null; }} required/></label>
           <label>Amount (NGN)<input type="number" min="0.01" step="0.01" value={amount} onChange={event => { setAmount(event.target.value); transferKey.current = null; }} required/></label>
-          <button className="operator-action" disabled={!active || busy || !operatorKey || parseNgnMinor(amount) === null}>Initiate synthetic transfer</button>
+          <button className="operator-action" disabled={!active || busy || parseNgnMinor(amount) === null}>Initiate synthetic transfer</button>
         </form>
         <form onSubmit={event => {
           event.preventDefault();
@@ -165,11 +180,11 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
           <label>Customer<input value={customer} onChange={event => { setCustomer(event.target.value); burstIdentity.current = null; interactionIdentity.current = null; }} required/></label>
           <label>Related transaction (optional)<input value={transaction} onChange={event => { setTransaction(event.target.value); burstIdentity.current = null; interactionIdentity.current = null; }}/></label>
           <label>Original report<textarea minLength={1} value={message} onChange={event => { setMessage(event.target.value); burstIdentity.current = null; interactionIdentity.current = null; }} required/></label>
-          <button className="operator-action secondary" disabled={!active || busy || !operatorKey || !message.trim()}>Record in-app interaction</button>
+          <button className="operator-action secondary" disabled={!active || busy || !message.trim()}>Record in-app interaction</button>
         </form>
         <form onSubmit={createBurst}>
           <p>Record nine distinct synthetic source messages across in-app, contact-centre and branch channels. The bank preserves each native channel ID. Repeat a failed request with its original batch identity.</p>
-          <button className="operator-action" disabled={!active || busy || !operatorKey || !message.trim()}>Record nine channel contacts</button>
+          <button className="operator-action" disabled={!active || busy || !message.trim()}>Record nine channel contacts</button>
         </form>
       </section>
       <section id="scenario-4" className="operator-form-card" hidden={scenario !== undefined && scenario !== 4}>
@@ -179,7 +194,7 @@ export function OperatorControls({ pending, configurations, active, scenario }: 
           <label>Bank-confirmed outcome<select value={outcome} onChange={event => { setOutcome(event.target.value as "completed" | "failed"); if (event.target.value === "failed") setVerified(false); }}><option value="completed">Completed</option><option value="failed">Failed</option></select></label>
           <label className="operator-checkbox"><input type="checkbox" checked={verified} onChange={event => setVerified(event.target.checked)} disabled={outcome === "failed"}/>Independently verified beneficiary receipt</label>
           <label>Supporting rationale<textarea minLength={5} maxLength={2000} required value={rationale} onChange={event => setRationale(event.target.value)} placeholder="Describe the bank-side supporting evidence"/></label>
-          <button className="operator-action" disabled={!active || busy || !operatorKey || !transaction || rationale.trim().length < 5}>Record reconciliation outcome</button>
+          <button className="operator-action" disabled={!active || busy || !transaction || rationale.trim().length < 5}>Record reconciliation outcome</button>
         </form>
       </section>
     </div>

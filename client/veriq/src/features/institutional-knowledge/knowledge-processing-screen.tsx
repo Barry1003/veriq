@@ -54,7 +54,7 @@ export function KnowledgeProcessingScreen({
   sources,
 }: {
   processing: KnowledgeProcessingSnapshot;
-  sources: KnowledgeSourceSnapshot;
+  sources: KnowledgeSourceSnapshot | null;
 }) {
   const [selectedId, setSelectedId] = useState(processing.candidates[0]?.id ?? "");
   const [drafts, setDrafts] = useState<Record<string, ReviewDraft>>({});
@@ -75,7 +75,7 @@ export function KnowledgeProcessingScreen({
   const pendingCount = processing.candidates.filter(
     (item) => item.status === "needs-review",
   ).length;
-  const missingSources = sources.collections.filter((item) => !item.connected).length;
+  const missingSources = sources?.collections.filter((item) => !item.connected).length ?? null;
 
   function updateDraft(patch: Partial<ReviewDraft>) {
     if (!candidate) return;
@@ -118,7 +118,7 @@ export function KnowledgeProcessingScreen({
   }
 
   const pipeline = [
-    { name: "Source ingested", info: `${sources.previewTotals.processedRecords} ${sources.recordCountLabel ?? "processed records"}` },
+    { name: "Source ingested", info: sources ? `${sources.previewTotals.processedRecords} ${sources.recordCountLabel ?? "processed records"}` : "Source registry requires administrator access" },
     { name: "Candidate extraction", info: "Claims + relationships" },
     { name: "Evidence matching", info: "Version / scope checks" },
     { name: "Human review", info: `${pendingCount} awaiting decisions` },
@@ -141,9 +141,9 @@ export function KnowledgeProcessingScreen({
 
       <h2 className="kp-section-heading">Processing overview</h2>
       <div className="kp-metrics">
-        <Metric label="RECORDS PROCESSED" value={sources.previewTotals.processedRecords} detail="Source processing" icon={Database} />
+        <Metric label="RECORDS PROCESSED" value={sources?.previewTotals.processedRecords ?? "Restricted"} detail="Source processing" icon={Database} />
         <Metric label="CANDIDATES FOR REVIEW" value={pendingCount} detail="Awaiting verification" icon={CircleHelp} />
-        <Metric label="SOURCE COLLECTIONS" value={sources.collections.length} detail={`${missingSources} not connected`} icon={Network} />
+        <Metric label="SOURCE COLLECTIONS" value={sources?.collections.length ?? "Restricted"} detail={missingSources === null ? "Administrator access" : `${missingSources} not connected`} icon={Network} />
         <Metric label="INFERENCE STATE" value="Reviewable" detail="Extracted candidates" icon={Activity} />
       </div>
 

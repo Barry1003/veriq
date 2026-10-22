@@ -1,46 +1,20 @@
 # Cedar frontend
 
-Cedar contains separate customer-banking and staff-operations boundaries. Product screens should be implemented only after their Figma designs are approved.
+Customer banking, staff operations and a restricted operator console backed by the separate Cedar FastAPI application.
+
+For the localhost demonstration, follow the [named rehearsal and browser setup](../../server/platform/docs/runbook.md#separate-browser-sessions-local-demonstration). `scripts.configure_frontends` provisions an ignored, server-only `.env.local` and separate customer, staff and operator logins. Existing environment files are preserved; the old shared Basic login and action keys are no longer used.
 
 ```bash
-pnpm install
-pnpm dev
+pnpm install --frozen-lockfile
 pnpm lint
 pnpm type-check
+pnpm test
 pnpm build
+pnpm start --hostname localhost --port 3000
 ```
 
-## Getting Started
+Open `http://localhost:3000/login`. Customer banking is fixed to C1; staff reconciliation and operator simulation require their separate accounts. Backend credentials never enter browser forms. The configured HTTP localhost origin uses an HttpOnly, SameSite=Strict session cookie; HTTPS origins require Secure cookies. All protected banking mutations check the session, role, Origin and CSRF token.
 
-First, run the development server:
+API mode reports bank errors directly and never substitutes preview balances or transactions. Pending transfer instructions and exact support reports are saved in the private request store, including across reloads and ambiguous responses. Preserve that store, credentials and recovery secret across restarts. The runbook documents recovery after a forcibly killed process.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The optional `tests/live-browser.cjs` checks a **fresh prepared named rehearsal** through real Chromium. Set `VERIQ_REHEARSAL_RUN`, install Playwright in your test environment (or set `PLAYWRIGHT_MODULE` to its module path), and set `CHROMIUM_EXECUTABLE` if Chromium is not at `/usr/bin/chromium-browser`. Run `TEST_VERIQ_BROWSER=true node tests/live-browser.cjs` with both frontends running. This creates genuine synthetic transfers and support records; it does not run during ordinary unit tests.

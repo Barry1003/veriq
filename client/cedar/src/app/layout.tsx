@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" data-product="cedar">
-      <body>{children}</body>
+      <body><Suspense fallback={<main role="status">Loading Cedar…</main>}>{children}</Suspense></body>
     </html>
   );
 }

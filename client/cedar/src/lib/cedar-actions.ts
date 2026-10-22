@@ -1,10 +1,13 @@
 import type { BankRow, Transaction } from "./cedar-api";
 import type { TransferRequest } from "./transfer-request";
 
-export async function postCedarAction(body: Record<string, unknown>, actionKey: string): Promise<unknown> {
+export async function postCedarAction(body: Record<string, unknown>): Promise<unknown> {
+  const sessionResponse = await fetch("/api/session", { cache: "no-store" });
+  if (!sessionResponse.ok) throw new Error("Sign in again before submitting this action.");
+  const session = await sessionResponse.json();
   const response = await fetch("/api/cedar", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "x-cedar-action-key": actionKey },
+    headers: { "Content-Type": "application/json", "x-csrf-token": session.csrf },
     body: JSON.stringify(body),
   });
   const result: unknown = await response.json();
@@ -23,9 +26,9 @@ export function isTransferResponse(value: unknown, request: TransferRequest): va
     (data.status === "pending" || data.status === "completed" || data.status === "failed");
 }
 
-export async function acknowledgeTransfer(request: TransferRequest, actionKey: string): Promise<boolean> {
+export async function acknowledgeTransfer(request: TransferRequest): Promise<boolean> {
   try {
-    await postCedarAction({ ...request, action: "acknowledge_transfer" }, actionKey);
+    await postCedarAction({ ...request, action: "acknowledge_transfer" });
     return true;
   } catch {
     // The bank response is already known. Leave recovery locked if acknowledgement fails.

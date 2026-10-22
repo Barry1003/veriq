@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const { loadModule } = require("./load-module.cjs");
+const { configure, session } = require("./session-fixture.cjs");
 const root = path.resolve(__dirname, "../src");
 async function main() {
   const { parseNgnMinor } = loadModule("lib/amount.ts");
@@ -16,24 +17,27 @@ async function main() {
   assert.equal(telemetry.latestObservationForGateway(rows, "G2").windowSeconds, 1);
   assert.equal(telemetry.latestObservationForGateway(rows, "G3"), null);
   assert.equal(telemetry.observationsFromFeed({ items: [sample(3, 3, 2, 1)] }).length, 0);
-  Object.assign(process.env, { CEDAR_DATA_SOURCE: "api", CEDAR_UI_ORIGIN: "http://localhost:3000", CEDAR_REQUEST_COOKIE_SECRET: "synthetic-test-key-must-be-at-least-32-characters", CEDAR_CUSTOMER_ACTION_KEY: "customer-key", CEDAR_OPERATOR_KEY: "operator-key", CEDAR_CUSTOMER_TOKEN: "customer-bearer", CEDAR_STAFF_TOKEN: "staff-bearer", CEDAR_SIMULATOR_TOKEN: "simulator-bearer", CEDAR_API_URL: "http://127.0.0.1:8101" });
+  configure();
   const calls = [];
-  const mockFetch = async (uri, opts) => { calls.push({ uri: String(uri), body: opts.body && JSON.parse(opts.body), bearer: opts.headers.Authorization }); return { ok: true, status: 201, text: async () => JSON.stringify({ id: `record-${calls.length}`, data: { transaction_id: "TX-TEST", status: "pending" } }) }; };
+  const mockFetch = async (uri, opts) => { calls.push({ uri: String(uri), body: opts.body && JSON.parse(opts.body), bearer: opts.headers.Authorization }); return { ok: true, status: 201, text: async () => JSON.stringify({ id: `record-${calls.length}`, data: { ...(opts.body ? JSON.parse(opts.body) : {}), text: opts.body && JSON.parse(opts.body).message, occurred_at: opts.body && JSON.parse(opts.body).sent_at, source_native_record_id: opts.body && JSON.parse(opts.body).message_id, transaction_id: String(uri).endsWith("/v1/transfers") ? "TX-TEST" : opts.body && JSON.parse(opts.body).transaction_id, status: "pending" } }) }; };
   const cookieJar = new Map();
   const api = loadModule("app/api/cedar/route.ts", { "next/server": { NextResponse: { json: (body, opts = {}) => ({ body, status: opts.status ?? 200, cookies: { set: (name, value, options) => options.maxAge === 0 ? cookieJar.delete(name) : cookieJar.set(name, value) } }) } }, fetch: mockFetch });
-  const send = async (payload, credential) => api.POST({ cookies: { get: name => cookieJar.has(name) ? { value: cookieJar.get(name) } : undefined }, headers: new Map([["origin", "http://localhost:3000"], ["content-type", "application/json"], ["x-cedar-action-key", credential]]), nextUrl: { origin: "http://localhost:3000" }, text: async () => JSON.stringify(payload) });
+  const send = async (payload, credential) => {
+    const login = session(credential === "operator-key" ? "operator" : "customer");
+    return api.POST({ cookies: { get: name => name === "cedar-demo-session" ? { value: login.value } : undefined }, headers: new Map([["origin", "http://localhost:3000"], ["content-type", "application/json"], ["x-csrf-token", login.session.csrf]]), text: async () => JSON.stringify(payload) });
+  };
   assert.equal((await send({ action: "seed" }, "customer-key")).status, 403);
   assert.equal((await send({ action: "reconcile", transaction_id: "TX-1", outcome: "completed", rationale: "Confirmed by bank" }, "customer-key")).status, 403);
   assert.equal((await send({ action: "condition", gateway_id: "G2", timeout: true }, "operator-key")).status, 201);
-  assert.equal(calls.at(-1).uri, "http://127.0.0.1:8101/v1/simulator/conditions");
+  assert.equal(calls.at(-1).uri, "http://127.0.0.1:8611/v1/simulator/conditions");
   assert.equal(calls.at(-1).bearer, "Bearer simulator-bearer");
   assert.equal((await send({ action: "prepare_transfer", account_id: "A1", route_id: "R2", amount_minor: 5000000, idempotency_key: "same-key" }, "customer-key")).status, 200);
   assert.equal((await send({ action: "transfer", account_id: "A1", route_id: "R2", amount_minor: 5000000, idempotency_key: "same-key" }, "customer-key")).status, 201);
   assert.equal(calls.at(-1).body.idempotency_key, "same-key");
   assert.equal((await send({ action: "interaction", message_id: "msg-1", sent_at: "2026-10-22T12:00:00Z", customer_id: "C1", text: "Delayed transfer reported" }, "customer-key")).status, 201);
-  assert.equal(calls.at(-1).uri, "http://127.0.0.1:8101/v1/channels/in-app/messages");
+  assert.equal(calls.at(-1).uri, "http://127.0.0.1:8611/v1/channels/in-app/messages");
   assert.equal((await send({ action: "configuration", knowledge: { entities: [], relationships: [], valid_from: "2026-10-22T12:00:00Z" } }, "operator-key")).status, 201);
-  assert.equal(calls.at(-1).uri, "http://127.0.0.1:8101/v1/institutional/configurations");
+  assert.equal(calls.at(-1).uri, "http://127.0.0.1:8611/v1/institutional/configurations");
   const burst = await send({ action: "contact_burst", batch_id: "batch-1", started_at: "2026-10-22T12:00:00Z", customer_id: "C1", text: "Customer reports possible delayed transfer" }, "operator-key");
   assert.equal(burst.body.count, 9);
   assert.equal(calls.filter(x => /\/v1\/channels\//.test(x.uri)).length, 10);
@@ -42,7 +46,8 @@ async function main() {
   assert.equal((await send({ action: "document", text: "Original bank source" }, "customer-key")).status, 403);
   process.env.CEDAR_FEED_TOKEN = "feed-bearer";
   const paged = [];
-  const recentFeed = loadModule("lib/cedar-api.ts", { fetch: async (uri, opts) => {
+  const staff = session("staff");
+  const recentFeed = loadModule("lib/cedar-api.ts", { "next/headers": { cookies: async () => ({ get: () => ({ value: staff.value }) }) }, fetch: async (uri, opts) => {
     paged.push({ url: String(uri), authorization: opts.headers.Authorization });
     const after = Number(new URL(uri).searchParams.get("after"));
     const length = after === 0 ? 500 : 1;
