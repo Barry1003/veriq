@@ -4,8 +4,8 @@ import { getLiveKnowledgeProcessing } from "./live-knowledge-processing";
 
 export async function getLiveIntelligenceOverview(api: VeriqApi): Promise<IntelligenceOverviewData> {
   const [incidents, interactions, issues, investigations, runtime, context, processing] = await Promise.all([
-    api.rows("incidents"), api.rows("interactions"), api.rows("issues"), api.rows("investigations"),
-    api.snapshot("runtime"), api.snapshot("context"), getLiveKnowledgeProcessing(api),
+    api.rows("incidents"), api.rows("interactions"), api.rows("issues").catch(() => null), api.rows("investigations"),
+    api.snapshot("runtime").catch(() => null), api.snapshot("context"), getLiveKnowledgeProcessing(api).catch(() => null),
   ]);
   const open = investigations.filter(row => row.data.state !== "resolved");
   const latestIncident = [...incidents].sort((a, b) => Date.parse(string(b.data.window_end)) - Date.parse(string(a.data.window_end)))[0];
@@ -14,12 +14,12 @@ export async function getLiveIntelligenceOverview(api: VeriqApi): Promise<Intell
     const channel = string(interaction.data.channel);
     channelCounts.set(channel, (channelCounts.get(channel) ?? 0) + 1);
   }
-  const qualification = object(runtime.model_qualification);
+  const qualification = runtime ? object(runtime.model_qualification) : null;
   return {
     kpis: [
       { id: "knowledge", title: "Institutional entities", value: array(context.entities, object).length, description: "Accepted context projection", qualification: "Source-backed structure; causal meaning not established" },
       { id: "operations", title: "Operational incidents", value: incidents.length, description: "Persisted detector results", qualification: "Financial outcome not established" },
-      { id: "customers", title: "Customer interactions", value: interactions.length, description: `${issues.length} emerging issues`, qualification: "Reports are not verified financial outcomes" },
+      { id: "customers", title: "Customer interactions", value: interactions.length, description: issues ? `${issues.length} emerging issues` : "Emerging issues temporarily unavailable", qualification: "Reports are not verified financial outcomes" },
       { id: "investigations", title: "Open investigations", value: open.length, description: "Current investigation states", qualification: "Evidence and hypotheses require separate review" },
     ],
     operationalSignal: latestIncident ? {
@@ -36,9 +36,9 @@ export async function getLiveIntelligenceOverview(api: VeriqApi): Promise<Intell
     operationallyInitiatedTotal: open.filter(row => row.data.trigger_type === "incident").length,
     knowledgeProcessedCount: array(context.entities, object).length,
     knowledgeCountLabel: "accepted entities",
-    knowledgeReviewCount: processing.candidates.length,
+    knowledgeReviewCount: processing?.candidates.length ?? null,
     reconciliationAvailable: null,
     agentReview: null,
-    processingSummary: `${string(runtime.processing_readiness)} · model ${string(qualification.state)} · ${number(runtime.currently_running)} running tasks · ${number(runtime.backlog)} waiting tasks. Task completion does not establish a correct finding.`,
+    processingSummary: runtime && qualification ? `${string(runtime.processing_readiness)} · model ${string(qualification.state)} · ${number(runtime.currently_running)} running tasks · ${number(runtime.backlog)} waiting tasks. Task completion does not establish a correct finding.` : "AI runtime is unavailable. Source intelligence remains operational.",
   };
 }

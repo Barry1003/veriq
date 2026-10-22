@@ -12,6 +12,10 @@ export type CustomerContact = {
   readonly summary: string;
   readonly sourceNote: string;
   readonly originalStatement: string | null;
+  readonly customerReference?: string | null;
+  readonly evidenceId?: string | null;
+  readonly classification?: string;
+  readonly nativeChannel?: string;
   readonly caseId: string | null;
   readonly caseStatus: CustomerCaseStatus;
   readonly transferReference: string | null;

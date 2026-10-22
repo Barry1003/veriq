@@ -51,7 +51,7 @@ export type IntelligenceOverviewData = {
   openInvestigationsTotal: number;
   operationallyInitiatedTotal: number;
   knowledgeProcessedCount: number;
-  knowledgeReviewCount: number;
+  knowledgeReviewCount: number | null;
   reconciliationAvailable: boolean | null;
   knowledgeCountLabel?: string;
   agentReview: AgentReviewSummary | null;
