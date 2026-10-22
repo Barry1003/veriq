@@ -1,6 +1,5 @@
 import { colors, typography } from "../tokens";
 
-/** Provisional Cedar theme. Replace with approved Figma theme values. */
 export const cedarTheme = {
   name: "cedar",
   approval: "pending-design-approval",

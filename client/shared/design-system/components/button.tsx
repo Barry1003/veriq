@@ -8,19 +8,21 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { className, type = "button", variant = "primary", ...props },
-  ref,
-) {
-  return (
-    <button
-      ref={ref}
-      type={type}
-      className={cn("ds-button", className)}
-      data-variant={variant}
-      {...props}
-    />
-  );
-});
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    { className, type = "button", variant = "primary", ...props },
+    ref,
+  ) {
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={cn("ds-button", className)}
+        data-variant={variant}
+        {...props}
+      />
+    );
+  },
+);
 
 Button.displayName = "Button";

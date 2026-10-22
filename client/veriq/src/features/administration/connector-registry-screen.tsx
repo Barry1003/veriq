@@ -668,6 +668,18 @@ export function ConnectorRegistryScreen({
         </p>
         {selected && detailsOpen && <SelectionDetails selected={selected} />}
         {selected?.kind === "fixture" &&
+          detailsOpen &&
+          ["OPS-FEED-02", "KNW-ROUTE-01", "CX-FEED-03"].includes(
+            selected.record.id,
+          ) && (
+            <Link
+              className="cr-btn cr-btn-primary"
+              href={`/administration/connectors/${selected.record.id}`}
+            >
+              Open connector detail
+            </Link>
+          )}
+        {selected?.kind === "fixture" &&
           selected.record.id === "KNW-ROUTE-01" &&
           detailsOpen && (
             <Link
