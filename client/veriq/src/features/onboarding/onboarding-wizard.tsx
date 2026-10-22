@@ -18,6 +18,11 @@ import {
   type SourceId,
 } from "@/types/onboarding";
 import { getUnverifiedReadiness } from "@/services/onboarding-readiness";
+import {
+  ConnectorConfigurationScreen,
+  SetupGuidanceDialog,
+  type ConnectorDraft,
+} from "@/features/onboarding/onboarding-extra-screens";
 
 const PAGE_TITLES: Record<SetupStage, string> = {
   1: "Configure your institution's Veriq",
@@ -333,6 +338,10 @@ export function OnboardingWizard() {
   const [draft, setDraft] = useState<OnboardingDraft>(INITIAL_ONBOARDING_DRAFT);
   const [feedback, setFeedback] = useState("");
   const [showGuidance, setShowGuidance] = useState(false);
+  const [showKnowledgeConnector, setShowKnowledgeConnector] = useState(false);
+  const [knowledgeConnectorDraft, setKnowledgeConnectorDraft] = useState<
+    ConnectorDraft | undefined
+  >();
   const [stepOneAttempted, setStepOneAttempted] = useState(false);
   const readiness = getUnverifiedReadiness();
   const stepOneErrors = {
@@ -436,6 +445,22 @@ export function OnboardingWizard() {
     );
   }
 
+  if (showKnowledgeConnector) {
+    return (
+      <ConnectorConfigurationScreen
+        initialDraft={knowledgeConnectorDraft}
+        onBack={() => setShowKnowledgeConnector(false)}
+        onSave={(connector) => {
+          setKnowledgeConnectorDraft(connector);
+          changeField("sourceScopes", {
+            ...draft.sourceScopes,
+            knowledge: connector.scope,
+          });
+        }}
+      />
+    );
+  }
+
   return (
     <div className="ob-root">
       <header className="ob-topbar">
@@ -460,6 +485,10 @@ export function OnboardingWizard() {
           </Button>
         </div>
       </header>
+      <SetupGuidanceDialog
+        open={showGuidance}
+        onClose={() => setShowGuidance(false)}
+      />
       <main className="ob-content">
         <div className="ob-overline">
           VERIQ &nbsp;/&nbsp; FIRST-RUN DEPLOYMENT
@@ -472,17 +501,6 @@ export function OnboardingWizard() {
             mandatory. A saved form never grants authority.
           </p>
         </Notice>
-        {showGuidance && (
-          <Notice subtle>
-            <strong>Setup guidance</strong>
-            <p>
-              Navigate the five setup stages using the progress cards. Live
-              authentication, source authorization and backend activation gates
-              still apply. Never enter passwords, secrets or actual customer
-              data.
-            </p>
-          </Notice>
-        )}
         <div className="ob-progress-heading">
           <h2>Deployment setup</h2>
           <span>
@@ -1008,7 +1026,16 @@ export function OnboardingWizard() {
                         </p>
                         <small>{source.purpose}</small>
                       </div>
-                      <details className="ob-connector-details">
+                      {source.id === "knowledge" ? (
+                        <button
+                          type="button"
+                          className="ob-button"
+                          onClick={() => setShowKnowledgeConnector(true)}
+                        >
+                          Configure connector
+                        </button>
+                      ) : (
+                        <details className="ob-connector-details">
                         <summary>{source.action}</summary>
                         <div className="ob-connector-editor">
                           <label htmlFor={`scope-${source.id}`}>
@@ -1030,7 +1057,8 @@ export function OnboardingWizard() {
                             connect a feed.
                           </p>
                         </div>
-                      </details>
+                        </details>
+                      )}
                     </div>
                   </div>
                 ))}

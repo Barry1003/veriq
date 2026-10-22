@@ -42,21 +42,28 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
     pathname === "/knowledge" || pathname.startsWith("/knowledge/");
   const sourcesPage = pathname === "/data-sources";
   const processingPage = pathname === "/knowledge/processing";
-  const actionHref = sourcesPage
+  const customerPage = pathname === "/customer-experience";
+  const actionHref = customerPage
+    ? "/customer-experience#emerging-issue"
+    : sourcesPage
     ? "/knowledge/processing"
     : processingPage
       ? "/knowledge"
       : knowledge
         ? "/data-sources"
         : "/investigations";
-  const actionLabel = sourcesPage
+  const actionLabel = customerPage
+    ? "View emerging issues"
+    : sourcesPage
     ? "View processing"
     : processingPage
       ? "Explore knowledge"
       : knowledge
         ? "View sources"
         : "Investigations";
-  const breadcrumb = sourcesPage
+  const breadcrumb = customerPage
+    ? "Customer Intelligence / Interactions"
+    : sourcesPage
     ? "Institutional Knowledge / Sources"
     : processingPage
       ? "Institutional Knowledge / Processing"

@@ -17,32 +17,24 @@ const kpiIcons = {
   investigations: Search,
 } as const;
 
-export function IntelligenceOverview({
-  data,
-}: {
-  data: IntelligenceOverviewData;
-}) {
-  const { operationalSignal: signal, customerSignal: customer } = data;
-  const peak = Math.max(...signal.rateObservations, signal.baselinePercent);
-  const interactions = customer.channels.reduce(
-    (sum, channel) => sum + channel.count,
-    0,
-  );
+export function IntelligenceOverview({ data }: { data: IntelligenceOverviewData }) {
+  const { operationalSignal: signal, customerSignal: customer, agentReview } = data;
+  const peak = Math.max(signal.baselinePercent, ...signal.rateObservations);
+  const interactions = customer.channels.reduce((total, channel) => total + channel.count, 0);
+
   return (
     <section className="io-page" aria-labelledby="overview-title">
       <header className="io-intro">
         <h1 id="overview-title">Intelligence Overview</h1>
-        <p>
-          A unified view of knowledge, operational signals, customer experience,
-          and ongoing investigations.
-        </p>
+        <p>A unified view of knowledge, operational signals, customer experience, and ongoing investigations.</p>
       </header>
+
       <h2 className="io-section-title">Intelligence at a glance</h2>
       <div className="io-kpi-grid">
         {data.kpis.map((item) => {
-          const Icon = kpiIcons[item.id as keyof typeof kpiIcons] ?? CircleHelp;
+          const Icon = kpiIcons[item.id] ?? CircleHelp;
           return (
-            <div className="io-card io-kpi" key={item.id}>
+            <article className="io-card io-kpi" key={item.id}>
               <div className="io-kpi-name">
                 <span>{item.title}</span>
                 <Icon size={19} strokeWidth={1.75} aria-hidden="true" />
@@ -50,200 +42,133 @@ export function IntelligenceOverview({
               <strong>{item.value}</strong>
               <p>{item.description}</p>
               <small>{item.qualification}</small>
-            </div>
+            </article>
           );
         })}
       </div>
 
       <div className="io-section-heading io-agent-heading">
-        <h2>AI agent · investigation context</h2>
+        <h2>AI agent · active investigation</h2>
+        <p>Review the investigation context and supporting evidence.</p>
       </div>
       <div className="io-agent-card io-card">
         <div className="io-agent-content">
-          <span className="io-overline">
-            ASSESSMENT
-          </span>
-          <h3>Gateway G2 timeouts need investigation</h3>
-          <p>
-            Operational monitoring generated the example signal; no customer
-            report was required.
-          </p>
-          <p>
-            Different routing records may warrant investigation. The cause and
-            financial outcomes remain unverified.
-          </p>
+          <span className="io-overline">{agentReview.state.toUpperCase()} · {agentReview.caseId}</span>
+          <h3>{agentReview.headline}</h3>
+          <p>{agentReview.origin}</p>
+          <p>{agentReview.findingLimit}</p>
         </div>
         <div className="io-agent-action">
           <span className="io-overline">NEXT STEP</span>
-          <p>Review source evidence and request bank reconciliation records.</p>
-          <Link className="io-primary-action" href="/investigations">
-            Open investigations
+          <p>{agentReview.nextAction}</p>
+          <Link className="io-primary-action" href={`/investigations?case=${encodeURIComponent(agentReview.caseId)}`}>
+            Open agent investigation
           </Link>
         </div>
       </div>
 
       <div className="io-section-heading">
         <h2>Latest signals across Veriq</h2>
-        <p>
-          Inspect operational observations and customer reports separately
-          before linking them in an investigation.
-        </p>
+        <p>Operational measurements and customer reports remain separate evidence sources.</p>
       </div>
       <div className="io-signals">
         <article className="io-card io-signal">
-          <span className="io-overline">
-            SOURCE MONITORING / {signal.reference}
-          </span>
+          <span className="io-overline">SOURCE MONITORING / {signal.reference}</span>
           <h3>{signal.title}</h3>
           <div className="io-mini-stats">
-            <div>
-              <strong>{peak.toFixed(1)}%</strong>
-              <small>Observed peak</small>
-            </div>
-            <div>
-              <strong>{signal.baselinePercent.toFixed(1)}%</strong>
-              <small>Prior baseline</small>
-            </div>
-            <div>
-              <strong>{signal.lastObservedAt}</strong>
-              <small>Last source event</small>
-            </div>
+            <div><strong>{peak.toFixed(1)}%</strong><small>Observed peak</small></div>
+            <div><strong>{signal.baselinePercent.toFixed(1)}%</strong><small>Prior baseline</small></div>
+            <div><strong>{signal.lastObservedAt}</strong><small>Last source event</small></div>
           </div>
           <div className="io-chart">
-            <span className="io-chart-label">
-              SOURCE SERIES · EARLIER → LATER
-            </span>
-            <div
-              className="io-chart-bars"
-              role="img"
-              aria-label={`Six five-minute timeout rates: ${signal.rateObservations.join(", ")} percent`}
-            >
-              {signal.rateObservations.map((rate, i) => (
-                <div key={`${i}-${rate}`} className="io-bar-col">
+            <span className="io-chart-label">SOURCE SERIES · EARLIER → LATER</span>
+            <div className="io-chart-bars" role="img" aria-label={`Timeout rate by five-minute window: ${signal.rateObservations.map((rate) => `${rate.toFixed(1)} percent`).join(", ")}`}>
+              {signal.rateObservations.map((rate, index) => (
+                <div key={index} className="io-bar-col">
                   <span>{rate.toFixed(1)}%</span>
-                  <div
-                    className={`io-bar${rate > signal.baselinePercent * 3 ? " is-elevated" : ""}`}
-                    style={{ height: `${Math.max(8, (rate / peak) * 80)}px` }}
-                  />
+                  <div className={`io-bar${rate > signal.baselinePercent * 3 ? " is-elevated" : ""}`} style={{ height: `${Math.max(8, (rate / peak) * 80)}px` }} />
                 </div>
               ))}
             </div>
-            <small>
-              Baseline: {signal.baselinePercent}% · These observations do not
-              confirm failed settlements.
-            </small>
+            <div className="io-chart-details">
+              <small>Baseline: {signal.baselinePercent.toFixed(1)}% (reference)</small>
+              <small>{signal.windowLabel}</small>
+            </div>
           </div>
-          <p>
-            {signal.freshness}. An operational signal may trigger an
-            investigation without a complaint.
-          </p>
+          <p>Operational signal only. Settlement outcomes remain unknown.</p>
+          <p className="io-signal-note">Trigger source: operational telemetry · no customer complaint required</p>
         </article>
+
         <article className="io-card io-signal">
-          <span className="io-overline">
-            CUSTOMER SIGNALS / {customer.reference}
-          </span>
+          <span className="io-overline">CUSTOMER SIGNALS / {customer.reference}</span>
           <h3>{customer.title}</h3>
           <div className="io-mini-stats">
-            <div>
-              <strong>{interactions}</strong>
-              <small>Logged interactions</small>
-            </div>
-            <div>
-              <strong>{customer.channels.length}</strong>
-              <small>Source channels</small>
-            </div>
-            <div>
-              <strong>{customer.uniqueCustomers ?? "Unknown"}</strong>
-              <small>Unique customers</small>
-            </div>
+            <div><strong>{interactions}</strong><small>Logged interactions</small></div>
+            <div><strong>{customer.channels.length}</strong><small>Source channels</small></div>
+            <div><strong>{customer.uniqueCustomers ?? "Unknown"}</strong><small>Unique customers</small></div>
           </div>
           <div className="io-channel-list">
             <span className="io-chart-label">SOURCE CHANNEL CONTRIBUTIONS</span>
             {customer.channels.map((channel) => (
-              <div key={channel.name}>
-                <span>{channel.name}</span>
-                <strong>{channel.count} interactions</strong>
-              </div>
+              <div key={channel.name}><span>{channel.name}</span><strong>{channel.count} interactions</strong></div>
             ))}
           </div>
-          <p>
-            Emerging pattern is a reviewable customer signal, not confirmation
-            of payment failure or a common root cause.
-          </p>
+          <p>Similar reports require investigation; they are not proof of a common payment failure.</p>
         </article>
       </div>
 
       <div className="io-section-heading io-row-title">
         <div>
           <h2>Open investigations</h2>
-          <p>
-            Investigations may start from operational signals, customer reports,
-            institutional knowledge, or analyst action.
-          </p>
+          <p>Investigations may originate from operational, customer, knowledge, or analyst observations.</p>
         </div>
-        <Link href="/investigations">
-          View all <ArrowRight size={16} aria-hidden="true" />
-        </Link>
+        <Link href="/investigations">View all {data.openInvestigationsTotal}<ArrowRight size={16} aria-hidden="true" /></Link>
       </div>
       <div className="io-card io-table-scroll">
         <table className="io-table">
-          <thead>
-            <tr>
-              <th>Reference</th>
-              <th>Observation</th>
-              <th>Status</th>
-              <th>Updated</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Reference</th><th>Observation</th><th>Status</th><th>Updated</th></tr></thead>
           <tbody>
             {data.investigations.map((row) => (
               <tr key={row.id}>
-                <td>{row.id}</td>
+                <td><Link className="io-case-link" href={`/investigations?case=${encodeURIComponent(row.id)}`}>{row.id}</Link></td>
                 <td>{row.observation}</td>
-                <td>
-                  <span className="io-state">{row.status}</span>
-                </td>
+                <td><span className="io-state">{row.status}</span></td>
                 <td>{row.updatedAt}</td>
               </tr>
             ))}
           </tbody>
         </table>
+        {data.openInvestigationsTotal > data.investigations.length && (
+          <p className="io-table-count">Showing {data.investigations.length} of {data.openInvestigationsTotal} investigations</p>
+        )}
       </div>
 
       <div className="io-section-heading">
         <h2>Source readiness &amp; evidence gaps</h2>
-        <p>
-          Approval, source freshness and processing are separate—not every
-          missing record means a healthy system.
-        </p>
+        <p>Source availability, freshness, and processing are tracked independently.</p>
       </div>
       <div className="io-readiness-grid">
-        <div className="io-card io-readiness">
-          <Network size={20} />
+        <article className="io-card io-readiness">
+          <Network size={20} aria-hidden="true" />
           <span>Knowledge sources</span>
-          <strong>{data.knowledgeProcessedCount} available records</strong>
-          <p>
-            {data.knowledgeReviewCount} candidate relationship(s) need human
-            review
-          </p>
+          <strong>{data.knowledgeProcessedCount} processed records</strong>
+          <p>{data.knowledgeReviewCount} records awaiting human review</p>
           <small>Source history and provenance retained</small>
-        </div>
-        <div className="io-card io-readiness">
-          <Activity size={20} />
+        </article>
+        <article className="io-card io-readiness">
+          <Activity size={20} aria-hidden="true" />
           <span>Operational monitoring</span>
           <strong>Latest event: {signal.lastObservedAt}</strong>
-            <p>Measured signal from the latest observed event</p>
-          <small>Actual source freshness requires a connected adapter</small>
-        </div>
-        <div className="io-card io-readiness">
-          <Database size={20} />
+          <p>Measured signal received</p>
+          <small>Freshness evaluated per source</small>
+        </article>
+        <article className="io-card io-readiness">
+          <Database size={20} aria-hidden="true" />
           <span>Reconciliation evidence</span>
-          <strong>
-            {data.reconciliationAvailable ? "Available" : "Not yet available"}
-          </strong>
+          <strong>{data.reconciliationAvailable ? "Available" : "Not yet available"}</strong>
           <p>Financial outcome remains unknown</p>
-          <small>Do not infer failed or successful settlement</small>
-        </div>
+          <small>Settlement status unverified</small>
+        </article>
       </div>
     </section>
   );
