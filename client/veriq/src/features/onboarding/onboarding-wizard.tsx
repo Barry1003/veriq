@@ -424,12 +424,24 @@ export function OnboardingWizard() {
     setFeedback("");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+  async function getCsrfToken() {
+    const response = await fetch("/api/session", { cache: "no-store" });
+    const body = (await response.json().catch(() => ({}))) as {
+      csrf?: unknown;
+      error?: string;
+    };
+    if (!response.ok || typeof body.csrf !== "string") {
+      throw new Error(body.error ?? "The Veriq session is unavailable.");
+    }
+    return body.csrf;
+  }
   async function saveBackendProfile() {
     setSetupBusy(true);
     try {
+      const csrf = await getCsrfToken();
       const response = await fetch("/api/setup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-csrf-token": csrf },
         body: JSON.stringify({
           action: "save-profile",
           institution_name: draft.institutionName.trim(),
@@ -467,9 +479,10 @@ export function OnboardingWizard() {
   async function activateSetup() {
     setSetupBusy(true);
     try {
+      const csrf = await getCsrfToken();
       const response = await fetch("/api/setup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-csrf-token": csrf },
         body: JSON.stringify({ action: "activate" }),
       });
       const body = (await response.json().catch(() => ({}))) as { error?: string };
@@ -491,8 +504,8 @@ export function OnboardingWizard() {
       );
       return;
     }
-    await saveBackendProfile();
-    previewStep(2);
+    const saved = await saveBackendProfile();
+    if (saved) previewStep(2);
   }
   function saveLocalDraft() {
     try {
