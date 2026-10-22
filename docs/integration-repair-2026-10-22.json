@@ -180,6 +180,10 @@
   },
   "repair_commits": [
     {
+      "sha": "822cf8c27158b3bf9b56fac2cba27d93fb170c64",
+      "subject": "Document integration evidence and outstanding owner decisions"
+    },
+    {
       "sha": "22c11bba06957066648190b205886ad8867da937",
       "subject": "Check both frontend applications on pull requests"
     },
@@ -246,5 +250,17 @@
     "docs/integration-repair-2026-10-22.json",
     "docs/integration-repair-2026-10-22.md"
   ],
-  "owned_services_stopped": true
+  "owned_services_stopped": true,
+  "pull_request": {
+    "created": false,
+    "reason": "GitHub connector HTTP 403: Resource not accessible by integration",
+    "compare_url": "https://github.com/Barry1003/veriq/compare/main...codex/integration-repair?expand=1",
+    "github_cli_available": false
+  },
+  "github_checks": {
+    "head": "822cf8c27158b3bf9b56fac2cba27d93fb170c64",
+    "pr_workflow_runs": 0,
+    "vercel_veriq": "pending",
+    "vercel_veriq_tzo1": "success"
+  }
 }

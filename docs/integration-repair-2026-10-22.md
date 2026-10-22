@@ -17,7 +17,9 @@ During this session an external commit/push advanced the active branch and remot
 
 `git cherry origin/main origin/codex/frontend-restructure` reports its single commit as unique, not a squash-equivalent patch. That does not indicate missing product functionality: the branch has blank application home pages and old scaffolds. A read-only `git merge-tree --write-tree` simulation reports **32 conflicts**. It would regress the existing application designs and services. No stale branch was merged or deleted. Tests were run on the repair worktree, not falsely attributed to this obsolete branch.
 
-GitHub returned exactly PRs [#1](https://github.com/Barry1003/veriq/pull/1) and [#2](https://github.com/Barry1003/veriq/pull/2) before creating the repair PR: both merged/closed, no pending review requests, and no submitted reviews returned. The initial `f05eba8` status API returned two successful Vercel statuses; its PR-triggered workflow lookup returned no runs. This repository had no checked-in GitHub Actions workflow. That does not establish backend or integration CI success, and the workflow lookup does not prove absence of every historical event type. Final repair PR/check status is recorded in its GitHub conversation; no merge is authorized by these local results.
+GitHub returned exactly PRs [#1](https://github.com/Barry1003/veriq/pull/1) and [#2](https://github.com/Barry1003/veriq/pull/2) before creating the repair PR: both merged/closed, no pending review requests, and no submitted reviews returned. The initial `f05eba8` status API returned two successful Vercel statuses; its PR-triggered workflow lookup returned no runs. This repository had no checked-in GitHub Actions workflow. That does not establish backend or integration CI success, and the workflow lookup does not prove absence of every historical event type. Draft PR creation was attempted but the connected GitHub integration returned HTTP 403, “Resource not accessible by integration”. No GitHub CLI is installed. The repair branch was successfully pushed over the existing SSH remote; no repair PR currently exists. [Open the prepared branch comparison](https://github.com/Barry1003/veriq/compare/main...codex/integration-repair?expand=1). No merge is authorized by local results.
+
+Final remote-main verification: **`c0427ce9787e5522c7e823c1ce9d84b12b7bf213`**. At code/evidence head `822cf8c`, one Vercel deployment succeeded and the other was pending; no PR-triggered Actions runs existed because PR creation failed. Frontend CI is implemented but not yet executed on GitHub. Local results must not be substituted for required reviews.
 
 ## B. Screen and integration matrix
 
@@ -86,7 +88,7 @@ The current root AGENTS.md assigns backend and AI ownership to Daniel. The brief
 
 ## D. Changes performed
 
-The exact reviewable file list is the repair PR diff. The external main commit `c0427ce` owns the initial `transfer-request.ts`, `transfer-recovery.ts`, banking-page recovery and route staging additions; this PR completes and corrects that work without amending its history.
+The exact reviewable file list is the branch comparison and the sanitized JSON changed_files array. The external main commit `c0427ce` owns the initial `transfer-request.ts`, `transfer-recovery.ts`, banking-page recovery and route staging additions; this PR completes and corrects that work without amending its history.
 
 - Cedar: complete client prepare→submit→acknowledge flow; exact-instruction locking; immediate duplicate-click guard; safe request/result checks; matching operator transfer handling; explicit trusted Origin configuration; server-only API boundary; truthful failed-transaction and support-history labels; visible support submission errors; banking preview transactions moved into the owning data directory and exposed through an adapter.
 - Veriq: server-only allowlisted read client; six typed adapters; explicit unavailable/permission/conflict errors; actual native source IDs; real relationship predicates and uncertainty; exact customer statements and email; ingested counts distinguished from accepted knowledge; no invented baseline, trend, case or AI review. Session-free live calls fail closed.
@@ -99,7 +101,7 @@ Repair commits:
 - `b9bd7e6af0e7bac01670a83b864aac6140962217` — Add contract-verified Veriq intelligence read adapters
 - `22c11bba06957066648190b205886ad8867da937` — Check both frontend applications on pull requests
 
-The documentation/evidence commit follows these changes. The sanitized JSON includes the exact changed-file inventory. Only owned rehearsal and Next production processes were stopped after verification; isolated databases and artifacts remain intact.
+Documentation/evidence commit: `822cf8c27158b3bf9b56fac2cba27d93fb170c64`. A final documentation-only follow-up records the PR permission failure; its exact SHA is available in branch history. The sanitized JSON includes the exact changed-file inventory. Only owned rehearsal and Next production processes were stopped after verification; isolated databases and artifacts remain intact.
 
 ## E. Executed verification and limitations
 
@@ -213,6 +215,6 @@ Daniel is accountable under current repository instructions; consult Habeeb on t
 | Local AI integration | BLOCKED — model absent here and existing model remains unqualified; runtime screen not connected |
 | Cedar–Veriq synchronization | PARTIALLY_INTEGRATED — real isolated SQLite source→feed→worker→evidence→investigation propagation verified; full frontend presentation/model/PostgreSQL gates not met |
 | Authentication/security | FAILED — shared Cedar gate exposes staff routes; no approved per-user BFF sessions |
-| Full demonstration readiness | BLOCKED — leave repair PR unmerged pending review; no main consolidation or full-product success claim |
+| Full demonstration readiness | BLOCKED — repair branch pushed; PR creation blocked by connector permissions; leave work unmerged pending review; no main consolidation or full-product success claim |
 
 Do not merge obsolete scaffolds or use Vercel success as integration approval. Required owners/reviews/security gates remain outstanding. The report intentionally distinguishes successful bounded tests from the still-incomplete product.
