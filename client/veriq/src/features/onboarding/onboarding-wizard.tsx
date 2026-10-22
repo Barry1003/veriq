@@ -403,7 +403,16 @@ export function OnboardingWizard() {
   const institutionReady =
     !stepOneErrors.institutionName && !stepOneErrors.deploymentLabel;
   const administratorSubject = setup?.administrator.subject ?? "Prepared demo administrator session";
-  const sourceStatus = new Map((liveReadiness?.sources ?? []).map((source) => [source.source_id, source]));
+  const sourceRecordTypes: Record<SourceId, readonly string[]> = {
+    knowledge: ["knowledge", "document"],
+    operations: ["observation"],
+    customer: ["interaction"],
+    reconciliation: ["transaction"],
+  };
+  const sourceStatus = (source: SourceId) =>
+    (liveReadiness?.sources ?? []).filter((registered) =>
+      registered.record_types.some((type) => sourceRecordTypes[source].includes(type)),
+    );
 
   function changeField<K extends keyof OnboardingDraft>(
     field: K,
@@ -1103,13 +1112,13 @@ export function OnboardingWizard() {
                 <Button onClick={() => previewStep(2)}>
                   <ArrowLeft size={16} /> Back to administrator
                 </Button>
-                <Button kind="primary" disabled>
-                  Continue to sources <LockKeyhole size={15} />
+                <Button kind="primary" onClick={() => previewStep(4)}>
+                  Continue to sources <ArrowRight size={16} />
                 </Button>
               </div>
               <p className="ob-footnote">
-                Choose the Step 4 progress card to review source authorization;
-                live progression remains dependent on backend policy.
+                AI availability is reported by the backend and does not block
+                inspection of registered sources.
               </p>
             </Panel>
           </>
@@ -1143,7 +1152,11 @@ export function OnboardingWizard() {
                         </label>
                         <p>{source.description}</p>
                         <p className="ob-source-example">
-                          {source.example} · {sourceStatus.get(source.id)?.delivery ?? "not tested"}
+                          {sourceStatus(source.id).length
+                            ? sourceStatus(source.id).map((registered) =>
+                                `${registered.source_id}: ${registered.authorization_state}, ${registered.delivery}`,
+                              ).join(" · ")
+                            : "No registered source reported"}
                         </p>
                         <small>{source.purpose}</small>
                       </div>
