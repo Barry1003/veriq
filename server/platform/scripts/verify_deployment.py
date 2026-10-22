@@ -119,7 +119,8 @@ except OperationalError as e:
     report["all_three_live_tasks_verified_in_bank_network"] = set(
         report["checks"]["inference_status"].get("verified_tasks", {})
     ) == {"extract_knowledge", "interpret_interaction", "analyze_investigation"}
-    output = ROOT / "docs/implementation/ticket002/deployment-results.json"
+    output = ROOT / "var/reports/ticket002/deployment-results.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
 

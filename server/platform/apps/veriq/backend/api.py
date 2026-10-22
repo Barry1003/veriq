@@ -622,6 +622,9 @@ def create_app(db=None, auth=None, scope=None, inference=None, feeds=None):
             response_model=list[RowView],
             name="list_" + kind,
         )
+    from apps.veriq.backend.setup import register_routes
+
+    register_routes(app, db, scope, principal, inference)
     return app
 
 

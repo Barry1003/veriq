@@ -19,9 +19,9 @@ from shared.contracts import (
 
 root = Path(__file__).resolve().parents[1] / "contracts"
 for name, factory in (("cedar", cedar), ("veriq", veriq)):
-    (root / "api" / f"{name}-v{'0.5.0' if name == 'veriq' else '0.4.0'}.openapi.json").write_text(
-        json.dumps(factory().openapi(), indent=2) + "\n"
-    )
+    (
+        root / "api" / f"{name}-{'live-demo' if name == 'veriq' else 'v0.4.0'}.openapi.json"
+    ).write_text(json.dumps(factory().openapi(), indent=2) + "\n")
 (root / "events" / "source-envelope-v1.1.schema.json").write_text(
     json.dumps(Envelope.model_json_schema(), indent=2) + "\n"
 )

@@ -24,7 +24,7 @@ Render these independently:
 - Contradictions, unknowns and recommended next actions, with proposed actions requiring existing operational authority outside AI.
 - Qualification: **unqualified**. Neither successful HTTP nor a reviewable assessment establishes model qualification.
 
-The available real model failed adaptive reasoning acceptance. Show failure/uncertainty states honestly; do not display a fabricated successful tool history. Example provenance is indexed in `examples-v0.5.0/README.md`. Controlled model-double examples are labelled separately from actual-model/HTTP responses.
+The available real model failed adaptive reasoning acceptance. Show failure/uncertainty states honestly; do not display a fabricated successful tool history.
 
 Use only bank-provisioned application user authentication. All existing scopes/clearance controls apply. Do not supply browser clients with source/feed/simulator/model/database credentials. Identity administration, banking operations, knowledge acceptance, arbitrary tool execution and source-secret provisioning remain outside model authority. No new banking or customer channel capability was added.
 

@@ -26,7 +26,7 @@ def execute(
 ):
     if not project.startswith("veriq-ticket004"):
         raise ValueError("Demonstration controls only an explicitly isolated Ticket 004 project")
-    output = output or ROOT / "docs/implementation/ticket004/http-transcript.json"
+    output = output or ROOT / "var/reports/ticket004/http-transcript.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     runtime = json.loads((ROOT / "var/runtime.json").read_text())
     tokens = runtime["tokens"]

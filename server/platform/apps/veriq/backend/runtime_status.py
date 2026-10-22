@@ -1,5 +1,6 @@
 """Durable worker-produced state, separate from current endpoint reachability."""
 
+import os
 import time
 from collections import Counter
 
@@ -76,6 +77,11 @@ def status(db, scope, inference, principal):
                 if event[2]["inference_metadata"].get("transport") == "http"
             },
             "configured_model": getattr(inference, "model", None),
+            "adaptive_mode_enabled": os.getenv("AI_INVESTIGATION_MODE", "legacy") == "adaptive",
+            "model_config_version": os.getenv("AI_MODEL_CONFIG_VERSION", "1"),
+            "max_output_tokens": getattr(inference, "max_tokens", None),
+            "timeout_seconds": getattr(inference, "timeout", None),
+            "declared_context_window": os.getenv("LOCAL_AI_CONTEXT_WINDOW"),
             "endpoint_reachable": available,
             "model_qualification": {
                 "state": "unqualified",

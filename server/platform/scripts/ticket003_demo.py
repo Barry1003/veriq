@@ -19,10 +19,11 @@ from shared.contracts import Envelope, now, uid
 from shared.db import Database
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "docs/implementation/ticket003/async-http-demo.json"
+OUT = ROOT / "var/reports/ticket003/async-http-demo.json"
 
 
 def main():
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     runtime = json.loads((ROOT / "var/runtime.json").read_text())
     folder = ROOT / "var" / ("ticket003-demo-" + uid())
     folder.mkdir(mode=0o700)

@@ -24,7 +24,8 @@ def main():
     runtime = json.loads((ROOT / "var/runtime.json").read_text())
     private = ROOT / "var" / ("ticket005-demo-" + str(uuid4()))
     private.mkdir(mode=0o700)
-    output = ROOT / "docs/implementation/ticket005/http-demo.json"
+    output = ROOT / "var/reports/ticket005/http-demo.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     tokens = runtime["tokens"]
     result = {
         "started_at": now(),

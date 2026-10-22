@@ -141,9 +141,7 @@ except OperationalError as e:
             "analyze_investigation",
         } <= status.get("verified_tasks", {}).keys()
         report["status"] = status
-    transcript = json.loads(
-        (ROOT / "docs/implementation/ticket004/http-transcript.json").read_text()
-    )
+    transcript = json.loads((ROOT / "var/reports/ticket004/http-transcript.json").read_text())
     actual = {
         r["data"]["task"]
         for r in transcript.get("final_runs", [])
@@ -157,9 +155,9 @@ except OperationalError as e:
     } <= actual
     report["verified"] = all(report["checks"].values())
     assert report["verified"]
-    (ROOT / "docs/implementation/ticket004/deployment-results.json").write_text(
-        json.dumps(report, indent=2) + "\n"
-    )
+    output = ROOT / "var/reports/ticket004/deployment-results.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(report, indent=2) + "\n")
     print(
         json.dumps(
             {

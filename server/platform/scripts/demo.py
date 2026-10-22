@@ -129,6 +129,7 @@ def main():
     }
     (ROOT / "var/demo-result.json").write_text(json.dumps(summary, indent=2) + "\n")
     if args.export_examples:
+        (ROOT / "var/reports/examples").mkdir(parents=True, exist_ok=True)
         paths = {
             "sources": "/v1/sources",
             "context": "/v1/knowledge/context",
@@ -140,7 +141,7 @@ def main():
         }
         for name, endpoint in paths.items():
             data = request("veriq", "GET", endpoint, "veriq_admin")
-            (ROOT / "contracts/examples" / f"{name}.synthetic.json").write_text(
+            (ROOT / "var/reports/examples" / f"{name}.synthetic.json").write_text(
                 json.dumps(data, indent=2) + "\n"
             )
         for name, data in (
@@ -148,7 +149,7 @@ def main():
             ("demo-result", summary),
             ("inference-run", ai_result),
         ):
-            (ROOT / "contracts/examples" / f"{name}.synthetic.json").write_text(
+            (ROOT / "var/reports/examples" / f"{name}.synthetic.json").write_text(
                 json.dumps(data, indent=2) + "\n"
             )
         for name, endpoint in (
@@ -157,7 +158,7 @@ def main():
             ("cedar-accounts", "/v1/accounts"),
         ):
             data = request("cedar", "GET", endpoint, "cedar_operator")
-            (ROOT / "contracts/examples" / f"{name}.synthetic.json").write_text(
+            (ROOT / "var/reports/examples" / f"{name}.synthetic.json").write_text(
                 json.dumps(data, indent=2) + "\n"
             )
     print(json.dumps(summary, indent=2))

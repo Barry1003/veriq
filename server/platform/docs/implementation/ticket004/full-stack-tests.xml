@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="344.496" timestamp="2026-10-22T01:02:34.900558+01:00" hostname="fedora"><testcase classname="tests.test_full_stack" name="test_t004_16_complete_real_cedar_veriq_pipeline" time="344.397" /></testsuite></testsuites>
