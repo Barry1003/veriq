@@ -1,16 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
-
 :root {
-  /* Cedar palette and typography remain pending design approval. */
-  --background-app: #ffffff;
-  --background-surface: #ffffff;
-  --text-primary: #1f2933;
-  --border-default: #d9e0e3;
+  color-scheme: light;
+  --cedar-brand-navy: #052b3c;
+  --cedar-color-background: #f7fafa;
+  --cedar-color-surface: #fff;
+  --cedar-color-surface-muted: #f0f5f5;
+  --cedar-color-border: #d9e3e8;
+  --cedar-color-text-primary: #052b3c;
+  --cedar-color-text-secondary: #597083;
+  --cedar-color-accent: #0da99b;
 }
-
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
 body {
-  background: var(--background-app);
-  color: var(--text-primary);
-  /* Do not treat this placeholder as Cedar's final font decision. */
-  font-family: system-ui, sans-serif;
+  margin: 0;
+  background: var(--cedar-color-background);
+  color: var(--cedar-color-text-primary);
+  font-family: "DM Sans",Arial,sans-serif;
+}
+button,input,textarea,select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--cedar-color-accent);
+  outline-offset: 3px;
 }

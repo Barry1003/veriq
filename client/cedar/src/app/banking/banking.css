@@ -1,0 +1,314 @@
+.banking-page {
+  background: #f0f5f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 45px;
+  padding: 32px 20px;
+  color: #052b3c;
+}
+.banking-device {
+  max-width: 445px;
+  width: 100%;
+  min-height: 850px;
+  background: #f7fafa;
+  box-shadow: 0 20px 60px #052b3c15;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+}
+.banking-header {
+  height: 105px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 28px;
+  background: #052b3c;
+  color: white;
+}
+.banking-header strong {
+  font-size: 22px;
+  font-weight: 600;
+}
+.banking-header>span {
+  margin-left: auto;
+  color: #a8d2cc;
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+.banking-body {
+  padding: 43px 24px 125px;
+  flex: 1;
+}
+.banking-body h1 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  margin: 10px 0 16px;
+}
+.banking-body>p {
+  font-size: 14px;
+  color: #597083;
+  line-height: 22px;
+  margin: 0 0 30px;
+}
+.banking-eyebrow {
+  font-size: 11px;
+  color: #597083;
+  letter-spacing: .09em;
+}
+.banking-balance {
+  background: #052b3c;
+  border-radius: 16px;
+  padding: 23px;
+  color: white;
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.banking-balance>span {
+  font-size: 13px;
+  color: #b9d7d9;
+}
+.banking-balance>button:not(.banking-primary) {
+  position: absolute;
+  right: 19px;
+  top: 19px;
+  color: white;
+  border: 0;
+  background: transparent;
+}
+.banking-balance strong {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 16px 0 6px;
+}
+.banking-balance small {
+  font-size: 11px;
+  color: #b9d7d9;
+}
+.banking-primary {
+  width: 100%;
+  background: #0da99b;
+  border: 0;
+  border-radius: 8px;
+  color: #052b3c;
+  font-weight: 700;
+  padding: 15px;
+  min-height: 48px;
+  margin-top: 27px;
+  font-size: 14px;
+}
+.banking-primary:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.banking-section-label {
+  font-weight: 600;
+  font-size: 17px;
+  margin: 27px 0 15px;
+}
+.banking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.banking-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #d9e3e8;
+  background: white;
+  border-radius: 9px;
+  padding: 14px;
+  text-align: left;
+  color: #052b3c;
+  width: 100%;
+}
+.banking-row>span {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.banking-row>span:last-child {
+  align-items: flex-end;
+}
+.banking-row strong {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.banking-row small {
+  font-size: 11px;
+  color: #597083;
+  line-height: 17px;
+}
+.banking-form {
+  display: grid;
+  gap: 20px;
+}
+.banking-form label {
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.banking-form input,.banking-form select,.banking-form textarea,.banking-access input {
+  padding: 13px 12px;
+  background: white;
+  color: #052b3c;
+  border: 1px solid #d9e3e8;
+  border-radius: 8px;
+  width: 100%;
+}
+.banking-form textarea {
+  min-height: 115px;
+  resize: vertical;
+}
+.banking-sheet {
+  background: white;
+  border: 1px solid #d9e3e8;
+  border-radius: 10px;
+  padding: 18px;
+  display: grid;
+  gap: 15px;
+}
+.banking-sheet>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid #f0f5f5;
+  padding-bottom: 12px;
+  font-size: 13px;
+}
+.banking-sheet strong {
+  font-weight: 600;
+}
+.banking-sheet span {
+  color: #597083;
+}
+.banking-alert {
+  border: 1px solid #c5dcdb;
+  background: #edf6f4;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+  font-size: 12px;
+  line-height: 20px;
+}
+.banking-text-button {
+  border: 0;
+  background: transparent;
+  padding: 16px;
+  color: #075c58;
+  font-size: 13px;
+  font-weight: 600;
+}
+.banking-state {
+  background: white;
+  border: 1px solid #d9e3e8;
+  border-radius: 14px;
+  padding: 26px;
+  margin: 30px 0;
+}
+.banking-state span {
+  font-size: 12px;
+  color: #597083;
+}
+.banking-state strong {
+  display: block;
+  font-size: 23px;
+  margin: 14px 0;
+  color: #052b3c;
+}
+.banking-state p {
+  font-size: 13px;
+  line-height: 22px;
+  color: #597083;
+}
+.banking-tabbar {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  background: white;
+  border-top: 1px solid #d9e3e8;
+  padding: 13px 12px 25px;
+  gap: 6px;
+  position: sticky;
+  bottom: 0;
+}
+.banking-tabbar button {
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+  border-radius: 8px;
+  color: #597083;
+}
+.banking-tabbar button.active {
+  background: #f0f5f5;
+  color: #052b3c;
+}
+.banking-tabbar span {
+  font-size: 11px;
+}
+.banking-side {
+  max-width: 285px;
+  margin-top: 60px;
+}
+.banking-side strong {
+  font-size: 21px;
+}
+.banking-side p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #597083;
+}
+.banking-side a {
+  color: #075c58;
+  font-size: 14px;
+  font-weight: 600;
+}
+.banking-access {
+  padding: 13px 25px 0;
+}
+.banking-access label {
+  font-size: 10px;
+  color: #597083;
+  display: grid;
+  gap: 5px;
+}
+.banking-access input {
+  font-size: 12px;
+  padding: 9px;
+}
+.banking-device:has(.banking-access) {
+  min-height: 920px;
+}
+@media(max-width:800px) {
+  .banking-side {
+    display: none;
+  }
+  .banking-page {
+    padding: 0;
+  }
+  .banking-device {
+    border-radius: 0;
+    max-width: 445px;
+    box-shadow: none;
+    min-height: 100vh;
+  }
+}
