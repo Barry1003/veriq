@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    folder = ROOT / "docs/implementation/ticket003"
+    folder = ROOT / "var/reports/ticket003"
     codehash = hashlib.sha256(
         (ROOT / "apps/veriq/backend/evidence_support.py").read_bytes()
     ).hexdigest()

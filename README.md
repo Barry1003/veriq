@@ -11,9 +11,6 @@ The complete runnable FastAPI backend and local AI project lives in **[`server/p
 
 - [Backend installation, migrations, API/worker startup, ports and actual-model reproduction](server/README.md)
 - [Versioned API contracts and frontend integration guidance](docs/contracts/v0.5.0/README.md)
-- [Publication provenance and checks](docs/backend-publication-v0.5.0.md)
-- [Ticket 005 results and limitations](server/platform/docs/implementation/ticket005/REPORT.md)
+- [Local rehearsal setup and operation](server/platform/docs/runbook.md)
 
-The live-demo readiness work adds a [named isolated rehearsal workflow](server/platform/docs/live-demo/RUNBOOK.md), [actual readiness evidence](server/platform/docs/live-demo/READINESS.md), and [Usaamah’s integration map](server/platform/contracts/LIVE-DEMO.md). Frontend implementation remains a separate workstream.
-
-**v0.5.0 is an experimental engineering baseline.** The original non-live suite passed 153 tests. Actual Qwen2.5-1.5B testing passed **0/4 required adaptive reasoning scenarios**; the model remains unqualified. This publication supports CPU comparison with a stronger approved local model on Usaamah's 32 GB laptop. It does not declare either model qualified or change the reasoning implementation. No mandatory cloud AI dependency is introduced.
+AI outputs require evidence verification and human review. The bundled small local model remains unqualified for adaptive reasoning.

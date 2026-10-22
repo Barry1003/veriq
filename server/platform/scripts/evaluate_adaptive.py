@@ -28,12 +28,13 @@ def main():
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "docs/implementation/ticket005/actual-model-evaluation.json",
+        default=ROOT / "var/reports/ticket005/actual-model-evaluation.json",
     )
     args = parser.parse_args()
     dataset = ROOT / "evaluations/adaptive-v1.json"
     cases = json.loads(dataset.read_text())["cases"]
     output = args.output
+    output.parent.mkdir(parents=True, exist_ok=True)
     result = {
         "dataset_sha256": hashlib.sha256(dataset.read_bytes()).hexdigest(),
         "infrastructure": "Actual local HTTP inference; authorized SQLite/ASGI evidence fixtures, not PostgreSQL full stack",

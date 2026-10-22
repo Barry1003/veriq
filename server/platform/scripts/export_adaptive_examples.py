@@ -18,8 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    output = ROOT / "contracts/examples-v0.5.0"
-    output.mkdir(exist_ok=True)
+    output = ROOT / "var/reports/examples-v0.5.0"
+    output.mkdir(parents=True, exist_ok=True)
     monkeypatch = MonkeyPatch()
     with tempfile.TemporaryDirectory(prefix="veriq-contract-example-") as tmp:
         fixture = system.__wrapped__(Path(tmp), monkeypatch)
@@ -49,7 +49,7 @@ def main():
             except StopIteration:
                 pass
             monkeypatch.undo()
-    report = ROOT / "docs/implementation/ticket005/actual-model-evaluation-1.5b.json"
+    report = ROOT / "var/reports/ticket005/actual-model-evaluation-1.5b.json"
     if report.exists():
         actual = json.loads(report.read_text())
         for case in actual["cases"]:
@@ -59,7 +59,7 @@ def main():
                 )
                 + "\n"
             )
-    demo = ROOT / "docs/implementation/ticket005/http-demo.json"
+    demo = ROOT / "var/reports/ticket005/http-demo.json"
     if demo.exists():
         actual = json.loads(demo.read_text())
         (output / "actual-http-demo.synthetic.json").write_text(

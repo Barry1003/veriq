@@ -4,9 +4,9 @@ Daniel owns backend and AI; Usaamah owns frontend and design. The only authorita
 
 Veriq (`apps/veriq/backend`) and Cedar (`apps/cedar/backend`) are independent FastAPI applications with separate databases, credentials and authorization. Cedar owns synthetic financial truth; Veriq consumes approved feeds and investigates evidence. AI cannot perform financial actions or accept institutional knowledge. Frontends remain at `client/veriq/` and `client/cedar/`, with design foundations at `client/shared/`.
 
-**Qwen2.5-1.5B is unqualified: 0/4 required adaptive reasoning scenarios passed.** The six functional demo checks and 153 original non-live regression passes do not establish reasoning acceptance. Recorded failures, measurements and frozen inputs are preserved in `platform/docs/implementation/ticket005/` and `platform/evaluations/adaptive-v1.json`.
+**Qwen2.5-1.5B is unqualified: 0/4 required adaptive reasoning scenarios passed.** Frozen evaluation inputs are in `platform/evaluations/adaptive-v1.json`.
 
-For the repeatable live demo, use the [tested named-run workflow](platform/docs/live-demo/RUNBOOK.md), [readiness matrix](platform/docs/live-demo/READINESS.md) and [frontend action map](platform/contracts/LIVE-DEMO.md). The setup API is development-only; no frontend integration or qualified AI result is implied.
+For the repeatable live demo, use the [named-run workflow](platform/docs/runbook.md) and [frontend API guide](platform/contracts/LIVE-DEMO.md). The setup API is development-only; no frontend integration or qualified AI result is implied.
 
 ## Install and migrate
 
@@ -76,7 +76,7 @@ Provisioning downloads about 1.1 GB of weights plus the pinned llama.cpp runtime
 LD_LIBRARY_PATH="$PWD/var/llama-runtime/llama-b11799" var/llama-runtime/llama-b11799/llama-server --model var/models/qwen2.5-1.5b-instruct-q4_k_m.gguf --alias veriq-qwen2.5-1.5b --host 127.0.0.1 --port 8181 --ctx-size 4096 --parallel 1 --threads 4 --batch-size 64 --ubatch-size 32 --n-gpu-layers 0 --chat-template chatml --no-webui
 ```
 
-Use a separate terminal; one model and one request slot. Actual prior measurements reached 1.87 GiB model RSS and 923 MiB model swap on a 7.44 GiB host. Latency varied substantially. See the [resource sampler and emergency thresholds](platform/docs/implementation/ticket005/RUNBOOK.md); measure the actual laptop and retain OS safeguards. Stop the foreground runtime with Ctrl+C when finished.
+Use a separate terminal; one model and one request slot. Actual prior measurements reached 1.87 GiB model RSS and 923 MiB model swap on a 7.44 GiB host. Latency varied substantially. See the [resource sampler and emergency thresholds](platform/docs/runbook.md); measure the actual laptop and retain OS safeguards. Stop the foreground runtime with Ctrl+C when finished.
 
 For a stronger bank-approved local runtime on Usaamah's 32 GB laptop, stop the first runtime, serve the approved model through the same OpenAI-compatible chat-completions API with JSON-schema structured-output support, then set `LOCAL_AI_URL`, `LOCAL_AI_MODEL`, timeout/token limits and a distinct `AI_MODEL_CONFIG_VERSION` consistently in API/worker. `LOCAL_AI_ALLOWED_HOSTS` must explicitly permit any approved non-loopback runtime hostname. Keep task/evidence contracts unchanged and run the same frozen cases. Hardware capacity alone does not qualify a model. No cloud endpoint is required; do not change prompts, fixtures or institutional facts to improve a score.
 
@@ -88,7 +88,7 @@ For a stronger bank-approved local runtime on Usaamah's 32 GB laptop, stop the f
 .venv/bin/python -m pytest -q -m 'not live_ai and not full_stack'
 ```
 
-The complete non-live suite has 153 cases; 4 opt-in cases are deselected. Historical JUnit files are evidence of the original run. Write new evaluation results to ignored `var/` rather than overwriting recorded failures:
+Write evaluation results to ignored `var/`:
 
 ```bash
 LOCAL_AI_URL=http://127.0.0.1:8181/v1 LOCAL_AI_MODEL=veriq-qwen2.5-1.5b LOCAL_AI_MAX_OUTPUT_TOKENS=768 LOCAL_AI_TIMEOUT_SECONDS=180 .venv/bin/python -m scripts.evaluate_adaptive --output var/adaptive-1.5b.json
@@ -107,7 +107,7 @@ LOCAL_AI_URL=http://127.0.0.1:8181/v1 LOCAL_AI_MODEL=veriq-qwen2.5-1.5b LOCAL_AI
 
 It starts its own Cedar/Veriq/worker processes and separate fresh SQLite databases, registers approved synthetic source/identity configuration, creates transfers and a native customer report, and observes automatic inference. It checks proactive detection, original references, durable real inference, unchanged financial truth and absence of manual AI requests. It stops its own child processes and preserves private databases/logs in `var/ticket005-demo-*`; stop the independent model separately. Functional checks do not imply reasoning success. The original 1.5B outcome was inconclusive.
 
-This unchanged script writes `docs/implementation/ticket005/http-demo.json`. Preserve that tracked original before running (e.g. copy it to `var/http-demo-recorded.json`), copy your new report to `var/http-demo-new.json` afterwards, and restore the original from the private backup before committing. The 1024 demo token cap differs from the 768 frozen evaluation cap. No new model run is needed to inspect the recorded evidence.
+The script writes local results to ignored `var/reports/ticket005/http-demo.json`. The 1024 demo token cap differs from the 768 frozen evaluation cap.
 
 ## Optional PostgreSQL/Compose
 

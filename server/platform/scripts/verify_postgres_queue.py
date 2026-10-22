@@ -116,9 +116,9 @@ def main():
         "verification_passed": True,
         "completed_at": now(),
     }
-    (ROOT / "docs/implementation/ticket003/postgres-queue.json").write_text(
-        json.dumps(report, indent=2) + "\n"
-    )
+    output = ROOT / "var/reports/ticket003/postgres-queue.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
     client.close()
     reopened.engine.dispose()

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="264.350" timestamp="2026-10-22T00:53:17.285502+01:00" hostname="fedora"><testcase classname="tests.test_full_stack" name="test_t004_16_complete_real_cedar_veriq_pipeline" time="264.132"><failure message="RuntimeError: cedar /v1/transactions/8adc69a6-3a6c-4af6-92d0-6ba70639c557/reconcile: HTTP 422, {'detail': [{'type': 'missing', 'loc': ['body', 'outcome'], 'msg': 'Field required', 'input': {'status': 'completed', 'beneficiary_verified': False}}, {'type': 'missing', 'loc': ['body', 'rationale'],">tests/test_full_stack.py:19: in test_t004_16_complete_real_cedar_veriq_pipeline
-    report = execute(project=os.getenv("VERIQ_STACK_PROJECT", "veriq-ticket004"))
-             ^^^^^^^^^
-scripts/ticket004_demo.py:385: in execute
-    old_workspace = request("veriq", "GET", f"/v1/investigations/{inv['id']}/workspace")
-scripts/ticket004_demo.py:72: in request
-    raise RuntimeError(f"{app} {path}: HTTP {response.status_code}, {str(data)[:200]}")
-E   RuntimeError: cedar /v1/transactions/8adc69a6-3a6c-4af6-92d0-6ba70639c557/reconcile: HTTP 422, {'detail': [{'type': 'missing', 'loc': ['body', 'outcome'], 'msg': 'Field required', 'input': {'status': 'completed', 'beneficiary_verified': False}}, {'type': 'missing', 'loc': ['body', 'rationale'],</failure></testcase></testsuite></testsuites>

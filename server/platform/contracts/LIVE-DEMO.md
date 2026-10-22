@@ -1,6 +1,6 @@
 # Usaamah: minimum live integration
 
-Backend/API owner: Daniel. Frontend/design owner: Usaamah. No frontend files were changed. Start with the operator [runbook](../docs/live-demo/RUNBOOK.md), [readiness matrix](../docs/live-demo/READINESS.md) and generated [action map](live-demo-actions.json). The current additive [Veriq OpenAPI](api/veriq-live-demo.openapi.json) is authoritative for this branch; the unchanged [Cedar OpenAPI](api/cedar-v0.4.0.openapi.json) remains authoritative. Original v0.5.0 contracts are retained as baseline.
+Backend/API owner: Daniel. Frontend/design owner: Usaamah. No frontend files were changed. Start with the operator [runbook](../docs/runbook.md) and the API mapping below. The current additive [Veriq OpenAPI](api/veriq-live-demo.openapi.json) is authoritative for this branch; the unchanged [Cedar OpenAPI](api/cedar-v0.4.0.openapi.json) remains authoritative. Original v0.5.0 contracts are retained as baseline.
 
 ## Connect the existing screens
 

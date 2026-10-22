@@ -23,7 +23,8 @@ def main():
     args = parser.parse_args()
     if not args.project.startswith("veriq-ticket004"):
         raise SystemExit("Only explicitly isolated Ticket 004 stacks may be controlled")
-    output = ROOT / "docs/implementation/ticket004/stack-resources.json"
+    output = ROOT / "var/reports/ticket004/stack-resources.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     names = [
         args.project + "_" + service + "_1"
         for service in ("cedar-db", "veriq-db", "cedar", "veriq", "ai-worker", "local-ai")

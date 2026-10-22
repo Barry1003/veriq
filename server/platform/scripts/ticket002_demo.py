@@ -18,13 +18,13 @@ def main():
     parser.add_argument("--cedar", default="http://127.0.0.1:8101")
     parser.add_argument("--veriq", default="http://127.0.0.1:8100")
     parser.add_argument(
-        "--output", type=Path, default=ROOT / "docs/implementation/ticket002/http-transcript.json"
+        "--output", type=Path, default=ROOT / "var/reports/ticket002/http-transcript.json"
     )
     args = parser.parse_args()
     runtime = json.loads((ROOT / "var/runtime.json").read_text())
     tokens = runtime["tokens"]
-    examples = ROOT / "contracts/examples-v0.2.0"
-    examples.mkdir(exist_ok=True)
+    examples = ROOT / "var/reports/examples-v0.2.0"
+    examples.mkdir(parents=True, exist_ok=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     transcript = {
         "synthetic": True,

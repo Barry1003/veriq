@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--output", type=Path, default=ROOT / "docs/implementation/ticket005/native-resources.json"
+        "--output", type=Path, default=ROOT / "var/reports/ticket005/native-resources.json"
     )
     args = parser.parse_args()
     pid = int((ROOT / "var/ticket005-model.pid").read_text())
@@ -23,6 +23,7 @@ def main():
     if b"llama-server" not in command or b"--port\x008181" not in command:
         raise SystemExit("Refusing to monitor an unrelated process")
     output = args.output
+    output.parent.mkdir(parents=True, exist_ok=True)
     report = {
         "pid": pid,
         "scope": "Actual execution host and only this local model",

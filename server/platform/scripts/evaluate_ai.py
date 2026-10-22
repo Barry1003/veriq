@@ -133,7 +133,7 @@ def evaluate(inference, dataset, output):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--output", type=Path, default=ROOT / "docs/implementation/ticket002/quality-results.json"
+        "--output", type=Path, default=ROOT / "var/reports/ticket002/quality-results.json"
     )
     args = parser.parse_args()
     args.output.parent.mkdir(parents=True, exist_ok=True)
