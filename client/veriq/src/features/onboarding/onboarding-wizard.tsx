@@ -1,8 +1,9 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -17,7 +18,12 @@ import {
   type SetupStage,
   type SourceId,
 } from "@/types/onboarding";
-import { getUnverifiedReadiness } from "@/services/onboarding-readiness";
+import {
+  getUnverifiedReadiness,
+  type BackendReadiness,
+  type SetupReadinessResponse,
+  type SetupResponse,
+} from "@/services/onboarding-readiness";
 import {
   ConnectorConfigurationScreen,
   SetupGuidanceDialog,
@@ -334,6 +340,7 @@ function Status({ children }: { children: ReactNode }) {
 }
 
 export function OnboardingWizard() {
+  const router = useRouter();
   const [step, setStep] = useState<SetupStage>(1);
   const [draft, setDraft] = useState<OnboardingDraft>(INITIAL_ONBOARDING_DRAFT);
   const [feedback, setFeedback] = useState("");
@@ -343,7 +350,46 @@ export function OnboardingWizard() {
     ConnectorDraft | undefined
   >();
   const [stepOneAttempted, setStepOneAttempted] = useState(false);
-  const readiness = getUnverifiedReadiness();
+  const [readiness, setReadiness] = useState<BackendReadiness>(
+    getUnverifiedReadiness(),
+  );
+  const [setup, setSetup] = useState<SetupResponse | null>(null);
+  const [liveReadiness, setLiveReadiness] = useState<SetupReadinessResponse | null>(null);
+  const [setupBusy, setSetupBusy] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadSetup() {
+      try {
+        const response = await fetch("/api/setup", { cache: "no-store" });
+        if (!response.ok) return;
+        const body = (await response.json()) as {
+          setup: SetupResponse | null;
+          readiness: SetupReadinessResponse | null;
+        };
+        if (cancelled) return;
+        if (body.setup) {
+          setSetup(body.setup);
+          const profile = body.setup.profile?.data;
+          if (profile) {
+            setDraft((previous) => ({
+              ...previous,
+              institutionName: typeof profile.institution_name === "string" ? profile.institution_name : previous.institutionName,
+              deploymentLabel: typeof profile.deployment_label === "string" ? profile.deployment_label : previous.deploymentLabel,
+            }));
+          }
+        }
+        if (body.readiness) {
+          setLiveReadiness(body.readiness);
+          setReadiness({ ...getUnverifiedReadiness(), activationAllowed: body.readiness.activation_allowed });
+        }
+      } catch {
+        // The setup screen remains usable for local draft review when live setup is unavailable.
+      }
+    }
+    void loadSetup();
+    return () => { cancelled = true; };
+  }, []);
   const stepOneErrors = {
     institutionName:
       draft.institutionName.trim().length > 1
@@ -356,6 +402,8 @@ export function OnboardingWizard() {
   };
   const institutionReady =
     !stepOneErrors.institutionName && !stepOneErrors.deploymentLabel;
+  const administratorSubject = setup?.administrator.subject ?? "Prepared demo administrator session";
+  const sourceStatus = new Map((liveReadiness?.sources ?? []).map((source) => [source.source_id, source]));
 
   function changeField<K extends keyof OnboardingDraft>(
     field: K,
@@ -376,7 +424,66 @@ export function OnboardingWizard() {
     setFeedback("");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-  function continueFromStepOne() {
+  async function saveBackendProfile() {
+    setSetupBusy(true);
+    try {
+      const response = await fetch("/api/setup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "save-profile",
+          institution_name: draft.institutionName.trim(),
+          deployment_label: draft.deploymentLabel.trim(),
+        }),
+      });
+      const body = (await response.json().catch(() => ({}))) as { error?: string; data?: SetupResponse };
+      if (!response.ok) throw new Error(body.error ?? "The setup service rejected the profile.");
+      setFeedback("Institution profile saved by the Veriq setup service.");
+      return true;
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : "Live setup is unavailable; no profile was persisted.");
+      return false;
+    } finally {
+      setSetupBusy(false);
+    }
+  }
+
+  async function refreshReadiness() {
+    setSetupBusy(true);
+    try {
+      const response = await fetch("/api/setup?view=readiness", { cache: "no-store" });
+      const body = (await response.json().catch(() => ({}))) as { readiness?: SetupReadinessResponse; error?: string };
+      if (!response.ok || !body.readiness) throw new Error(body.error ?? "Readiness could not be retrieved.");
+      setLiveReadiness(body.readiness);
+      setReadiness({ ...getUnverifiedReadiness(), activationAllowed: body.readiness.activation_allowed });
+      setFeedback(`Readiness checked: ${body.readiness.state.replaceAll("_", " ")}.`);
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : "Live readiness is unavailable.");
+    } finally {
+      setSetupBusy(false);
+    }
+  }
+
+  async function activateSetup() {
+    setSetupBusy(true);
+    try {
+      const response = await fetch("/api/setup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "activate" }),
+      });
+      const body = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) throw new Error(body.error ?? "Activation was rejected by the readiness gate.");
+      setFeedback("Veriq is activated for this synthetic development setup. Opening the intelligence workspace…");
+      window.setTimeout(() => router.push("/"), 250);
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : "Activation is unavailable.");
+    } finally {
+      setSetupBusy(false);
+    }
+  }
+
+  async function continueFromStepOne() {
     setStepOneAttempted(true);
     if (!institutionReady) {
       setFeedback(
@@ -384,6 +491,7 @@ export function OnboardingWizard() {
       );
       return;
     }
+    await saveBackendProfile();
     previewStep(2);
   }
   function saveLocalDraft() {
@@ -535,7 +643,7 @@ export function OnboardingWizard() {
             />
             <div className="ob-two-col">
               <Panel>
-                <Meta>INSTITUTION DETAILS / NOT YET VALIDATED</Meta>
+                <Meta>{setup?.profile ? "INSTITUTION DETAILS / SAVED BY VERIQ" : "INSTITUTION DETAILS / NOT YET VALIDATED"}</Meta>
                 <div className="ob-fields">
                   <Field
                     label="INSTITUTION NAME"
@@ -645,7 +753,7 @@ export function OnboardingWizard() {
               <div className="ob-actions">
                 <Button onClick={saveLocalDraft}>Save setup draft</Button>
                 <Button onClick={restoreLocalDraft}>Restore draft</Button>
-                <Button kind="primary" onClick={continueFromStepOne}>
+                <Button kind="primary" disabled={setupBusy} onClick={continueFromStepOne}>
                   Continue to admin access <ArrowRight size={16} />
                 </Button>
               </div>
@@ -666,7 +774,7 @@ export function OnboardingWizard() {
             />
             <div className="ob-two-col">
               <Panel>
-                <Meta>ADMINISTRATOR ACCESS · BINDING NOT VERIFIED</Meta>
+                <Meta>ADMINISTRATOR ACCESS · AUTHORIZED DEMO SESSION</Meta>
                 <h3>Authentication provider</h3>
                 <div className="ob-fields">
                   <Field
@@ -682,7 +790,7 @@ export function OnboardingWizard() {
                   />
                   <Field
                     label="ADMINISTRATOR IDENTITY"
-                    value={draft.administratorIdentity}
+                    value={administratorSubject}
                     placeholder="admin@cedar.example · unverified"
                     onChange={(value) =>
                       changeField("administratorIdentity", value)
@@ -706,9 +814,9 @@ export function OnboardingWizard() {
                   />
                 </div>
                 <Notice subtle>
-                  Typing an administrator name, email or role does not authorize
-                  them. Identity binding and policy validation must succeed
-                  server-side.
+                  The administrator shown above comes from the authorized demo
+                  session. Enterprise SSO/OIDC binding is not part of this
+                  hackathon flow.
                 </Notice>
                 <div className="ob-actions">
                   <Button
@@ -808,8 +916,8 @@ export function OnboardingWizard() {
                     Retry validation
                   </Button>
                 </div>
-                <Button kind="primary" disabled>
-                  Continue to local AI <LockKeyhole size={15} />
+                <Button kind="primary" onClick={() => previewStep(3)}>
+                  Continue to local AI <ArrowRight size={16} />
                 </Button>
               </div>
               <p className="ob-footnote">
@@ -1022,7 +1130,7 @@ export function OnboardingWizard() {
                         </label>
                         <p>{source.description}</p>
                         <p className="ob-source-example">
-                          {source.example} · access not verified
+                          {source.example} · {sourceStatus.get(source.id)?.delivery ?? "not tested"}
                         </p>
                         <small>{source.purpose}</small>
                       </div>
@@ -1104,10 +1212,9 @@ export function OnboardingWizard() {
               description="Core installation health and intelligence capability availability are evaluated separately."
             />
             <Notice subtle>
-              <Meta>ACTIVATION STATE / NOT VERIFIED</Meta>
+              <Meta>ACTIVATION STATE / {liveReadiness?.state?.replaceAll("_", " ").toUpperCase() ?? "NOT VERIFIED"}</Meta>
               <p>
-                Required readiness checks are pending. Activation remains
-                unavailable.
+                {liveReadiness?.limitations?.[0] ?? "Run the live readiness check to retrieve backend evidence."}
               </p>
               <p>
                 Missing optional connectors may limit intelligence without
@@ -1128,7 +1235,7 @@ export function OnboardingWizard() {
                         <strong>{name}</strong>
                         <p>{description}</p>
                       </div>
-                      <Status>Not verified</Status>
+                      <Status>{liveReadiness ? (liveReadiness.checks[name === "Local storage / persistence" ? "database" : name === "Administrator authorization" ? "administrator_authenticated" : name === "Audit persistence" ? "document_received" : "accepted_institutional_context"] ? "Verified" : "Blocked") : "Not verified"}</Status>
                     </div>
                   ))}
                 </div>
@@ -1139,9 +1246,9 @@ export function OnboardingWizard() {
               </Panel>
               <Panel className="ob-side-panel">
                 <Meta>ACTIVATION GATE</Meta>
-                <h3>Core installation: Unknown</h3>
+                <h3>Core installation: {liveReadiness ? (liveReadiness.activation_allowed ? "Ready" : "Blocked") : "Unknown"}</h3>
                 <Pair label="ACTIVATION PERMISSION">
-                  Admin identity verified by bank policy
+                  {setup ? administratorSubject : "Not loaded"}
                 </Pair>
                 <Pair label="REQUIRED SERVICES">
                   Must pass live service and storage checks
@@ -1189,14 +1296,11 @@ export function OnboardingWizard() {
                   <Button onClick={() => previewStep(4)}>
                     <ArrowLeft size={16} /> Back to bank sources
                   </Button>
-                  <Button
-                    kind="primary"
-                    onClick={() => backendUnavailable("Readiness verification")}
-                  >
-                    Run readiness checks
+                  <Button kind="primary" disabled={setupBusy} onClick={refreshReadiness}>
+                    {setupBusy ? "Checking…" : "Run readiness checks"}
                   </Button>
                 </div>
-                <Button disabled={!readiness.activationAllowed}>
+                <Button kind="primary" disabled={!readiness.activationAllowed || setupBusy} onClick={activateSetup}>
                   Activate Veriq <LockKeyhole size={15} />
                 </Button>
               </div>
