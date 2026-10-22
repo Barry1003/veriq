@@ -1,0 +1,74 @@
+{
+  "$defs": {
+    "Statement": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "epistemic_status": {
+          "enum": [
+            "hypothesis",
+            "recommendation",
+            "unknown"
+          ],
+          "title": "Epistemic Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "evidence_ids",
+        "epistemic_status"
+      ],
+      "title": "Statement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "hypotheses": {
+      "items": {
+        "$ref": "#/$defs/Statement"
+      },
+      "maxItems": 20,
+      "title": "Hypotheses",
+      "type": "array"
+    },
+    "missing_information": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Missing Information",
+      "type": "array"
+    },
+    "recommendations": {
+      "items": {
+        "$ref": "#/$defs/Statement"
+      },
+      "maxItems": 20,
+      "title": "Recommendations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "hypotheses",
+    "missing_information",
+    "recommendations"
+  ],
+  "title": "Analysis",
+  "type": "object"
+}

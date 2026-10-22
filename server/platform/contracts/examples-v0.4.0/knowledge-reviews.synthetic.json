@@ -1,0 +1,41 @@
+[
+  {
+    "id": "a4ac2f25-25af-4698-9540-92b2d706e3a9",
+    "kind": "knowledge_review",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:36.669886+00:00",
+    "data": {
+      "assertion_id": "934ea3cd-50cd-4132-911d-432f8b7667f9",
+      "decision": "accepted",
+      "rationale": "Authenticated structured source with structure authority",
+      "actor": "ingestion_policy",
+      "decided_at": "2026-10-22T00:02:36.669543+00:00"
+    }
+  },
+  {
+    "id": "a1f4475d-d4a7-4a88-94ed-39eeddb1aa7e",
+    "kind": "knowledge_review",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:04:58.789778+00:00",
+    "data": {
+      "assertion_id": "70e989ce-0cdc-4593-a101-fe53bce71f31",
+      "decision": "candidate",
+      "rationale": "AI extraction requires authorized review",
+      "actor": "ingestion_policy",
+      "decided_at": "2026-10-22T00:04:58.789218+00:00"
+    }
+  },
+  {
+    "id": "c4b2f9dc-0429-4b07-92a7-3bcf54fc3949",
+    "kind": "knowledge_review",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:06:34.709400+00:00",
+    "data": {
+      "assertion_id": "88086a9f-dcd9-4deb-a44c-b5cfd0a1f751",
+      "decision": "candidate",
+      "rationale": "AI extraction requires authorized review",
+      "actor": "ingestion_policy",
+      "decided_at": "2026-10-22T00:06:34.708823+00:00"
+    }
+  }
+]

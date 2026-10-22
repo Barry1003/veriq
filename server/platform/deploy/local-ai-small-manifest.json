@@ -1,0 +1,25 @@
+{
+  "runtime_tag": "b11799",
+  "runtime_assets": [
+    {
+      "name": "llama-b11799-bin-ubuntu-x64.tar.gz",
+      "browser_download_url": "https://github.com/ggml-org/llama.cpp/releases/download/b11799/llama-b11799-bin-ubuntu-x64.tar.gz",
+      "digest": "sha256:4920c65448350c28f8ce7b35eec91566807e0f111c25a0df2d5fc12a1ed1716a",
+      "size": 22300522
+    }
+  ],
+  "model_revision": "sha256:c5396e06af294bd101b30dce59131a76d2b773e76950acc870eda801d3ab0515",
+  "model_files": [
+    {
+      "rfilename": "qwen2.5-0.5b-instruct-ollama-q4_k_m.gguf",
+      "url": "https://registry.ollama.ai/v2/library/qwen2.5/blobs/sha256:c5396e06af294bd101b30dce59131a76d2b773e76950acc870eda801d3ab0515",
+      "size": 397807936,
+      "lfs": {
+        "sha256": "c5396e06af294bd101b30dce59131a76d2b773e76950acc870eda801d3ab0515"
+      }
+    }
+  ],
+  "model_repository": "Qwen/Qwen2.5-0.5B-Instruct",
+  "distribution": "Ollama library qwen2.5:0.5b",
+  "model_alias": "veriq-qwen2.5-0.5b"
+}

@@ -1,0 +1,209 @@
+{
+  "at": "2026-10-22T00:20:22.671148+00:00",
+  "known_at": "2026-10-22T00:20:22.671177+00:00",
+  "entities": [
+    {
+      "canonical_id": "f0a1142a-5d44-5a7f-9875-3e5f77f09930",
+      "native_id": "R1",
+      "kind": "route",
+      "namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "native_id": "R1",
+          "source_id": "cedar-institutional",
+          "evidence_id": "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+        }
+      ],
+      "names": [
+        "Domestic transfers"
+      ],
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "identity_state": "source_bound_or_authorized_mapping"
+    },
+    {
+      "canonical_id": "0c620590-358b-5dc5-8ea5-bf3b34c9051a",
+      "native_id": "R2",
+      "kind": "route",
+      "namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "native_id": "R2",
+          "source_id": "cedar-institutional",
+          "evidence_id": "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+        }
+      ],
+      "names": [
+        "Alternative transfers"
+      ],
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "identity_state": "source_bound_or_authorized_mapping"
+    },
+    {
+      "canonical_id": "6346c9cd-dfe5-5ff5-8946-b43922564c77",
+      "native_id": "G1",
+      "kind": "gateway",
+      "namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "native_id": "G1",
+          "source_id": "cedar-institutional",
+          "evidence_id": "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+        }
+      ],
+      "names": [
+        "Primary gateway"
+      ],
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "identity_state": "source_bound_or_authorized_mapping"
+    },
+    {
+      "canonical_id": "89667870-7535-5be0-9f28-409836695fdf",
+      "native_id": "G2",
+      "kind": "gateway",
+      "namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "native_id": "G2",
+          "source_id": "cedar-institutional",
+          "evidence_id": "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+        }
+      ],
+      "names": [
+        "Secondary gateway"
+      ],
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "identity_state": "source_bound_or_authorized_mapping"
+    },
+    {
+      "canonical_id": "3af63ad9-13c7-5343-aa30-cdb099064e50",
+      "native_id": "S1",
+      "kind": "service",
+      "namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "native_id": "S1",
+          "source_id": "cedar-institutional",
+          "evidence_id": "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+        }
+      ],
+      "names": [
+        "Payment processor"
+      ],
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "identity_state": "source_bound_or_authorized_mapping"
+    }
+  ],
+  "relationships": [
+    {
+      "subject": "R1",
+      "predicate": "uses_gateway",
+      "object": "G1",
+      "subject_id": "f0a1142a-5d44-5a7f-9875-3e5f77f09930",
+      "identity_namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "source_id": "cedar-institutional",
+          "subject": "R1",
+          "object": "G1"
+        }
+      ],
+      "object_id": "6346c9cd-dfe5-5ff5-8946-b43922564c77",
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "assertion_ids": [
+        "934ea3cd-50cd-4132-911d-432f8b7667f9"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    },
+    {
+      "subject": "R2",
+      "predicate": "uses_gateway",
+      "object": "G2",
+      "subject_id": "0c620590-358b-5dc5-8ea5-bf3b34c9051a",
+      "identity_namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "source_id": "cedar-institutional",
+          "subject": "R2",
+          "object": "G2"
+        }
+      ],
+      "object_id": "89667870-7535-5be0-9f28-409836695fdf",
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "assertion_ids": [
+        "934ea3cd-50cd-4132-911d-432f8b7667f9"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    },
+    {
+      "subject": "G1",
+      "predicate": "depends_on",
+      "object": "S1",
+      "subject_id": "6346c9cd-dfe5-5ff5-8946-b43922564c77",
+      "identity_namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "source_id": "cedar-institutional",
+          "subject": "G1",
+          "object": "S1"
+        }
+      ],
+      "object_id": "3af63ad9-13c7-5343-aa30-cdb099064e50",
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "assertion_ids": [
+        "934ea3cd-50cd-4132-911d-432f8b7667f9"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    },
+    {
+      "subject": "G2",
+      "predicate": "depends_on",
+      "object": "S1",
+      "subject_id": "89667870-7535-5be0-9f28-409836695fdf",
+      "identity_namespace": "cedar-master-identifiers",
+      "source_identities": [
+        {
+          "namespace": "cedar-master-identifiers",
+          "source_id": "cedar-institutional",
+          "subject": "G2",
+          "object": "S1"
+        }
+      ],
+      "object_id": "3af63ad9-13c7-5343-aa30-cdb099064e50",
+      "evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "assertion_ids": [
+        "934ea3cd-50cd-4132-911d-432f8b7667f9"
+      ],
+      "state": "accepted",
+      "semantics": "structural"
+    }
+  ]
+}

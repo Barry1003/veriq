@@ -1,0 +1,386 @@
+{
+  "task": {
+    "id": "02db3c99-d3b6-4e90-80a3-2cfa97ec1ed6",
+    "kind": "ai_task",
+    "classification": "internal",
+    "created_at": "2026-10-22T10:27:47.102404+00:00",
+    "data": {
+      "state": "completed",
+      "task": "adaptive_investigation",
+      "evidence_ids": [
+        "23c412d2-5b9b-472a-baef-1352921c93bd",
+        "35a29091-9d10-46bc-900c-0818c7ecbe88",
+        "8d47efc6-5bd8-4644-96ec-983c71744be7"
+      ],
+      "revision_id": "df952e3f-f429-408c-8504-d4eb2f0d3cce",
+      "investigation_id": "5b8cda5d-c008-4bc3-a043-73509b082ca7",
+      "attempts": 1,
+      "initiation": "manual",
+      "scheduling_identity": "1517d16faf7e4995da2ad6f830911d792d88da193b929f36f852182dfd954fc8",
+      "intent_id": null,
+      "reprocessing_of": null,
+      "policy_version": "automatic-v1:1",
+      "model_config_version": "1",
+      "history": [
+        {
+          "state": "queued",
+          "at": "2026-10-22T10:27:47.101788+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:27:47.123358+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "investigating",
+          "at": "2026-10-22T10:28:12.525819+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:28:12.541631+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "assessment_requested",
+          "at": "2026-10-22T10:28:42.452361+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:28:42.461101+00:00"
+        },
+        {
+          "state": "completed",
+          "outcome": "quarantined",
+          "at": "2026-10-22T10:30:29.078107+00:00"
+        }
+      ],
+      "next_attempt_at": 0,
+      "lease_until": 0,
+      "outcome": "quarantined",
+      "adaptive_progress": {
+        "generations": 3,
+        "tool_calls": 1,
+        "outcome": "quarantined",
+        "phase": "assessment"
+      },
+      "run_id": "945f4160-4d3c-4799-9556-72b1f68b57ad"
+    }
+  },
+  "steps": [
+    {
+      "id": "f4a805b3-621a-4714-a74e-c1a36b3dc2c5",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:28:12.524820+00:00",
+      "data": {
+        "task_id": "02db3c99-d3b6-4e90-80a3-2cfa97ec1ed6",
+        "investigation_id": "5b8cda5d-c008-4bc3-a043-73509b082ca7",
+        "revision_id": "df952e3f-f429-408c-8504-d4eb2f0d3cce",
+        "number": 1,
+        "state": "investigating",
+        "decision": {
+          "action": "tool",
+          "question": "What is the status of the transaction and its handoffs?",
+          "tool_call": {
+            "name": "get_transaction_evidence",
+            "arguments": {
+              "namespace": null,
+              "native_id": "TX1",
+              "query": null,
+              "at": null
+            }
+          }
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:27:47.144058+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 25.353,
+          "completed_at": "2026-10-22T10:28:12.497247+00:00",
+          "usage": {
+            "completion_tokens": 65,
+            "prompt_tokens": 837,
+            "total_tokens": 902,
+            "prompt_tokens_details": {
+              "cached_tokens": 3
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 3,
+            "prompt_n": 834,
+            "prompt_ms": 18355.099,
+            "prompt_per_token_ms": 22.008511990407673,
+            "prompt_per_second": 45.43696549934163,
+            "predicted_n": 65,
+            "predicted_ms": 6725.762,
+            "predicted_per_token_ms": 105.09003125,
+            "predicted_per_second": 9.515650419982153
+          }
+        },
+        "started_from_durable_generation": 0,
+        "at": "2026-10-22T10:28:12.510906+00:00",
+        "untrusted_invalid_output": null,
+        "tool_result": {
+          "state": "ok",
+          "evidence": [
+            {
+              "id": "23c412d2-5b9b-472a-baef-1352921c93bd",
+              "record_type": "transaction",
+              "source_id": "t",
+              "identity_namespace": "fixture-bank-identifiers",
+              "authority": [
+                "status"
+              ],
+              "classification": "internal",
+              "valid_at": "2026-10-22T10:27:46.886888+00:00",
+              "valid_to": null,
+              "known_at": "2026-10-22T10:27:46.894794+00:00",
+              "native_record_id": "88cf4a77-b478-4a5a-9048-445ca140af18",
+              "origin": null,
+              "digest": "fee664baf4342e10abca07f6b95f0af8987a90d129b3924cf4925d324a752465",
+              "grant_version": 1,
+              "content_truncated": false,
+              "acceptance": "authorized_structured_record",
+              "payload": {
+                "occurred_at": "2026-10-22T10:27:46.886888+00:00",
+                "transaction_id": "TX1",
+                "customer_id": "C1",
+                "account_id": "A1",
+                "amount_minor": 1000,
+                "currency": "NGN",
+                "route_id": "R1",
+                "gateway_id": "G3",
+                "status": "pending",
+                "response": "timeout",
+                "version": 1,
+                "beneficiary_verified": false
+              },
+              "query_incomplete": false
+            }
+          ],
+          "known_at": "2026-10-22T10:28:12.510948+00:00",
+          "as_of": "2026-10-22T10:28:12.510948+00:00",
+          "truncated": false,
+          "limits": {
+            "scan": 500,
+            "records": 3,
+            "bytes": 9000
+          },
+          "missing_information": null
+        }
+      }
+    },
+    {
+      "id": "884ef1be-6036-4af2-afbe-a77916ceec13",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:28:42.451644+00:00",
+      "data": {
+        "task_id": "02db3c99-d3b6-4e90-80a3-2cfa97ec1ed6",
+        "investigation_id": "5b8cda5d-c008-4bc3-a043-73509b082ca7",
+        "revision_id": "df952e3f-f429-408c-8504-d4eb2f0d3cce",
+        "number": 2,
+        "state": "assessment_requested",
+        "decision": {
+          "action": "assess",
+          "question": "Based on the evidence provided, is there any indication of a delay in the transaction or any issues with the handoffs?",
+          "tool_call": null
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:28:12.564479+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 29.878,
+          "completed_at": "2026-10-22T10:28:42.442650+00:00",
+          "usage": {
+            "completion_tokens": 43,
+            "prompt_tokens": 1858,
+            "total_tokens": 1901,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 768,
+            "prompt_n": 1090,
+            "prompt_ms": 26137.789,
+            "prompt_per_token_ms": 23.979622935779815,
+            "prompt_per_second": 41.70207357630747,
+            "predicted_n": 43,
+            "predicted_ms": 3708.077,
+            "predicted_per_token_ms": 88.28754761904763,
+            "predicted_per_second": 11.32662563371796
+          }
+        },
+        "started_from_durable_generation": 1,
+        "at": "2026-10-22T10:28:42.451070+00:00",
+        "untrusted_invalid_output": null
+      }
+    },
+    {
+      "id": "c38438ea-7c5f-4807-8529-d38363629c7a",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:30:29.075714+00:00",
+      "data": {
+        "task_id": "02db3c99-d3b6-4e90-80a3-2cfa97ec1ed6",
+        "investigation_id": "5b8cda5d-c008-4bc3-a043-73509b082ca7",
+        "revision_id": "df952e3f-f429-408c-8504-d4eb2f0d3cce",
+        "number": 3,
+        "state": "quarantined",
+        "decision": null,
+        "assessment_proposal": {
+          "source_facts": [
+            {
+              "evidence_id": "35a29091-9d10-46bc-900c-0818c7ecbe88",
+              "field": "text"
+            },
+            {
+              "evidence_id": "23c412d2-5b9b-472a-baef-1352921c93bd",
+              "field": "status"
+            }
+          ],
+          "derived_findings": [
+            {
+              "rule": "processing_receipt_unverified",
+              "evidence_ids": [
+                "35a29091-9d10-46bc-900c-0818c7ecbe88",
+                "23c412d2-5b9b-472a-baef-1352921c93bd"
+              ]
+            }
+          ],
+          "hypotheses": [
+            {
+              "label": "The transaction is pending and may be delayed due to network issues.",
+              "explanation": "The transaction is pending and the status is 'pending' with a response of 'timeout'. This suggests there may be network issues causing the delay. The handoff status is not provided, but it could indicate issues with the handoff process.",
+              "supports": [
+                "23c412d2-5b9b-472a-baef-1352921c93bd"
+              ],
+              "weakens": [
+                "35a29091-9d10-46bc-900c-0818c7ecbe88"
+              ],
+              "next_check": "Check network connectivity and retry the transaction."
+            }
+          ],
+          "contradictions": [
+            {
+              "rule": "customer_completion_dispute",
+              "evidence_ids": [
+                "35a29091-9d10-46bc-900c-0818c7ecbe88",
+                "23c412d2-5b9b-472a-baef-1352921c93bd"
+              ]
+            }
+          ],
+          "unknowns": [
+            "The exact cause of the delay and the handoff issues."
+          ],
+          "recommended_next_actions": [
+            "Check network connectivity and retry the transaction.",
+            "Review the handoff process for any potential issues."
+          ]
+        },
+        "phase": "assessment",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_assessment",
+          "transport": "http",
+          "started_at": "2026-10-22T10:28:42.479564+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "20e0511d66ecc8fcb0a961478c6e0f674e14d5ab679521330c2f3095c6927332",
+          "output_schema_sha256": "410c838a6419550b5965a86f00f0499b0f5672beadf41e36b5c65348ca0aef55",
+          "elapsed_seconds": 106.557,
+          "completed_at": "2026-10-22T10:30:29.036904+00:00",
+          "usage": {
+            "completion_tokens": 565,
+            "prompt_tokens": 1935,
+            "total_tokens": 2500,
+            "prompt_tokens_details": {
+              "cached_tokens": 3
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 3,
+            "prompt_n": 1932,
+            "prompt_ms": 38722.712,
+            "prompt_per_token_ms": 20.0428115942029,
+            "prompt_per_second": 49.89319962919953,
+            "predicted_n": 565,
+            "predicted_ms": 67747.34,
+            "predicted_per_token_ms": 120.11939716312057,
+            "predicted_per_second": 8.325050105288266
+          }
+        },
+        "started_from_durable_generation": 2,
+        "at": "2026-10-22T10:30:29.056520+00:00",
+        "untrusted_invalid_output": null,
+        "validation_error": "Unsupported derived finding"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "945f4160-4d3c-4799-9556-72b1f68b57ad",
+      "kind": "inference_run",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:30:29.077518+00:00",
+      "data": {
+        "task": "adaptive_investigation",
+        "task_id": "02db3c99-d3b6-4e90-80a3-2cfa97ec1ed6",
+        "investigation_id": "5b8cda5d-c008-4bc3-a043-73509b082ca7",
+        "revision_id": "df952e3f-f429-408c-8504-d4eb2f0d3cce",
+        "state": "quarantined",
+        "result": null,
+        "initiation": "manual",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_assessment",
+          "transport": "http",
+          "started_at": "2026-10-22T10:28:42.479564+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "20e0511d66ecc8fcb0a961478c6e0f674e14d5ab679521330c2f3095c6927332",
+          "output_schema_sha256": "410c838a6419550b5965a86f00f0499b0f5672beadf41e36b5c65348ca0aef55",
+          "elapsed_seconds": 106.557,
+          "completed_at": "2026-10-22T10:30:29.036904+00:00",
+          "usage": {
+            "completion_tokens": 565,
+            "prompt_tokens": 1935,
+            "total_tokens": 2500,
+            "prompt_tokens_details": {
+              "cached_tokens": 3
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 3,
+            "prompt_n": 1932,
+            "prompt_ms": 38722.712,
+            "prompt_per_token_ms": 20.0428115942029,
+            "prompt_per_second": 49.89319962919953,
+            "predicted_n": 565,
+            "predicted_ms": 67747.34,
+            "predicted_per_token_ms": 120.11939716312057,
+            "predicted_per_second": 8.325050105288266
+          }
+        },
+        "evidence_ids": [
+          "23c412d2-5b9b-472a-baef-1352921c93bd",
+          "35a29091-9d10-46bc-900c-0818c7ecbe88",
+          "8d47efc6-5bd8-4644-96ec-983c71744be7"
+        ],
+        "qualification": "unqualified",
+        "acceptance": "not_accepted"
+      }
+    }
+  ]
+}

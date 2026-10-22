@@ -1,0 +1,82 @@
+[
+  {
+    "id": "d98e0d6b-6070-430c-9756-ac4a9eea63a4",
+    "kind": "identity_binding",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:36.650223+00:00",
+    "data": {
+      "namespace": "cedar-master-identifiers",
+      "native_id": "R1",
+      "entity_kind": "route",
+      "canonical_id": "f0a1142a-5d44-5a7f-9875-3e5f77f09930",
+      "identity_evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "origin": "source_authority"
+    }
+  },
+  {
+    "id": "f6580d5c-f3d5-4c2a-a0ed-df71cbb47b36",
+    "kind": "identity_binding",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:36.653623+00:00",
+    "data": {
+      "namespace": "cedar-master-identifiers",
+      "native_id": "R2",
+      "entity_kind": "route",
+      "canonical_id": "0c620590-358b-5dc5-8ea5-bf3b34c9051a",
+      "identity_evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "origin": "source_authority"
+    }
+  },
+  {
+    "id": "d3ba738a-b678-4db2-9fc5-1feb45eb82cf",
+    "kind": "identity_binding",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:36.657170+00:00",
+    "data": {
+      "namespace": "cedar-master-identifiers",
+      "native_id": "G1",
+      "entity_kind": "gateway",
+      "canonical_id": "6346c9cd-dfe5-5ff5-8946-b43922564c77",
+      "identity_evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "origin": "source_authority"
+    }
+  },
+  {
+    "id": "d7349b8b-cdae-4ed0-a9f5-f8a2938d75e3",
+    "kind": "identity_binding",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:36.661010+00:00",
+    "data": {
+      "namespace": "cedar-master-identifiers",
+      "native_id": "G2",
+      "entity_kind": "gateway",
+      "canonical_id": "89667870-7535-5be0-9f28-409836695fdf",
+      "identity_evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "origin": "source_authority"
+    }
+  },
+  {
+    "id": "474797a1-4197-4243-8c67-eedc3bac55db",
+    "kind": "identity_binding",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:36.666619+00:00",
+    "data": {
+      "namespace": "cedar-master-identifiers",
+      "native_id": "S1",
+      "entity_kind": "service",
+      "canonical_id": "3af63ad9-13c7-5343-aa30-cdb099064e50",
+      "identity_evidence_ids": [
+        "fb765bfd-39fe-4d46-a6ad-83b9437662ec"
+      ],
+      "origin": "source_authority"
+    }
+  }
+]

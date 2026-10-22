@@ -1,0 +1,129 @@
+{
+  "release": "0.4.0",
+  "recorded_at": "2026-10-22T00:20:18.903188+00:00",
+  "scope": "Actual execution host, CPU-only; synthetic bank data",
+  "tests": {
+    "regression-tests.xml": {
+      "tests": 123.0,
+      "failures": 0.0,
+      "errors": 0.0,
+      "skipped": 0.0,
+      "time": 43.311
+    },
+    "full-stack-tests.xml": {
+      "tests": 1.0,
+      "failures": 0.0,
+      "errors": 0.0,
+      "skipped": 0.0,
+      "time": 344.496
+    },
+    "live-model-tests.xml": {
+      "tests": 3.0,
+      "failures": 0.0,
+      "errors": 0.0,
+      "skipped": 0.0,
+      "time": 20.252
+    }
+  },
+  "pipeline": {
+    "completed": true,
+    "checks": {
+      "structured_knowledge_accepted_without_extraction": true,
+      "incident_without_customer_complaint": true,
+      "native_identity_and_customer_references_preserved": true,
+      "unrelated_transaction_not_linked_to_affected_route": true,
+      "three_tasks_automatic_actual_local_http": true,
+      "ai_did_not_change_cedar_financial_state": true,
+      "worker_inference_status_survives_api_restart": true,
+      "offline_ingestion_context_monitoring_investigations_no_fake_ai": true,
+      "queued_work_visible_across_worker_restart": true,
+      "historical_revision_preserved_after_authorized_reconciliation": true,
+      "no_recursive_model_scheduling": true,
+      "no_manual_ai_requests": true
+    },
+    "http_requests": 573,
+    "automatic_task_count": 18,
+    "task_states": {
+      "failed": 2,
+      "completed": 16
+    },
+    "run_outcomes": {
+      "validated_candidate": 12,
+      "quarantined": 4,
+      "unavailable": 1
+    },
+    "intent_states": {
+      "scheduled": 18,
+      "blocked": 11
+    },
+    "failed_tasks": [
+      {
+        "id": "dce1f86d-98f6-495d-b9c3-3ecfd6d1f0ea",
+        "error": "Stale investigation revision; no current analysis publication"
+      },
+      {
+        "id": "badf8fb4-7982-4b77-957a-36c4fcb8d771",
+        "error": "Stale investigation revision; no current analysis publication"
+      }
+    ]
+  },
+  "resources": {
+    "sample_count": 187,
+    "host_ram_gib": 7.439662933349609,
+    "minimum_host_available_gib": 3.120075225830078,
+    "maximum_memory_full_psi_avg10": 0.0,
+    "host_swap_used_before_bytes": 1198616576,
+    "host_swap_used_after_bytes": 1198145536,
+    "host_swapin_page_delta": 170,
+    "host_swapout_page_delta": 61,
+    "emergency_stop_triggered": false,
+    "container_accounting_peak_mib": {
+      "cedar-db": 28.35,
+      "veriq-db": 35.33,
+      "cedar": 69.51,
+      "veriq": 82.29,
+      "ai-worker": 77.05,
+      "local-ai": 247.96
+    },
+    "container_accounting_simultaneous_peak_mib": 522.79,
+    "container_accounting_caveat": "Not process RSS; shared file-backed model pages can be charged outside these cgroups",
+    "model_process_rss_mib": 639.01953125,
+    "model_process_pss_mib": 634.8857421875,
+    "model_process_high_water_rss_mib": 639.01953125,
+    "model_process_swap_bytes": 0,
+    "process_measurement_phase": "After full pipeline and live checks; high-water mark covers the current process since the intentional outage restart, not both model processes",
+    "actual_positive_generation_latency_seconds": {
+      "count": 16,
+      "min": 3.836,
+      "median": 20.392,
+      "max": 31.703
+    }
+  },
+  "deployment": {
+    "project": "veriq-ticket004-final",
+    "verified": true,
+    "checks": {
+      "cross_database_credentials_rejected": true,
+      "internal_bank_network": true,
+      "model_no_published_host_port": true,
+      "veriq_credential_rejected_by_cedar": true,
+      "feed_credential_has_no_banking_authority": true,
+      "cedar_customer_credential_rejected_by_veriq": true,
+      "worker_status_visible_in_separate_api_process": true,
+      "available_model_explicitly_unqualified": true,
+      "legacy_verified_tasks_now_durable": true,
+      "three_task_types_have_real_generation_receipts": true
+    },
+    "runtime": "version: 0.7.0-dev (build 11799, commit 0756e83fc)\nbuilt with GNU 11.4.0 for Linux x86_64",
+    "model_sha256": "c5396e06af294bd101b30dce59131a76d2b773e76950acc870eda801d3ab0515",
+    "core_source_hashes_audited": true
+  },
+  "quality": {
+    "state": "unqualified",
+    "original_gate_each_model": "4/10",
+    "held_out_each_model": "6/12",
+    "historical_live_suite": "2 passed, 1 failed extraction",
+    "current_live_smoke_suite": "3 passed; not a qualification gate",
+    "new_quality_gate_run": false
+  }
+}

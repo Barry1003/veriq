@@ -1,0 +1,336 @@
+{
+  "task": {
+    "id": "cf88f5a7-b60c-4ba0-9ffd-3b7b5b152cae",
+    "kind": "ai_task",
+    "classification": "internal",
+    "created_at": "2026-10-22T10:31:04.352249+00:00",
+    "data": {
+      "state": "completed",
+      "task": "adaptive_investigation",
+      "evidence_ids": [
+        "1859169e-bca0-457d-bf2c-8ec601e7e373",
+        "ccc99df7-5be4-4cbb-b782-5c54be4369c6",
+        "edb36d90-e449-4d57-80fa-5160324d4254"
+      ],
+      "revision_id": "adb9c853-92a0-45f1-8902-aab357c05304",
+      "investigation_id": "c1fb4603-5626-4df5-934a-4e19288117f8",
+      "attempts": 1,
+      "initiation": "manual",
+      "scheduling_identity": "a5323211a2c57da32c0d03f81e3c9de596b76c3a5e85dfe7e8eec3f41559b05e",
+      "intent_id": null,
+      "reprocessing_of": null,
+      "policy_version": "automatic-v1:1",
+      "model_config_version": "1",
+      "history": [
+        {
+          "state": "queued",
+          "at": "2026-10-22T10:31:04.351891+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:31:04.366482+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "investigating",
+          "at": "2026-10-22T10:31:21.082309+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:31:21.090942+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "assessment_requested",
+          "at": "2026-10-22T10:31:52.872522+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:31:52.881168+00:00"
+        },
+        {
+          "state": "completed",
+          "outcome": "invalid_model_output",
+          "at": "2026-10-22T10:33:58.567632+00:00"
+        }
+      ],
+      "next_attempt_at": 0,
+      "lease_until": 0,
+      "outcome": "invalid_model_output",
+      "adaptive_progress": {
+        "generations": 3,
+        "tool_calls": 1,
+        "outcome": "invalid_model_output",
+        "phase": "assessment"
+      },
+      "run_id": "40ac02b6-f2d3-4a29-95e1-f7d900af8163"
+    }
+  },
+  "steps": [
+    {
+      "id": "c13f4d9f-09ff-4ed6-9820-a5e6f07a4208",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:31:21.081665+00:00",
+      "data": {
+        "task_id": "cf88f5a7-b60c-4ba0-9ffd-3b7b5b152cae",
+        "investigation_id": "c1fb4603-5626-4df5-934a-4e19288117f8",
+        "revision_id": "adb9c853-92a0-45f1-8902-aab357c05304",
+        "number": 1,
+        "state": "investigating",
+        "decision": {
+          "action": "tool",
+          "question": "What is the status of the transaction associated with the transaction ID 'TX1'?",
+          "tool_call": {
+            "name": "get_transaction_evidence",
+            "arguments": {
+              "namespace": null,
+              "native_id": "TX1",
+              "query": null,
+              "at": null
+            }
+          }
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:31:04.379662+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 16.664,
+          "completed_at": "2026-10-22T10:31:21.043583+00:00",
+          "usage": {
+            "completion_tokens": 70,
+            "prompt_tokens": 834,
+            "total_tokens": 904,
+            "prompt_tokens_details": {
+              "cached_tokens": 279
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 279,
+            "prompt_n": 555,
+            "prompt_ms": 9949.738,
+            "prompt_per_token_ms": 17.927455855855854,
+            "prompt_per_second": 55.780363261826594,
+            "predicted_n": 70,
+            "predicted_ms": 6677.377,
+            "predicted_per_token_ms": 96.77357971014493,
+            "predicted_per_second": 10.333398878032497
+          }
+        },
+        "started_from_durable_generation": 0,
+        "at": "2026-10-22T10:31:21.068834+00:00",
+        "untrusted_invalid_output": null,
+        "tool_result": {
+          "state": "ok",
+          "evidence": [
+            {
+              "id": "1859169e-bca0-457d-bf2c-8ec601e7e373",
+              "record_type": "transaction",
+              "source_id": "t",
+              "identity_namespace": "fixture-bank-identifiers",
+              "authority": [
+                "status"
+              ],
+              "classification": "internal",
+              "valid_at": "2026-10-22T10:31:04.212059+00:00",
+              "valid_to": null,
+              "known_at": "2026-10-22T10:31:04.217495+00:00",
+              "native_record_id": "3c6a01c0-1ab1-41c2-aa63-015d2e43a0a5",
+              "origin": null,
+              "digest": "2b212f304b34009eadef61dfc20b0eeb916ccd7626706a22bc05bf43e93f2a11",
+              "grant_version": 1,
+              "content_truncated": false,
+              "acceptance": "authorized_structured_record",
+              "payload": {
+                "occurred_at": "2026-10-22T10:31:04.212059+00:00",
+                "transaction_id": "TX1",
+                "customer_id": "C1",
+                "account_id": "A1",
+                "amount_minor": 1000,
+                "currency": "NGN",
+                "route_id": "R1",
+                "gateway_id": "G3",
+                "status": "completed",
+                "response": "reconciled",
+                "version": 1,
+                "beneficiary_verified": false
+              },
+              "query_incomplete": false
+            }
+          ],
+          "known_at": "2026-10-22T10:31:21.068952+00:00",
+          "as_of": "2026-10-22T10:31:21.068952+00:00",
+          "truncated": false,
+          "limits": {
+            "scan": 500,
+            "records": 3,
+            "bytes": 9000
+          },
+          "missing_information": null
+        }
+      }
+    },
+    {
+      "id": "0a3a6aaa-abe2-4910-9793-68736b121145",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:31:52.871779+00:00",
+      "data": {
+        "task_id": "cf88f5a7-b60c-4ba0-9ffd-3b7b5b152cae",
+        "investigation_id": "c1fb4603-5626-4df5-934a-4e19288117f8",
+        "revision_id": "adb9c853-92a0-45f1-8902-aab357c05304",
+        "number": 2,
+        "state": "assessment_requested",
+        "decision": {
+          "action": "assess",
+          "question": "Based on the evidence provided, is it possible to determine the cause of the unsuccessful transfer?",
+          "tool_call": null
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:31:21.106768+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 31.754,
+          "completed_at": "2026-10-22T10:31:52.861252+00:00",
+          "usage": {
+            "completion_tokens": 37,
+            "prompt_tokens": 1862,
+            "total_tokens": 1899,
+            "prompt_tokens_details": {
+              "cached_tokens": 769
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 769,
+            "prompt_n": 1093,
+            "prompt_ms": 27158.019,
+            "prompt_per_token_ms": 24.84722689844465,
+            "prompt_per_second": 40.24593988243399,
+            "predicted_n": 37,
+            "predicted_ms": 4568.437,
+            "predicted_per_token_ms": 126.90102777777777,
+            "predicted_per_second": 7.880156823876526
+          }
+        },
+        "started_from_durable_generation": 1,
+        "at": "2026-10-22T10:31:52.871179+00:00",
+        "untrusted_invalid_output": null
+      }
+    },
+    {
+      "id": "3daa1888-175c-48d7-bc8c-f0a701572bfa",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:33:58.566287+00:00",
+      "data": {
+        "task_id": "cf88f5a7-b60c-4ba0-9ffd-3b7b5b152cae",
+        "investigation_id": "c1fb4603-5626-4df5-934a-4e19288117f8",
+        "revision_id": "adb9c853-92a0-45f1-8902-aab357c05304",
+        "number": 3,
+        "state": "invalid_model_output",
+        "decision": null,
+        "assessment_proposal": null,
+        "phase": "assessment",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_assessment",
+          "transport": "http",
+          "started_at": "2026-10-22T10:31:52.899985+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "20e0511d66ecc8fcb0a961478c6e0f674e14d5ab679521330c2f3095c6927332",
+          "output_schema_sha256": "115264398aff8c2a968775de0639df6a36f66f3a7e8813c19ced35c6bc91392e",
+          "elapsed_seconds": 125.657,
+          "completed_at": "2026-10-22T10:33:58.557298+00:00",
+          "usage": {
+            "completion_tokens": 768,
+            "prompt_tokens": 1933,
+            "total_tokens": 2701,
+            "prompt_tokens_details": {
+              "cached_tokens": 3
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 3,
+            "prompt_n": 1930,
+            "prompt_ms": 40603.023,
+            "prompt_per_token_ms": 21.037835751295336,
+            "prompt_per_second": 47.533406564333895,
+            "predicted_n": 768,
+            "predicted_ms": 84964.424,
+            "predicted_per_token_ms": 110.77499869621903,
+            "predicted_per_second": 9.027307711754746
+          }
+        },
+        "started_from_durable_generation": 2,
+        "at": "2026-10-22T10:33:58.565803+00:00",
+        "untrusted_invalid_output": "{\n  \"source_facts\": [\n    {\n      \"evidence_id\": \"ccc99df7-5be4-4cbb-b782-5c54be4369c6\",\n      \"field\": \"text\"\n    },\n    {\n      \"evidence_id\": \"1859169e-bca0-457d-bf2c-8ec601e7e373\",\n      \"field\": \"status\"\n    }\n  ],\n  \"derived_findings\": [\n    {\n      \"rule\": \"configured_execution_mismatch\",\n      \"evidence_ids\": [\"ccc99df7-5be4-4cbb-b782-5c54be4369c6\", \"1859169e-bca0-457d-bf2c-8ec601e7e373\"]\n    }\n  ],\n  \"hypotheses\": [\n    {\n      \"label\": \"The transfer was unsuccessful due to a network error.\",\n      \"explanation\": \"The text indicates the transfer was unsuccessful, and the status shows it was completed. This suggests a network issue or other technical problem that prevented the transfer from being processed successfully. The beneficiary's statement that nothing arrived further supports this hypothesis, as it implies the transfer was not received by the intended recipient.\",\n      \"supports\": [\n        \"1859169e-bca0-457d-bf2c-8ec601e7e373\",\n        \"ccc99df7-5be4-4cbb-b782-5c54be4369c6\"\n      ],\n      \"weakens\": [\n        \"1859169e-bca0-457d-bf2c-8ec601e7e373\",\n        \"ccc99df7-5be4-4cbb-b782-5c54be4369c6\"\n      ],\n      \"next_check\": \"Review the transaction details for any additional errors or issues.\"\n    },\n    {\n      \"label\": \"The transfer was unsuccessful due to a technical issue with the beneficiary.\",\n      \"explanation\": \"The text indicates the transfer was unsuccessful, and the status shows it was completed. This suggests a technical issue with the beneficiary's system or network that prevented the transfer from being processed successfully. The beneficiary's statement that nothing arrived further supports this hypothesis, as it implies the transfer was not received by the intended recipient.\",\n      \"supports\": [\n        \"1859169e-bca0-457d-bf2c-8ec601e7e373\",\n        \"ccc99df7-5be4-4cbb-b782-5c54be4369c6\"\n      ],\n      \"weakens\": [\n        \"1859169e-bca0-457d-bf2c-8ec601e7e373\",\n        \"ccc99df7-5be4-4cbb-b782-5c54be4369c6\"\n      ],\n      \"next_check\": \"Review the beneficiary's system or network for any technical issues.\"\n    }\n  ],\n  \"contradictions\": [\n    {\n      \"rule\": \"customer_completion_dispute\",\n      \"evidence_ids\": [\"ccc99df7-"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "40ac02b6-f2d3-4a29-95e1-f7d900af8163",
+      "kind": "inference_run",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:33:58.567264+00:00",
+      "data": {
+        "task": "adaptive_investigation",
+        "task_id": "cf88f5a7-b60c-4ba0-9ffd-3b7b5b152cae",
+        "investigation_id": "c1fb4603-5626-4df5-934a-4e19288117f8",
+        "revision_id": "adb9c853-92a0-45f1-8902-aab357c05304",
+        "state": "invalid_model_output",
+        "result": null,
+        "initiation": "manual",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_assessment",
+          "transport": "http",
+          "started_at": "2026-10-22T10:31:52.899985+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "20e0511d66ecc8fcb0a961478c6e0f674e14d5ab679521330c2f3095c6927332",
+          "output_schema_sha256": "115264398aff8c2a968775de0639df6a36f66f3a7e8813c19ced35c6bc91392e",
+          "elapsed_seconds": 125.657,
+          "completed_at": "2026-10-22T10:33:58.557298+00:00",
+          "usage": {
+            "completion_tokens": 768,
+            "prompt_tokens": 1933,
+            "total_tokens": 2701,
+            "prompt_tokens_details": {
+              "cached_tokens": 3
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 3,
+            "prompt_n": 1930,
+            "prompt_ms": 40603.023,
+            "prompt_per_token_ms": 21.037835751295336,
+            "prompt_per_second": 47.533406564333895,
+            "predicted_n": 768,
+            "predicted_ms": 84964.424,
+            "predicted_per_token_ms": 110.77499869621903,
+            "predicted_per_second": 9.027307711754746
+          }
+        },
+        "evidence_ids": [
+          "1859169e-bca0-457d-bf2c-8ec601e7e373",
+          "ccc99df7-5be4-4cbb-b782-5c54be4369c6",
+          "edb36d90-e449-4d57-80fa-5160324d4254"
+        ],
+        "qualification": "unqualified",
+        "acceptance": "not_accepted"
+      }
+    }
+  ]
+}

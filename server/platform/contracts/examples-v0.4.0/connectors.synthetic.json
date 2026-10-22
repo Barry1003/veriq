@@ -1,0 +1,337 @@
+[
+  {
+    "id": "f1cd1d3b-bee5-4e51-ad71-97fc8ade6f9b",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.284031+00:00",
+    "data": {
+      "source_id": "cedar-institutional",
+      "name": "cedar-institutional",
+      "record_types": [
+        "knowledge"
+      ],
+      "authority": [
+        "structure"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-config-v1",
+      "channel": null,
+      "adapter_id": null,
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 1,
+      "last_received_at": "2026-10-22T00:02:36.670648+00:00",
+      "last_error": null,
+      "cursor": 1,
+      "last_pull_at": "2026-10-22T00:20:21.640046+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "scheduled": 12,
+          "blocked": 11
+        }
+      }
+    }
+  },
+  {
+    "id": "d3d194c5-5000-4035-a76d-0b949221c91a",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.307193+00:00",
+    "data": {
+      "source_id": "cedar-operations",
+      "name": "cedar-operations",
+      "record_types": [
+        "observation"
+      ],
+      "authority": [
+        "measurement"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-monitoring-v1",
+      "channel": null,
+      "adapter_id": null,
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 12,
+      "last_received_at": "2026-10-22T00:05:10.318499+00:00",
+      "last_error": null,
+      "cursor": 31,
+      "last_pull_at": "2026-10-22T00:20:21.677858+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "scheduled": 12,
+          "blocked": 11
+        }
+      }
+    }
+  },
+  {
+    "id": "c2a9a77b-a1ed-4288-ae49-43e11a969dc2",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.333735+00:00",
+    "data": {
+      "source_id": "cedar-service",
+      "name": "cedar-service",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-support-v1",
+      "channel": null,
+      "adapter_id": null,
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 0,
+      "last_received_at": null,
+      "last_error": null,
+      "cursor": 0,
+      "last_pull_at": "2026-10-22T00:20:21.714443+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {}
+      }
+    }
+  },
+  {
+    "id": "b9190cd1-d5e0-4abc-beb0-b8c38ea4b928",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.353685+00:00",
+    "data": {
+      "source_id": "cedar-status",
+      "name": "cedar-status",
+      "record_types": [
+        "transaction"
+      ],
+      "authority": [
+        "status"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-status-v1",
+      "channel": null,
+      "adapter_id": null,
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 13,
+      "last_received_at": "2026-10-22T00:06:37.218329+00:00",
+      "last_error": null,
+      "cursor": 32,
+      "last_pull_at": "2026-10-22T00:20:21.758557+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "blocked": 11,
+          "scheduled": 11
+        }
+      }
+    }
+  },
+  {
+    "id": "abac5697-1c51-4c93-b0f5-a63a9b459367",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.381171+00:00",
+    "data": {
+      "source_id": "cedar-channel-in-app",
+      "name": "cedar-channel-in-app",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-in-app-v1",
+      "channel": "in_app",
+      "adapter_id": "in-app-message-v1",
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 1,
+      "last_received_at": "2026-10-22T00:02:43.517209+00:00",
+      "last_error": null,
+      "cursor": 25,
+      "last_pull_at": "2026-10-22T00:20:21.801000+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "blocked": 1,
+          "scheduled": 7
+        }
+      }
+    }
+  },
+  {
+    "id": "a2e90e33-6734-482f-b3a9-d26e85661038",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.398572+00:00",
+    "data": {
+      "source_id": "cedar-channel-email",
+      "name": "cedar-channel-email",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-email-v1",
+      "channel": "email",
+      "adapter_id": "email-message-v1",
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 1,
+      "last_received_at": "2026-10-22T00:02:44.638486+00:00",
+      "last_error": null,
+      "cursor": 26,
+      "last_pull_at": "2026-10-22T00:20:21.838862+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "scheduled": 7
+        }
+      }
+    }
+  },
+  {
+    "id": "61da6c59-53e7-4661-80ec-9f28df80f5ed",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.417984+00:00",
+    "data": {
+      "source_id": "cedar-channel-contact-centre",
+      "name": "cedar-channel-contact-centre",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-contact-centre-v1",
+      "channel": "contact_centre",
+      "adapter_id": "call-transcript-v1",
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 1,
+      "last_received_at": "2026-10-22T00:05:13.932018+00:00",
+      "last_error": null,
+      "cursor": 29,
+      "last_pull_at": "2026-10-22T00:20:21.872815+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "scheduled": 5
+        }
+      }
+    }
+  },
+  {
+    "id": "14cf843d-cb60-4b6d-97e4-296c81029057",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.436948+00:00",
+    "data": {
+      "source_id": "cedar-channel-branch",
+      "name": "cedar-channel-branch",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-branch-v1",
+      "channel": "branch",
+      "adapter_id": "branch-visit-v1",
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 1,
+      "last_received_at": "2026-10-22T00:02:46.307488+00:00",
+      "last_error": null,
+      "cursor": 27,
+      "last_pull_at": "2026-10-22T00:20:21.909009+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "scheduled": 2
+        }
+      }
+    }
+  },
+  {
+    "id": "2135fa2e-c6f7-442a-b2a5-117f0cd1c43b",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:35.453124+00:00",
+    "data": {
+      "source_id": "cedar-documents",
+      "name": "Cedar authorized documents",
+      "record_types": [
+        "document"
+      ],
+      "authority": [
+        "document"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-documents-v1",
+      "channel": null,
+      "adapter_id": null,
+      "identity_namespace": "cedar-master-identifiers",
+      "identity_authority_ref": "authorized-cedar-core-registry-v1",
+      "ai_enabled": true,
+      "authorization_state": "active",
+      "grant_version": 1,
+      "state": "error",
+      "ingested": 2,
+      "last_received_at": "2026-10-22T00:05:21.497696+00:00",
+      "last_error": null,
+      "cursor": 28,
+      "last_pull_at": "2026-10-22T00:20:21.942194+00:00",
+      "automatic_processing": {
+        "enabled": true,
+        "intent_counts": {
+          "scheduled": 2
+        }
+      }
+    }
+  }
+]

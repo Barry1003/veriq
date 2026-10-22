@@ -1,0 +1,71 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "from_namespace": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,180}$",
+      "title": "From Namespace",
+      "type": "string"
+    },
+    "from_native_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "From Native Id",
+      "type": "string"
+    },
+    "to_namespace": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,180}$",
+      "title": "To Namespace",
+      "type": "string"
+    },
+    "to_native_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "To Native Id",
+      "type": "string"
+    },
+    "authority_ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Authority Ref",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 50,
+      "minItems": 1,
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "decision": {
+      "default": "candidate",
+      "enum": [
+        "accepted",
+        "candidate"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "rationale": {
+      "maxLength": 2000,
+      "minLength": 5,
+      "title": "Rationale",
+      "type": "string"
+    },
+    "valid_from": {
+      "title": "Valid From",
+      "type": "string"
+    }
+  },
+  "required": [
+    "from_namespace",
+    "from_native_id",
+    "to_namespace",
+    "to_native_id",
+    "authority_ref",
+    "evidence_ids",
+    "rationale",
+    "valid_from"
+  ],
+  "title": "IdentityMapping",
+  "type": "object"
+}

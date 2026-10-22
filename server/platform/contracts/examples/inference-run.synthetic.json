@@ -1,0 +1,30 @@
+{
+  "id": "1033f137-fb20-4700-b579-318b5b1f86a9",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-21T18:52:14.916712+00:00",
+  "data": {
+    "task": "analyze_investigation",
+    "investigation_id": "8eaa1de9-c6d8-499e-86b0-5ed052d4dcc5",
+    "revision_id": "8b73766a-85f7-43c3-80dc-19f7b14a8a52",
+    "evidence_ids": [
+      "06a316ba-3ad2-4a2f-8723-1f101f60f147",
+      "147f35a3-8ae8-46ec-947a-4a1a1b111e6a",
+      "2a2745da-8262-440c-9585-567cda59048e",
+      "4fa9732a-4bff-4503-af33-21838a8b84e7",
+      "51f11991-f2eb-49a3-9487-93b79512c252",
+      "6ed1c653-63ec-48f3-8e92-3725a8650721",
+      "8011f2e2-8999-4679-ab3b-b35885b18783",
+      "90285d4d-3049-4f47-bfc8-82b73749f942",
+      "a36a62b6-2277-4ee4-8dc2-4bf17ff083dc",
+      "a621049e-c38a-4bd1-b800-45f4841f5067",
+      "a6eaea68-b9ac-4060-8a6f-344280933439",
+      "e110624d-a466-4195-8472-b5c15cef41d7",
+      "e9b043ab-4aa0-4252-b536-51054d51a152",
+      "edad7072-0e42-41d4-9779-15e918ef0cfe",
+      "f4115b13-a5a7-49af-b2f2-0e3c8257b49a"
+    ],
+    "state": "unavailable",
+    "error": "Local inference is not configured"
+  }
+}

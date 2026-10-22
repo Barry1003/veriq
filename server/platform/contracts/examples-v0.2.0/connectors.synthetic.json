@@ -1,0 +1,236 @@
+[
+  {
+    "id": "c8491e1c-0e1c-4f6e-aee7-65d33a99c510",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.715560+00:00",
+    "data": {
+      "source_id": "cedar-institutional",
+      "name": "cedar-institutional",
+      "record_types": [
+        "knowledge"
+      ],
+      "authority": [
+        "structure"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-config-v1",
+      "channel": null,
+      "adapter_id": null,
+      "state": "receiving",
+      "ingested": 1,
+      "last_received_at": "2026-10-21T19:54:44.427635+00:00",
+      "last_error": null,
+      "cursor": 1,
+      "last_pull_at": "2026-10-21T20:25:44.395626+00:00"
+    }
+  },
+  {
+    "id": "98b16377-1ab4-4b06-ab79-442e5cf4c3f3",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.732243+00:00",
+    "data": {
+      "source_id": "cedar-operations",
+      "name": "cedar-operations",
+      "record_types": [
+        "observation"
+      ],
+      "authority": [
+        "measurement"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-monitoring-v1",
+      "channel": null,
+      "adapter_id": null,
+      "state": "receiving",
+      "ingested": 42,
+      "last_received_at": "2026-10-21T20:25:45.763039+00:00",
+      "last_error": null,
+      "cursor": 101,
+      "last_pull_at": "2026-10-21T20:25:45.916734+00:00"
+    }
+  },
+  {
+    "id": "283d964b-42d1-4010-a962-21ee9562cf4b",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.747244+00:00",
+    "data": {
+      "source_id": "cedar-service",
+      "name": "cedar-service",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-support-v1",
+      "channel": null,
+      "adapter_id": null,
+      "state": "receiving",
+      "ingested": 4,
+      "last_received_at": "2026-10-21T19:54:44.785508+00:00",
+      "last_error": null,
+      "cursor": 29,
+      "last_pull_at": "2026-10-21T20:25:45.962611+00:00"
+    }
+  },
+  {
+    "id": "becd2a5a-2d56-4c5a-8514-bcf3244d48bd",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.761229+00:00",
+    "data": {
+      "source_id": "cedar-status",
+      "name": "cedar-status",
+      "record_types": [
+        "transaction"
+      ],
+      "authority": [
+        "status"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-status-v1",
+      "channel": null,
+      "adapter_id": null,
+      "state": "receiving",
+      "ingested": 44,
+      "last_received_at": "2026-10-21T20:26:48.487892+00:00",
+      "last_error": null,
+      "cursor": 106,
+      "last_pull_at": "2026-10-21T20:26:48.746310+00:00"
+    }
+  },
+  {
+    "id": "dc6d8390-6684-4dfe-ab3d-8e18341bc6ef",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.776426+00:00",
+    "data": {
+      "source_id": "cedar-channel-in-app",
+      "name": "cedar-channel-in-app",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-in-app-v1",
+      "channel": "in_app",
+      "adapter_id": "in-app-message-v1",
+      "state": "receiving",
+      "ingested": 3,
+      "last_received_at": "2026-10-21T20:25:47.164989+00:00",
+      "last_error": null,
+      "cursor": 102,
+      "last_pull_at": "2026-10-21T20:25:47.325448+00:00"
+    }
+  },
+  {
+    "id": "0e276a6a-3fb5-4219-a508-b5942522aca8",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.792448+00:00",
+    "data": {
+      "source_id": "cedar-channel-email",
+      "name": "cedar-channel-email",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-email-v1",
+      "channel": "email",
+      "adapter_id": "email-message-v1",
+      "state": "receiving",
+      "ingested": 3,
+      "last_received_at": "2026-10-21T20:25:47.375038+00:00",
+      "last_error": null,
+      "cursor": 103,
+      "last_pull_at": "2026-10-21T20:25:47.572924+00:00"
+    }
+  },
+  {
+    "id": "e500a035-b3ca-471d-8adc-f1bf963de7f0",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.806260+00:00",
+    "data": {
+      "source_id": "cedar-channel-contact-centre",
+      "name": "cedar-channel-contact-centre",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-contact-centre-v1",
+      "channel": "contact_centre",
+      "adapter_id": "call-transcript-v1",
+      "state": "receiving",
+      "ingested": 3,
+      "last_received_at": "2026-10-21T20:25:47.624183+00:00",
+      "last_error": null,
+      "cursor": 104,
+      "last_pull_at": "2026-10-21T20:25:47.854978+00:00"
+    }
+  },
+  {
+    "id": "ad009406-b9a9-44d6-adea-565e2addcbea",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.819411+00:00",
+    "data": {
+      "source_id": "cedar-channel-branch",
+      "name": "cedar-channel-branch",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-branch-v1",
+      "channel": "branch",
+      "adapter_id": "branch-visit-v1",
+      "state": "receiving",
+      "ingested": 3,
+      "last_received_at": "2026-10-21T20:25:47.906543+00:00",
+      "last_error": null,
+      "cursor": 105,
+      "last_pull_at": "2026-10-21T20:25:48.133854+00:00"
+    }
+  },
+  {
+    "id": "6fa81a7e-d8db-4da4-ae6a-680a68a47b88",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:43.833924+00:00",
+    "data": {
+      "source_id": "cedar-documents",
+      "name": "Cedar authorized documents",
+      "record_types": [
+        "document"
+      ],
+      "authority": [
+        "document"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-documents-v1",
+      "channel": null,
+      "adapter_id": null,
+      "state": "receiving",
+      "ingested": 3,
+      "last_received_at": "2026-10-21T20:25:48.187078+00:00",
+      "last_error": null,
+      "cursor": 81,
+      "last_pull_at": "2026-10-21T20:25:48.442144+00:00"
+    }
+  }
+]

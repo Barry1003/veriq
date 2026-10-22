@@ -1,0 +1,70 @@
+{
+  "id": "3f437844-7a95-48af-a058-ed4daccd281c",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-21T20:25:59.301134+00:00",
+  "data": {
+    "task": "extract_knowledge",
+    "evidence_ids": [
+      "9b6aaa89-0b80-478e-bc14-bd355c7041d8"
+    ],
+    "state": "validated_candidate",
+    "result": {
+      "entities": [
+        {
+          "native_id": "AIR1",
+          "kind": "route",
+          "name": "AI test route",
+          "aliases": []
+        },
+        {
+          "native_id": "AIG1",
+          "kind": "gateway",
+          "name": "AI test gateway",
+          "aliases": []
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "AIR1",
+          "predicate": "uses_gateway",
+          "object": "AIG1"
+        }
+      ],
+      "valid_from": "2026-10-21T20:25:43.836000+00:00",
+      "valid_to": null
+    },
+    "model": "veriq-qwen2.5-0.5b",
+    "inference_metadata": {
+      "model": "veriq-qwen2.5-0.5b",
+      "task": "extract_knowledge",
+      "transport": "http",
+      "started_at": "2026-10-21T20:25:48.493518+00:00",
+      "prompt_version": "ticket002-v2",
+      "prompt_sha256": "3b71dffd69c55e192dc5f7f9ac0b920fd3735ad4c596e7967a41cdf14ae9f021",
+      "output_schema_sha256": "8f011ccb9173da2966b09670b3b488820886d31d328bb7179335f532ca8e4ac9",
+      "elapsed_seconds": 10.798,
+      "completed_at": "2026-10-21T20:25:59.291072+00:00",
+      "usage": {
+        "completion_tokens": 126,
+        "prompt_tokens": 587,
+        "total_tokens": 713,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "runtime_timings": {
+        "cache_n": 0,
+        "prompt_n": 587,
+        "prompt_ms": 5321.509,
+        "prompt_per_token_ms": 9.065603066439524,
+        "prompt_per_second": 110.30705764098116,
+        "predicted_n": 126,
+        "predicted_ms": 5448.374,
+        "predicted_per_token_ms": 43.586991999999995,
+        "predicted_per_second": 22.942624717025666
+      }
+    },
+    "assertion_id": "ce3594fc-8f86-499b-8558-675bfab0d8ff"
+  }
+}

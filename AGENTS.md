@@ -16,9 +16,8 @@ Cedar is a separate fictional banking environment for customer banking, transact
 
 ## Ownership boundaries
 
-- Daniel owns the FastAPI backend, persistence, backend architecture, and integration logic.
-- Habeeb owns AI and intelligence mechanisms.
-- Frontend work covers Veriq and Cedar application architecture, UI, design-system implementation, accessibility, frontend state, mock data, and frontend/API integration.
+- Daniel owns the FastAPI backend, persistence, backend architecture, integration logic, and AI/intelligence mechanisms.
+- Usaamah owns frontend and design. Frontend work covers Veriq and Cedar application architecture, UI, design-system implementation, accessibility, frontend state, mock data, and frontend/API integration.
 
 Do not modify backend implementation files during frontend tasks or independently implement AI mechanisms. Do not invent backend endpoints, payloads, authentication behavior, or security guarantees. If a backend or AI dependency is missing, document it and identify what the responsible owner must confirm.
 
@@ -31,7 +30,7 @@ The repository contains two independent Next.js applications:
 
 Shared design foundations live in `client/shared/design-system/`. Use one shared component foundation with separate Veriq and Cedar themes. Product-specific layouts, feature components, navigation, and data remain in the owning application. Do not add a duplicate shared component or a new abstraction without a concrete reuse case.
 
-The backend lives in `server/` and is out of scope for frontend changes. Preserve its files and behavior.
+The authoritative backend project lives in `server/platform/` and is out of scope for frontend changes. Preserve its files and behavior.
 
 Follow the Next.js version and local framework guidance. In particular, preserve and obey `client/cedar/AGENTS.md`; do not overwrite or delete it. Inspect the relevant documentation under the installed Next.js package before using unfamiliar framework APIs.
 

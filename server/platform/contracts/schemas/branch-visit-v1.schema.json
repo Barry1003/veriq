@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "visit_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Visit Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "notes": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    },
+    "transaction_reference": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Reference"
+    },
+    "recorded_at": {
+      "title": "Recorded At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "visit_id",
+    "customer_id",
+    "notes"
+  ],
+  "title": "BranchVisit",
+  "type": "object"
+}

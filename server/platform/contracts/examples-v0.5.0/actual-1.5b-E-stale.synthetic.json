@@ -1,0 +1,114 @@
+{
+  "task": {
+    "id": "bf4000a8-ce41-4475-9406-058292e572fb",
+    "kind": "ai_task",
+    "classification": "internal",
+    "created_at": "2026-10-22T10:37:20.216362+00:00",
+    "data": {
+      "state": "failed",
+      "task": "adaptive_investigation",
+      "evidence_ids": [
+        "353a6387-69ce-4fa9-9ab2-6e4d354d163c",
+        "3ce63b41-faeb-460c-9398-0fa18b7deaec",
+        "60b3742d-00dd-44f4-8d02-45f254d9517f"
+      ],
+      "revision_id": "5187136d-e15c-4c47-a787-98b060092c78",
+      "investigation_id": "6a8895ef-eadb-4a1f-9f9d-d52811b4b729",
+      "attempts": 1,
+      "initiation": "manual",
+      "scheduling_identity": "2cfaab2d934ff94f09fa60b6d20bbbee2604dfce3cc6ae5717908dd126b48737",
+      "intent_id": null,
+      "reprocessing_of": null,
+      "policy_version": "automatic-v1:1",
+      "model_config_version": "1",
+      "history": [
+        {
+          "state": "queued",
+          "at": "2026-10-22T10:37:20.215998+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:37:20.229629+00:00"
+        },
+        {
+          "state": "failed",
+          "outcome": "invalidated",
+          "at": "2026-10-22T10:37:35.817981+00:00"
+        }
+      ],
+      "next_attempt_at": 0,
+      "lease_until": 0,
+      "outcome": "invalidated",
+      "adaptive_progress": {
+        "generations": 1,
+        "tool_calls": 0,
+        "outcome": "invalidated",
+        "phase": "choice"
+      }
+    }
+  },
+  "steps": [
+    {
+      "id": "aa70dd97-59d4-48e9-868d-65b279d7f212",
+      "kind": "investigative_step",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:37:35.817502+00:00",
+      "data": {
+        "task_id": "bf4000a8-ce41-4475-9406-058292e572fb",
+        "investigation_id": "6a8895ef-eadb-4a1f-9f9d-d52811b4b729",
+        "revision_id": "5187136d-e15c-4c47-a787-98b060092c78",
+        "number": 1,
+        "state": "invalidated",
+        "decision": {
+          "action": "tool",
+          "question": "What is the status of the transaction identified by the transaction ID 'TX1'?",
+          "tool_call": {
+            "name": "get_transaction_evidence",
+            "arguments": {
+              "namespace": null,
+              "native_id": "TX1",
+              "query": null,
+              "at": null
+            }
+          }
+        },
+        "assessment_proposal": null,
+        "phase": "choice",
+        "inference_metadata": {
+          "model": "veriq-qwen2.5-1.5b",
+          "task": "adaptive_investigation",
+          "transport": "http",
+          "started_at": "2026-10-22T10:37:20.242085+00:00",
+          "prompt_version": "ticket005-adaptive-v3",
+          "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+          "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+          "elapsed_seconds": 15.466,
+          "completed_at": "2026-10-22T10:37:35.708459+00:00",
+          "usage": {
+            "completion_tokens": 70,
+            "prompt_tokens": 834,
+            "total_tokens": 904,
+            "prompt_tokens_details": {
+              "cached_tokens": 279
+            }
+          },
+          "runtime_timings": {
+            "cache_n": 279,
+            "prompt_n": 555,
+            "prompt_ms": 9771.318,
+            "prompt_per_token_ms": 17.605978378378378,
+            "prompt_per_second": 56.798888338297864,
+            "predicted_n": 70,
+            "predicted_ms": 5666.908,
+            "predicted_per_token_ms": 82.12910144927537,
+            "predicted_per_second": 12.175952035925057
+          }
+        },
+        "started_from_durable_generation": 0,
+        "at": "2026-10-22T10:37:35.816988+00:00",
+        "untrusted_invalid_output": null
+      }
+    }
+  ],
+  "runs": []
+}

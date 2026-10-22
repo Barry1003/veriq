@@ -1,0 +1,90 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "occurred_at": {
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "institution_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Institution Id",
+      "type": "string"
+    },
+    "environment": {
+      "default": "development",
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Environment",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "native_record_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Native Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "enum": [
+        "knowledge",
+        "document",
+        "observation",
+        "interaction",
+        "transaction"
+      ],
+      "title": "Record Type",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "classification": {
+      "default": "internal",
+      "enum": [
+        "internal",
+        "restricted"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "correlation_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Correlation Id"
+    },
+    "authorization_ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Authorization Ref",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    }
+  },
+  "required": [
+    "institution_id",
+    "source_id",
+    "native_record_id",
+    "record_type",
+    "authorization_ref",
+    "payload"
+  ],
+  "title": "Envelope",
+  "type": "object"
+}

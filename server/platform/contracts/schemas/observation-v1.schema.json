@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "occurred_at": {
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "route_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Route Id",
+      "type": "string"
+    },
+    "gateway_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Gateway Id",
+      "type": "string"
+    },
+    "attempts": {
+      "maximum": 10000000,
+      "minimum": 1,
+      "title": "Attempts",
+      "type": "integer"
+    },
+    "timeouts": {
+      "minimum": 0,
+      "title": "Timeouts",
+      "type": "integer"
+    },
+    "window_seconds": {
+      "default": 300,
+      "maximum": 3600,
+      "minimum": 1,
+      "title": "Window Seconds",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "route_id",
+    "gateway_id",
+    "attempts",
+    "timeouts"
+  ],
+  "title": "Observation",
+  "type": "object"
+}

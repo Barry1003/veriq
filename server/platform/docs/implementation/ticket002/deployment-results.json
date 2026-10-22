@@ -1,0 +1,42 @@
+{
+  "runtime": "podman",
+  "checks": {
+    "cedar_image": "6ac3056a2f68d15b011c3b8f64c5d534d89338ee68c8cf4c59b063ee2f4b3dcf",
+    "cedar_database": {
+      "dialect": "postgresql",
+      "server_version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+      "migration": "0001",
+      "metadata_differences": 0,
+      "domain_record_count": 232
+    },
+    "veriq_image": "272cf854f78e3a74243de94dea19e962f23aae3c4c71bd9ad627a0e71b35953b",
+    "veriq_database": {
+      "dialect": "postgresql",
+      "server_version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+      "migration": "0001",
+      "metadata_differences": 0,
+      "domain_record_count": 422
+    },
+    "database_credential_isolation": {
+      "cross_database_credential_rejected": true
+    },
+    "internal_bank_network": true,
+    "model_has_no_host_published_port": true,
+    "model_runtime_version": "version: 0.7.0-dev (build 11799, commit 0756e83fc)\nbuilt with GNU 11.4.0 for Linux x86_64",
+    "inference_status": {
+      "state": "reachable",
+      "model": "veriq-qwen2.5-0.5b",
+      "live_inference_verified": true,
+      "verified_tasks": {
+        "extract_knowledge": "2026-10-21T20:25:59.291519+00:00",
+        "interpret_interaction": "2026-10-21T20:26:03.094436+00:00",
+        "analyze_investigation": "2026-10-21T20:26:48.311771+00:00"
+      }
+    },
+    "cedar_feed_cannot_read_accounts": true,
+    "customer_cannot_impersonate_branch_recorder": true,
+    "invalid_source_secret_rejected": true
+  },
+  "postgres_verified": true,
+  "all_three_live_tasks_verified_in_bank_network": true
+}

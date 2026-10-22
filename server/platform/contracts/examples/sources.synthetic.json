@@ -1,0 +1,98 @@
+[
+  {
+    "id": "9825116d-91f7-4676-a0fd-d2889088f3c4",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:13.555010+00:00",
+    "data": {
+      "source_id": "cedar-institutional",
+      "name": "cedar-institutional",
+      "record_types": [
+        "knowledge"
+      ],
+      "authority": [
+        "structure"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-config-v1",
+      "state": "receiving",
+      "ingested": 1,
+      "last_received_at": "2026-10-21T18:52:14.215241+00:00",
+      "last_error": null,
+      "cursor": 1,
+      "last_pull_at": "2026-10-21T18:52:14.994910+00:00"
+    }
+  },
+  {
+    "id": "a0a93537-4735-46c1-aa62-8bb282715117",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:13.575680+00:00",
+    "data": {
+      "source_id": "cedar-operations",
+      "name": "cedar-operations",
+      "record_types": [
+        "observation"
+      ],
+      "authority": [
+        "measurement"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-monitoring-v1",
+      "state": "receiving",
+      "ingested": 12,
+      "last_received_at": "2026-10-21T18:52:14.361827+00:00",
+      "last_error": null,
+      "cursor": 25,
+      "last_pull_at": "2026-10-21T18:52:15.044749+00:00"
+    }
+  },
+  {
+    "id": "7986ecbc-9280-4fe2-9bd2-a6b3e901ce02",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:13.595271+00:00",
+    "data": {
+      "source_id": "cedar-service",
+      "name": "cedar-service",
+      "record_types": [
+        "interaction"
+      ],
+      "authority": [
+        "report"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-support-v1",
+      "state": "receiving",
+      "ingested": 4,
+      "last_received_at": "2026-10-21T18:52:14.487902+00:00",
+      "last_error": null,
+      "cursor": 29,
+      "last_pull_at": "2026-10-21T18:52:15.088961+00:00"
+    }
+  },
+  {
+    "id": "e3930bb9-4795-4880-917d-d7f722c24cbd",
+    "kind": "source",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:13.614572+00:00",
+    "data": {
+      "source_id": "cedar-status",
+      "name": "cedar-status",
+      "record_types": [
+        "transaction"
+      ],
+      "authority": [
+        "status"
+      ],
+      "max_classification": "internal",
+      "authorization_ref": "cedar-status-v1",
+      "state": "receiving",
+      "ingested": 13,
+      "last_received_at": "2026-10-21T18:52:15.133754+00:00",
+      "last_error": null,
+      "cursor": 30,
+      "last_pull_at": "2026-10-21T18:52:15.160490+00:00"
+    }
+  }
+]

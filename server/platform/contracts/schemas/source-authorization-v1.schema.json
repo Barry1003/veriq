@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "state": {
+      "enum": [
+        "active",
+        "revoked"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "rationale": {
+      "maxLength": 2000,
+      "minLength": 5,
+      "title": "Rationale",
+      "type": "string"
+    }
+  },
+  "required": [
+    "state",
+    "rationale"
+  ],
+  "title": "SourceAuthorization",
+  "type": "object"
+}

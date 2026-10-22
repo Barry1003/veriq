@@ -1,0 +1,54 @@
+[
+  {
+    "id": "18054801-b3e0-47e1-ae70-13b2a952fb69",
+    "kind": "interaction",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:14.002700+00:00",
+    "data": {
+      "occurred_at": "2026-10-21T18:52:14.000075+00:00",
+      "channel": "in_app",
+      "text": "My transfer failed; recipient has not received it",
+      "customer_id": "C1",
+      "transaction_id": "f908c788-672a-4246-ad20-63c579039c04"
+    }
+  },
+  {
+    "id": "6a7c0993-761f-4422-bec7-88c3d17f7c87",
+    "kind": "interaction",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:14.029581+00:00",
+    "data": {
+      "occurred_at": "2026-10-21T18:52:14.025450+00:00",
+      "channel": "email",
+      "text": "My transfer failed; recipient has not received it",
+      "customer_id": "C1",
+      "transaction_id": "49f3c4dd-a4fe-4d1c-a910-82b8215531c9"
+    }
+  },
+  {
+    "id": "76e735d7-b3ce-4b8d-b590-767805f2dc01",
+    "kind": "interaction",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:14.057225+00:00",
+    "data": {
+      "occurred_at": "2026-10-21T18:52:14.054392+00:00",
+      "channel": "contact_centre",
+      "text": "My transfer failed; recipient has not received it",
+      "customer_id": "C1",
+      "transaction_id": "1be929b0-3017-4da9-b89b-47a70e96d223"
+    }
+  },
+  {
+    "id": "45fee27e-8fd4-4616-b2fa-f8429cb519cb",
+    "kind": "interaction",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:14.086535+00:00",
+    "data": {
+      "occurred_at": "2026-10-21T18:52:14.083980+00:00",
+      "channel": "branch",
+      "text": "My transfer failed; recipient has not received it",
+      "customer_id": "C1",
+      "transaction_id": "87ffd5a9-4405-4401-8c44-d0ceca6cfbff"
+    }
+  }
+]

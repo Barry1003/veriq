@@ -1,0 +1,1064 @@
+{
+  "task": {
+    "id": "97288f81-f345-4303-97d9-eed091b0e4c0",
+    "kind": "ai_task",
+    "classification": "internal",
+    "created_at": "2026-10-22T10:52:03.911590+00:00",
+    "data": {
+      "state": "completed",
+      "task": "adaptive_investigation",
+      "evidence_ids": [
+        "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+        "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+        "428081a2-db93-4de1-8a1c-60cbebd6640d",
+        "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+        "76b6a413-5c4c-484c-ba12-5f464c597377",
+        "81a64887-177e-4770-bc95-3684b96960a2",
+        "825f65ca-134a-45ed-af66-6eb851eb6f98",
+        "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+        "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+        "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+        "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+        "b391cf04-fa77-4193-8deb-15f6f4794be8",
+        "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa"
+      ],
+      "revision_id": "2d011d63-4e3a-4ead-a04e-104b2a7e3023",
+      "investigation_id": "e61cfe4d-4a83-40d7-ba3f-0505d37d732b",
+      "attempts": 1,
+      "initiation": "automatic",
+      "scheduling_identity": "b0c3d06b8d5ab905dedaf5a2bd07f385d6d78f7ed266482a881695da9a4df424",
+      "intent_id": "ea06f6c7-10ea-4961-af06-7c2a2cb3a8c5",
+      "reprocessing_of": null,
+      "policy_version": "automatic-v1:1",
+      "model_config_version": "ticket005-demo-v2",
+      "history": [
+        {
+          "state": "queued",
+          "at": "2026-10-22T10:52:03.911175+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:52:46.287473+00:00"
+        },
+        {
+          "state": "queued",
+          "outcome": "investigating",
+          "at": "2026-10-22T10:53:10.520147+00:00"
+        },
+        {
+          "state": "running",
+          "at": "2026-10-22T10:53:11.560713+00:00"
+        },
+        {
+          "state": "completed",
+          "outcome": "inconclusive",
+          "at": "2026-10-22T10:53:25.171230+00:00"
+        }
+      ],
+      "next_attempt_at": 0,
+      "lease_until": 0,
+      "outcome": "inconclusive",
+      "adaptive_progress": {
+        "generations": 2,
+        "tool_calls": 1,
+        "outcome": "inconclusive",
+        "phase": "choice"
+      },
+      "run_id": "1b3fc559-8b7a-47e0-9b2a-2c4601c49e36"
+    }
+  },
+  "trace": {
+    "task_id": "97288f81-f345-4303-97d9-eed091b0e4c0",
+    "state": "completed",
+    "redacted": false,
+    "reason": null,
+    "steps": [
+      {
+        "id": "4eafcb23-77c2-4e7c-9d56-8e253880fe0d",
+        "kind": "investigative_step",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:53:10.519436+00:00",
+        "data": {
+          "task_id": "97288f81-f345-4303-97d9-eed091b0e4c0",
+          "investigation_id": "e61cfe4d-4a83-40d7-ba3f-0505d37d732b",
+          "revision_id": "2d011d63-4e3a-4ead-a04e-104b2a7e3023",
+          "number": 1,
+          "state": "investigating",
+          "decision": {
+            "action": "tool",
+            "question": "What is the operational observation related to the transaction with native ID 'f012e3b2-36aa-495e-b0ed-64c91a34a511'?",
+            "tool_call": {
+              "name": "get_operational_observations",
+              "arguments": {
+                "namespace": null,
+                "native_id": "f012e3b2-36aa-495e-b0ed-64c91a34a511",
+                "query": null,
+                "at": null
+              }
+            }
+          },
+          "assessment_proposal": null,
+          "phase": "choice",
+          "inference_metadata": {
+            "model": "veriq-qwen2.5-1.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T10:52:46.335270+00:00",
+            "prompt_version": "ticket005-adaptive-v3",
+            "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+            "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+            "elapsed_seconds": 24.126,
+            "completed_at": "2026-10-22T10:53:10.461490+00:00",
+            "usage": {
+              "completion_tokens": 133,
+              "prompt_tokens": 953,
+              "total_tokens": 1086,
+              "prompt_tokens_details": {
+                "cached_tokens": 279
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 279,
+              "prompt_n": 674,
+              "prompt_ms": 12969.607,
+              "prompt_per_token_ms": 19.242740356083086,
+              "prompt_per_second": 51.967650214844596,
+              "predicted_n": 133,
+              "predicted_ms": 11089.209,
+              "predicted_per_token_ms": 84.0091590909091,
+              "predicted_per_second": 11.903463989180832
+            }
+          },
+          "started_from_durable_generation": 0,
+          "at": "2026-10-22T10:53:10.500158+00:00",
+          "untrusted_invalid_output": null,
+          "tool_result": {
+            "state": "missing",
+            "evidence": [],
+            "known_at": "2026-10-22T10:53:10.500205+00:00",
+            "as_of": "2026-10-22T10:53:10.500205+00:00",
+            "truncated": false,
+            "limits": {
+              "scan": 500,
+              "records": 3,
+              "bytes": 9000
+            },
+            "missing_information": "No visible matching evidence established"
+          }
+        }
+      },
+      {
+        "id": "0066941e-3e86-448c-8153-b32f03b30566",
+        "kind": "investigative_step",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:53:25.169347+00:00",
+        "data": {
+          "task_id": "97288f81-f345-4303-97d9-eed091b0e4c0",
+          "investigation_id": "e61cfe4d-4a83-40d7-ba3f-0505d37d732b",
+          "revision_id": "2d011d63-4e3a-4ead-a04e-104b2a7e3023",
+          "number": 2,
+          "state": "inconclusive",
+          "decision": {
+            "action": "inconclusive",
+            "question": "What is the operational observation related to the transaction with native ID 'f012e3b2-36aa-495e-b0ed-64c91a34a511'?",
+            "tool_call": null
+          },
+          "assessment_proposal": null,
+          "phase": "choice",
+          "inference_metadata": {
+            "model": "veriq-qwen2.5-1.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T10:53:11.647745+00:00",
+            "prompt_version": "ticket005-adaptive-v3",
+            "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+            "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+            "elapsed_seconds": 13.492,
+            "completed_at": "2026-10-22T10:53:25.140150+00:00",
+            "usage": {
+              "completion_tokens": 67,
+              "prompt_tokens": 1210,
+              "total_tokens": 1277,
+              "prompt_tokens_details": {
+                "cached_tokens": 930
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 930,
+              "prompt_n": 280,
+              "prompt_ms": 6226.628,
+              "prompt_per_token_ms": 22.23795714285714,
+              "prompt_per_second": 44.96815933118214,
+              "predicted_n": 67,
+              "predicted_ms": 7243.874,
+              "predicted_per_token_ms": 109.75566666666667,
+              "predicted_per_second": 9.111146880798865
+            }
+          },
+          "started_from_durable_generation": 1,
+          "at": "2026-10-22T10:53:25.168725+00:00",
+          "untrusted_invalid_output": null
+        }
+      }
+    ]
+  },
+  "workspace": {
+    "investigation": {
+      "id": "e61cfe4d-4a83-40d7-ba3f-0505d37d732b",
+      "kind": "investigation",
+      "classification": "internal",
+      "created_at": "2026-10-22T10:52:03.012428+00:00",
+      "data": {
+        "trigger_type": "interaction",
+        "trigger_id": "2285775f-fda7-4686-8bf4-9b00dd50eca4",
+        "state": "open",
+        "revision": 1,
+        "review_required": true,
+        "latest_revision_id": "2d011d63-4e3a-4ead-a04e-104b2a7e3023",
+        "fingerprint": "080b14dc7b65ec7e28b34702c070f73403de09e04bf9d8bdc905f2fe35262c14",
+        "material_fingerprint": "ad2d771435713a6c827900ec7a9eb31b1cc33feac534642c2b4de4cc9e72df79"
+      }
+    },
+    "revisions": [
+      {
+        "id": "2d011d63-4e3a-4ead-a04e-104b2a7e3023",
+        "kind": "investigation_revision",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:03.407115+00:00",
+        "data": {
+          "investigation_id": "e61cfe4d-4a83-40d7-ba3f-0505d37d732b",
+          "number": 1,
+          "trigger_type": "interaction",
+          "trigger_id": "2285775f-fda7-4686-8bf4-9b00dd50eca4",
+          "context": {
+            "at": "2026-10-22T10:52:00.362250+00:00",
+            "known_at": "2026-10-22T10:52:03.292820+00:00",
+            "entities": [
+              {
+                "canonical_id": "fb811fea-fa88-58fc-a651-60d1294307b2",
+                "native_id": "R1",
+                "kind": "route",
+                "namespace": "cedar-demo-master",
+                "source_identities": [
+                  {
+                    "namespace": "cedar-demo-master",
+                    "native_id": "R1",
+                    "source_id": "cedar-institutional",
+                    "evidence_id": "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                  }
+                ],
+                "names": [
+                  "Domestic transfers"
+                ],
+                "evidence_ids": [
+                  "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                ],
+                "identity_state": "source_bound_or_authorized_mapping"
+              },
+              {
+                "canonical_id": "075c49c5-d304-5b88-a0b5-7a8f706cd841",
+                "native_id": "G1",
+                "kind": "gateway",
+                "namespace": "cedar-demo-master",
+                "source_identities": [
+                  {
+                    "namespace": "cedar-demo-master",
+                    "native_id": "G1",
+                    "source_id": "cedar-institutional",
+                    "evidence_id": "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                  }
+                ],
+                "names": [
+                  "Primary gateway"
+                ],
+                "evidence_ids": [
+                  "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                ],
+                "identity_state": "source_bound_or_authorized_mapping"
+              },
+              {
+                "canonical_id": "059bed23-fac1-5afe-8057-113a34707180",
+                "native_id": "S1",
+                "kind": "service",
+                "namespace": "cedar-demo-master",
+                "source_identities": [
+                  {
+                    "namespace": "cedar-demo-master",
+                    "native_id": "S1",
+                    "source_id": "cedar-institutional",
+                    "evidence_id": "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                  }
+                ],
+                "names": [
+                  "Payment processor"
+                ],
+                "evidence_ids": [
+                  "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                ],
+                "identity_state": "source_bound_or_authorized_mapping"
+              }
+            ],
+            "relationships": [
+              {
+                "subject": "R1",
+                "predicate": "uses_gateway",
+                "object": "G1",
+                "subject_id": "fb811fea-fa88-58fc-a651-60d1294307b2",
+                "identity_namespace": "cedar-demo-master",
+                "source_identities": [
+                  {
+                    "namespace": "cedar-demo-master",
+                    "source_id": "cedar-institutional",
+                    "subject": "R1",
+                    "object": "G1"
+                  }
+                ],
+                "object_id": "075c49c5-d304-5b88-a0b5-7a8f706cd841",
+                "evidence_ids": [
+                  "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                ],
+                "assertion_ids": [
+                  "baa36ca9-5120-4255-8f4f-e40fa1473003"
+                ],
+                "state": "accepted",
+                "semantics": "structural"
+              },
+              {
+                "subject": "G1",
+                "predicate": "depends_on",
+                "object": "S1",
+                "subject_id": "075c49c5-d304-5b88-a0b5-7a8f706cd841",
+                "identity_namespace": "cedar-demo-master",
+                "source_identities": [
+                  {
+                    "namespace": "cedar-demo-master",
+                    "source_id": "cedar-institutional",
+                    "subject": "G1",
+                    "object": "S1"
+                  }
+                ],
+                "object_id": "059bed23-fac1-5afe-8057-113a34707180",
+                "evidence_ids": [
+                  "428081a2-db93-4de1-8a1c-60cbebd6640d"
+                ],
+                "assertion_ids": [
+                  "baa36ca9-5120-4255-8f4f-e40fa1473003"
+                ],
+                "state": "accepted",
+                "semantics": "structural"
+              }
+            ]
+          },
+          "evidence_ids": [
+            "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+            "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+            "428081a2-db93-4de1-8a1c-60cbebd6640d",
+            "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+            "76b6a413-5c4c-484c-ba12-5f464c597377",
+            "81a64887-177e-4770-bc95-3684b96960a2",
+            "825f65ca-134a-45ed-af66-6eb851eb6f98",
+            "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+            "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+            "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+            "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+            "b391cf04-fa77-4193-8deb-15f6f4794be8",
+            "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa"
+          ],
+          "correlations": [
+            {
+              "interaction_id": "2285775f-fda7-4686-8bf4-9b00dd50eca4",
+              "transaction_id": "f012e3b2-36aa-495e-b0ed-64c91a34a511",
+              "route_id": "R1",
+              "gateway_id": "G1",
+              "basis": "verified reference ownership, actual processing path, temporal overlap, accepted structure",
+              "evidence_ids": [
+                "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+                "825f65ca-134a-45ed-af66-6eb851eb6f98",
+                "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+                "81a64887-177e-4770-bc95-3684b96960a2",
+                "b391cf04-fa77-4193-8deb-15f6f4794be8",
+                "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+                "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+                "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa",
+                "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+                "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+                "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+                "76b6a413-5c4c-484c-ba12-5f464c597377",
+                "428081a2-db93-4de1-8a1c-60cbebd6640d"
+              ],
+              "semantics": "observational",
+              "causation": "not_established"
+            }
+          ],
+          "timeline": [
+            {
+              "evidence_id": "428081a2-db93-4de1-8a1c-60cbebd6640d",
+              "type": "knowledge",
+              "occurred_at": "2026-10-22T10:51:58.110676+00:00",
+              "source_recorded_at": "2026-10-22T10:51:58.110676+00:00",
+              "received_at": "2026-10-22T10:51:59.184345+00:00"
+            },
+            {
+              "evidence_id": "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+              "type": "transaction",
+              "occurred_at": "2026-10-22T10:52:00.362250+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.371205+00:00",
+              "received_at": "2026-10-22T10:52:01.818604+00:00"
+            },
+            {
+              "evidence_id": "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.372957+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.373143+00:00",
+              "received_at": "2026-10-22T10:52:01.608108+00:00"
+            },
+            {
+              "evidence_id": "81a64887-177e-4770-bc95-3684b96960a2",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.410762+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.410858+00:00",
+              "received_at": "2026-10-22T10:52:01.614241+00:00"
+            },
+            {
+              "evidence_id": "b391cf04-fa77-4193-8deb-15f6f4794be8",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.455782+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.455904+00:00",
+              "received_at": "2026-10-22T10:52:01.620176+00:00"
+            },
+            {
+              "evidence_id": "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.499991+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.500235+00:00",
+              "received_at": "2026-10-22T10:52:01.628927+00:00"
+            },
+            {
+              "evidence_id": "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.549599+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.549701+00:00",
+              "received_at": "2026-10-22T10:52:01.635103+00:00"
+            },
+            {
+              "evidence_id": "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.586695+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.586792+00:00",
+              "received_at": "2026-10-22T10:52:01.641545+00:00"
+            },
+            {
+              "evidence_id": "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.618197+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.618258+00:00",
+              "received_at": "2026-10-22T10:52:01.647171+00:00"
+            },
+            {
+              "evidence_id": "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.645675+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.645748+00:00",
+              "received_at": "2026-10-22T10:52:01.652824+00:00"
+            },
+            {
+              "evidence_id": "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.674585+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.674652+00:00",
+              "received_at": "2026-10-22T10:52:01.661174+00:00"
+            },
+            {
+              "evidence_id": "76b6a413-5c4c-484c-ba12-5f464c597377",
+              "type": "observation",
+              "occurred_at": "2026-10-22T10:52:00.701112+00:00",
+              "source_recorded_at": "2026-10-22T10:52:00.701175+00:00",
+              "received_at": "2026-10-22T10:52:01.671254+00:00"
+            },
+            {
+              "evidence_id": "825f65ca-134a-45ed-af66-6eb851eb6f98",
+              "type": "interaction",
+              "occurred_at": "2026-10-22T10:52:01.775569+00:00",
+              "source_recorded_at": "2026-10-22T10:52:01.779315+00:00",
+              "received_at": "2026-10-22T10:52:03.009434+00:00"
+            }
+          ],
+          "findings": [
+            {
+              "kind": "recorded_status",
+              "transaction_id": "f012e3b2-36aa-495e-b0ed-64c91a34a511",
+              "text": "Cedar recorded status pending",
+              "evidence_ids": [
+                "35479fe8-b7d6-44ad-98e1-8eabf094f983"
+              ],
+              "beneficiary_verified": false
+            }
+          ],
+          "hypotheses": [
+            {
+              "text": "Gateway timeouts may be related to the reported experience",
+              "evidence_ids": [
+                "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+                "825f65ca-134a-45ed-af66-6eb851eb6f98",
+                "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+                "81a64887-177e-4770-bc95-3684b96960a2",
+                "b391cf04-fa77-4193-8deb-15f6f4794be8",
+                "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+                "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+                "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa",
+                "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+                "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+                "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+                "76b6a413-5c4c-484c-ba12-5f464c597377",
+                "428081a2-db93-4de1-8a1c-60cbebd6640d"
+              ],
+              "epistemic_status": "hypothesis"
+            }
+          ],
+          "unknowns": [
+            "Beneficiary receipt has not been independently verified",
+            "Financial outcome remains pending; timeout does not establish failure"
+          ],
+          "recommendations": [
+            {
+              "text": "Review source evidence and obtain authorized status verification before financial action",
+              "evidence_ids": [
+                "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+                "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+                "428081a2-db93-4de1-8a1c-60cbebd6640d",
+                "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+                "76b6a413-5c4c-484c-ba12-5f464c597377",
+                "81a64887-177e-4770-bc95-3684b96960a2",
+                "825f65ca-134a-45ed-af66-6eb851eb6f98",
+                "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+                "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+                "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+                "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+                "b391cf04-fa77-4193-8deb-15f6f4794be8",
+                "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa"
+              ]
+            }
+          ],
+          "method": "deterministic-evidence-assembly-v1"
+        }
+      }
+    ],
+    "review_history": [],
+    "inference_runs": [
+      {
+        "id": "1b3fc559-8b7a-47e0-9b2a-2c4601c49e36",
+        "kind": "inference_run",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:53:25.170686+00:00",
+        "data": {
+          "task": "adaptive_investigation",
+          "task_id": "97288f81-f345-4303-97d9-eed091b0e4c0",
+          "investigation_id": "e61cfe4d-4a83-40d7-ba3f-0505d37d732b",
+          "revision_id": "2d011d63-4e3a-4ead-a04e-104b2a7e3023",
+          "state": "inconclusive",
+          "result": null,
+          "initiation": "automatic",
+          "inference_metadata": {
+            "model": "veriq-qwen2.5-1.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T10:53:11.647745+00:00",
+            "prompt_version": "ticket005-adaptive-v3",
+            "prompt_sha256": "c3ffd3c3507aa9d78ec616f4c5d721759be792b55fe5e983ecb3ac64420cbfa3",
+            "output_schema_sha256": "71a02149a0e161c62046cec1e875142db229be171744859a50e1bea83e7ba4bc",
+            "elapsed_seconds": 13.492,
+            "completed_at": "2026-10-22T10:53:25.140150+00:00",
+            "usage": {
+              "completion_tokens": 67,
+              "prompt_tokens": 1210,
+              "total_tokens": 1277,
+              "prompt_tokens_details": {
+                "cached_tokens": 930
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 930,
+              "prompt_n": 280,
+              "prompt_ms": 6226.628,
+              "prompt_per_token_ms": 22.23795714285714,
+              "prompt_per_second": 44.96815933118214,
+              "predicted_n": 67,
+              "predicted_ms": 7243.874,
+              "predicted_per_token_ms": 109.75566666666667,
+              "predicted_per_second": 9.111146880798865
+            }
+          },
+          "evidence_ids": [
+            "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+            "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+            "428081a2-db93-4de1-8a1c-60cbebd6640d",
+            "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+            "76b6a413-5c4c-484c-ba12-5f464c597377",
+            "81a64887-177e-4770-bc95-3684b96960a2",
+            "825f65ca-134a-45ed-af66-6eb851eb6f98",
+            "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+            "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+            "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+            "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+            "b391cf04-fa77-4193-8deb-15f6f4794be8",
+            "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa"
+          ],
+          "qualification": "unqualified",
+          "acceptance": "not_accepted"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "id": "428081a2-db93-4de1-8a1c-60cbebd6640d",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:51:59.185302+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:51:58.110676+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-institutional",
+          "native_record_id": "3cab914c-ca6a-4c9d-b81e-e9c23d93fe7f",
+          "record_type": "knowledge",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-config-v1",
+          "payload": {
+            "entities": [
+              {
+                "native_id": "R1",
+                "kind": "route",
+                "name": "Domestic transfers",
+                "aliases": []
+              },
+              {
+                "native_id": "R2",
+                "kind": "route",
+                "name": "Alternative transfers",
+                "aliases": []
+              },
+              {
+                "native_id": "G1",
+                "kind": "gateway",
+                "name": "Primary gateway",
+                "aliases": []
+              },
+              {
+                "native_id": "G2",
+                "kind": "gateway",
+                "name": "Secondary gateway",
+                "aliases": []
+              },
+              {
+                "native_id": "S1",
+                "kind": "service",
+                "name": "Payment processor",
+                "aliases": []
+              }
+            ],
+            "relationships": [
+              {
+                "subject": "R1",
+                "predicate": "uses_gateway",
+                "object": "G1"
+              },
+              {
+                "subject": "R2",
+                "predicate": "uses_gateway",
+                "object": "G2"
+              },
+              {
+                "subject": "G1",
+                "predicate": "depends_on",
+                "object": "S1"
+              },
+              {
+                "subject": "G2",
+                "predicate": "depends_on",
+                "object": "S1"
+              }
+            ],
+            "valid_from": "2026-10-22T10:51:58.104688+00:00",
+            "valid_to": null
+          },
+          "received_at": "2026-10-22T10:51:59.184345+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "0bce15628e40c137f0fc02b24aee08a9d9816f00a755ac6a2ed237c3de342a4e",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "92a5db2a-f24b-4f96-a378-bda6b14e873c",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.609129+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.373143+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "f4ef6217-57f5-494d-a74a-84c01944092f",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.372957+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.608108+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "f3c44e4b13cccefb700905cc245259043f8d0c361c3ac1ecf3f8b8ddd091dd97",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "81a64887-177e-4770-bc95-3684b96960a2",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.615041+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.410858+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "4c7268e1-5dfe-4e58-b6ac-716197380595",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.410762+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.614241+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "8de061bb39be498c537ab6f2f3e18dc4292646fd71466bf00bdece48adbd8480",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "b391cf04-fa77-4193-8deb-15f6f4794be8",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.620999+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.455904+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "db9f05f2-2ac1-4a79-bd1c-d4102377c725",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.455782+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.620176+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "6a107e2945a40d87d57bad5df987cbcc9419278f052f18d967881bc7048ff9f1",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "1de0e00c-a7cd-46f3-a21f-d47911e1218e",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.629912+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.500235+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "54ccd878-39d2-42dc-8b2e-866c3ed9d7c8",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.499991+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.628927+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "0a606a43039b3e9656258924870907eb668b57696aa865339b17f46747e34a24",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "9b934f35-5d60-47f1-b7c8-76c7d51c20cd",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.635942+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.549701+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "2aeb2c0e-81b2-4ce3-82c7-f46fdc15cf4e",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.549599+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.635103+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "50b811e9d80e6527ef2298cff58699c8ea74f5b02c2470a9bceead010ecf2e51",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "d00d46e0-81f6-4e32-8b3c-02cadfb7b6fa",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.642387+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.586792+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "378385e5-c4e1-42c1-aba4-accbf09449d2",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.586695+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.641545+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "fc419db004f4efc62d04ca7063d80aaa2bcbf3cc50aa19e5cf3a00543341919d",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "7582baa8-ebd7-486b-959c-2fde7cde8c7f",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.647982+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.618258+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "6aa6bb31-e358-4d85-b533-4c79b0965926",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.618197+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.647171+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "2192b031b5a404a2690a4760b603cf7180c770180ad328872606d6e23ac70ec7",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "9be83ab7-b08b-4f85-afdf-58ed70df068a",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.653664+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.645748+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "cfde6d2d-85b9-458b-9b50-516345602eec",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.645675+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.652824+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "2eba261b541a61dabed7fb3ded4b88690bf6fd7c6092399772d8b6e942b19099",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "90ed45be-c8fe-4dbc-8fbd-f6a4f715e2fe",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.662552+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.674652+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "8bd6af3a-fccf-4333-8bea-104341eb0918",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.674585+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.661174+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "f1cba0724dcfc1324303973de650d40f51fbcfcca4f4a95a470a0f1772853e45",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "76b6a413-5c4c-484c-ba12-5f464c597377",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.672664+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.701175+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-operations",
+          "native_record_id": "7cf7de3e-b29b-4d6b-9f00-7ab2092e7538",
+          "record_type": "observation",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-monitoring-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.701112+00:00",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "attempts": 1,
+            "timeouts": 1,
+            "window_seconds": 1
+          },
+          "received_at": "2026-10-22T10:52:01.671254+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "4a100d0f23e00ad182662ca83f15b9023b8b86a8b479428b53c30e54d7de8a53",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "35479fe8-b7d6-44ad-98e1-8eabf094f983",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:01.819509+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:00.371205+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-status",
+          "native_record_id": "f012e3b2-36aa-495e-b0ed-64c91a34a511:1",
+          "record_type": "transaction",
+          "schema_version": "1.0",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-status-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:00.362250+00:00",
+            "transaction_id": "f012e3b2-36aa-495e-b0ed-64c91a34a511",
+            "customer_id": "C1",
+            "account_id": "A1",
+            "amount_minor": 1000,
+            "currency": "NGN",
+            "route_id": "R1",
+            "gateway_id": "G1",
+            "status": "pending",
+            "response": "timeout",
+            "version": 1,
+            "beneficiary_verified": false
+          },
+          "received_at": "2026-10-22T10:52:01.818604+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "cdb57bfc54589e75086f8976d6562030e20d1d8fbd1a63c31b3a668a4facef95",
+          "processing_state": "processed"
+        }
+      },
+      {
+        "id": "825f65ca-134a-45ed-af66-6eb851eb6f98",
+        "kind": "evidence",
+        "classification": "internal",
+        "created_at": "2026-10-22T10:52:03.010365+00:00",
+        "data": {
+          "occurred_at": "2026-10-22T10:52:01.779315+00:00",
+          "institution_id": "cedar",
+          "environment": "development",
+          "source_id": "cedar-channel-in-app",
+          "native_record_id": "T005-a46ffaa6-703c-4cfa-b7d2-faccaf2b9627",
+          "record_type": "interaction",
+          "schema_version": "1.1",
+          "classification": "internal",
+          "correlation_id": null,
+          "authorization_ref": "cedar-in-app-v1",
+          "payload": {
+            "occurred_at": "2026-10-22T10:52:01.775569+00:00",
+            "channel": "in_app",
+            "text": "My transfer is delayed. Please inspect the processing evidence.",
+            "customer_id": "C1",
+            "transaction_id": "f012e3b2-36aa-495e-b0ed-64c91a34a511"
+          },
+          "origin": {
+            "adapter_id": "in-app-message-v1",
+            "native_record_id": "T005-a46ffaa6-703c-4cfa-b7d2-faccaf2b9627",
+            "normalized_at": "2026-10-22T10:52:01.777632+00:00"
+          },
+          "received_at": "2026-10-22T10:52:03.009434+00:00",
+          "identity_namespace": "cedar-demo-master",
+          "digest": "3ed845fe6981ad19e1cd3a50181a83b0dded1a809452be44769e040c7b6ececa",
+          "processing_state": "processed"
+        }
+      }
+    ]
+  }
+}

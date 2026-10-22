@@ -1,0 +1,25 @@
+[
+  {
+    "id": "2d1740ce-8101-4f27-82a6-368cf3b7f17d",
+    "kind": "issue",
+    "classification": "internal",
+    "created_at": "2026-10-21T18:52:14.450596+00:00",
+    "data": {
+      "category": "reported_failure",
+      "count": 4,
+      "channels": [
+        "branch",
+        "contact_centre",
+        "email",
+        "in_app"
+      ],
+      "evidence_ids": [
+        "e110624d-a466-4195-8472-b5c15cef41d7",
+        "79d3a3e1-2a24-402b-b865-5ae555d460a5",
+        "8f1d3816-02e9-458f-9c6f-7b6a973518d0",
+        "a052c332-38b4-47d3-8f05-a43c01c8d4a4"
+      ],
+      "meaning": "Recurring customer reports; common technical cause is not established"
+    }
+  }
+]

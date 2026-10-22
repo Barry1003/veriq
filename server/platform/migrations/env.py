@@ -1,0 +1,19 @@
+import os
+
+from alembic import context
+from sqlalchemy import create_engine
+
+from shared.db import Base
+
+config = context.config
+database_url = os.environ.get("DATABASE_URL", config.get_main_option("sqlalchemy.url"))
+if context.is_offline_mode():
+    context.configure(url=database_url, target_metadata=Base.metadata, literal_binds=True)
+    with context.begin_transaction():
+        context.run_migrations()
+else:
+    engine = create_engine(database_url)
+    with engine.connect() as connection:
+        context.configure(connection=connection, target_metadata=Base.metadata)
+        with context.begin_transaction():
+            context.run_migrations()

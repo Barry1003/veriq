@@ -1,0 +1,11 @@
+{
+  "v0.4_operations_preserved": 42,
+  "no_new_required_old_parameters_or_body_fields": true,
+  "byte_identical_v0.4_files": {
+    "cedar_source": 5,
+    "baseline_tests": 15,
+    "old_evaluations": 2
+  },
+  "cedar_openapi_unchanged": true,
+  "new_veriq_api_version": "0.5.0"
+}

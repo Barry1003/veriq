@@ -1,0 +1,164 @@
+{
+  "$defs": {
+    "DerivedFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "rule": {
+          "enum": [
+            "processing_receipt_unverified",
+            "configured_execution_mismatch",
+            "customer_completion_dispute"
+          ],
+          "title": "Rule",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "rule",
+        "evidence_ids"
+      ],
+      "title": "DerivedFinding",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "explanation": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "supports": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Supports",
+          "type": "array"
+        },
+        "weakens": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Weakens",
+          "type": "array"
+        },
+        "next_check": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Next Check",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "explanation",
+        "supports",
+        "weakens",
+        "next_check"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "SourceFact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "maxLength": 36,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "field": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "field"
+      ],
+      "title": "SourceFact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "source_facts": {
+      "items": {
+        "$ref": "#/$defs/SourceFact"
+      },
+      "maxItems": 4,
+      "title": "Source Facts",
+      "type": "array"
+    },
+    "derived_findings": {
+      "items": {
+        "$ref": "#/$defs/DerivedFinding"
+      },
+      "maxItems": 4,
+      "title": "Derived Findings",
+      "type": "array"
+    },
+    "hypotheses": {
+      "items": {
+        "$ref": "#/$defs/Hypothesis"
+      },
+      "maxItems": 3,
+      "title": "Hypotheses",
+      "type": "array"
+    },
+    "contradictions": {
+      "items": {
+        "$ref": "#/$defs/DerivedFinding"
+      },
+      "maxItems": 3,
+      "title": "Contradictions",
+      "type": "array"
+    },
+    "unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "title": "Unknowns",
+      "type": "array"
+    },
+    "recommended_next_actions": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "title": "Recommended Next Actions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "source_facts",
+    "derived_findings",
+    "hypotheses",
+    "contradictions",
+    "unknowns",
+    "recommended_next_actions"
+  ],
+  "title": "AdaptiveAssessment",
+  "type": "object"
+}

@@ -1,0 +1,1294 @@
+{
+  "dataset_sha256": "9562a2fe069ff3903b96ac4c0e85ddff14086a5cf85169804bc72c47b9551a09",
+  "infrastructure": "Actual local HTTP inference; authorized SQLite/ASGI evidence fixtures, not PostgreSQL full stack",
+  "scope": "Synthetic unfamiliar cases; no conclusions injected; frozen before first execution",
+  "model": "veriq-qwen2.5-0.5b",
+  "qualification": "unqualified",
+  "context": 4096,
+  "output_token_limit": "512",
+  "baseline_resources": {
+    "at": "2026-10-22T01:55:11.861522+00:00",
+    "monotonic": 14893.607413041,
+    "mem_total_bytes": 7988277248,
+    "mem_available_bytes": 1284993024,
+    "swap_used_bytes": 5473927168,
+    "pswpin_pages": 405157,
+    "pswpout_pages": 1850000,
+    "memory_full_psi_avg10": 0.0,
+    "driver_rss_bytes": 88354816,
+    "driver_pss_bytes": 74609664,
+    "runtime_rss_bytes": 0,
+    "runtime_pss_bytes": 0,
+    "runtime_swap_bytes": 0
+  },
+  "cases": [
+    {
+      "id": "A-discovery",
+      "requirement": "Retrieve document absent from seed, then assess with a novel supported hypothesis or explicit evidence-driven revision.",
+      "elapsed_seconds": 40.419,
+      "task": {
+        "id": "7277913f-a51a-4b25-9133-337594b334d9",
+        "kind": "ai_task",
+        "classification": "internal",
+        "created_at": "2026-10-22T01:55:12.329894+00:00",
+        "data": {
+          "state": "completed",
+          "task": "adaptive_investigation",
+          "evidence_ids": [
+            "24c100c2-675a-4f88-a20d-2c644d896fae",
+            "6d198727-36d3-4bcb-bed8-432b88f230b7",
+            "6f10a470-93b9-4821-b998-f2c9fdff58bc"
+          ],
+          "revision_id": "200b6e1e-109f-4a2b-b7ed-477a1e720e39",
+          "investigation_id": "753ccee9-5371-4bd7-9404-9affeabead74",
+          "attempts": 1,
+          "initiation": "manual",
+          "scheduling_identity": "83217f439fb71b4572a550deff4f73bc7e3774ab5c356d43c58c7b81744c0aec",
+          "intent_id": null,
+          "reprocessing_of": null,
+          "policy_version": "automatic-v1:1",
+          "model_config_version": "1",
+          "history": [
+            {
+              "state": "queued",
+              "at": "2026-10-22T01:55:12.329466+00:00"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T01:55:12.345187+00:00"
+            },
+            {
+              "state": "completed",
+              "outcome": "invalid_model_output",
+              "at": "2026-10-22T01:55:52.747308+00:00"
+            }
+          ],
+          "next_attempt_at": 0,
+          "lease_until": 0,
+          "run_id": "adee9b03-1b42-4df0-99de-9205441e349d",
+          "outcome": "invalid_model_output",
+          "adaptive_progress": {
+            "generations": 1,
+            "tool_calls": 0,
+            "outcome": "invalid_model_output"
+          }
+        }
+      },
+      "calls": [
+        {
+          "input": {
+            "revision_id": "200b6e1e-109f-4a2b-b7ed-477a1e720e39",
+            "known_at": "2026-10-22T01:55:12.295641+00:00",
+            "seed_evidence": [
+              {
+                "id": "6d198727-36d3-4bcb-bed8-432b88f230b7",
+                "record_type": "transaction",
+                "source_id": "t",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "status"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:55:12.170403+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:55:12.177348+00:00",
+                "native_record_id": "a1365380-ce1d-4643-909e-105f69172bed",
+                "origin": null,
+                "digest": "e203de2e8161dcd25e44eb94e0640f52d1d4638192af0e819597e51440dfa6e7",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:55:12.170403+00:00",
+                  "transaction_id": "TX1",
+                  "customer_id": "C1",
+                  "account_id": "A1",
+                  "amount_minor": 1000,
+                  "currency": "NGN",
+                  "route_id": "R1",
+                  "gateway_id": "G3",
+                  "status": "pending",
+                  "response": "timeout",
+                  "version": 1,
+                  "beneficiary_verified": false
+                }
+              },
+              {
+                "id": "6f10a470-93b9-4821-b998-f2c9fdff58bc",
+                "record_type": "interaction",
+                "source_id": "c",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "report"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:55:12.228314+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:55:12.233675+00:00",
+                "native_record_id": "40b6e062-8743-471e-b283-7d70ca150c27",
+                "origin": null,
+                "digest": "16e6e26b29e5aa32c50747b4e5ea632bc5afd17af89941b1890be751b10c7fe0",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:55:12.228314+00:00",
+                  "channel": "in_app",
+                  "text": "My transfer is delayed; which handoff needs checking?",
+                  "customer_id": "C1",
+                  "transaction_id": "TX1"
+                }
+              }
+            ],
+            "initial_evidence_ids": [
+              "6f10a470-93b9-4821-b998-f2c9fdff58bc",
+              "6d198727-36d3-4bcb-bed8-432b88f230b7"
+            ],
+            "history": [],
+            "remaining": {
+              "generations": 4,
+              "tool_calls": 3
+            }
+          },
+          "error": "InvalidInference",
+          "raw_output": "{\n  \"action\": \"assess\",\n  \"question\": \"What is the status of the transaction with the customer ID C1?\",\n  \"tool_call\": null,\n  \"assessment\": {\n    \"source_facts\": [\n      {\n        \"evidence_id\": \"6d198727-36d3-4bcb-bed8-432b88f230b7\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      },\n      {\n        \"evidence_id\": \"6f10a470-93b9-4821-b998-f2c9fdff58bc\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      }\n    ],\n    \"derived_findings\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"6d198727-36d3-4bcb-bed8-432b88f230b7\", \"6f10a470-93b9-4821-b998-f2c9fdff58bc\"]\n      }\n    ],\n    \"hypotheses\": [\n      {\n        \"label\": \"The transaction is pending.\",\n        \"explanation\": \"The transaction is in the 'pending' status, which is a common state for transactions that are still being processed by the system. This is consistent with the 'customer_completion_dispute' rule, which suggests that the transaction is not yet verified or confirmed by the system. The fact that the transaction is in the 'pending' status and the 'customer_completion_dispute' rule are consistent with this hypothesis. However, we cannot confirm the status of the transaction without more evidence, such\",\n        \"supports\": [\n          \"The transaction is in the 'pending' status.\"\n        ],\n        \"weakens\": [\n          \"The transaction is not yet verified or confirmed by the system.\"\n        ],\n        \"next_check\": \"Search for more evidence to confirm the status of the transaction.\"\n      }\n    ],\n    \"contradictions\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"6d198727-36d3-4bcb-bed8-432b88f23",
+          "metadata": {
+            "model": "veriq-qwen2.5-0.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T01:55:12.363325+00:00",
+            "prompt_version": "ticket005-adaptive-v1",
+            "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+            "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+            "elapsed_seconds": 40.37,
+            "completed_at": "2026-10-22T01:55:52.733190+00:00",
+            "usage": {
+              "completion_tokens": 512,
+              "prompt_tokens": 1305,
+              "total_tokens": 1817,
+              "prompt_tokens_details": {
+                "cached_tokens": 348
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 348,
+              "prompt_n": 957,
+              "prompt_ms": 11870.028,
+              "prompt_per_token_ms": 12.403373040752351,
+              "prompt_per_second": 80.62323020636515,
+              "predicted_n": 512,
+              "predicted_ms": 28398.389,
+              "predicted_per_token_ms": 55.57414677103718,
+              "predicted_per_second": 17.993978461242996
+            }
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "5f5625e0-c3c6-45f5-863f-f6a1e471bbc5",
+          "kind": "investigative_step",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:55:52.745151+00:00",
+          "data": {
+            "task_id": "7277913f-a51a-4b25-9133-337594b334d9",
+            "investigation_id": "753ccee9-5371-4bd7-9404-9affeabead74",
+            "revision_id": "200b6e1e-109f-4a2b-b7ed-477a1e720e39",
+            "number": 1,
+            "state": "invalid_model_output",
+            "decision": null,
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:55:12.363325+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 40.37,
+              "completed_at": "2026-10-22T01:55:52.733190+00:00",
+              "usage": {
+                "completion_tokens": 512,
+                "prompt_tokens": 1305,
+                "total_tokens": 1817,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 957,
+                "prompt_ms": 11870.028,
+                "prompt_per_token_ms": 12.403373040752351,
+                "prompt_per_second": 80.62323020636515,
+                "predicted_n": 512,
+                "predicted_ms": 28398.389,
+                "predicted_per_token_ms": 55.57414677103718,
+                "predicted_per_second": 17.993978461242996
+              }
+            },
+            "started_from_durable_generation": 0,
+            "at": "2026-10-22T01:55:52.744616+00:00",
+            "untrusted_invalid_output": "{\n  \"action\": \"assess\",\n  \"question\": \"What is the status of the transaction with the customer ID C1?\",\n  \"tool_call\": null,\n  \"assessment\": {\n    \"source_facts\": [\n      {\n        \"evidence_id\": \"6d198727-36d3-4bcb-bed8-432b88f230b7\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      },\n      {\n        \"evidence_id\": \"6f10a470-93b9-4821-b998-f2c9fdff58bc\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      }\n    ],\n    \"derived_findings\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"6d198727-36d3-4bcb-bed8-432b88f230b7\", \"6f10a470-93b9-4821-b998-f2c9fdff58bc\"]\n      }\n    ],\n    \"hypotheses\": [\n      {\n        \"label\": \"The transaction is pending.\",\n        \"explanation\": \"The transaction is in the 'pending' status, which is a common state for transactions that are still being processed by the system. This is consistent with the 'customer_completion_dispute' rule, which suggests that the transaction is not yet verified or confirmed by the system. The fact that the transaction is in the 'pending' status and the 'customer_completion_dispute' rule are consistent with this hypothesis. However, we cannot confirm the status of the transaction without more evidence, such\",\n        \"supports\": [\n          \"The transaction is in the 'pending' status.\"\n        ],\n        \"weakens\": [\n          \"The transaction is not yet verified or confirmed by the system.\"\n        ],\n        \"next_check\": \"Search for more evidence to confirm the status of the transaction.\"\n      }\n    ],\n    \"contradictions\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"6d198727-36d3-4bcb-bed8-432b88f23"
+          }
+        }
+      ],
+      "runs": [
+        {
+          "id": "adee9b03-1b42-4df0-99de-9205441e349d",
+          "kind": "inference_run",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:55:52.746657+00:00",
+          "data": {
+            "task": "adaptive_investigation",
+            "task_id": "7277913f-a51a-4b25-9133-337594b334d9",
+            "investigation_id": "753ccee9-5371-4bd7-9404-9affeabead74",
+            "revision_id": "200b6e1e-109f-4a2b-b7ed-477a1e720e39",
+            "state": "invalid_model_output",
+            "result": null,
+            "initiation": "manual",
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:55:12.363325+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 40.37,
+              "completed_at": "2026-10-22T01:55:52.733190+00:00",
+              "usage": {
+                "completion_tokens": 512,
+                "prompt_tokens": 1305,
+                "total_tokens": 1817,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 957,
+                "prompt_ms": 11870.028,
+                "prompt_per_token_ms": 12.403373040752351,
+                "prompt_per_second": 80.62323020636515,
+                "predicted_n": 512,
+                "predicted_ms": 28398.389,
+                "predicted_per_token_ms": 55.57414677103718,
+                "predicted_per_second": 17.993978461242996
+              }
+            },
+            "evidence_ids": [
+              "24c100c2-675a-4f88-a20d-2c644d896fae",
+              "6d198727-36d3-4bcb-bed8-432b88f230b7",
+              "6f10a470-93b9-4821-b998-f2c9fdff58bc"
+            ],
+            "qualification": "unqualified",
+            "acceptance": "not_accepted"
+          }
+        }
+      ],
+      "metrics": {
+        "actual_http_generations": 1,
+        "schema_valid_decisions": 0,
+        "executed_tools": 0,
+        "new_evidence_retrieved": false,
+        "document_discovered": false,
+        "assessment_published": false,
+        "safety_lifecycle_invalidated": null,
+        "competing_hypothesis_count": 0,
+        "reasoning_quality": "requires manual rubric inspection; schema is not factual correctness"
+      },
+      "resources_after": {
+        "at": "2026-10-22T01:55:52.756991+00:00",
+        "monotonic": 14934.502885096,
+        "mem_total_bytes": 7988277248,
+        "mem_available_bytes": 1248784384,
+        "swap_used_bytes": 5475655680,
+        "pswpin_pages": 406797,
+        "pswpout_pages": 1851103,
+        "memory_full_psi_avg10": 0.0,
+        "driver_rss_bytes": 98656256,
+        "driver_pss_bytes": 83774464,
+        "runtime_rss_bytes": 0,
+        "runtime_pss_bytes": 0,
+        "runtime_swap_bytes": 0
+      }
+    },
+    {
+      "id": "B-route-mismatch",
+      "requirement": "Distinguish actual G3 from configured G2; do not establish G2 as cause.",
+      "elapsed_seconds": 41.547,
+      "task": {
+        "id": "4d4050bc-6f2e-457e-91e6-7fd8cf3cd61f",
+        "kind": "ai_task",
+        "classification": "internal",
+        "created_at": "2026-10-22T01:55:53.207816+00:00",
+        "data": {
+          "state": "completed",
+          "task": "adaptive_investigation",
+          "evidence_ids": [
+            "48b7c696-770a-4e05-b86b-0d1bb1367bc9",
+            "740931e4-466d-4abf-a61c-902135cd985f",
+            "b58fb11c-94a6-436f-8daf-e28d2c74548e"
+          ],
+          "revision_id": "d2c53021-5982-4532-b51b-57262afab1f0",
+          "investigation_id": "bb330621-3f55-4f18-96d2-b5d87f0577dd",
+          "attempts": 1,
+          "initiation": "manual",
+          "scheduling_identity": "ed538bbc11086d705bfc52477d01444219cc74d52ca4805c14e4f4541a9a1ef8",
+          "intent_id": null,
+          "reprocessing_of": null,
+          "policy_version": "automatic-v1:1",
+          "model_config_version": "1",
+          "history": [
+            {
+              "state": "queued",
+              "at": "2026-10-22T01:55:53.207289+00:00"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T01:55:53.222460+00:00"
+            },
+            {
+              "state": "completed",
+              "outcome": "invalid_model_output",
+              "at": "2026-10-22T01:56:34.753041+00:00"
+            }
+          ],
+          "next_attempt_at": 0,
+          "lease_until": 0,
+          "run_id": "e8dc407f-56bc-4c09-902b-7ba056f5b438",
+          "outcome": "invalid_model_output",
+          "adaptive_progress": {
+            "generations": 1,
+            "tool_calls": 0,
+            "outcome": "invalid_model_output"
+          }
+        }
+      },
+      "calls": [
+        {
+          "input": {
+            "revision_id": "d2c53021-5982-4532-b51b-57262afab1f0",
+            "known_at": "2026-10-22T01:55:53.177074+00:00",
+            "seed_evidence": [
+              {
+                "id": "48b7c696-770a-4e05-b86b-0d1bb1367bc9",
+                "record_type": "transaction",
+                "source_id": "t",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "status"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:55:53.065781+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:55:53.071261+00:00",
+                "native_record_id": "22e5b212-427a-4d3a-80b3-7d4684b7d1c1",
+                "origin": null,
+                "digest": "47e7b8d1df2fe5836c8df4e7cfc2fc34028a7077d94c223a2ed48e54c87079d7",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:55:53.065781+00:00",
+                  "transaction_id": "TX1",
+                  "customer_id": "C1",
+                  "account_id": "A1",
+                  "amount_minor": 1000,
+                  "currency": "NGN",
+                  "route_id": "R1",
+                  "gateway_id": "G3",
+                  "status": "pending",
+                  "response": "timeout",
+                  "version": 1,
+                  "beneficiary_verified": false
+                }
+              },
+              {
+                "id": "b58fb11c-94a6-436f-8daf-e28d2c74548e",
+                "record_type": "interaction",
+                "source_id": "c",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "report"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:55:53.118599+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:55:53.123946+00:00",
+                "native_record_id": "9010a2d0-4d53-437b-b868-11d2f6f5b34b",
+                "origin": null,
+                "digest": "fed7c13ebce188498d57c47efb58b77ab2169686b851c9f4b4b05be954c08686",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:55:53.118599+00:00",
+                  "channel": "in_app",
+                  "text": "My transfer failed. Could the G2 incident explain it?",
+                  "customer_id": "C1",
+                  "transaction_id": "TX1"
+                }
+              }
+            ],
+            "initial_evidence_ids": [
+              "b58fb11c-94a6-436f-8daf-e28d2c74548e",
+              "48b7c696-770a-4e05-b86b-0d1bb1367bc9"
+            ],
+            "history": [],
+            "remaining": {
+              "generations": 4,
+              "tool_calls": 3
+            }
+          },
+          "error": "InvalidInference",
+          "raw_output": "{\n  \"action\": \"assess\",\n  \"question\": \"What is the status of the transaction with the customer ID C1?\",\n  \"tool_call\": null,\n  \"assessment\": {\n    \"source_facts\": [\n      {\n        \"evidence_id\": \"b58fb11c-94a6-436f-8daf-e28d2c74548e\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      },\n      {\n        \"evidence_id\": \"48b7c696-770a-4e05-b86b-0d1bb1367bc9\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      }\n    ],\n    \"derived_findings\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"b58fb11c-94a6-436f-8daf-e28d2c74548e\", \"48b7c696-770a-4e05-b86b-0d1bb1367bc9\"]\n      }\n    ],\n    \"hypotheses\": [\n      {\n        \"label\": \"The transaction is pending.\",\n        \"explanation\": \"The transaction is pending because the customer ID is present in the evidence, indicating that the transaction has not been finalized yet. The status of the transaction is 'pending'. This is a strong hypothesis that can be supported by the evidence provided. However, it is not a definitive answer as the status could change in the future if the transaction is finalized. The status is not verified yet, so it is not a confirmed fact. The status is also not provided in the evidence, so it is not a '\",\"supports\" :[ \"pending\" ],\"weakens\" :[ \"pending\" ],\"next_check\" :\".\"\n      },\n      {\n        \"label\": \"The transaction is not pending.\",\n        \"explanation\": \"The transaction is not pending because the customer ID is not present in the evidence. The status of the transaction is 'pending'. This is a weak hypothesis that can be supported by the evidence provided. However, it is not a definitive answer as the status could change in the",
+          "metadata": {
+            "model": "veriq-qwen2.5-0.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T01:55:53.238868+00:00",
+            "prompt_version": "ticket005-adaptive-v1",
+            "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+            "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+            "elapsed_seconds": 41.498,
+            "completed_at": "2026-10-22T01:56:34.736708+00:00",
+            "usage": {
+              "completion_tokens": 512,
+              "prompt_tokens": 1315,
+              "total_tokens": 1827,
+              "prompt_tokens_details": {
+                "cached_tokens": 348
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 348,
+              "prompt_n": 967,
+              "prompt_ms": 12222.219,
+              "prompt_per_token_ms": 12.639316442605997,
+              "prompt_per_second": 79.11820267661707,
+              "predicted_n": 512,
+              "predicted_ms": 29225.654,
+              "predicted_per_token_ms": 57.19306066536203,
+              "predicted_per_second": 17.48463866711075
+            }
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "443672e9-46f3-4003-bdbf-5960623bd3e2",
+          "kind": "investigative_step",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:56:34.751486+00:00",
+          "data": {
+            "task_id": "4d4050bc-6f2e-457e-91e6-7fd8cf3cd61f",
+            "investigation_id": "bb330621-3f55-4f18-96d2-b5d87f0577dd",
+            "revision_id": "d2c53021-5982-4532-b51b-57262afab1f0",
+            "number": 1,
+            "state": "invalid_model_output",
+            "decision": null,
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:55:53.238868+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 41.498,
+              "completed_at": "2026-10-22T01:56:34.736708+00:00",
+              "usage": {
+                "completion_tokens": 512,
+                "prompt_tokens": 1315,
+                "total_tokens": 1827,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 967,
+                "prompt_ms": 12222.219,
+                "prompt_per_token_ms": 12.639316442605997,
+                "prompt_per_second": 79.11820267661707,
+                "predicted_n": 512,
+                "predicted_ms": 29225.654,
+                "predicted_per_token_ms": 57.19306066536203,
+                "predicted_per_second": 17.48463866711075
+              }
+            },
+            "started_from_durable_generation": 0,
+            "at": "2026-10-22T01:56:34.750852+00:00",
+            "untrusted_invalid_output": "{\n  \"action\": \"assess\",\n  \"question\": \"What is the status of the transaction with the customer ID C1?\",\n  \"tool_call\": null,\n  \"assessment\": {\n    \"source_facts\": [\n      {\n        \"evidence_id\": \"b58fb11c-94a6-436f-8daf-e28d2c74548e\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      },\n      {\n        \"evidence_id\": \"48b7c696-770a-4e05-b86b-0d1bb1367bc9\",\n        \"field\": \"status\",\n        \"value\": \"pending\"\n      }\n    ],\n    \"derived_findings\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"b58fb11c-94a6-436f-8daf-e28d2c74548e\", \"48b7c696-770a-4e05-b86b-0d1bb1367bc9\"]\n      }\n    ],\n    \"hypotheses\": [\n      {\n        \"label\": \"The transaction is pending.\",\n        \"explanation\": \"The transaction is pending because the customer ID is present in the evidence, indicating that the transaction has not been finalized yet. The status of the transaction is 'pending'. This is a strong hypothesis that can be supported by the evidence provided. However, it is not a definitive answer as the status could change in the future if the transaction is finalized. The status is not verified yet, so it is not a confirmed fact. The status is also not provided in the evidence, so it is not a '\",\"supports\" :[ \"pending\" ],\"weakens\" :[ \"pending\" ],\"next_check\" :\".\"\n      },\n      {\n        \"label\": \"The transaction is not pending.\",\n        \"explanation\": \"The transaction is not pending because the customer ID is not present in the evidence. The status of the transaction is 'pending'. This is a weak hypothesis that can be supported by the evidence provided. However, it is not a definitive answer as the status could change in the"
+          }
+        }
+      ],
+      "runs": [
+        {
+          "id": "e8dc407f-56bc-4c09-902b-7ba056f5b438",
+          "kind": "inference_run",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:56:34.752675+00:00",
+          "data": {
+            "task": "adaptive_investigation",
+            "task_id": "4d4050bc-6f2e-457e-91e6-7fd8cf3cd61f",
+            "investigation_id": "bb330621-3f55-4f18-96d2-b5d87f0577dd",
+            "revision_id": "d2c53021-5982-4532-b51b-57262afab1f0",
+            "state": "invalid_model_output",
+            "result": null,
+            "initiation": "manual",
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:55:53.238868+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 41.498,
+              "completed_at": "2026-10-22T01:56:34.736708+00:00",
+              "usage": {
+                "completion_tokens": 512,
+                "prompt_tokens": 1315,
+                "total_tokens": 1827,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 967,
+                "prompt_ms": 12222.219,
+                "prompt_per_token_ms": 12.639316442605997,
+                "prompt_per_second": 79.11820267661707,
+                "predicted_n": 512,
+                "predicted_ms": 29225.654,
+                "predicted_per_token_ms": 57.19306066536203,
+                "predicted_per_second": 17.48463866711075
+              }
+            },
+            "evidence_ids": [
+              "48b7c696-770a-4e05-b86b-0d1bb1367bc9",
+              "740931e4-466d-4abf-a61c-902135cd985f",
+              "b58fb11c-94a6-436f-8daf-e28d2c74548e"
+            ],
+            "qualification": "unqualified",
+            "acceptance": "not_accepted"
+          }
+        }
+      ],
+      "metrics": {
+        "actual_http_generations": 1,
+        "schema_valid_decisions": 0,
+        "executed_tools": 0,
+        "new_evidence_retrieved": false,
+        "document_discovered": false,
+        "assessment_published": false,
+        "safety_lifecycle_invalidated": null,
+        "competing_hypothesis_count": 0,
+        "reasoning_quality": "requires manual rubric inspection; schema is not factual correctness"
+      },
+      "resources_after": {
+        "at": "2026-10-22T01:56:34.765413+00:00",
+        "monotonic": 14976.511309722,
+        "mem_total_bytes": 7988277248,
+        "mem_available_bytes": 1180397568,
+        "swap_used_bytes": 5524111360,
+        "pswpin_pages": 407227,
+        "pswpout_pages": 1862026,
+        "memory_full_psi_avg10": 0.08,
+        "driver_rss_bytes": 101003264,
+        "driver_pss_bytes": 86129664,
+        "runtime_rss_bytes": 0,
+        "runtime_pss_bytes": 0,
+        "runtime_swap_bytes": 0
+      }
+    },
+    {
+      "id": "C-receipt-dispute",
+      "requirement": "Identify completed processing, unresolved customer report and absent beneficiary confirmation.",
+      "elapsed_seconds": 38.991,
+      "task": {
+        "id": "1d66de16-5958-45a9-b46d-973146b6a13d",
+        "kind": "ai_task",
+        "classification": "internal",
+        "created_at": "2026-10-22T01:56:35.196708+00:00",
+        "data": {
+          "state": "completed",
+          "task": "adaptive_investigation",
+          "evidence_ids": [
+            "10fba3bf-6f8e-4576-9379-536622acde6d",
+            "8d01ed1c-24b4-477a-ac1a-b3095b3947b0",
+            "a7449e1e-9651-4981-ab80-2eea7acac88a"
+          ],
+          "revision_id": "b6c0694f-cd10-443e-865c-4ec9ba44df37",
+          "investigation_id": "8d803bf9-7a9d-458d-a951-a73bb929346f",
+          "attempts": 1,
+          "initiation": "manual",
+          "scheduling_identity": "adef26cd17e5dc8ace5bd2ce1620f554f9783c277f2e626b6eedda4edeb9679b",
+          "intent_id": null,
+          "reprocessing_of": null,
+          "policy_version": "automatic-v1:1",
+          "model_config_version": "1",
+          "history": [
+            {
+              "state": "queued",
+              "at": "2026-10-22T01:56:35.196327+00:00"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T01:56:35.209694+00:00"
+            },
+            {
+              "state": "completed",
+              "outcome": "invalid_model_output",
+              "at": "2026-10-22T01:57:14.186796+00:00"
+            }
+          ],
+          "next_attempt_at": 0,
+          "lease_until": 0,
+          "run_id": "d06a81cd-91fd-4df7-ba8a-176967e78083",
+          "outcome": "invalid_model_output",
+          "adaptive_progress": {
+            "generations": 1,
+            "tool_calls": 0,
+            "outcome": "invalid_model_output"
+          }
+        }
+      },
+      "calls": [
+        {
+          "input": {
+            "revision_id": "b6c0694f-cd10-443e-865c-4ec9ba44df37",
+            "known_at": "2026-10-22T01:56:35.164614+00:00",
+            "seed_evidence": [
+              {
+                "id": "8d01ed1c-24b4-477a-ac1a-b3095b3947b0",
+                "record_type": "transaction",
+                "source_id": "t",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "status"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:56:35.049980+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:56:35.056023+00:00",
+                "native_record_id": "beafe7cc-8f45-42fb-bc92-871ef3d57ab4",
+                "origin": null,
+                "digest": "a260fcf5189b544b7c7399365bcc359d6e0b4c84ed7e7d112e3b4a9b3000776b",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:56:35.049980+00:00",
+                  "transaction_id": "TX1",
+                  "customer_id": "C1",
+                  "account_id": "A1",
+                  "amount_minor": 1000,
+                  "currency": "NGN",
+                  "route_id": "R1",
+                  "gateway_id": "G3",
+                  "status": "completed",
+                  "response": "reconciled",
+                  "version": 1,
+                  "beneficiary_verified": false
+                }
+              },
+              {
+                "id": "a7449e1e-9651-4981-ab80-2eea7acac88a",
+                "record_type": "interaction",
+                "source_id": "c",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "report"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:56:35.099974+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:56:35.105537+00:00",
+                "native_record_id": "0f480766-2aa5-43cf-8f36-ba7dc34aeb26",
+                "origin": null,
+                "digest": "72bd363be1d3b2fb875ccd51bbca94c9a7179c2d1e46459a628ed90bd4b3e8d0",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:56:35.099974+00:00",
+                  "channel": "in_app",
+                  "text": "My transfer was unsuccessful; the beneficiary says nothing arrived.",
+                  "customer_id": "C1",
+                  "transaction_id": "TX1"
+                }
+              }
+            ],
+            "initial_evidence_ids": [
+              "a7449e1e-9651-4981-ab80-2eea7acac88a",
+              "8d01ed1c-24b4-477a-ac1a-b3095b3947b0"
+            ],
+            "history": [],
+            "remaining": {
+              "generations": 4,
+              "tool_calls": 3
+            }
+          },
+          "error": "InvalidInference",
+          "raw_output": "{\n  \"action\": \"assess\",\n  \"question\": \"What is the status of the transaction with the customer ID C1?\",\n  \"tool_call\": null,\n  \"assessment\": {\n    \"source_facts\": [\n      {\n        \"evidence_id\": \"a7449e1e-9651-4981-ab80-2eea7acac88a\",\n        \"field\": \"status\",\n        \"value\": \"completed\"\n      },\n      {\n        \"evidence_id\": \"8d01ed1c-24b4-477a-ac1a-b3095b3947b0\",\n        \"field\": \"status\",\n        \"value\": \"completed\"\n      }\n    ],\n    \"derived_findings\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"a7449e1e-9651-4981-ab80-2eea7acac88a\", \"8d01ed1c-24b4-477a-ac1a-b3095b3947b0\"]\n      }\n    ],\n    \"hypotheses\": [\n      {\n        \"label\": \"The transaction is completed\",\n        \"explanation\": \"The transaction is completed, and the customer ID C1 has been verified.\",\n        \"supports\": [\n          \"The transaction has been completed\",\n          \"The customer ID C1 has been verified\"\n        ],\n        \"weakens\": [\n          \"The transaction is not completed\",\n          \"The customer ID C1 has not been verified\"\n        ],\n        \"next_check\": \"The transaction is not completed, and the customer ID C1 has not been verified.\"\n      }\n    ],\n    \"contradictions\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"a7449e1e-9651-4981-ab80-2eea7acac88a\", \"8d01ed1c-24b4-477a-ac1a-b3095b3947b0\"]\n      }\n    ],\n    \"unknowns\": [\n      \"The transaction status is not known\"\n    ],\n    \"recommended",
+          "metadata": {
+            "model": "veriq-qwen2.5-0.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T01:56:35.225731+00:00",
+            "prompt_version": "ticket005-adaptive-v1",
+            "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+            "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+            "elapsed_seconds": 38.949,
+            "completed_at": "2026-10-22T01:57:14.174937+00:00",
+            "usage": {
+              "completion_tokens": 512,
+              "prompt_tokens": 1297,
+              "total_tokens": 1809,
+              "prompt_tokens_details": {
+                "cached_tokens": 348
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 348,
+              "prompt_n": 949,
+              "prompt_ms": 11170.643,
+              "prompt_per_token_ms": 11.77096206533193,
+              "prompt_per_second": 84.95482310194677,
+              "predicted_n": 512,
+              "predicted_ms": 27728.293,
+              "predicted_per_token_ms": 54.26280430528376,
+              "predicted_per_second": 18.4288300761969
+            }
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "d677ab59-bbd3-4d87-a1db-1548a21e46aa",
+          "kind": "investigative_step",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:57:14.185453+00:00",
+          "data": {
+            "task_id": "1d66de16-5958-45a9-b46d-973146b6a13d",
+            "investigation_id": "8d803bf9-7a9d-458d-a951-a73bb929346f",
+            "revision_id": "b6c0694f-cd10-443e-865c-4ec9ba44df37",
+            "number": 1,
+            "state": "invalid_model_output",
+            "decision": null,
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:56:35.225731+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 38.949,
+              "completed_at": "2026-10-22T01:57:14.174937+00:00",
+              "usage": {
+                "completion_tokens": 512,
+                "prompt_tokens": 1297,
+                "total_tokens": 1809,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 949,
+                "prompt_ms": 11170.643,
+                "prompt_per_token_ms": 11.77096206533193,
+                "prompt_per_second": 84.95482310194677,
+                "predicted_n": 512,
+                "predicted_ms": 27728.293,
+                "predicted_per_token_ms": 54.26280430528376,
+                "predicted_per_second": 18.4288300761969
+              }
+            },
+            "started_from_durable_generation": 0,
+            "at": "2026-10-22T01:57:14.184868+00:00",
+            "untrusted_invalid_output": "{\n  \"action\": \"assess\",\n  \"question\": \"What is the status of the transaction with the customer ID C1?\",\n  \"tool_call\": null,\n  \"assessment\": {\n    \"source_facts\": [\n      {\n        \"evidence_id\": \"a7449e1e-9651-4981-ab80-2eea7acac88a\",\n        \"field\": \"status\",\n        \"value\": \"completed\"\n      },\n      {\n        \"evidence_id\": \"8d01ed1c-24b4-477a-ac1a-b3095b3947b0\",\n        \"field\": \"status\",\n        \"value\": \"completed\"\n      }\n    ],\n    \"derived_findings\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"a7449e1e-9651-4981-ab80-2eea7acac88a\", \"8d01ed1c-24b4-477a-ac1a-b3095b3947b0\"]\n      }\n    ],\n    \"hypotheses\": [\n      {\n        \"label\": \"The transaction is completed\",\n        \"explanation\": \"The transaction is completed, and the customer ID C1 has been verified.\",\n        \"supports\": [\n          \"The transaction has been completed\",\n          \"The customer ID C1 has been verified\"\n        ],\n        \"weakens\": [\n          \"The transaction is not completed\",\n          \"The customer ID C1 has not been verified\"\n        ],\n        \"next_check\": \"The transaction is not completed, and the customer ID C1 has not been verified.\"\n      }\n    ],\n    \"contradictions\": [\n      {\n        \"rule\": \"customer_completion_dispute\",\n        \"evidence_ids\": [\"a7449e1e-9651-4981-ab80-2eea7acac88a\", \"8d01ed1c-24b4-477a-ac1a-b3095b3947b0\"]\n      }\n    ],\n    \"unknowns\": [\n      \"The transaction status is not known\"\n    ],\n    \"recommended"
+          }
+        }
+      ],
+      "runs": [
+        {
+          "id": "d06a81cd-91fd-4df7-ba8a-176967e78083",
+          "kind": "inference_run",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:57:14.186466+00:00",
+          "data": {
+            "task": "adaptive_investigation",
+            "task_id": "1d66de16-5958-45a9-b46d-973146b6a13d",
+            "investigation_id": "8d803bf9-7a9d-458d-a951-a73bb929346f",
+            "revision_id": "b6c0694f-cd10-443e-865c-4ec9ba44df37",
+            "state": "invalid_model_output",
+            "result": null,
+            "initiation": "manual",
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:56:35.225731+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 38.949,
+              "completed_at": "2026-10-22T01:57:14.174937+00:00",
+              "usage": {
+                "completion_tokens": 512,
+                "prompt_tokens": 1297,
+                "total_tokens": 1809,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 949,
+                "prompt_ms": 11170.643,
+                "prompt_per_token_ms": 11.77096206533193,
+                "prompt_per_second": 84.95482310194677,
+                "predicted_n": 512,
+                "predicted_ms": 27728.293,
+                "predicted_per_token_ms": 54.26280430528376,
+                "predicted_per_second": 18.4288300761969
+              }
+            },
+            "evidence_ids": [
+              "10fba3bf-6f8e-4576-9379-536622acde6d",
+              "8d01ed1c-24b4-477a-ac1a-b3095b3947b0",
+              "a7449e1e-9651-4981-ab80-2eea7acac88a"
+            ],
+            "qualification": "unqualified",
+            "acceptance": "not_accepted"
+          }
+        }
+      ],
+      "metrics": {
+        "actual_http_generations": 1,
+        "schema_valid_decisions": 0,
+        "executed_tools": 0,
+        "new_evidence_retrieved": false,
+        "document_discovered": false,
+        "assessment_published": false,
+        "safety_lifecycle_invalidated": null,
+        "competing_hypothesis_count": 0,
+        "reasoning_quality": "requires manual rubric inspection; schema is not factual correctness"
+      },
+      "resources_after": {
+        "at": "2026-10-22T01:57:14.195188+00:00",
+        "monotonic": 15015.941079593,
+        "mem_total_bytes": 7988277248,
+        "mem_available_bytes": 1131728896,
+        "swap_used_bytes": 5518442496,
+        "pswpin_pages": 408525,
+        "pswpout_pages": 1862026,
+        "memory_full_psi_avg10": 0.0,
+        "driver_rss_bytes": 103071744,
+        "driver_pss_bytes": 88198144,
+        "runtime_rss_bytes": 0,
+        "runtime_pss_bytes": 0,
+        "runtime_swap_bytes": 0
+      }
+    },
+    {
+      "id": "D-competing",
+      "requirement": "At least two distinct hypotheses with supporting and weakening evidence and useful next checks; no causal certainty.",
+      "elapsed_seconds": 36.92,
+      "task": {
+        "id": "bf4ed3d7-889f-41c5-9618-2a6412517da9",
+        "kind": "ai_task",
+        "classification": "internal",
+        "created_at": "2026-10-22T01:57:14.615344+00:00",
+        "data": {
+          "state": "completed",
+          "task": "adaptive_investigation",
+          "evidence_ids": [
+            "651a87cb-b94f-4f23-9f4e-39303cb5b799",
+            "8919fad2-d5fc-47a7-b835-9aabaac2704a",
+            "896c2d91-2d2a-4f79-b6fe-780938fa46b3"
+          ],
+          "revision_id": "2ac0b714-380c-4e5d-9bd1-d4789a0c76ff",
+          "investigation_id": "d948b466-57fd-4bc5-a3e9-b7c7b29c665d",
+          "attempts": 1,
+          "initiation": "manual",
+          "scheduling_identity": "6b40fc9ee2fcc486663bf0a4489aec930a6e7ae44d7b2ee267abfb1e790848dd",
+          "intent_id": null,
+          "reprocessing_of": null,
+          "policy_version": "automatic-v1:1",
+          "model_config_version": "1",
+          "history": [
+            {
+              "state": "queued",
+              "at": "2026-10-22T01:57:14.614677+00:00"
+            },
+            {
+              "state": "running",
+              "at": "2026-10-22T01:57:14.628687+00:00"
+            },
+            {
+              "state": "completed",
+              "outcome": "quarantined",
+              "at": "2026-10-22T01:57:51.535212+00:00"
+            }
+          ],
+          "next_attempt_at": 0,
+          "lease_until": 0,
+          "run_id": "4d1982ad-ec44-427e-bf60-f9f97a48c6e2",
+          "outcome": "quarantined",
+          "adaptive_progress": {
+            "generations": 1,
+            "tool_calls": 0,
+            "outcome": "quarantined"
+          }
+        }
+      },
+      "calls": [
+        {
+          "input": {
+            "revision_id": "2ac0b714-380c-4e5d-9bd1-d4789a0c76ff",
+            "known_at": "2026-10-22T01:57:14.582917+00:00",
+            "seed_evidence": [
+              {
+                "id": "651a87cb-b94f-4f23-9f4e-39303cb5b799",
+                "record_type": "transaction",
+                "source_id": "t",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "status"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:57:14.460483+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:57:14.465596+00:00",
+                "native_record_id": "03949cea-8ebd-4561-a5a0-dfdd9ba68fdb",
+                "origin": null,
+                "digest": "083d78894355b7fa491711c60d07d501139ffb3cfb912c212f30f099b0e50f5c",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:57:14.460483+00:00",
+                  "transaction_id": "TX1",
+                  "customer_id": "C1",
+                  "account_id": "A1",
+                  "amount_minor": 1000,
+                  "currency": "NGN",
+                  "route_id": "R1",
+                  "gateway_id": "G3",
+                  "status": "pending",
+                  "response": "timeout",
+                  "version": 1,
+                  "beneficiary_verified": false
+                }
+              },
+              {
+                "id": "896c2d91-2d2a-4f79-b6fe-780938fa46b3",
+                "record_type": "interaction",
+                "source_id": "c",
+                "identity_namespace": "fixture-bank-identifiers",
+                "authority": [
+                  "report"
+                ],
+                "classification": "internal",
+                "valid_at": "2026-10-22T01:57:14.511598+00:00",
+                "valid_to": null,
+                "known_at": "2026-10-22T01:57:14.517062+00:00",
+                "native_record_id": "ccf2b56f-21b6-413d-9e45-0a1eca68f293",
+                "origin": null,
+                "digest": "e4f372677e29abb17cc37b8633d3bddc5f2cf5908a3c9a1d024a2db973ac27e7",
+                "grant_version": 1,
+                "content_truncated": false,
+                "acceptance": "authorized_structured_record",
+                "payload": {
+                  "occurred_at": "2026-10-22T01:57:14.511598+00:00",
+                  "channel": "in_app",
+                  "text": "My transfer is delayed and the client still shows pending.",
+                  "customer_id": "C1",
+                  "transaction_id": "TX1"
+                }
+              }
+            ],
+            "initial_evidence_ids": [
+              "896c2d91-2d2a-4f79-b6fe-780938fa46b3",
+              "651a87cb-b94f-4f23-9f4e-39303cb5b799"
+            ],
+            "history": [],
+            "remaining": {
+              "generations": 4,
+              "tool_calls": 3
+            }
+          },
+          "raw_validated_decision": {
+            "action": "assess",
+            "question": "What is the status of the transaction with the customer ID C1?",
+            "tool_call": null,
+            "assessment": {
+              "source_facts": [
+                {
+                  "evidence_id": "896c2d91-2d2a-4f79-b6fe-780938fa46b3",
+                  "field": "status",
+                  "value": "pending"
+                }
+              ],
+              "derived_findings": [
+                {
+                  "rule": "customer_completion_dispute",
+                  "evidence_ids": [
+                    "896c2d91-2d2a-4f79-b6fe-780938fa46b3"
+                  ]
+                }
+              ],
+              "hypotheses": [
+                {
+                  "label": "The transaction is pending.",
+                  "explanation": "The transaction is marked as pending, indicating that the client is still showing pending status. This suggests that the transaction is still in progress and the customer is still receiving the transfer.",
+                  "supports": [
+                    "The transaction is marked as pending in the initial evidence.",
+                    "The customer ID C1 is still showing pending status."
+                  ],
+                  "weakens": [
+                    "The transaction is not marked as pending in the initial evidence.",
+                    "The customer ID C1 is not still showing pending status."
+                  ],
+                  "next_check": "Check if the transaction is marked as pending in the subsequent evidence."
+                }
+              ],
+              "contradictions": [
+                {
+                  "rule": "customer_completion_dispute",
+                  "evidence_ids": [
+                    "896c2d91-2d2a-4f79-b6fe-780938fa46b3"
+                  ]
+                }
+              ],
+              "unknowns": [
+                "The transaction is pending, but the customer ID C1 is still showing pending status."
+              ],
+              "recommended_next_actions": [
+                "Check if the transaction is marked as pending in the subsequent evidence."
+              ]
+            }
+          },
+          "metadata": {
+            "model": "veriq-qwen2.5-0.5b",
+            "task": "adaptive_investigation",
+            "transport": "http",
+            "started_at": "2026-10-22T01:57:14.646323+00:00",
+            "prompt_version": "ticket005-adaptive-v1",
+            "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+            "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+            "elapsed_seconds": 36.868,
+            "completed_at": "2026-10-22T01:57:51.514706+00:00",
+            "usage": {
+              "completion_tokens": 460,
+              "prompt_tokens": 1305,
+              "total_tokens": 1765,
+              "prompt_tokens_details": {
+                "cached_tokens": 348
+              }
+            },
+            "runtime_timings": {
+              "cache_n": 348,
+              "prompt_n": 957,
+              "prompt_ms": 11314.13,
+              "prompt_per_token_ms": 11.8224973876698,
+              "prompt_per_second": 84.58449743815919,
+              "predicted_n": 460,
+              "predicted_ms": 25505.822,
+              "predicted_per_token_ms": 55.56823965141612,
+              "predicted_per_second": 17.99589129101583
+            }
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "b29c85ae-4108-41f4-8598-cbe33c546bb7",
+          "kind": "investigative_step",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:57:51.533697+00:00",
+          "data": {
+            "task_id": "bf4ed3d7-889f-41c5-9618-2a6412517da9",
+            "investigation_id": "d948b466-57fd-4bc5-a3e9-b7c7b29c665d",
+            "revision_id": "2ac0b714-380c-4e5d-9bd1-d4789a0c76ff",
+            "number": 1,
+            "state": "quarantined",
+            "decision": {
+              "action": "assess",
+              "question": "What is the status of the transaction with the customer ID C1?",
+              "tool_call": null,
+              "assessment": {
+                "source_facts": [
+                  {
+                    "evidence_id": "896c2d91-2d2a-4f79-b6fe-780938fa46b3",
+                    "field": "status",
+                    "value": "pending"
+                  }
+                ],
+                "derived_findings": [
+                  {
+                    "rule": "customer_completion_dispute",
+                    "evidence_ids": [
+                      "896c2d91-2d2a-4f79-b6fe-780938fa46b3"
+                    ]
+                  }
+                ],
+                "hypotheses": [
+                  {
+                    "label": "The transaction is pending.",
+                    "explanation": "The transaction is marked as pending, indicating that the client is still showing pending status. This suggests that the transaction is still in progress and the customer is still receiving the transfer.",
+                    "supports": [
+                      "The transaction is marked as pending in the initial evidence.",
+                      "The customer ID C1 is still showing pending status."
+                    ],
+                    "weakens": [
+                      "The transaction is not marked as pending in the initial evidence.",
+                      "The customer ID C1 is not still showing pending status."
+                    ],
+                    "next_check": "Check if the transaction is marked as pending in the subsequent evidence."
+                  }
+                ],
+                "contradictions": [
+                  {
+                    "rule": "customer_completion_dispute",
+                    "evidence_ids": [
+                      "896c2d91-2d2a-4f79-b6fe-780938fa46b3"
+                    ]
+                  }
+                ],
+                "unknowns": [
+                  "The transaction is pending, but the customer ID C1 is still showing pending status."
+                ],
+                "recommended_next_actions": [
+                  "Check if the transaction is marked as pending in the subsequent evidence."
+                ]
+              }
+            },
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:57:14.646323+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 36.868,
+              "completed_at": "2026-10-22T01:57:51.514706+00:00",
+              "usage": {
+                "completion_tokens": 460,
+                "prompt_tokens": 1305,
+                "total_tokens": 1765,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 957,
+                "prompt_ms": 11314.13,
+                "prompt_per_token_ms": 11.8224973876698,
+                "prompt_per_second": 84.58449743815919,
+                "predicted_n": 460,
+                "predicted_ms": 25505.822,
+                "predicted_per_token_ms": 55.56823965141612,
+                "predicted_per_second": 17.99589129101583
+              }
+            },
+            "started_from_durable_generation": 0,
+            "at": "2026-10-22T01:57:51.528186+00:00",
+            "untrusted_invalid_output": null,
+            "validation_error": "Source field does not exist"
+          }
+        }
+      ],
+      "runs": [
+        {
+          "id": "4d1982ad-ec44-427e-bf60-f9f97a48c6e2",
+          "kind": "inference_run",
+          "classification": "internal",
+          "created_at": "2026-10-22T01:57:51.534829+00:00",
+          "data": {
+            "task": "adaptive_investigation",
+            "task_id": "bf4ed3d7-889f-41c5-9618-2a6412517da9",
+            "investigation_id": "d948b466-57fd-4bc5-a3e9-b7c7b29c665d",
+            "revision_id": "2ac0b714-380c-4e5d-9bd1-d4789a0c76ff",
+            "state": "quarantined",
+            "result": null,
+            "initiation": "manual",
+            "inference_metadata": {
+              "model": "veriq-qwen2.5-0.5b",
+              "task": "adaptive_investigation",
+              "transport": "http",
+              "started_at": "2026-10-22T01:57:14.646323+00:00",
+              "prompt_version": "ticket005-adaptive-v1",
+              "prompt_sha256": "5ceb2a352d4df0160d2e742b822a664c46422fed635a441ee2358f84dbc54d1e",
+              "output_schema_sha256": "dcd3c786be050f02bd067a3c9f9811b338576014bb787944d59735cc0fd695f6",
+              "elapsed_seconds": 36.868,
+              "completed_at": "2026-10-22T01:57:51.514706+00:00",
+              "usage": {
+                "completion_tokens": 460,
+                "prompt_tokens": 1305,
+                "total_tokens": 1765,
+                "prompt_tokens_details": {
+                  "cached_tokens": 348
+                }
+              },
+              "runtime_timings": {
+                "cache_n": 348,
+                "prompt_n": 957,
+                "prompt_ms": 11314.13,
+                "prompt_per_token_ms": 11.8224973876698,
+                "prompt_per_second": 84.58449743815919,
+                "predicted_n": 460,
+                "predicted_ms": 25505.822,
+                "predicted_per_token_ms": 55.56823965141612,
+                "predicted_per_second": 17.99589129101583
+              }
+            },
+            "evidence_ids": [
+              "651a87cb-b94f-4f23-9f4e-39303cb5b799",
+              "8919fad2-d5fc-47a7-b835-9aabaac2704a",
+              "896c2d91-2d2a-4f79-b6fe-780938fa46b3"
+            ],
+            "qualification": "unqualified",
+            "acceptance": "not_accepted"
+          }
+        }
+      ],
+      "metrics": {
+        "actual_http_generations": 1,
+        "schema_valid_decisions": 1,
+        "executed_tools": 0,
+        "new_evidence_retrieved": false,
+        "document_discovered": false,
+        "assessment_published": false,
+        "safety_lifecycle_invalidated": null,
+        "competing_hypothesis_count": 0,
+        "reasoning_quality": "requires manual rubric inspection; schema is not factual correctness"
+      },
+      "resources_after": {
+        "at": "2026-10-22T01:57:51.545247+00:00",
+        "monotonic": 15053.291150618,
+        "mem_total_bytes": 7988277248,
+        "mem_available_bytes": 1200189440,
+        "swap_used_bytes": 5525098496,
+        "pswpin_pages": 408847,
+        "pswpout_pages": 1863886,
+        "memory_full_psi_avg10": 0.0,
+        "driver_rss_bytes": 105308160,
+        "driver_pss_bytes": 90434560,
+        "runtime_rss_bytes": 0,
+        "runtime_pss_bytes": 0,
+        "runtime_swap_bytes": 0
+      }
+    }
+  ]
+}

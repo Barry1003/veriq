@@ -1,0 +1,82 @@
+[
+  {
+    "id": "467927ce-523f-4ced-8c58-450ec116e820",
+    "kind": "investigation",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:40.255503+00:00",
+    "data": {
+      "trigger_type": "incident",
+      "trigger_id": "05d8d0a6-9b16-48ab-a2e0-a320aa36976b",
+      "state": "open",
+      "revision": 16,
+      "review_required": true,
+      "latest_revision_id": "c1489f1c-62e7-4451-8747-294646a71539",
+      "fingerprint": "985caf40c284c9c5f386fa1f58693c904e62935481535b6415ac91c405909de0",
+      "material_fingerprint": "114bfafe35754e62ff6de7583b80a9421958a3c0aea454794dd1a363c8175cdd"
+    }
+  },
+  {
+    "id": "1e72c918-5858-4ba9-b940-c7662f898196",
+    "kind": "investigation",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:43.514957+00:00",
+    "data": {
+      "trigger_type": "interaction",
+      "trigger_id": "c9a46b13-d007-48d7-9d41-b061211f8013",
+      "state": "open",
+      "revision": 2,
+      "review_required": true,
+      "latest_revision_id": "beddf2f3-4e07-4634-8c91-4369b94b97f8",
+      "fingerprint": "242ed5b87366d690b7b86fe4f60bb3e82c758181b3f6b02b19d3ed72ed2ddceb",
+      "material_fingerprint": "bd9ccf10b58e0f93849863abbaa9db1177a67d55230f7894294d224b358b6133"
+    }
+  },
+  {
+    "id": "6b48ecba-6911-4d29-a8a0-bbd6732e6a54",
+    "kind": "investigation",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:44.636602+00:00",
+    "data": {
+      "trigger_type": "interaction",
+      "trigger_id": "d6ba58ef-f1b3-4cfb-bba8-7ac5771460e7",
+      "state": "open",
+      "revision": 2,
+      "review_required": true,
+      "latest_revision_id": "03edc09c-293f-4329-85a9-13475a65e8fe",
+      "fingerprint": "ab46309f7e27ed2d3d5381fde32fd271e26a4b7443767f32e128746853e71fd7",
+      "material_fingerprint": "c3f662359a22d88eb232f0904c399f116179f3d48f3642f93eb3513d92fafb38"
+    }
+  },
+  {
+    "id": "d2774648-c645-481d-8b63-867bf1e3de62",
+    "kind": "investigation",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:02:46.302710+00:00",
+    "data": {
+      "trigger_type": "interaction",
+      "trigger_id": "0f6e2250-2770-4c5f-9a8e-845cc4b2f30a",
+      "state": "open",
+      "revision": 1,
+      "review_required": true,
+      "latest_revision_id": "3b499680-4545-44d0-88ba-6d9c2f1ff154",
+      "fingerprint": "061a04bd286068f541c79dca17ca72bd2f48d5b43ba5a88d43426822e5a89d62",
+      "material_fingerprint": "8e754a0cb4c1a792541ea5166b2621a502cc0b4893887b8289576617f6bc2fe9"
+    }
+  },
+  {
+    "id": "5aef7da6-03d0-4859-b073-654ff45bccb0",
+    "kind": "investigation",
+    "classification": "internal",
+    "created_at": "2026-10-22T00:05:13.928928+00:00",
+    "data": {
+      "trigger_type": "interaction",
+      "trigger_id": "21ba7616-a56d-48cd-bae1-2ebfda3f054c",
+      "state": "open",
+      "revision": 2,
+      "review_required": true,
+      "latest_revision_id": "85c8f5f0-400a-45cf-9c0e-e7018cbf0b6c",
+      "fingerprint": "3c201b8afa14f7946ff2d101c33c443f7863a818ae95cde3b41da36aa87c15aa",
+      "material_fingerprint": "f6b348eb33e35e60684151fb6206ac91df36ead85899fc175e3bbb716c72f0d9"
+    }
+  }
+]

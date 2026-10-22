@@ -1,0 +1,78 @@
+[
+  {
+    "id": "d1c2c841-cbca-4a09-b901-8d30816f3c96",
+    "kind": "issue",
+    "classification": "internal",
+    "created_at": "2026-10-21T19:54:44.725358+00:00",
+    "data": {
+      "category": "reported_failure",
+      "count": 4,
+      "channels": [
+        "branch",
+        "contact_centre",
+        "email",
+        "in_app"
+      ],
+      "evidence_ids": [
+        "03284bfe-3b12-43e8-a6fc-f8bd3cecdd14",
+        "0299a981-c8ad-4442-8f54-b938f08ca6aa",
+        "e6980dbc-9d99-4977-88fd-98128e98b90c",
+        "fb501f24-09d4-4c40-bb8d-a22dc2e8c55d"
+      ],
+      "meaning": "Recurring customer reports; common technical cause is not established"
+    }
+  },
+  {
+    "id": "b35e139c-2d98-48d1-a768-f7d3fea7b166",
+    "kind": "issue",
+    "classification": "internal",
+    "created_at": "2026-10-21T20:10:15.579684+00:00",
+    "data": {
+      "category": "reported_failure",
+      "count": 7,
+      "channels": [
+        "branch",
+        "contact_centre",
+        "email",
+        "in_app"
+      ],
+      "evidence_ids": [
+        "03284bfe-3b12-43e8-a6fc-f8bd3cecdd14",
+        "0299a981-c8ad-4442-8f54-b938f08ca6aa",
+        "e6980dbc-9d99-4977-88fd-98128e98b90c",
+        "fb501f24-09d4-4c40-bb8d-a22dc2e8c55d",
+        "46f61317-bead-4160-8c38-869aedb4ed0a",
+        "98c19538-a8d9-4943-91af-33b04d73c2d9",
+        "d00d30aa-afd5-4715-9cff-ac0cbc64f812"
+      ],
+      "meaning": "Recurring customer reports; common technical cause is not established"
+    }
+  },
+  {
+    "id": "4a32f657-16f9-43af-8de6-8d12bf24a629",
+    "kind": "issue",
+    "classification": "internal",
+    "created_at": "2026-10-21T20:10:15.908664+00:00",
+    "data": {
+      "category": "transfer_delay",
+      "count": 9,
+      "channels": [
+        "branch",
+        "contact_centre",
+        "email"
+      ],
+      "evidence_ids": [
+        "ef19f690-1633-4a31-a970-594de4451801",
+        "1d590afc-5703-434d-992b-627cecd2dce6",
+        "9f7dc0b4-aeb1-4ea7-9b97-166342afbe80",
+        "ab51588f-caf3-45bf-9f43-cdc1f569095c",
+        "97707fe4-a158-45a5-af1d-e95d0d3ad041",
+        "4bfd9695-c973-4783-af10-fe8a07533ef1",
+        "c6046337-8dcf-4440-8d89-54e993feede6",
+        "03ee0047-4d70-4c3b-8559-ef6baeb760ed",
+        "90c0b902-6c60-4db1-8fa2-82029cf1922d"
+      ],
+      "meaning": "Recurring customer reports; common technical cause is not established"
+    }
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "synthetic": true,
+  "transport": "actual_http",
+  "started_at": "2026-10-21T20:25:43.373731+00:00",
+  "completed": true,
+  "interpretation_quality": {
+    "expected_category": "reported_failure",
+    "actual_category": "transfer_delay",
+    "category_correct": false,
+    "original_deterministic_category": "reported_failure",
+    "interpretation_is_candidate": true
+  },
+  "finished_at": "2026-10-21T20:26:48.912339+00:00",
+  "model": "veriq-qwen2.5-0.5b",
+  "live_task_runs": {
+    "extraction": "3f437844-7a95-48af-a058-ed4daccd281c",
+    "interpretation": "c75fe63a-1400-49a5-aff9-d29c859b28b1",
+    "analysis": "b9d27f67-a74f-4145-a3a9-41a541a575c7"
+  },
+  "channel_provenance_verified": true,
+  "candidate_review_verified": true,
+  "financial_authority_isolation_verified": true,
+  "historical_revision_preserved": true,
+  "application_credentials_isolated": true
+}

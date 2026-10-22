@@ -1,0 +1,50 @@
+{
+  "id": "bf3dd534-c989-4032-a639-a468ed6305ea",
+  "kind": "inference_run",
+  "classification": "internal",
+  "created_at": "2026-10-22T10:54:54.441872+00:00",
+  "data": {
+    "task": "adaptive_investigation",
+    "task_id": "83902bcb-6ade-498a-973c-5af1eb0c4468",
+    "investigation_id": "c637bec5-eace-45d0-9b18-caf74a10ff3e",
+    "revision_id": "db43b8c1-8f23-4025-9f7e-97e4ba097559",
+    "state": "reviewable_assessment",
+    "result": {
+      "source_facts": [],
+      "derived_findings": [],
+      "contradictions": [],
+      "hypotheses": [
+        {
+          "label": "Handoff congestion",
+          "explanation": "A queue handoff delay is an alternative to gateway failure.",
+          "supports": [
+            "7279bae2-2ce9-4ffa-8388-236f3b972d24"
+          ],
+          "weakens": [],
+          "next_check": "Compare independent queue and gateway timestamps.",
+          "status": "unverified_hypothesis",
+          "support_semantics": "Model-proposed relevance; not verified entailment or causation"
+        }
+      ],
+      "unknowns": [
+        "Queue timing and receipt are not established"
+      ],
+      "recommended_next_actions": [
+        "Obtain independent queue measurements"
+      ],
+      "prose_status": "unverified_model_proposals",
+      "financial_actions_authorized": false
+    },
+    "initiation": "manual",
+    "inference_metadata": {},
+    "evidence_ids": [
+      "29505080-c7c8-4b67-9a24-8d698dc768ce",
+      "4fa5304a-0435-4172-b7d8-aa08b77af73b",
+      "7279bae2-2ce9-4ffa-8388-236f3b972d24",
+      "a08c83b1-0f18-437c-be7b-17af40d313dc",
+      "ea3fd51e-c792-4c87-9859-7f8e305b5af6"
+    ],
+    "qualification": "unqualified",
+    "acceptance": "not_accepted"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "occurred_at": {
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "channel": {
+      "enum": [
+        "in_app",
+        "email",
+        "contact_centre",
+        "branch"
+      ],
+      "title": "Channel",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "transaction_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Id"
+    }
+  },
+  "required": [
+    "channel",
+    "text",
+    "customer_id"
+  ],
+  "title": "Interaction",
+  "type": "object"
+}

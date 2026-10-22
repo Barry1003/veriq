@@ -1,0 +1,15 @@
+{
+  "python": "3.14.7",
+  "fastapi": "0.158.1",
+  "sqlalchemy": "2.0.55",
+  "databases": {
+    "cedar": {
+      "migration": "0002",
+      "metadata_differences": 0
+    },
+    "veriq": {
+      "migration": "0002",
+      "metadata_differences": 0
+    }
+  }
+}

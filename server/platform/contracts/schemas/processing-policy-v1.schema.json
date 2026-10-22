@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "title": "Enabled",
+      "type": "boolean"
+    },
+    "rationale": {
+      "maxLength": 2000,
+      "minLength": 5,
+      "title": "Rationale",
+      "type": "string"
+    }
+  },
+  "required": [
+    "enabled",
+    "rationale"
+  ],
+  "title": "ProcessingPolicy",
+  "type": "object"
+}

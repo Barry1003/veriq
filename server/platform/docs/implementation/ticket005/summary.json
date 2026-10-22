@@ -1,0 +1,77 @@
+{
+  "release": "0.5.0 candidate",
+  "full_ticket_acceptance": false,
+  "reason": "Frozen reasoning prerequisites failed; model remains unqualified",
+  "regression": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "153",
+    "time": "62.925",
+    "timestamp": "2026-10-22T12:08:30.907758+01:00",
+    "hostname": "fedora"
+  },
+  "model": {
+    "name": "veriq-qwen2.5-1.5b",
+    "dataset_sha256": "9562a2fe069ff3903b96ac4c0e85ddff14086a5cf85169804bc72c47b9551a09",
+    "generations": 18,
+    "schema_valid_generations": 17,
+    "tool_executions": 8,
+    "cases_retrieving_new_evidence": [
+      "A-discovery",
+      "C-receipt-dispute",
+      "D-competing"
+    ],
+    "reviewable_assessments": 0,
+    "outcomes": {
+      "quarantined": 2,
+      "inconclusive": 2,
+      "invalid_model_output": 1,
+      "invalidated": 2
+    },
+    "http_generation_latency_seconds": {
+      "minimum": 7.411,
+      "median": 18.0335,
+      "maximum": 125.657
+    },
+    "output_tokens": 2798,
+    "output_token_cap": 768
+  },
+  "demo": {
+    "http_requests": 121,
+    "checks": {
+      "proactive_before_complaint": true,
+      "native_reference_preserved": true,
+      "automatic_adaptive_task": true,
+      "durable_real_inference": true,
+      "no_ai_financial_change": true,
+      "no_manual_ai_requests": true
+    },
+    "model_outcome": "inconclusive",
+    "output_token_cap": 1024,
+    "databases": "Independent SQLite",
+    "process_cleanup": true
+  },
+  "resources": {
+    "samples": 993,
+    "scope": "Whole 1.5B process session, including initial trial, final frozen suite, demo and idle time",
+    "peak_sampled_rss_mib": 1915.19921875,
+    "os_high_water_rss_mib": 1914.4765625,
+    "peak_process_swap_mib": 923.05078125,
+    "minimum_host_available_gib": 1.2687721252441406,
+    "maximum_full_memory_psi_avg10": 5.58,
+    "emergency_stop": false,
+    "host_swap_used_first_bytes": 2217533440,
+    "host_swap_used_last_bytes": 3840212992,
+    "host_swapin_page_delta": 261221,
+    "host_swapout_page_delta": 671369
+  },
+  "qualification": {
+    "state": "unqualified",
+    "original_each_model": "4/10",
+    "held_out_each_model": "6/12",
+    "ticket003_live_suite": "2 passed, 1 extraction failed",
+    "ticket005_reasoning_prerequisites": "0/4"
+  }
+}

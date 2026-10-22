@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "message_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Message Id",
+      "type": "string"
+    },
+    "customer_id": {
+      "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "message": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Message",
+      "type": "string"
+    },
+    "transaction_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z0-9_.:-]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Id"
+    },
+    "sent_at": {
+      "title": "Sent At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "message_id",
+    "customer_id",
+    "message"
+  ],
+  "title": "InAppMessage",
+  "type": "object"
+}
